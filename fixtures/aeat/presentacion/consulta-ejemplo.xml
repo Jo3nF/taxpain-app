@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Respuesta SINTÉTICA de ConsultaExt construida según consultas.xsd (datos de prueba). -->
+<servicioConsultasDirectas>
+  <respuestaCorrecta>
+    <ejercicio>2026</ejercicio>
+    <modelo>303</modelo>
+    <periodo>1T</periodo>
+    <nif>12345678Z</nif>
+    <csv>ABCDEFGHIJKLMNOP</csv>
+    <expediente>2026303000000000000000001</expediente>
+    <justificante>3030000000001</justificante>
+    <fechaYHoraPresentacion>2026-04-15T10:00:00</fechaYHoraPresentacion>
+  </respuestaCorrecta>
+  <respuestaCorrecta>
+    <ejercicio>2026</ejercicio>
+    <modelo>303</modelo>
+    <periodo>1T</periodo>
+    <nif>12345678Z</nif>
+    <csv>QRSTUVWXYZ012345</csv>
+    <expediente>2026303000000000000000002</expediente>
+    <justificante>3030000000002</justificante>
+    <just_anterior>3030000000001</just_anterior>
+    <fechaYHoraPresentacion>2026-04-20T09:30:00</fechaYHoraPresentacion>
+  </respuestaCorrecta>
+</servicioConsultasDirectas>

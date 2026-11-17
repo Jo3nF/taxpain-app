@@ -1,0 +1,407 @@
+{
+ "model": "180",
+ "source": "DR_Mod_180_2023.pdf",
+ "sha256": "f4f4a0e9c8150288489e0a3058bedbd9a3b9f58bdba5e58b1599b7c7f5fc6cda",
+ "transcribed": "a mano desde el PDF (diseño de registro modelo 180, ejercicio 2023; tipo 1 págs. 2-7, tipo 2 págs. 8-17)",
+ "pages": [
+  {
+   "sheet": "180-1",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "1"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "180"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o razón social del declarante"
+    },
+    {
+     "n": 6,
+     "pos": 58,
+     "len": 1,
+     "type": "An",
+     "desc": "Tipo de soporte (C cinta magnética, T transmisión telemática)"
+    },
+    {
+     "n": 7,
+     "pos": 59,
+     "len": 9,
+     "type": "Num",
+     "desc": "Persona con quién relacionarse: teléfono"
+    },
+    {
+     "n": 8,
+     "pos": 68,
+     "len": 40,
+     "type": "An",
+     "desc": "Persona con quién relacionarse: apellidos y nombre"
+    },
+    {
+     "n": 9,
+     "pos": 108,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración"
+    },
+    {
+     "n": 10,
+     "pos": 121,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración complementaria (C)"
+    },
+    {
+     "n": 11,
+     "pos": 122,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración sustitutiva (S)"
+    },
+    {
+     "n": 12,
+     "pos": 123,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración anterior"
+    },
+    {
+     "n": 13,
+     "pos": 136,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de perceptores (registros de tipo 2)"
+    },
+    {
+     "n": 14,
+     "pos": 145,
+     "len": 1,
+     "type": "An",
+     "desc": "Base retenciones e ingresos a cuenta: signo (N si negativo)"
+    },
+    {
+     "n": 15,
+     "pos": 146,
+     "len": 13,
+     "type": "Num",
+     "desc": "Base retenciones e ingresos a cuenta: parte entera"
+    },
+    {
+     "n": 16,
+     "pos": 159,
+     "len": 2,
+     "type": "Num",
+     "desc": "Base retenciones e ingresos a cuenta: parte decimal"
+    },
+    {
+     "n": 17,
+     "pos": 161,
+     "len": 13,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta: parte entera"
+    },
+    {
+     "n": 18,
+     "pos": 174,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta: parte decimal"
+    },
+    {
+     "n": 19,
+     "pos": 176,
+     "len": 62,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 20,
+     "pos": 238,
+     "len": 263,
+     "type": "An",
+     "desc": "Sello electrónico (blancos salvo programas AEAT)"
+    }
+   ]
+  },
+  {
+   "sheet": "180-2",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "180"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del perceptor (arrendador)"
+    },
+    {
+     "n": 6,
+     "pos": 27,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante legal"
+    },
+    {
+     "n": 7,
+     "pos": 36,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre, razón social o denominación del perceptor"
+    },
+    {
+     "n": 8,
+     "pos": 76,
+     "len": 2,
+     "type": "Num",
+     "desc": "Código provincia (domicilio del perceptor)"
+    },
+    {
+     "n": 9,
+     "pos": 78,
+     "len": 1,
+     "type": "Num",
+     "desc": "Modalidad (1 dineraria, 2 en especie)"
+    },
+    {
+     "n": 10,
+     "pos": 79,
+     "len": 1,
+     "type": "An",
+     "desc": "Base retenciones e ingresos a cuenta: signo (N reintegro)"
+    },
+    {
+     "n": 11,
+     "pos": 80,
+     "len": 11,
+     "type": "Num",
+     "desc": "Base retenciones e ingresos a cuenta: parte entera"
+    },
+    {
+     "n": 12,
+     "pos": 91,
+     "len": 2,
+     "type": "Num",
+     "desc": "Base retenciones e ingresos a cuenta: parte decimal"
+    },
+    {
+     "n": 13,
+     "pos": 93,
+     "len": 2,
+     "type": "Num",
+     "desc": "% retención: parte entera"
+    },
+    {
+     "n": 14,
+     "pos": 95,
+     "len": 2,
+     "type": "Num",
+     "desc": "% retención: parte decimal"
+    },
+    {
+     "n": 15,
+     "pos": 97,
+     "len": 13,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta (13 posiciones; 2 últimas decimales)"
+    },
+    {
+     "n": 16,
+     "pos": 110,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio devengo"
+    },
+    {
+     "n": 17,
+     "pos": 114,
+     "len": 1,
+     "type": "Num",
+     "desc": "Situación del inmueble (1-4)"
+    },
+    {
+     "n": 18,
+     "pos": 115,
+     "len": 20,
+     "type": "An",
+     "desc": "Referencia catastral"
+    },
+    {
+     "n": 19,
+     "pos": 135,
+     "len": 5,
+     "type": "An",
+     "desc": "Dirección del inmueble: tipo de vía (código INE)"
+    },
+    {
+     "n": 20,
+     "pos": 140,
+     "len": 50,
+     "type": "An",
+     "desc": "Dirección del inmueble: nombre vía pública"
+    },
+    {
+     "n": 21,
+     "pos": 190,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección del inmueble: tipo de numeración"
+    },
+    {
+     "n": 22,
+     "pos": 193,
+     "len": 5,
+     "type": "An",
+     "desc": "Dirección del inmueble: número de casa"
+    },
+    {
+     "n": 23,
+     "pos": 198,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección del inmueble: calificador del número"
+    },
+    {
+     "n": 24,
+     "pos": 201,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección del inmueble: bloque"
+    },
+    {
+     "n": 25,
+     "pos": 204,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección del inmueble: portal"
+    },
+    {
+     "n": 26,
+     "pos": 207,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección del inmueble: escalera"
+    },
+    {
+     "n": 27,
+     "pos": 210,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección del inmueble: planta o piso"
+    },
+    {
+     "n": 28,
+     "pos": 213,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección del inmueble: puerta"
+    },
+    {
+     "n": 29,
+     "pos": 216,
+     "len": 40,
+     "type": "An",
+     "desc": "Dirección del inmueble: complemento"
+    },
+    {
+     "n": 30,
+     "pos": 256,
+     "len": 30,
+     "type": "An",
+     "desc": "Dirección del inmueble: localidad o población"
+    },
+    {
+     "n": 31,
+     "pos": 286,
+     "len": 30,
+     "type": "An",
+     "desc": "Dirección del inmueble: municipio"
+    },
+    {
+     "n": 32,
+     "pos": 316,
+     "len": 5,
+     "type": "An",
+     "desc": "Dirección del inmueble: código de municipio (INE)"
+    },
+    {
+     "n": 33,
+     "pos": 321,
+     "len": 2,
+     "type": "An",
+     "desc": "Dirección del inmueble: código provincia"
+    },
+    {
+     "n": 34,
+     "pos": 323,
+     "len": 5,
+     "type": "An",
+     "desc": "Dirección del inmueble: código postal"
+    },
+    {
+     "n": 35,
+     "pos": 328,
+     "len": 173,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  }
+ ]
+}

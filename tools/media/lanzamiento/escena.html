@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>TaxPain · vídeo</title>
+<style>
+  :root {
+    --fondo: #070b18;
+    --tinta: #f4f6fb;
+    --suave: #9aa6c4;
+    --marca: #5b7cf5;
+    --marca-2: #8aa4ff;
+    --rojo: #d01c29;
+    --oro: #fabd00;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--fondo); }
+  body { font-family: InterV, -apple-system, system-ui, sans-serif; color: var(--tinta);
+    -webkit-font-smoothing: antialiased; }
+  #stage { position: absolute; inset: 0; overflow: hidden; }
+  .glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: .55; }
+  .abs { position: absolute; }
+  .centro { position: absolute; left: 0; right: 0; text-align: center; }
+  .grande { font-size: 132px; font-weight: 800; letter-spacing: -0.045em; line-height: 1.02; }
+  .media { font-size: 92px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; }
+  .palabra { display: inline-block; white-space: pre; }
+  .acento { background: linear-gradient(90deg, var(--marca-2), var(--marca)); -webkit-background-clip: text;
+    background-clip: text; color: transparent; }
+  .marca { display: flex; justify-content: center; align-items: center; gap: 24px; font-size: 64px;
+    font-weight: 800; letter-spacing: -0.035em; }
+  .marca-logo { display: block; width: 96px; height: 96px; filter: drop-shadow(0 14px 30px rgba(0,0,0,.45)); }
+  .kicker { font-size: 24px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--marca-2); }
+  .titulo { font-size: 76px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.04; margin-top: 18px; }
+  .sub { font-size: 32px; line-height: 1.38; color: var(--suave); margin-top: 26px; font-weight: 450; }
+  .ventana { position: absolute; border-radius: 22px; overflow: hidden; background: #fff;
+    box-shadow: 0 50px 120px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08); }
+  .ventana .barra { height: 40px; background: #eef1f6; display: flex; gap: 11px; align-items: center; padding-left: 18px; }
+  .ventana .lienzo { overflow: hidden; }
+  .ventana img { display: block; width: 100%; transform-origin: 30% 20%; }
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 14px 26px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); font-size: 28px; font-weight: 600; }
+  .mini { position: absolute; border-radius: 16px; overflow: hidden; background: #fff;
+    box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+  .mini img { display: block; width: 100%; }
+  .etiqueta { position: absolute; font-size: 26px; font-weight: 650; text-align: center; }
+  .nota { font-size: 22px; color: #6d789a; }
+  .linea { font-size: 40px; font-weight: 550; color: var(--suave); }
+  .modelo { position: absolute; width: 170px; height: 120px; border-radius: 22px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14); font-size: 50px; font-weight: 800; letter-spacing: -0.03em; }
+  .modelo small { font-size: 18px; font-weight: 650; color: #5fd68a; letter-spacing: .04em; }
+  .pieza { position: absolute; width: 520px; padding: 26px 34px; border-radius: 22px; font-size: 40px; font-weight: 700;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); }
+  .pieza small { display: block; font-size: 22px; font-weight: 600; color: var(--suave); margin-bottom: 4px;
+    letter-spacing: .1em; text-transform: uppercase; }
+  .choque { position: absolute; width: 300px; height: 300px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; flex-direction: column; background: radial-gradient(circle, rgba(208,28,41,.95), rgba(140,12,24,.95));
+    box-shadow: 0 0 120px rgba(208,28,41,.6); text-align: center; }
+  .choque b { font-size: 110px; line-height: 1; font-weight: 800; }
+  .choque span { font-size: 26px; font-weight: 650; margin-top: 8px; }
+  .hallazgo { position: absolute; left: 260px; width: 1400px; padding: 30px 40px 30px 46px; border-radius: 24px;
+    background: #fff; color: #0f1629; box-shadow: 0 40px 90px rgba(0,0,0,.5); }
+  .hallazgo::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 12px; border-radius: 24px 0 0 24px;
+    background: var(--c, #d01c29); }
+  .hallazgo .tags { display: flex; gap: 12px; font-size: 22px; font-weight: 700; }
+  .hallazgo h3 { font-size: 44px; font-weight: 800; letter-spacing: -0.02em; margin-top: 14px; }
+  .hallazgo p { font-size: 30px; color: #3a4562; margin-top: 10px; }
+  .bocadillo { position: absolute; padding: 22px 32px; border-radius: 28px; font-size: 34px; font-weight: 600;
+    box-shadow: 0 30px 70px rgba(0,0,0,.45); }
+  .aviso { display: inline-block; margin-top: 24px; padding: 10px 20px; border-radius: 999px; font-size: 24px; font-weight: 700;
+    border: 1px solid rgba(250,189,0,.5); color: #fbd25a; }
+  .titulo2 { font-size: 56px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.08; margin-top: 8px; }
+  .plano { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  .resalte { position: absolute; border: 3px solid var(--marca); border-radius: 10px;
+    box-shadow: 0 0 0 4000px rgba(7,11,24,.5); }
+  .rotulo { position: absolute; padding: 20px 30px; border-radius: 20px; background: rgba(7,11,24,.92);
+    border: 1px solid rgba(255,255,255,.16); box-shadow: 0 24px 60px rgba(0,0,0,.5); max-width: 1250px; }
+  .rotulo b { display: block; font-size: 42px; font-weight: 750; letter-spacing: -0.02em; }
+  .rotulo span { display: block; font-size: 29px; color: var(--suave); margin-top: 6px; font-weight: 500; }
+  .indice { position: absolute; right: 180px; top: 70px; font-size: 26px; font-weight: 700; color: #6d789a;
+    font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+  .indice b { color: var(--tinta); }
+  .puntos { position: absolute; right: 180px; top: 76px; display: flex; gap: 14px; }
+  .puntos i { width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,.16); display: block; }
+  .progreso { position: absolute; left: 0; bottom: 0; height: 8px; width: 100%; transform-origin: 0 50%; z-index: 9;
+    background: linear-gradient(90deg, var(--marca), var(--marca-2)); }
+  .chatw { position: absolute; border-radius: 28px; background: #0d1222; border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 50px 120px rgba(0,0,0,.6); overflow: hidden; }
+  .chatw .cab { height: 84px; display: flex; align-items: center; gap: 16px; padding: 0 36px;
+    border-bottom: 1px solid rgba(255,255,255,.08); font-size: 32px; font-weight: 750; }
+  .msg { position: absolute; right: 44px; padding: 22px 34px; border-radius: 30px 30px 8px 30px; background: var(--marca);
+    font-size: 44px; font-weight: 600; white-space: pre; min-height: 98px; min-width: 70px; letter-spacing: -0.01em; }
+  .herr { position: absolute; left: 44px; display: inline-flex; gap: 14px; align-items: center; padding: 14px 24px;
+    border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+    font: 600 28px ui-monospace, SFMono-Regular, Menlo, monospace; color: #b9c4e4; }
+  .herr i { font-style: normal; color: #5fd68a; }
+  .col { position: absolute; left: 44px; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+  .resp { width: 1180px; padding: 30px 38px; border-radius: 30px 30px 30px 8px; background: #fff;
+    color: #0f1629; font-size: 42px; line-height: 1.36; font-weight: 500; letter-spacing: -0.01em; }
+  .fuente { padding: 14px 16px 16px; border-radius: 20px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); }
+  .fuente small { display: block; font-size: 22px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--marca-2); margin: 0 0 12px 6px; }
+  .fuente div { border-radius: 12px; background-repeat: no-repeat; background-color: #fff; }
+  .resp b { font-weight: 800; }
+  .resp em { font-style: normal; color: #2b50d6; font-weight: 700; }
+  .resp small { display: block; margin-top: 16px; font-size: 27px; color: #6b7590; line-height: 1.35; }
+  .nodo { position: absolute; width: 560px; padding: 20px 30px; border-radius: 18px; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14); font-size: 38px; font-weight: 700; }
+  .nodo small { display: block; font-size: 24px; color: var(--suave); font-weight: 600; margin-top: 4px; }
+  .bola { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--marca-2);
+    box-shadow: 0 0 22px var(--marca-2); }
+  .cursor { position: absolute; width: 30px; height: 30px; margin: -2px 0 0 -4px; z-index: 2;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,.45)); }
+  .pulso { position: absolute; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%;
+    border: 3px solid var(--marca); z-index: 2; }
+  .onda { position: absolute; border-radius: 50%; border: 3px solid var(--marca-2); }
+  .punto-lista { position: absolute; left: 310px; width: 1300px; padding: 30px 40px; border-radius: 24px; font-size: 46px;
+    font-weight: 700; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); display: flex; gap: 22px;
+    align-items: center; }
+  .punto-lista i { font-style: normal; color: #5fd68a; font-weight: 800; }
+  .punto-lista.ojo { border-color: rgba(250,189,0,.5); }
+  .url { font-size: 36px; font-weight: 700; color: var(--marca-2); letter-spacing: -0.01em; }
+  /* Los selectores más específicos, al final (orden de especificidad). */
+  .rotulo b i { font-style: normal; color: #5fd68a; font-variant-numeric: tabular-nums; }
+  .ventana .barra i { width: 14px; height: 14px; border-radius: 50%; display: block; }
+  .hallazgo p b { color: #2b50d6; }
+  .puntos i.hecho { background: var(--marca); }
+  .puntos i.ahora { background: var(--marca-2); box-shadow: 0 0 16px var(--marca-2); transform: scale(1.3); }
+  .punto-lista.ojo i { color: #fbd25a; }
+  .hallazgo .tags span { padding: 6px 16px; border-radius: 999px; background: #eef1f6; }
+  .hallazgo .tags span:first-child { background: var(--cb, #fde2e4); color: var(--c, #b0141f); }
+  .hallazgo .tags span.importe { margin-left: auto; background: #dcf5e6; color: #0b6b3a; }
+  .chatw .cab small { margin-left: auto; font-size: 25px; color: var(--suave); font-weight: 600; display: flex;
+    align-items: center; gap: 12px; }
+  .chatw .cab small i { width: 12px; height: 12px; border-radius: 50%; background: #5fd68a; box-shadow: 0 0 12px #5fd68a; display: block; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script type="module">
+const stage = document.getElementById('stage');
+const params = new URLSearchParams(location.search);
+const cual = params.get('v') ?? 'lanzamiento';
+
+const LOGO = `<svg viewBox="0 0 512 512" width="100%" height="100%"><defs><linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d01c29"/><stop offset="1" stop-color="#a8101c"/></linearGradient></defs><rect width="512" height="512" rx="116" fill="url(#f)"/><rect x="124" y="124" width="264" height="58" rx="29" fill="#fff"/><path d="M296 182 L226 392" stroke="#fff" stroke-width="58" stroke-linecap="round"/><circle cx="168" cy="262" r="30" fill="#fabd00"/><circle cx="352" cy="346" r="30" fill="#fabd00"/></svg>`;
+
+const ESC = { out: 'cubic-bezier(.16,1,.3,1)', inn: 'cubic-bezier(.7,0,.84,0)', io: 'cubic-bezier(.65,0,.35,1)' };
+const pistas = [];
+
+function nodo(html, estilo = {}, clase = 'abs', padre = stage) {
+  const n = document.createElement('div');
+  n.className = clase;
+  n.innerHTML = html;
+  Object.assign(n.style, estilo);
+  padre.appendChild(n);
+  return n;
+}
+
+// Una pista: fotogramas clave con tiempo absoluto en segundos. Se convierten en una única
+// animación que dura todo el vídeo, para poder fijar cualquier instante con currentTime.
+function pista(n, claves) {
+  pistas.push({ n, claves });
+}
+
+// Aparece en `a` y se va en `b`, con transformaciones de entrada y salida.
+function aparece(n, a, b, o = {}) {
+  const desde = o.desde ?? 'translateY(60px)';
+  const hasta = o.hasta ?? 'translateY(-40px)';
+  const quieto = o.quieto ?? 'none';
+  const ent = o.ent ?? 0.55;
+  const sal = o.sal ?? 0.35;
+  const blur = o.blur ?? 12;
+  const k = [
+    { t: 0, opacity: 0, transform: desde, filter: `blur(${blur}px)` },
+    { t: a, opacity: 0, transform: desde, filter: `blur(${blur}px)`, easing: ESC.out },
+    { t: a + ent, opacity: 1, transform: quieto, filter: 'blur(0px)' },
+  ];
+  if (b != null) {
+    k.push({ t: b - sal, opacity: 1, transform: quieto, filter: 'blur(0px)', easing: ESC.inn });
+    k.push({ t: b, opacity: 0, transform: hasta, filter: `blur(${blur}px)` });
+  }
+  pista(n, k);
+}
+
+// El logo con el nombre, arriba, en la primera pantalla. Está entero desde el primer fotograma (el
+// que se ve antes de reproducir el vídeo) y se va con el titular, en `b`.
+function marca(b, y = 130) {
+  const n = nodo(`<span class="marca-logo">${LOGO}</span><span>TaxPain</span>`, { top: `${y}px` }, 'centro marca');
+  pista(n, [
+    { t: 0, opacity: 1, transform: 'scale(.9)', filter: 'blur(0px)', easing: ESC.out },
+    { t: 0.7, opacity: 1, transform: 'none', filter: 'blur(0px)' },
+    { t: b - 0.35, opacity: 1, transform: 'none', filter: 'blur(0px)', easing: ESC.inn },
+    { t: b, opacity: 0, transform: 'translateY(-40px)', filter: 'blur(12px)' },
+  ]);
+}
+
+function palabras(texto, y, a, b, o = {}) {
+  const linea = nodo('', { top: `${y}px` }, `centro ${o.clase ?? 'grande'}`);
+  const trozos = texto.split(' ');
+  trozos.forEach((p, i) => {
+    const s = document.createElement('span');
+    s.className = 'palabra' + (o.acento?.includes(i) ? ' acento' : '');
+    s.textContent = p + (i < trozos.length - 1 ? ' ' : '');
+    linea.appendChild(s);
+    aparece(s, a + i * (o.paso ?? 0.12), b, { desde: 'translateY(70px) scale(.96)', hasta: 'translateY(-50px)', blur: 14 });
+  });
+  return linea;
+}
+
+function fondo(total) {
+  const g1 = nodo('', { width: '900px', height: '900px', background: '#2b50d6', left: '-200px', top: '-300px' }, 'glow');
+  const g2 = nodo('', { width: '800px', height: '800px', background: '#7a1220', right: '-250px', bottom: '-350px', opacity: '.35' }, 'glow');
+  pista(g1, [
+    { t: 0, transform: 'translate(0,0) scale(1)' },
+    { t: total, transform: 'translate(500px,260px) scale(1.25)' },
+  ]);
+  pista(g2, [
+    { t: 0, transform: 'translate(0,0)' },
+    { t: total, transform: 'translate(-420px,-200px)' },
+  ]);
+}
+
+// Escena con captura: texto a la izquierda y ventana de la app a la derecha, saliendo por el borde.
+function ventana(img, estilo, clase = 'ventana') {
+  return nodo(`<div class="barra"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><div class="lienzo"><img src="/media/screens/${img}.png"></div>`,
+    estilo, clase);
+}
+
+function captura(img, kicker, titulo, sub, a, b, o = {}) {
+  const extra = o.aviso ? `<div class="aviso">${o.aviso}</div>` : '';
+  const texto = nodo(`<div class="kicker">${kicker}</div><div class="titulo">${titulo}</div><div class="sub">${sub}</div>${extra}`,
+    { left: '120px', top: o.top ?? '330px', width: '600px' });
+  aparece(texto, a + 0.1, b, { desde: 'translateX(-60px)', hasta: 'translateX(-40px)' });
+  const ancho = o.ancho ?? 1340;
+  const v = ventana(img, { left: '790px', top: o.vtop ?? '120px', width: `${ancho}px` });
+  aparece(v, a, b, {
+    desde: 'perspective(2400px) translate(160px, 90px) rotateY(-14deg) rotateX(6deg) scale(.9)',
+    quieto: 'perspective(2400px) rotateY(-6deg) rotateX(2deg)',
+    hasta: 'perspective(2400px) translate(-80px, -40px) rotateY(-4deg) scale(.96)',
+    ent: 0.75, sal: 0.35, blur: 6,
+  });
+  const im = v.querySelector('img');
+  if (o.origen) im.style.transformOrigin = o.origen;
+  pista(im, [
+    { t: 0, transform: 'scale(1)' },
+    { t: a + 0.4, transform: 'scale(1)', easing: ESC.io },
+    { t: b, transform: `scale(${o.zoom ?? 1.12})` },
+  ]);
+  // Segunda ventana, más pequeña, que entra por delante (p. ej. cripto + valores).
+  if (o.segunda) {
+    const v2 = ventana(o.segunda, { left: '700px', top: '560px', width: '760px', zIndex: 2 });
+    aparece(v2, a + 0.7, b, { desde: 'translate(-80px, 120px) scale(.85)', hasta: 'translateY(-30px)', ent: 0.6, blur: 6 });
+  }
+  // Bocadillos de chat por encima de la ventana.
+  (o.chat ?? []).forEach(([txt, mio], k) => {
+    const n = nodo(txt, mio
+      ? { right: '120px', top: `${o.chatTop + k * 120}px`, background: 'var(--marca)', color: '#fff', zIndex: 3 }
+      : { right: '380px', top: `${o.chatTop + k * 120}px`, background: '#fff', color: '#0f1629', zIndex: 3 }, 'bocadillo');
+    aparece(n, a + 0.8 + k * 0.6, b, { desde: 'translateY(40px) scale(.9)', hasta: 'translateY(-20px)', ent: 0.45, blur: 6 });
+  });
+}
+
+// Fila (o filas) de modelos que llegan de la AEAT, cada uno con su «descargado».
+function modelos(lista, y, a, b, cols = lista.length) {
+  const ancho = 170, hueco = 26;
+  const x0 = (1920 - (cols * ancho + (cols - 1) * hueco)) / 2;
+  lista.forEach((m, i) => {
+    const col = i % cols, fila = Math.floor(i / cols);
+    const n = nodo(`${m}<small>✓ DESCARGADO</small>`, { left: `${x0 + col * (ancho + hueco)}px`, top: `${y + fila * 150}px` }, 'modelo');
+    aparece(n, a + i * 0.06, b, { desde: 'translateY(-90px) scale(.8)', hasta: 'scale(.9)', ent: 0.4, blur: 8 });
+  });
+}
+
+// Tu carpeta frente a lo presentado, y en medio lo que no cuadra.
+function cruce(a, b, cuantas = 3) {
+  const izq = [['Tu carpeta', 'Facturas'], ['', 'Escrituras'], ['', 'Extractos del banco'], ['', 'Libros y diario']];
+  const der = [['Presentado', '303 · IVA'], ['', '111 · Retenciones'], ['', '200 · Sociedades'], ['', '347 · Terceros']];
+  izq.forEach(([k, t], i) => {
+    const n = nodo(`${k ? `<small>${k}</small>` : ''}${t}`, { left: '120px', top: `${250 + i * 150 - (k ? 38 : 0)}px` }, 'pieza');
+    aparece(n, a + i * 0.1, b, { desde: 'translateX(-120px)', hasta: 'translateX(200px) scale(.9)', ent: 0.45 });
+  });
+  der.forEach(([k, t], i) => {
+    const n = nodo(`${k ? `<small>${k}</small>` : ''}${t}`, { right: '120px', top: `${250 + i * 150 - (k ? 38 : 0)}px` }, 'pieza');
+    aparece(n, a + 0.15 + i * 0.1, b, { desde: 'translateX(120px)', hasta: 'translateX(-200px) scale(.9)', ent: 0.45 });
+  });
+  const c = nodo(`<b>${cuantas}</b><span>no cuadran</span>`, { left: '810px', top: '380px' }, 'choque');
+  aparece(c, a + 0.9, b, { desde: 'scale(.3)', quieto: 'none', hasta: 'scale(1.3)', ent: 0.5, blur: 10 });
+}
+
+// Tarjetas de hallazgos (datos de ejemplo). Cada una: color, fondo de la etiqueta, gravedad,
+// responsable, título, qué hacer y, si lo lleva, el importe recuperable.
+const HALLAZGOS = [
+  ['#d01c29', '#fde2e4', 'Error', 'Gestoría', 'El 390 no cuadra con los 303', 'Qué hacer: <b>pide la declaración corregida</b>. Rectificable hasta el 30/01/2030.'],
+  ['#c27a00', '#fff1cc', 'Aviso', 'Empresa', 'Una factura está dos veces en el libro', 'Qué hacer: <b>deja una sola copia</b> antes del próximo 303.'],
+  ['#2b50d6', '#e3e9ff', 'Para saber', 'Documentación', 'Falta la escritura del último cambio de administrador', 'Qué hacer: <b>pídela al Registro</b>.'],
+];
+function hallazgos(a, b, lista = HALLAZGOS) {
+  lista.forEach(([c, cb, g, r, h, p, imp], i) => {
+    const n = nodo(`<div class="tags"><span>${g}</span><span>${r}</span>${imp ? `<span class="importe">${imp}</span>` : ''}</div><h3>${h}</h3><p>${p}</p>`,
+      { top: `${250 + i * 255}px` }, 'hallazgo');
+    n.style.setProperty('--c', c);
+    n.style.setProperty('--cb', cb);
+    aparece(n, a + 0.15 + i * 0.35, b, { desde: 'translateY(80px) scale(.94)', hasta: 'translateY(-30px)', ent: 0.5, blur: 8 });
+  });
+}
+
+function cierre(a, b, url, estado = 'En desarrollo (alfa)') {
+  const logo = nodo(LOGO, { width: '150px', height: '150px', left: '885px', top: '250px' });
+  aparece(logo, a, b, { desde: 'scale(.6) rotate(-8deg)', quieto: 'none', ent: 0.7, blur: 10 });
+  palabras('TaxPain', 430, a + 0.2, b, { clase: 'grande' });
+  const lema = nodo('Tu gestoría en tu Mac.', { top: '590px', fontSize: '42px', color: 'var(--suave)', fontWeight: '500' }, 'centro');
+  aparece(lema, a + 0.55, b);
+  const chips = nodo(`<span class="chip">Código abierto · MIT</span>&nbsp;&nbsp;<span class="chip">macOS</span>&nbsp;&nbsp;<span class="chip" style="border-color:rgba(250,189,0,.5);color:#fbd25a">${estado}</span>`,
+    { top: '700px' }, 'centro');
+  aparece(chips, a + 0.8, b);
+  if (url) {
+    const u = nodo(url, { top: '820px' }, 'centro url');
+    aparece(u, a + 1.0, b);
+  }
+  const nota = nodo('No es asesoramiento fiscal. Revisa siempre lo que presentas.', { top: '990px' }, 'centro nota');
+  aparece(nota, a + 1.1, b);
+}
+
+function linea(texto, y, a, b, estilo = {}) {
+  const n = nodo(texto, { top: `${y}px`, ...estilo }, 'centro linea');
+  aparece(n, a, b);
+  return n;
+}
+
+// ---- Ayudas de los vídeos de funciones, pasos, Claude y cripto ----
+
+// Lo que no se puede declarar como animación (contar, teclear) se fija a mano en cada fotograma.
+const vivos = [];
+const eur = (v) => {
+  const [e, d] = v.toFixed(2).split('.');
+  return `${e.replace(/\B(?=(\d{3})+(?!\d))/g, '.')},${d} €`;
+};
+function contador(n, t0, dur, hasta, fmt = eur) {
+  vivos.push((s) => {
+    const p = Math.min(1, Math.max(0, (s - t0) / dur));
+    n.textContent = fmt(hasta * (1 - (1 - p) ** 3));
+  });
+}
+function teclea(n, texto, t0, cps = 34) {
+  vivos.push((s) => {
+    const k = Math.max(0, Math.min(texto.length, Math.floor((s - t0) * cps)));
+    n.textContent = texto.slice(0, k) || '​';
+  });
+  return t0 + texto.length / cps;
+}
+
+function progreso(total) {
+  const n = nodo('', {}, 'progreso');
+  pista(n, [{ t: 0, transform: 'scaleX(0)' }, { t: total, transform: 'scaleX(1)' }]);
+}
+
+function indice(i, n, a, b) {
+  const el = nodo(`<b>${String(i).padStart(2, '0')}</b> / ${String(n).padStart(2, '0')}`, {}, 'indice');
+  aparece(el, a + 0.1, b, { desde: 'translateY(-20px)', hasta: 'none', ent: 0.35, sal: 0.2, blur: 4 });
+}
+
+function puntos(i, n, a, b) {
+  const html = Array.from({ length: n }, (_, k) => `<i class="${k + 1 < i ? 'hecho' : k + 1 === i ? 'ahora' : ''}"></i>`).join('');
+  const el = nodo(html, {}, 'puntos');
+  aparece(el, a + 0.1, b, { desde: 'translateY(-20px)', hasta: 'none', ent: 0.35, sal: 0.2, blur: 4 });
+}
+
+// Ventana grande con cámara: va de parada en parada dentro de la misma captura, con un rótulo y,
+// si se pide, un recuadro que atenúa lo demás. `x`, `y` y `caja` son fracciones de la imagen.
+// El rótulo va abajo a la izquierda; con `arriba` sube y con `der` pasa a la derecha.
+function recorrido(img, kicker, titulo, paradas, a, b, o = {}) {
+  const W = o.ancho ?? 1560, H = o.alto ?? 780, Hi = W * (o.ratio ?? 0.625);
+  const left = (1920 - W) / 2, top = o.top ?? 210;
+  const cab = nodo(`<div class="kicker">${kicker}</div><div class="titulo2">${titulo}</div>`,
+    { left: `${left}px`, top: '58px', width: `${W - 260}px` });
+  aparece(cab, a + 0.05, b, { desde: 'translateY(-36px)', hasta: 'translateY(-24px)', ent: 0.45, blur: 6 });
+  const v = nodo(`<div class="barra"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><div class="lienzo" style="height:${H}px;position:relative"><div class="plano" style="width:${W}px;height:${Hi}px"><img src="/media/screens/${img}.png"></div></div>`,
+    { left: `${left}px`, top: `${top}px`, width: `${W}px` }, 'ventana');
+  aparece(v, a, b, { desde: 'translateY(110px) scale(.93)', hasta: 'translateY(-50px) scale(.97)', ent: 0.65, blur: 8 });
+  const plano = v.querySelector('.plano');
+  const pos = (x, y, z) => {
+    const tx = Math.min(0, Math.max(W - W * z, W / 2 - x * W * z));
+    const ty = Math.min(0, Math.max(Math.min(0, H - Hi * z), H / 2 - y * Hi * z));
+    return `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px) scale(${z})`;
+  };
+  const dur = b - a, n = paradas.length, mueve = o.mueve ?? 0.8;
+  const ini = (i) => a + (paradas[i].t ?? i / n) * dur;
+  const claves = [];
+  paradas.forEach((p, i) => {
+    const t0 = i === 0 ? a : ini(i) + mueve;
+    const t1 = i === n - 1 ? b : ini(i + 1);
+    const z = p.z ?? 1;
+    if (i === 0) claves.push({ t: 0, transform: pos(p.x, p.y, z) });
+    claves.push({ t: t0, transform: pos(p.x, p.y, z), easing: 'linear' });
+    claves.push({ t: t1, transform: pos(p.x, p.y, z * 1.03), easing: ESC.io });
+    if (p.caja) {
+      const [cx, cy, cw, ch] = p.caja;
+      const r = nodo('', { left: `${cx * 100}%`, top: `${cy * 100}%`, width: `${cw * 100}%`, height: `${ch * 100}%` }, 'resalte', plano);
+      aparece(r, t0 + (i === 0 ? 0.7 : 0.1), t1, { desde: 'scale(1.04)', hasta: 'none', ent: 0.4, sal: 0.25, blur: 0 });
+    }
+    if (p.clic) {
+      const [kx, ky] = p.clic, llega = t0 + 1.25;
+      const estilo = { left: `${kx * 100}%`, top: `${ky * 100}%` };
+      const cur = nodo(`<svg viewBox="0 0 24 24" width="100%" height="100%"><path d="M4 2l15 9.5-6.6 1.3L16.3 20l-3 1.4-3.8-7.2L4 19z" fill="#fff" stroke="#0f1629" stroke-width="1.5" stroke-linejoin="round"/></svg>`, estilo, 'cursor', plano);
+      pista(cur, [
+        { t: 0, opacity: 0, transform: 'translate(220px, 150px)' },
+        { t: t0 + 0.5, opacity: 0, transform: 'translate(220px, 150px)', easing: ESC.out },
+        { t: llega, opacity: 1, transform: 'translate(0, 0)' },
+        { t: llega + 0.12, opacity: 1, transform: 'translate(0, 0) scale(.82)' },
+        { t: llega + 0.26, opacity: 1, transform: 'translate(0, 0)' },
+        { t: t1 - 0.2, opacity: 1, transform: 'translate(0, 0)' },
+        { t: t1, opacity: 0, transform: 'translate(0, 0)' },
+      ]);
+      const pul = nodo('', estilo, 'pulso', plano);
+      pista(pul, [
+        { t: 0, opacity: 0, transform: 'scale(.3)' },
+        { t: llega + 0.1, opacity: 0, transform: 'scale(.3)' },
+        { t: llega + 0.12, opacity: 0.9, transform: 'scale(.3)', easing: ESC.out },
+        { t: llega + 0.7, opacity: 0, transform: 'scale(1.5)' },
+      ]);
+    }
+    if (p.rot) {
+      const alto = p.sub ? 168 : 112;
+      const r = nodo(`<b>${p.rot}</b>${p.sub ? `<span>${p.sub}</span>` : ''}`,
+        { [p.der ? 'right' : 'left']: `${left + 36}px`, top: `${p.arriba ? top + 76 : top + 40 + H - alto - 30}px`, zIndex: 3 }, 'rotulo');
+      const entra = t0 + (i === 0 ? 0.55 : 0.05);
+      aparece(r, entra, i === n - 1 ? b : t1 + 0.1, { desde: 'translateY(40px)', hasta: 'translateY(-20px)', ent: 0.45, sal: 0.3, blur: 6 });
+      const num = r.querySelector('i');
+      if (num && p.cuenta) contador(num, entra + 0.2, 1.3, p.cuenta);
+    }
+  });
+  pista(plano, claves);
+}
+
+// Conversación con Claude por MCP: la pregunta se teclea, se ve la herramienta que usa y la respuesta.
+// Los tiempos `t` de cada turno son absolutos.
+function chat(a, b, turnos, o = {}) {
+  const W = 1500, H = 850, left = (1920 - W) / 2, top = o.top ?? 190;
+  const w = nodo(`<div class="cab"><span>Claude</span><small><i></i>taxpain · conectado por MCP</small></div>`,
+    { left: `${left}px`, top: `${top}px`, width: `${W}px`, height: `${H}px` }, 'chatw');
+  aparece(w, a, b, { desde: 'translateY(100px) scale(.94)', hasta: 'translateY(-40px) scale(.97)', ent: 0.6, blur: 8 });
+  turnos.forEach((t, i) => {
+    const t1 = (turnos[i + 1]?.t ?? b) - 0.05;
+    const q = nodo('', { top: '114px' }, 'msg', w);
+    aparece(q, t.t, t1, { desde: 'translateY(30px) scale(.95)', hasta: 'translateY(-30px)', ent: 0.3, sal: 0.3, blur: 4 });
+    const fin = teclea(q, t.q, t.t + 0.25);
+    const h = nodo(`<i>✓</i> taxpain › ${t.tool}`, { top: '244px' }, 'herr', w);
+    aparece(h, fin + 0.25, t1, { desde: 'translateX(-30px)', hasta: 'translateY(-30px)', ent: 0.35, sal: 0.3, blur: 4 });
+    const col = nodo('', { top: '334px' }, 'col', w);
+    const r = nodo(t.r, {}, 'resp', col);
+    aparece(r, fin + 0.75, t1, { desde: 'translateY(40px) scale(.97)', hasta: 'translateY(-30px)', ent: 0.45, sal: 0.3, blur: 6 });
+    // El mismo dato, recortado de la captura de la app.
+    if (t.fuente) {
+      const [img, [x, y, cw, ch], ancho, ratio = 0.625] = t.fuente;
+      const bw = ancho / cw;
+      const f = nodo(`<small>En TaxPain</small><div style="width:${ancho}px;height:${(ch * ratio * bw).toFixed(0)}px;background-image:url(/media/screens/${img}.png);background-size:${bw.toFixed(0)}px auto;background-position:${(-x * bw).toFixed(0)}px ${(-y * ratio * bw).toFixed(0)}px"></div>`,
+        {}, 'fuente', col);
+      aparece(f, fin + 1.5, t1, { desde: 'translateY(40px) scale(.95)', hasta: 'translateY(-30px)', ent: 0.5, sal: 0.3, blur: 6 });
+    }
+  });
+}
+
+// De dónde vienen los datos (izquierda) y qué sale (derecha), pasando por TaxPain.
+function flujo(a, b, izq, der) {
+  const cy = 590;
+  izq.forEach(([t, sub], i) => {
+    const y = 310 + i * 150;
+    const n = nodo(`${t}<small>${sub}</small>`, { left: '110px', top: `${y}px` }, 'nodo');
+    aparece(n, a + i * 0.12, b, { desde: 'translateX(-100px)', hasta: 'translateX(-60px)', ent: 0.45 });
+    const bola = nodo('', { left: '690px', top: `${y + 48}px` }, 'bola');
+    const sale = a + 0.9 + i * 0.16, fin = `translate(200px, ${cy - (y + 55)}px)`;
+    pista(bola, [
+      { t: 0, opacity: 0, transform: 'translate(0,0)' },
+      { t: sale, opacity: 0, transform: 'translate(0,0)', easing: ESC.io },
+      { t: sale + 0.12, opacity: 1, transform: 'translate(30px,0)', easing: ESC.io },
+      { t: sale + 0.7, opacity: 1, transform: fin },
+      { t: sale + 0.82, opacity: 0, transform: fin },
+    ]);
+  });
+  const logo = nodo(LOGO, { width: '190px', height: '190px', left: '865px', top: `${cy - 95}px` });
+  aparece(logo, a + 0.45, b, { desde: 'scale(.5) rotate(-10deg)', hasta: 'scale(.9)', ent: 0.6, blur: 10 });
+  [0, 0.45].forEach((d) => {
+    const onda = nodo('', { width: '190px', height: '190px', left: '865px', top: `${cy - 95}px` }, 'onda');
+    pista(onda, [
+      { t: 0, opacity: 0, transform: 'scale(1)' },
+      { t: a + 1.69 + d, opacity: 0, transform: 'scale(1)' },
+      { t: a + 1.7 + d, opacity: 0.8, transform: 'scale(1)', easing: ESC.out },
+      { t: a + 2.6 + d, opacity: 0, transform: 'scale(2.1)' },
+    ]);
+  });
+  der.forEach(([t, sub], i) => {
+    const y = 310 + i * 150;
+    const sale = a + 2.0 + i * 0.16, fin = `translate(170px, ${y + 55 - cy}px)`;
+    const bola = nodo('', { left: '1060px', top: `${cy - 7}px` }, 'bola');
+    pista(bola, [
+      { t: 0, opacity: 0, transform: 'translate(0,0)' },
+      { t: sale, opacity: 0, transform: 'translate(0,0)', easing: ESC.io },
+      { t: sale + 0.12, opacity: 1, transform: 'translate(20px,0)', easing: ESC.io },
+      { t: sale + 0.6, opacity: 1, transform: fin },
+      { t: sale + 0.72, opacity: 0, transform: fin },
+    ]);
+    const n = nodo(`${t}<small>${sub}</small>`, { left: '1250px', top: `${y}px` }, 'nodo');
+    aparece(n, sale + 0.5, b, { desde: 'translateX(-40px) scale(.94)', hasta: 'translateX(60px)', ent: 0.45 });
+  });
+}
+
+// Lista de frases con marca, una debajo de otra.
+function lista(frases, y, a, b, paso = 0.45) {
+  frases.forEach(([marca, txt, ojo], i) => {
+    const n = nodo(`<i>${marca}</i><span>${txt}</span>`, { top: `${y + i * 150}px` }, `punto-lista${ojo ? ' ojo' : ''}`);
+    aparece(n, a + i * paso, b, { desde: 'translateY(50px) scale(.96)', hasta: 'translateY(-30px)', ent: 0.45, blur: 8 });
+  });
+}
+
+// La dirección del cierre: la que se pase con --repo=…; sin ella, sólo el nombre del repositorio.
+const REPO = params.get('repo') || 'GitHub · taxpain-app';
+
+const VIDEOS = {
+  lanzamiento() {
+    const total = 31.5;
+    fondo(total);
+    // 1. El gancho: la gestoría.
+    marca(2.6);
+    palabras('¿Y si tu gestor', 330, 0.15, 2.6, { paso: 0.14 });
+    palabras('se ha equivocado?', 480, 0.6, 2.6, { paso: 0.14, acento: [2] });
+
+    linea('Con tu certificado, TaxPain…', 170, 2.65, 4.9);
+    palabras('descarga todo', 260, 2.8, 4.9, { clase: 'media', paso: 0.1 });
+    palabras('lo presentado.', 370, 3.0, 4.9, { clase: 'media', paso: 0.1, acento: [1] });
+    modelos(['303', '390', '111', '190', '115', '200', '202', '347'], 610, 3.3, 4.9);
+
+    palabras('Y lo cruza con tus facturas,', 340, 4.95, 7.0, { clase: 'media', paso: 0.09 });
+    palabras('escrituras y extractos.', 470, 5.3, 7.0, { clase: 'media', paso: 0.09, acento: [0, 2] });
+
+    captura('19-revision', 'Revisión', 'Te dice qué está mal y qué hacer.', 'Quién falló, cuánto recuperar y hasta cuándo.', 7.0, 10.4, { origen: '50% 38%', zoom: 1.18 });
+
+    // 2. Claude por MCP.
+    captura('23-claude-mcp', 'Servidor MCP', 'Pregúntale a Claude por tu empresa.', 'Nunca presenta ni toca tu certificado.', 10.4, 13.7, {
+      vtop: '150px', zoom: 1.04, origen: '20% 30%', chatTop: 760,
+      chat: [['¿Qué me queda por cobrar?', true], ['3 facturas · 4.250 €', false]],
+    });
+
+    // 3. Evolución.
+    captura('12-panel', 'Panel', 'Tu negocio, al día.', 'Ingresos, gastos, tesorería y previsión.', 13.7, 16.4, { origen: '60% 30%' });
+    captura('16-evolucion', 'Evolución', 'Y año a año.', 'Con las cifras que tiene Hacienda.', 16.4, 18.9, { origen: '60% 40%' });
+
+    // 4. Cripto e inversiones.
+    captura('18-criptomonedas', 'Cripto e inversiones', 'Ganancias y dividendos, calculados.', 'Kraken, CoinTracking e Interactive Brokers. Avisos del 720 y 721.', 18.9, 22.0, { origen: '50% 35%', segunda: '21-valores' });
+
+    // 5. Modelos y presentación.
+    captura('10-modelo-303', 'Modelos', 'Casilla a casilla.', '303, 130, 111, 200… con el fichero oficial y prevalidados con la AEAT.', 22.0, 25.2, {
+      origen: '40% 35%', top: '290px', aviso: 'Envío directo a Hacienda: en pruebas',
+    });
+
+    const titulo = nodo('Y además', { top: '70px' }, 'centro media');
+    aparece(titulo, 25.2, 28.1);
+    const minis = [
+      ['17-ahorro', 'Ahorrar impuestos'], ['07-banco-conciliacion', 'Bancos'], ['02-facturas', 'Facturas'],
+      ['05-diario', 'Contabilidad'], ['01-calendario', 'Calendario fiscal'], ['22-asistente', 'IA anonimizada'],
+    ];
+    minis.forEach(([img, txt], i) => {
+      const col = i % 3, fila = Math.floor(i / 3);
+      const x = 150 + col * 560, y = 230 + fila * 400;
+      const m = nodo(`<img src="/media/screens/${img}.png">`, { left: `${x}px`, top: `${y}px`, width: '500px', height: '312px' }, 'mini');
+      aparece(m, 25.35 + i * 0.1, 28.1, { desde: 'translateY(80px) scale(.85)', hasta: 'scale(.95)', ent: 0.55, blur: 8 });
+      const e = nodo(txt, { left: `${x}px`, top: `${y + 326}px`, width: '500px' }, 'etiqueta');
+      aparece(e, 25.55 + i * 0.1, 28.1, { desde: 'translateY(20px)', hasta: 'none', blur: 4 });
+    });
+
+    palabras('Tu certificado', 330, 28.15, 30.3, { paso: 0.12 });
+    palabras('no sale de tu Mac.', 480, 28.45, 30.3, { paso: 0.1, acento: [4] });
+
+    cierre(30.3, null);
+    return total;
+  },
+
+  gestoria() {
+    const total = 24.5;
+    fondo(total);
+    marca(2.5);
+    palabras('¿Tu gestoría', 330, 0.15, 2.5, { paso: 0.16 });
+    palabras('lo hace bien?', 480, 0.55, 2.5, { paso: 0.14, acento: [2] });
+
+    const ritmo = ['Pagas.', 'Firmas.', 'Confías.'];
+    ritmo.forEach((p, i) => {
+      const a = 2.55 + i * 0.5;
+      const ult = i === ritmo.length - 1;
+      const n = nodo(p, { top: '440px' }, `centro grande${ult ? ' acento' : ''}`);
+      aparece(n, a, ult ? 4.3 : a + 0.5, { desde: 'scale(1.18)', hasta: 'scale(.9)', ent: 0.18, sal: 0.12, blur: 18 });
+    });
+
+    captura('09-certificado', 'Paso 1', 'Conecta tu certificado.', 'Touch ID en cada uso.', 4.3, 7.0, { origen: '40% 30%' });
+
+    linea('Paso 2', 150, 7.0, 9.9, { color: 'var(--marca-2)', fontWeight: '700' });
+    palabras('Descarga todo', 230, 7.1, 9.9, { clase: 'media', paso: 0.1 });
+    palabras('lo presentado.', 340, 7.3, 9.9, { clase: 'media', paso: 0.1, acento: [1] });
+    modelos(['303', '390', '111', '190', '115', '180', '123', '193', '130', '349', '347', '200', '202', '232', '216', '296'], 540, 7.6, 9.9, 8);
+    linea('Modelo a modelo. Varios años de golpe.', 880, 8.4, 9.9, { fontSize: '34px' });
+
+    linea('Paso 3 · Lo cruza con tu carpeta', 110, 9.95, 12.7, { color: 'var(--marca-2)', fontWeight: '700' });
+    cruce(10.05, 12.7);
+
+    captura('19-revision', 'Paso 4', 'Te dice qué está mal.', 'Y qué hacer para arreglarlo.', 12.7, 15.6, { origen: '50% 38%', zoom: 1.18 });
+
+    palabras('Quién falló. Qué hacer.', 70, 15.6, 19.2, { clase: 'media', paso: 0.08, acento: [2, 3] });
+    hallazgos(15.7, 19.2);
+    const ej = nodo('Ejemplo con datos inventados. Orientativo: no sustituye a un asesor.', { top: '1020px' }, 'centro nota');
+    aparece(ej, 16.2, 19.2);
+
+    palabras('Tu certificado', 330, 19.25, 21.7, { paso: 0.12 });
+    palabras('no sale de tu Mac.', 480, 19.55, 21.7, { paso: 0.1, acento: [4] });
+    const pie = nodo('Sólo lee · Nada se presenta sin ti', { top: '660px', fontSize: '38px', color: 'var(--suave)' }, 'centro');
+    aparece(pie, 20.2, 21.7);
+
+    cierre(21.75, null);
+    return total;
+  },
+
+  seguridad() {
+    const total = 23.5;
+    fondo(total);
+    marca(5.0);
+    palabras('¿Subirías tu certificado', 380, 0.15, 3.0, { clase: 'media', paso: 0.12 });
+    palabras('a la web de otro?', 500, 0.75, 3.0, { clase: 'media', paso: 0.12 });
+    palabras('TaxPain no lo necesita.', 410, 3.05, 5.0, { clase: 'media', paso: 0.12, acento: [3] });
+
+    captura('09-certificado', 'Certificado digital', 'Sellado en tu Mac.', 'Con una clave del Llavero. Cada uso pide Touch ID y dice para qué.', 5.0, 8.5, { origen: '50% 40%' });
+    captura('22-asistente', 'Asistente', 'IA opcional y anonimizada.', 'Claude, OpenAI, Mistral o un modelo local. Nombres y NIF se sustituyen antes de salir.', 8.5, 12.0, { origen: '60% 50%' });
+    captura('23-claude-mcp', 'Claude Code y Claude Desktop', 'Pregunta a Claude por tu empresa.', 'Servidor MCP local, apagado hasta que lo activas. Ve tus datos sin anonimizar: tú decides.', 12.0, 15.5, { vtop: '300px', zoom: 1.06, origen: '20% 30%' });
+    captura('19-revision', 'Revisión de la empresa', 'Revisa a tu gestoría.', 'Errores, documentos que faltan, modelos sin presentar y lo que se pagó de más.', 15.5, 19.0, { origen: '50% 30%' });
+
+    cierre(19.05, null);
+    return total;
+  },
+  // Tour de funciones: una por escena.
+  funciones() {
+    const total = 75.9;
+    fondo(total);
+    progreso(total);
+    marca(2.6);
+    palabras('Qué hace TaxPain,', 330, 0.15, 2.6, { paso: 0.13 });
+    palabras('función a función.', 480, 0.55, 2.6, { paso: 0.13, acento: [0, 2] });
+    const N = 10;
+
+    // 1. Lo presentado, bajado de la AEAT.
+    indice(1, N, 2.6, 10.6);
+    recorrido('26-presentado', 'Hacienda', 'Baja de la AEAT lo que se presentó.', [
+      { x: 0.5, y: 0.5, z: 1, clic: [0.085, 0.815], rot: 'Con tu certificado y Touch ID.', sub: 'Es sólo una consulta: no presenta ni cambia nada.' },
+    ], 2.6, 6.0, { ratio: 489 / 2110, alto: 570, top: 260 });
+    recorrido('27-presentado-detalle', 'Hacienda', 'Modelo a modelo. También lo de tu gestoría.', [
+      { x: 0.5, y: 0.5, z: 1, caja: [0.012, 0.37, 0.976, 0.62], rot: 'Presentado, fuera de plazo o sin presentar.', sub: '20 modelos, más los de tu perfil fiscal.', arriba: true },
+    ], 6.0, 10.6, { ratio: 790 / 2110, alto: 590, top: 260 });
+
+    // 2. La revisión de la carpeta.
+    indice(2, N, 10.6, 19.0);
+    recorrido('19-revision', 'Importar › Revisión', 'Y lo cruza con tu carpeta.', [
+      { x: 0.5875, y: 0.3, z: 1.24, caja: [0.2, 0.235, 0.775, 0.175], clic: [0.805, 0.288], rot: 'Pulsa «Revisar la carpeta».', sub: 'Facturas, extractos, escrituras y modelos.' },
+      { x: 0.5875, y: 0.56, z: 1.24, caja: [0.784, 0.482, 0.193, 0.112], rot: 'Errores de tu gestoría anterior: <i>0,00 €</i>', sub: 'Estimación de lo que aún puedes reclamar, rectificando en plazo.', cuenta: 4585.4, t: 0.3 },
+      { x: 0.5875, y: 0.86, z: 1.24, caja: [0.2, 0.7, 0.775, 0.3], rot: 'TaxPain te dice cuál y hasta cuándo.', sub: 'Y qué pedirle a la gestoría.', t: 0.66, arriba: true },
+    ], 10.6, 19.0);
+
+    // 3. Panel y Evolución, con «Qué revisar».
+    indice(3, N, 19.0, 29.0);
+    recorrido('12-panel', 'Panel', 'Tu negocio, en tiempo real.', [
+      { x: 0.5875, y: 0.47, z: 1.24, caja: [0.2, 0.33, 0.775, 0.28], rot: 'Ingresos, gastos, tesorería y lo pendiente.', arriba: true },
+    ], 19.0, 22.0);
+    recorrido('16-evolucion', 'Evolución', 'Y año a año, con las cifras de Hacienda.', [
+      { x: 0.5875, y: 0.37, z: 1.24, caja: [0.2, 0.24, 0.775, 0.265], rot: 'Cada dato, con su modelo y su casilla.' },
+    ], 22.0, 24.8);
+    recorrido('28-que-revisar', 'Evolución › Qué revisar', 'Lo que hay que mirar, señalado.', [
+      { x: 0.5875, y: 0.3, z: 1.24, caja: [0.2, 0.155, 0.775, 0.115], rot: 'Lo que falta, lo tardío y lo que no cuadra.' },
+      { x: 0.5875, y: 0.62, z: 1.24, caja: [0.2, 0.585, 0.775, 0.32], rot: 'Con quién debe corregirlo.', sub: 'Y hasta cuándo se puede rectificar.', t: 0.5, arriba: true },
+    ], 24.8, 29.0);
+
+    // 4. Facturas, presupuestos y recibidas.
+    indice(4, N, 29.0, 37.4);
+    recorrido('02-facturas', 'Facturas', 'Emite, rectifica y envía.', [
+      { x: 0.47, y: 0.78, z: 1.7, caja: [0.2, 0.535, 0.285, 0.46], rot: 'Con PDF, Facturae y correo.', sub: 'VERI*FACTU: en pruebas, pronto estará listo.', arriba: true },
+    ], 29.0, 32.0);
+    recorrido('13-presupuestos', 'Presupuestos', 'Del presupuesto a la factura.', [
+      { x: 0.5875, y: 0.6, z: 1.24, caja: [0.2, 0.575, 0.775, 0.42], rot: 'Presupuestos y proformas.', sub: 'Aceptado: «Facturar» abre la factura con sus datos.', arriba: true },
+    ], 32.0, 34.6, { ratio: 0.4375, alto: 640, top: 240 });
+    recorrido('04-recibidas-revision', 'Recibidas', 'Arrastra el PDF de tu gasto.', [
+      { x: 0.5875, y: 0.56, z: 1.24, caja: [0.205, 0.335, 0.77, 0.42], rot: 'Se rellena solo. Tú confirmas.', sub: 'Facturas y tickets se leen en tu Mac.', arriba: true },
+    ], 34.6, 37.4);
+
+    // 5. Contabilidad.
+    indice(5, N, 37.4, 49.0);
+    recorrido('05-diario', 'Contabilidad', 'Diario y mayor, sin picar asientos.', [
+      { x: 0.5875, y: 0.74, z: 1.24, rot: 'Cada factura genera su asiento.', sub: 'Tú sólo revisas.' },
+    ], 37.4, 39.8);
+    recorrido('07-banco-conciliacion', 'Contabilidad › Banco', 'El banco, conciliado.', [
+      { x: 0.5875, y: 0.6, z: 1.24, caja: [0.205, 0.375, 0.77, 0.335], rot: 'Cada movimiento, con su factura.', arriba: true },
+    ], 39.8, 42.0);
+    recorrido('29-inmovilizado', 'Contabilidad › Inmovilizado', 'Inmovilizado y amortizaciones.', [
+      { x: 0.5875, y: 0.5, z: 1.24, caja: [0.2, 0.38, 0.775, 0.175], rot: 'Con su plan, sus bajas y sus ventas.' },
+    ], 42.0, 44.2, { ratio: 0.5 });
+    recorrido('30-cierre', 'Contabilidad › Cierre', 'El cierre, guiado.', [
+      { x: 0.5875, y: 0.62, z: 1.24, caja: [0.2, 0.305, 0.775, 0.465], rot: 'Te dice qué falta antes de cerrar.' },
+    ], 44.2, 46.6);
+    recorrido('08-cuentas-anuales', 'Contabilidad › Cuentas anuales', 'Y las cuentas anuales, de ahí.', [
+      { x: 0.5875, y: 0.75, z: 1.24, caja: [0.2, 0.6, 0.775, 0.31], rot: 'Balance, pérdidas y ganancias y memoria.', arriba: true },
+    ], 46.6, 49.0);
+
+    // 6. Modelos y envío directo.
+    indice(6, N, 49.0, 55.6);
+    recorrido('10-modelo-303', 'Modelos', 'Tus modelos, casilla a casilla.', [
+      { x: 0.5875, y: 0.3, z: 1.24, caja: [0.195, 0.29, 0.42, 0.065], rot: '303, 111, 115, 130, 200, 390…', sub: 'Calculados con tus facturas y tu contabilidad.' },
+      { x: 0.5875, y: 0.85, z: 1.24, caja: [0.2, 0.63, 0.775, 0.37], rot: 'Con el fichero oficial para la Sede.', sub: 'Envío directo: en pruebas, contra el entorno de pruebas de la AEAT.', arriba: true, t: 0.42 },
+    ], 49.0, 55.6);
+
+    // 7. Criptomonedas e inversiones.
+    indice(7, N, 55.6, 61.2);
+    recorrido('18-criptomonedas', 'Criptomonedas', 'Cada venta, con su coste.', [
+      { x: 0.5875, y: 0.58, z: 1.24, caja: [0.2, 0.3, 0.775, 0.28], rot: 'Ganancias y pérdidas, calculadas.', sub: 'FIFO o precio medio, con la norma citada.' },
+    ], 55.6, 58.4);
+    recorrido('21-valores', 'Inversiones en valores', 'Y tu bróker, sincronizado.', [
+      { x: 0.5875, y: 0.5, z: 1.24, caja: [0.2, 0.405, 0.775, 0.16], rot: 'Interactive Brokers, por su API.', sub: 'Posiciones, dividendos y retenciones.', arriba: true },
+    ], 58.4, 61.2);
+
+    // 8. Calendario fiscal.
+    indice(8, N, 61.2, 64.4);
+    captura('01-calendario', 'Calendario fiscal', 'Qué toca y cuándo.', 'Los plazos de tu perfil, con aviso. Se exporta a tu calendario.', 61.2, 64.4, { origen: '40% 30%', zoom: 1.25 });
+
+    // 9. El asistente y Claude por MCP.
+    indice(9, N, 64.4, 70.8);
+    recorrido('22-asistente', 'Asistente', 'Un asistente que conoce tus números.', [
+      { x: 0.694, y: 0.76, z: 1.7, rot: 'Responde con lo que hay en TaxPain.', sub: 'Nombres y NIF se sustituyen antes de enviar nada.', arriba: true },
+    ], 64.4, 67.4);
+    recorrido('23-claude-mcp', 'Servidor MCP', 'Y pregúntale a Claude por tu empresa.', [
+      { x: 0.36, y: 0.5, z: 1.4, rot: 'Apagado hasta que lo activas.', sub: 'Ojo: Claude ve tus datos sin anonimizar.' },
+    ], 67.4, 70.8, { ratio: 786 / 1978, alto: 620, top: 250 });
+
+    // 10. Privacidad.
+    indice(10, N, 70.8, 72.8);
+    palabras('Todo en tu Mac.', 300, 70.8, 72.8, { paso: 0.1 });
+    palabras('Cifrado. Sin subirlo a nadie.', 450, 71.0, 72.8, { clase: 'media', paso: 0.07, acento: [0] });
+    const chips = nodo(`<span class="chip">Base cifrada · SQLCipher</span>&nbsp;&nbsp;<span class="chip">Certificado con Touch ID</span>&nbsp;&nbsp;<span class="chip">Sin AutoFirma</span>`,
+      { top: '640px' }, 'centro');
+    aparece(chips, 71.3, 72.8);
+
+    cierre(72.85, null, REPO, 'Alfa · en pruebas');
+    return total;
+  },
+
+  // Cómo funciona, paso a paso.
+  pasos() {
+    const total = 63.1;
+    fondo(total);
+    progreso(total);
+    marca(2.8);
+    palabras('Cómo funciona TaxPain,', 330, 0.15, 2.8, { clase: 'media', paso: 0.12 });
+    palabras('paso a paso.', 450, 0.6, 2.8, { paso: 0.12, acento: [0, 1, 2] });
+    linea('De instalarla a preparar tu próximo modelo.', 680, 1.3, 2.8);
+    const N = 9;
+    const paso = (i) => `Paso ${i} de ${N}`;
+    const rotuloPaso = (i, txt, a, b, y = 110) =>
+      linea(`${paso(i)}${txt ? ` · ${txt}` : ''}`, y, a, b, { color: 'var(--marca-2)', fontWeight: '700' });
+
+    // 1. Instalar.
+    puntos(1, N, 2.8, 6.0);
+    rotuloPaso(1, '', 2.8, 6.0, 250);
+    palabras('Instala TaxPain', 330, 2.9, 6.0, { clase: 'media', paso: 0.1 });
+    palabras('en tu Mac.', 440, 3.15, 6.0, { clase: 'media', paso: 0.1, acento: [1, 2] });
+    const c1 = nodo(`<span class="chip">macOS</span>&nbsp;&nbsp;<span class="chip">Código abierto · MIT</span>&nbsp;&nbsp;<span class="chip" style="border-color:rgba(250,189,0,.5);color:#fbd25a">Alfa · en pruebas</span>`,
+      { top: '640px' }, 'centro');
+    aparece(c1, 3.6, 6.0);
+    const u1 = nodo(REPO, { top: '770px' }, 'centro url');
+    aparece(u1, 3.9, 6.0);
+
+    // 2. Crear la empresa.
+    puntos(2, N, 6.0, 11.0);
+    recorrido('24-nueva-empresa', paso(2), 'Crea tu empresa.', [
+      { x: 0.2, y: 0.32, z: 1.55, caja: [0.012, 0.15, 0.152, 0.17], rot: 'Nombre y NIF.', sub: 'Autónomo o sociedad.', der: true },
+      { x: 0.2, y: 0.56, z: 1.55, caja: [0.012, 0.315, 0.152, 0.44], clic: [0.0875, 0.7125], rot: 'Y una contraseña para tus copias.', sub: 'Sólo la sabes tú: apúntala bien.', der: true, t: 0.48 },
+    ], 6.0, 11.0);
+
+    // 3. El certificado.
+    puntos(3, N, 11.0, 15.0);
+    recorrido('09-certificado', paso(3), 'Conecta tu certificado.', [
+      { x: 0.5875, y: 0.36, z: 1.24, caja: [0.2, 0.225, 0.775, 0.32], clic: [0.26, 0.475], rot: 'Se guarda cifrado en tu Mac.', sub: 'Cada uso pide Touch ID y dice para qué.' },
+    ], 11.0, 15.0);
+
+    // 4. Bajar lo presentado.
+    puntos(4, N, 15.0, 21.4);
+    recorrido('26-presentado', paso(4), 'Baja lo que se presentó a Hacienda.', [
+      { x: 0.5, y: 0.5, z: 1, clic: [0.085, 0.815], rot: 'Una consulta a la AEAT, con tu certificado.', sub: 'No presenta ni cambia nada.' },
+    ], 15.0, 18.2, { ratio: 489 / 2110, alto: 570, top: 260 });
+    rotuloPaso(4, 'Llegan los justificantes', 18.2, 21.4, 150);
+    palabras('Modelo a modelo,', 230, 18.3, 21.4, { clase: 'media', paso: 0.09 });
+    palabras('también lo de tu gestoría.', 340, 18.55, 21.4, { clase: 'media', paso: 0.09, acento: [3] });
+    modelos(['303', '390', '111', '190', '115', '180', '123', '193', '130', '349', '347', '200', '202', '232', '216', '296'], 540, 18.8, 21.4, 8);
+    linea('20 modelos, más los de tu perfil. Varios años de golpe.', 880, 19.6, 21.4, { fontSize: '34px' });
+
+    // 5. La carpeta.
+    puntos(5, N, 21.4, 27.6);
+    recorrido('25-carpeta', paso(5), 'Apunta a la carpeta de tu empresa.', [
+      { x: 0.5875, y: 0.45, z: 1.24, caja: [0.2, 0.29, 0.775, 0.14], clic: [0.909, 0.358], rot: 'Facturas, extractos y escrituras.', sub: 'Se leen en tu Mac. Leer no cambia nada.' },
+    ], 21.4, 24.6, { ratio: 0.5 });
+    rotuloPaso(5, 'TaxPain lo cruza con lo presentado', 24.6, 27.6);
+    cruce(24.7, 27.6);
+
+    // 6. Los hallazgos.
+    puntos(6, N, 27.6, 31.6);
+    recorrido('19-revision', paso(6), 'Mira los hallazgos.', [
+      { x: 0.5875, y: 0.56, z: 1.24, caja: [0.784, 0.482, 0.193, 0.112], rot: 'Errores de tu gestoría anterior: <i>0,00 €</i>', sub: 'Estimación de lo que aún puedes reclamar, rectificando en plazo.', cuenta: 4585.4 },
+    ], 27.6, 31.6);
+    palabras('Y qué hacer con cada uno.', 70, 31.6, 36.2, { clase: 'media', paso: 0.08, acento: [1, 2] });
+    hallazgos(31.7, 36.2, [
+      ['#d01c29', '#fde2e4', 'Error', 'Gestoría', 'Dividendos de 2024 sin la exención del 95 %', 'Qué hacer: <b>pide rectificar el 200</b>. Unos 2.185,00 €, hasta el 25/07/2029.', 'Recuperable 2.185,00 €'],
+      ['#c27a00', '#fff1cc', 'Aviso', 'Gestoría', 'Se dejó de arrastrar IVA a compensar', 'Qué hacer: <b>que lo incluya en el siguiente 303</b>. 238,40 € a tu favor.', 'Recuperable 238,40 €'],
+      ['#c27a00', '#fff1cc', 'Aviso', 'Empresa', 'Una factura está dos veces en el libro', 'Qué hacer: <b>deja una sola copia</b> antes del próximo 303.'],
+    ]);
+    const ej = nodo('Ejemplo con datos inventados. Importes estimados: no sustituye a un asesor.', { top: '1020px' }, 'centro nota');
+    aparece(ej, 32.2, 36.2);
+
+    // 7. Evolución.
+    puntos(7, N, 36.2, 43.2);
+    recorrido('16-evolucion', paso(7), 'Sigue tu negocio en Evolución.', [
+      { x: 0.5875, y: 0.37, z: 1.24, caja: [0.2, 0.24, 0.775, 0.265], rot: 'Año a año, con las cifras de Hacienda.', sub: 'Cada una, con su modelo y su casilla.' },
+    ], 36.2, 39.4);
+    recorrido('28-que-revisar', paso(7), 'Y mira «Qué revisar».', [
+      { x: 0.5875, y: 0.62, z: 1.24, caja: [0.2, 0.585, 0.775, 0.32], rot: 'Lo que falta, lo tardío y lo que no cuadra.', sub: 'Con quién debe corregirlo y hasta cuándo.', arriba: true },
+    ], 39.4, 43.2);
+
+    // 8. Claude por MCP.
+    puntos(8, N, 43.2, 51.2);
+    rotuloPaso(8, 'Pregúntale a Claude', 43.2, 51.2, 100);
+    chat(43.3, 51.2, [
+      { t: 43.6, q: '¿Qué me queda por cobrar?', tool: 'cobros_pendientes',
+        r: '<b>6.421,80 €</b> pendientes de cobro.<br>De ellos, <em>968,00 € ya han vencido.</em><small>Servidor MCP local. Apagado hasta que lo activas; ve tus datos sin anonimizar.</small>',
+        fuente: ['12-panel', [0.462, 0.472, 0.262, 0.14], 520] },
+    ]);
+
+    // 9. El modelo siguiente.
+    puntos(9, N, 51.2, 58.2);
+    recorrido('10-modelo-303', paso(9), 'Prepara tu próximo modelo.', [
+      { x: 0.5875, y: 0.3, z: 1.24, caja: [0.195, 0.29, 0.42, 0.065], rot: 'Elige modelo y periodo.', sub: '303, 111, 115, 130, 200, 390…' },
+      { x: 0.5875, y: 0.85, z: 1.24, caja: [0.2, 0.63, 0.775, 0.37], rot: 'Casilla a casilla, con el fichero oficial.', sub: 'Envío directo: en pruebas, contra el entorno de pruebas de la AEAT.', arriba: true, t: 0.42 },
+    ], 51.2, 58.2);
+
+    cierre(58.25, null, REPO, 'Alfa · en pruebas');
+    return total;
+  },
+
+  // Claude por MCP.
+  claude() {
+    const total = 31.8;
+    fondo(total);
+    progreso(total);
+    marca(2.7);
+    palabras('Pregúntale a Claude', 330, 0.15, 2.7, { paso: 0.13 });
+    palabras('por tu empresa.', 480, 0.6, 2.7, { paso: 0.13, acento: [1, 2] });
+
+    linea('Con tus datos de TaxPain. En tu Mac.', 96, 2.8, 18.6, { fontSize: '40px' });
+    chat(2.75, 18.6, [
+      { t: 3.1, q: '¿Qué me queda por cobrar?', tool: 'cobros_pendientes',
+        r: '<b>6.421,80 €</b> pendientes de cobro.<br>De ellos, <em>968,00 € ya han vencido.</em>',
+        fuente: ['12-panel', [0.462, 0.472, 0.262, 0.14], 640] },
+      { t: 8.0, q: '¿Cuánto me sale el IVA de este trimestre?', tool: 'modelo',
+        r: '<b>873,60 € a ingresar</b> en el modelo 303 del 3T.<br>El plazo acaba el <em>20 de octubre</em>.',
+        fuente: ['10-modelo-303', [0.2, 0.632, 0.4, 0.125], 760] },
+      { t: 13.0, q: 'Hazme un presupuesto de 4.500 € para Atelier Lumière', tool: 'crear_presupuesto',
+        r: '<b>Borrador creado.</b> Revísalo en TaxPain antes de enviarlo.<small>Claude sólo deja borradores: no emite, no presenta y no toca tu certificado.</small>' },
+    ]);
+
+    recorrido('23-claude-mcp', 'Tú decides', 'Apagado hasta que lo activas.', [
+      { x: 0.38, y: 0.3, z: 1.25, rot: 'Lo enciendes tú, empresa a empresa.', sub: 'Las demás, Claude ni las ve.' },
+      { x: 0.36, y: 0.55, z: 1.5, caja: [0.012, 0.345, 0.84, 0.38], rot: 'Sólo consultar, o consultar y dejar borradores.', sub: 'Nada se emite ni se contabiliza sin ti.', t: 0.45 },
+    ], 18.6, 23.4, { ratio: 786 / 1978, alto: 620, top: 250 });
+
+    palabras('Las reglas, claras.', 90, 23.4, 28.6, { clase: 'media', paso: 0.1, acento: [2] });
+    lista([
+      ['✓', 'Local: lo arranca tu Claude, en tu Mac.'],
+      ['✓', 'Cada consulta queda en la auditoría.'],
+      ['✓', 'No emite, no presenta, no firma, no borra.'],
+      ['!', 'Claude ve tus datos sin anonimizar. Tú decides.', true],
+    ], 270, 23.7, 28.6);
+    const n = nodo('Datos de ejemplo. Hoy el servidor MCP se compila desde el código: la guía está en el repositorio.', { top: '1000px', fontSize: '24px' }, 'centro nota');
+    aparece(n, 25.0, 28.6);
+
+    cierre(28.65, null, REPO);
+    return total;
+  },
+
+  // Criptomonedas e inversiones.
+  cripto() {
+    const total = 31.5;
+    fondo(total);
+    progreso(total);
+    marca(2.6);
+    palabras('¿Cripto y bolsa?', 330, 0.15, 2.6, { paso: 0.14 });
+    palabras('Las cuentas, hechas.', 480, 0.6, 2.6, { paso: 0.13, acento: [2] });
+
+    palabras('De tus plataformas a tus impuestos.', 120, 2.65, 9.0, { clase: 'media', paso: 0.07, acento: [5] });
+    flujo(2.8, 9.0, [
+      ['Kraken', 'Movimientos en CSV'],
+      ['CoinTracking', 'Exportación en CSV'],
+      ['Interactive Brokers', 'Por su API (Flex)'],
+      ['XTB', 'Informe en PDF o Excel'],
+    ], [
+      ['Ganancias y pérdidas', 'FIFO en cripto, coste medio en valores'],
+      ['Dividendos y retenciones', 'También las de origen'],
+      ['Asientos contables', 'Propuestos para tu diario'],
+      ['Avisos del 720 y 721', 'Si pasas de los límites'],
+    ]);
+
+    recorrido('21-valores', 'Inversiones en valores', 'Tu bróker, sincronizado.', [
+      { x: 0.5875, y: 0.5, z: 1.24, caja: [0.2, 0.405, 0.775, 0.16], rot: 'Interactive Brokers, por su API.', sub: 'Sólo se conecta cuando pulsas «Sincronizar».', arriba: true },
+      { x: 0.5875, y: 0.92, z: 1.24, caja: [0.2, 0.82, 0.775, 0.17], rot: 'Posiciones, coste y plusvalía latente.', sub: 'A 31 de diciembre, para el cierre.', arriba: true },
+    ], 9.0, 14.2);
+
+    recorrido('18-criptomonedas', 'Criptomonedas', 'Cada venta, con su coste.', [
+      { x: 0.5875, y: 0.44, z: 1.24, caja: [0.2, 0.3, 0.775, 0.28], rot: 'FIFO o precio medio, según tu caso.', sub: 'Con la norma que aplica, citada.' },
+      { x: 0.5875, y: 0.74, z: 1.24, caja: [0.2, 0.595, 0.775, 0.29], rot: '¿Te faltan años antiguos?', sub: 'Parte de los cálculos de tu gestoría.', arriba: true },
+    ], 14.2, 19.4);
+
+    recorrido('17-ahorro', 'Y antes de que acabe el año', 'Te avisa de lo que puedes ahorrar.', [
+      { x: 0.5875, y: 0.9, z: 1.24, caja: [0.2, 0.77, 0.775, 0.23], rot: 'Compensa ganancias con pérdidas.', sub: 'Antes del 31 de diciembre. Ahorro estimado: <b style="display:inline;font-size:inherit;color:#5fd68a">117,80 €</b>', arriba: true },
+    ], 19.4, 24.0);
+
+    palabras('Tú operas.', 330, 24.0, 27.2, { paso: 0.14 });
+    palabras('TaxPain hace los números.', 480, 24.4, 27.2, { clase: 'media', paso: 0.1, acento: [0] });
+    const n = nodo('Datos de ejemplo. Orientativo: confírmalo con tu asesor.', { top: '700px', fontSize: '30px', color: 'var(--suave)' }, 'centro');
+    aparece(n, 25.0, 27.2);
+
+    cierre(27.25, null, REPO);
+    return total;
+  },
+};
+
+const total = VIDEOS[cual]();
+for (const { n, claves } of pistas) {
+  const fr = claves.map(({ t, ...resto }) => ({ ...resto, offset: Math.min(1, Math.max(0, t / total)) }));
+  if (fr[0].offset !== 0) fr.unshift({ ...fr[0], offset: 0, easing: 'linear' });
+  if (fr.at(-1).offset !== 1) fr.push({ ...fr.at(-1), offset: 1, easing: 'linear' });
+  const a = n.animate(fr, { duration: total * 1000, fill: 'both' });
+  a.pause();
+}
+window.TOTAL = total;
+window.fijar = (s) => {
+  for (const a of document.getAnimations()) a.currentTime = s * 1000;
+  for (const f of vivos) f(s);
+};
+window.fijar(0);
+window.LISTO = Promise.all([...document.images].map((i) => i.decode().catch(() => {}))).then(() => document.fonts.ready);
+</script>
+</body>
+</html>

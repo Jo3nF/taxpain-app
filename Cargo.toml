@@ -1,0 +1,89 @@
+[workspace]
+resolver = "3"
+members = [
+  "crates/core",
+  "crates/secrets",
+  "crates/vault",
+  "crates/aeat",
+  "crates/invoicing",
+  "crates/models",
+  "crates/macos",
+  "crates/testkit",
+  "crates/app",
+  "crates/assistant",
+  "crates/banca",
+  "crates/mcp",
+  "apps/desktop/src-tauri",
+]
+# La app Tauri necesita WebKit (macOS) o webkit2gtk (Linux): se compila sólo en CI macOS (D2).
+default-members = [
+  "crates/core",
+  "crates/secrets",
+  "crates/vault",
+  "crates/aeat",
+  "crates/invoicing",
+  "crates/models",
+  "crates/macos",
+  "crates/testkit",
+  "crates/app",
+  "crates/assistant",
+  "crates/banca",
+  "crates/mcp",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+license = "MIT"
+authors = ["TaxPain contributors"]
+publish = false
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+missing_debug_implementations = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+float_arithmetic = "warn"
+dbg_macro = "warn"
+print_stdout = "warn"
+unwrap_used = "warn"
+
+[workspace.dependencies]
+taxpain-core = { path = "crates/core" }
+taxpain-secrets = { path = "crates/secrets" }
+taxpain-vault = { path = "crates/vault" }
+taxpain-aeat = { path = "crates/aeat" }
+taxpain-invoicing = { path = "crates/invoicing" }
+taxpain-models = { path = "crates/models" }
+taxpain-macos = { path = "crates/macos" }
+taxpain-testkit = { path = "crates/testkit" }
+taxpain-app = { path = "crates/app" }
+taxpain-assistant = { path = "crates/assistant" }
+taxpain-banca = { path = "crates/banca" }
+thiserror = "2"
+
+[profile.dev]
+# Ahorra disco y tiempo de enlace: sólo tablas de líneas para backtraces.
+debug = "line-tables-only"
+
+[profile.dev.package."*"]
+debug = false
+opt-level = 1
+
+# La clave de las copias de seguridad (scrypt, 128 MiB) tarda segundos sin optimizar.
+[profile.dev.package.scrypt]
+opt-level = 3
+
+[profile.dev.package.salsa20]
+opt-level = 3
+
+# El detector local de nombres (una red neuronal pequeña) es lento sin optimizar.
+[profile.dev.package.taxpain-assistant]
+opt-level = 3
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "symbols"

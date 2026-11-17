@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>TaxPain</title>
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d01c29"/>
+      <stop offset="1" stop-color="#a8101c"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#fondo)"/>
+  <rect x="124" y="124" width="264" height="58" rx="29" fill="#fff"/>
+  <path d="M296 182 L226 392" stroke="#fff" stroke-width="58" stroke-linecap="round"/>
+  <circle cx="168" cy="262" r="30" fill="#fabd00"/>
+  <circle cx="352" cy="346" r="30" fill="#fabd00"/>
+</svg>

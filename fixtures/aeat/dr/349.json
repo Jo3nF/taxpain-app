@@ -1,0 +1,407 @@
+{
+ "model": "349",
+ "source": "DR_Anexo_349.pdf",
+ "sha256": "874db49c9aff4d9c024bdee52f869123a9815c09272a0066cf81421ace1a8335",
+ "transcribed": "a mano desde el PDF (Orden HAC/174/2020, anexo, págs. 8-14)",
+ "pages": [
+  {
+   "sheet": "349-1",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "1"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "349"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o razón social del declarante"
+    },
+    {
+     "n": 6,
+     "pos": 58,
+     "len": 1,
+     "type": "An",
+     "desc": "Blanco"
+    },
+    {
+     "n": 7,
+     "pos": 59,
+     "len": 9,
+     "type": "Num",
+     "desc": "Persona con quién relacionarse: teléfono"
+    },
+    {
+     "n": 8,
+     "pos": 68,
+     "len": 40,
+     "type": "An",
+     "desc": "Persona con quién relacionarse: apellidos y nombre"
+    },
+    {
+     "n": 9,
+     "pos": 108,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración"
+    },
+    {
+     "n": 10,
+     "pos": 121,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración complementaria (C)"
+    },
+    {
+     "n": 11,
+     "pos": 122,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración sustitutiva (S)"
+    },
+    {
+     "n": 12,
+     "pos": 123,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración anterior"
+    },
+    {
+     "n": 13,
+     "pos": 136,
+     "len": 2,
+     "type": "An",
+     "desc": "Período"
+    },
+    {
+     "n": 14,
+     "pos": 138,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de operadores intracomunitarios"
+    },
+    {
+     "n": 15,
+     "pos": 147,
+     "len": 15,
+     "type": "Num",
+     "desc": "Importe de las operaciones intracomunitarias"
+    },
+    {
+     "n": 16,
+     "pos": 162,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de operadores intracomunitarios con rectificaciones"
+    },
+    {
+     "n": 17,
+     "pos": 171,
+     "len": 15,
+     "type": "Num",
+     "desc": "Importe de las rectificaciones"
+    },
+    {
+     "n": 18,
+     "pos": 186,
+     "len": 1,
+     "type": "An",
+     "desc": "Indicador cambio periodicidad en la obligación de declarar"
+    },
+    {
+     "n": 19,
+     "pos": 187,
+     "len": 204,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 20,
+     "pos": 391,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante legal"
+    },
+    {
+     "n": 21,
+     "pos": 400,
+     "len": 101,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  },
+  {
+   "sheet": "349-2op",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "349"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 58,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 6,
+     "pos": 76,
+     "len": 2,
+     "type": "An",
+     "desc": "NIF operador comunitario: código país"
+    },
+    {
+     "n": 7,
+     "pos": 78,
+     "len": 15,
+     "type": "An",
+     "desc": "NIF operador comunitario: número"
+    },
+    {
+     "n": 8,
+     "pos": 93,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o razón social del operador intracomunitario"
+    },
+    {
+     "n": 9,
+     "pos": 133,
+     "len": 1,
+     "type": "An",
+     "desc": "Clave de operación"
+    },
+    {
+     "n": 10,
+     "pos": 134,
+     "len": 13,
+     "type": "Num",
+     "desc": "Base imponible o importe"
+    },
+    {
+     "n": 11,
+     "pos": 147,
+     "len": 32,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 12,
+     "pos": 179,
+     "len": 2,
+     "type": "An",
+     "desc": "NIF destinatario final sustituto: código país"
+    },
+    {
+     "n": 13,
+     "pos": 181,
+     "len": 15,
+     "type": "An",
+     "desc": "NIF destinatario final sustituto: número"
+    },
+    {
+     "n": 14,
+     "pos": 196,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o razón social del sujeto pasivo sustituto"
+    },
+    {
+     "n": 15,
+     "pos": 236,
+     "len": 265,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  },
+  {
+   "sheet": "349-2rect",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "349"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 58,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 6,
+     "pos": 76,
+     "len": 2,
+     "type": "An",
+     "desc": "NIF operador comunitario: código país"
+    },
+    {
+     "n": 7,
+     "pos": 78,
+     "len": 15,
+     "type": "An",
+     "desc": "NIF operador comunitario: número"
+    },
+    {
+     "n": 8,
+     "pos": 93,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o razón social del operador intracomunitario"
+    },
+    {
+     "n": 9,
+     "pos": 133,
+     "len": 1,
+     "type": "An",
+     "desc": "Clave de operación"
+    },
+    {
+     "n": 10,
+     "pos": 134,
+     "len": 13,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 11,
+     "pos": 147,
+     "len": 4,
+     "type": "Num",
+     "desc": "Rectificaciones: ejercicio"
+    },
+    {
+     "n": 12,
+     "pos": 151,
+     "len": 2,
+     "type": "An",
+     "desc": "Rectificaciones: periodo"
+    },
+    {
+     "n": 13,
+     "pos": 153,
+     "len": 13,
+     "type": "Num",
+     "desc": "Base imponible o importes rectificados"
+    },
+    {
+     "n": 14,
+     "pos": 166,
+     "len": 13,
+     "type": "Num",
+     "desc": "Base imponible declarada anteriormente"
+    },
+    {
+     "n": 15,
+     "pos": 179,
+     "len": 2,
+     "type": "An",
+     "desc": "NIF destinatario final sustituto: código país"
+    },
+    {
+     "n": 16,
+     "pos": 181,
+     "len": 15,
+     "type": "An",
+     "desc": "NIF destinatario final sustituto: número"
+    },
+    {
+     "n": 17,
+     "pos": 196,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o razón social del sujeto pasivo sustituto"
+    },
+    {
+     "n": 18,
+     "pos": 236,
+     "len": 265,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  }
+ ]
+}

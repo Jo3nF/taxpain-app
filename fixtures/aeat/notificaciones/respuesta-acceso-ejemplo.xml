@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Respuesta SINTÉTICA construida según RespuestaAcceso.xsd (datos y PDF de prueba). -->
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ra="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaAcceso.xsd">
+  <env:Header/>
+  <env:Body>
+    <ra:RespuestaAcceso>
+      <ra:Version>1.1</ra:Version>
+      <ra:NumeroCertificado>2319486500018</ra:NumeroCertificado>
+      <ra:Envio>
+        <ra:MetadatosPrivados>
+          <ra:NifTitularProcedimiento>12345678Z</ra:NifTitularProcedimiento>
+          <ra:NombreTitularProcedimiento>ESPAÑOLA ESPAÑOLA CARMEN</ra:NombreTitularProcedimiento>
+          <ra:NifTitular>12345678Z</ra:NifTitular>
+          <ra:NombreTitular>ESPAÑOLA ESPAÑOLA CARMEN</ra:NombreTitular>
+          <ra:NifDestinatario>12345678Z</ra:NifDestinatario>
+          <ra:NombreDestinatario>ESPAÑOLA ESPAÑOLA CARMEN</ra:NombreDestinatario>
+          <ra:FechaEmision>2026-09-01T09:00:00</ra:FechaEmision>
+          <ra:FechaAcceso>2026-09-03T10:00:00</ra:FechaAcceso>
+          <ra:CodOficinaRemitente>46600</ra:CodOficinaRemitente>
+          <ra:NombreOficinaRemitente>ADMINISTRACIÓN DE PRUEBA</ra:NombreOficinaRemitente>
+          <ra:DireccionOficinaRemitente>CALLE DE PRUEBA 1</ra:DireccionOficinaRemitente>
+          <ra:ClaveAplicacion>X</ra:ClaveAplicacion>
+          <ra:Concepto>Requerimiento de información</ra:Concepto>
+          <ra:CodProcedimiento>GC00</ra:CodProcedimiento>
+          <ra:DescripcionProcedimiento>Procedimiento de prueba</ra:DescripcionProcedimiento>
+          <ra:Ejercicio>2026</ra:Ejercicio>
+          <ra:Modelo>303</ra:Modelo>
+          <ra:Periodo>2T</ra:Periodo>
+          <ra:Importe>0.00</ra:Importe>
+          <ra:CSVDocumentoPDF>AAAAAAAAAAAAAAAA</ra:CSVDocumentoPDF>
+          <ra:CSVCertificacionPDF>BBBBBBBBBBBBBBBB</ra:CSVCertificacionPDF>
+        </ra:MetadatosPrivados>
+        <ra:DocumentoPDF>JVBERi0xLjQKJXNpbnRldGljbwo=</ra:DocumentoPDF>
+        <ra:CertificacionPDF>JVBERi0xLjQKJXNpbnRldGljbwo=</ra:CertificacionPDF>
+      </ra:Envio>
+      <ra:CodRespuesta>00</ra:CodRespuesta>
+      <ra:MsgRespuesta>Respuesta correcta</ra:MsgRespuesta>
+    </ra:RespuestaAcceso>
+  </env:Body>
+</env:Envelope>

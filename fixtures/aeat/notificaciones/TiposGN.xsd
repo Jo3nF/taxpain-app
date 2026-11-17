@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gn="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd" targetNamespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd" elementFormDefault="qualified">
+	<simpleType name="TipoNif">
+		<annotation>
+			<documentation xml:lang="es">NIF: Secuencia de 9 dígitos o letras mayúsculas</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="9"/>
+			<pattern value="(([a-z|A-Z]{1}\d{7}[a-z|A-Z]{1})|(\d{8}[a-z|A-Z]{1})|([a-z|A-Z]{1}\d{8}))"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoFecha">
+		<annotation>
+			<documentation xml:lang="es">Fecha: En formato dd-mm-aaaa</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="10"/>
+			<pattern value="\d{2,2}-\d{2,2}-\d{4,4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoNumeroCertificado">
+		<annotation>
+			<documentation xml:lang="es">Numero de Certificado: Secuencia de 13 dígitos que identifica un envío</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="13"/>
+			<pattern value="(\d{13})"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoEstado">
+		<annotation>
+			<documentation xml:lang="es">Estado del envío: puede estar pendiente de comparecer o comparecido</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="A">
+				<annotation>
+					<documentation xml:lang="es">Accedido</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="P">
+				<annotation>
+					<documentation xml:lang="es">Pendiente</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="T">
+				<annotation>
+					<documentation xml:lang="es">Todos: Accedido o Pendiente</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoEnvio">
+		<annotation>
+			<documentation xml:lang="es">Tipo de Envío: puede ser una comunicación o una notificación (con acuse de recibo)</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="C">
+				<annotation>
+					<documentation xml:lang="es">Comunicaciones</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="N">
+				<annotation>
+					<documentation xml:lang="es">Notificaciones</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="T">
+				<annotation>
+					<documentation xml:lang="es">todas: Comunicaciones y Notificaciones</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoRol">
+		<annotation>
+			<documentation xml:lang="es">Rol del peticionario: puede ser el titular del envío o un autorizado (apoderado, sucesor etc.) al mismo</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="T">
+				<annotation>
+					<documentation xml:lang="es">Titular</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="A">
+				<annotation>
+					<documentation xml:lang="es">Autorizado</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoOperacion">
+		<restriction base="string">
+			<enumeration value="C">
+				<annotation>
+					<documentation xml:lang="es">Comparecer a la notificacion
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="D">
+				<annotation>
+					<documentation xml:lang="es">Repetir descarga notificacion comparecida / descargar comunicacion</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoRepresentacion">
+		<restriction base="string">
+			<enumeration value="A">
+				<annotation>
+					<documentation xml:lang="es">
+						Apoderado
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="S">
+				<annotation>
+					<documentation xml:lang="es">
+						Sucesor
+					</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoVersion">
+		<annotation>
+			<documentation xml:lang="es">Versión del método</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="5"/>
+			<pattern value="(\d{1,2}\.\d{1,2})"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoClavePaginacion">
+		<annotation>
+			<documentation xml:lang="es">Clave de paginación</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>	
+</schema>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaConsulta.xsd" 
+		xmlns:rc=		"https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaConsulta.xsd"
+		elementFormDefault="qualified" 
+		xmlns:gn="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd">
+
+    <import schemaLocation="TiposGN.xsd" 
+    	namespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd"/>
+    <element name="RespuestaConsulta" type="rc:TipoRespuestaConsulta"></element>
+    
+    <complexType name="TipoRespuestaConsulta">
+    	<sequence>
+    		<element name="Version" type="gn:TipoVersion" nillable="true" minOccurs="0"/>
+    		<element name="ClavePaginacion" type="gn:TipoClavePaginacion" nillable="true" minOccurs="0"/>
+    		<element name="Envios" type="rc:TipoEnvios" maxOccurs="1" minOccurs="0"/>
+    		<element name="CodRespuesta" type="string"></element>
+    		<element name="MsgRespuesta" type="string"></element>    		
+    	</sequence>
+    </complexType>
+
+    <complexType name="TipoEnvios">
+    	<sequence>
+    		<element name="Envio" type="rc:TipoEnvioConsulta" maxOccurs="unbounded" minOccurs="1"/>
+    	</sequence>
+    </complexType>
+
+    <complexType name="TipoEnvioConsulta">
+    	<sequence>
+    		<element name="NumeroCertificado" type="gn:TipoNumeroCertificado"></element>
+    		<element name="Rol" type="gn:TipoRol"></element>
+    		<element name="Estado" type="gn:TipoEstado"></element>
+    		<element name="MetadatosPublicos" type="rc:MetadatosPublicos"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="MetadatosPublicos">
+    	<sequence>
+    		<element name="TipoEnvio" type="gn:TipoEnvio">
+    			<annotation>
+    				<documentation xml:lang="es">
+    					Tipo de Envío: puede ser una comunicación o una notificación
+    				</documentation>
+    			</annotation>
+    		</element>
+    		<element name="FechaPuestaDisposicion" type="dateTime"  />
+    		<element name="Asunto" type="string">
+    			<annotation>
+    				<documentation xml:lang="es">
+    					Texto a mostrar antes de la comparececia
+    				</documentation>
+    			</annotation>
+    		</element>
+    		<element name="NifTitular" type="gn:TipoNif" nillable="true" minOccurs="0"/>
+			<element name="NifDestinatario" type="gn:TipoNif" nillable="true" minOccurs="0"/>
+    	</sequence>
+    </complexType>
+</schema>

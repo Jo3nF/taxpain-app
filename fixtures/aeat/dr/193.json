@@ -1,0 +1,610 @@
+{
+ "model": "193",
+ "source": "DR_Modelo_193_2025.pdf",
+ "sha256": "25ab19076ecc1116c660f8d4b0c47523e6cd271d89869895699c91843f562489",
+ "transcribed": "a mano desde el PDF (diseños de registro modelo 193, ejercicio 2025, Orden EHA/3377/2011 act. por Orden HAC/1430/2025; tipo 1 págs. 2-9, tipo 2 perceptor págs. 9-33; el registro de relación de gastos del art. 26.1.a) LIRPF no se transcribe)",
+ "pages": [
+  {
+   "sheet": "193-1",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "1"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "193"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante (ajustado a la derecha, ceros a la izquierda)"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o razón social del declarante"
+    },
+    {
+     "n": 6,
+     "pos": 58,
+     "len": 1,
+     "type": "A",
+     "desc": "Tipo de soporte ('C' soporte, 'T' transmisión telemática)"
+    },
+    {
+     "n": 7,
+     "pos": 59,
+     "len": 9,
+     "type": "Num",
+     "desc": "Persona con quien relacionarse: teléfono"
+    },
+    {
+     "n": 8,
+     "pos": 68,
+     "len": 40,
+     "type": "An",
+     "desc": "Persona con quien relacionarse: apellidos y nombre"
+    },
+    {
+     "n": 9,
+     "pos": 108,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración (empieza por 193)"
+    },
+    {
+     "n": 10,
+     "pos": 121,
+     "len": 1,
+     "type": "A",
+     "desc": "Declaración complementaria ('C' o blanco)"
+    },
+    {
+     "n": 11,
+     "pos": 122,
+     "len": 1,
+     "type": "A",
+     "desc": "Declaración sustitutiva ('S' o blanco)"
+    },
+    {
+     "n": 12,
+     "pos": 123,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración anterior (ceros si no es C/S)"
+    },
+    {
+     "n": 13,
+     "pos": 136,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de perceptores (número de registros tipo 2)"
+    },
+    {
+     "n": 14,
+     "pos": 145,
+     "len": 13,
+     "type": "Num",
+     "desc": "Base de retenciones e ingresos a cuenta: parte entera (suma de 152-164 del tipo 2)"
+    },
+    {
+     "n": 15,
+     "pos": 158,
+     "len": 2,
+     "type": "Num",
+     "desc": "Base de retenciones e ingresos a cuenta: parte decimal"
+    },
+    {
+     "n": 16,
+     "pos": 160,
+     "len": 13,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta: parte entera (suma de 169-181 del tipo 2)"
+    },
+    {
+     "n": 17,
+     "pos": 173,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta: parte decimal"
+    },
+    {
+     "n": 18,
+     "pos": 175,
+     "len": 13,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados: parte entera (ceros si naturaleza del declarante = 'S')"
+    },
+    {
+     "n": 19,
+     "pos": 188,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados: parte decimal"
+    },
+    {
+     "n": 20,
+     "pos": 190,
+     "len": 30,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 21,
+     "pos": 220,
+     "len": 13,
+     "type": "Num",
+     "desc": "Gastos art. 26.1.a) LIRPF: parte entera (ceros si naturaleza del declarante = 'S')"
+    },
+    {
+     "n": 22,
+     "pos": 233,
+     "len": 2,
+     "type": "Num",
+     "desc": "Gastos art. 26.1.a) LIRPF: parte decimal"
+    },
+    {
+     "n": 23,
+     "pos": 235,
+     "len": 1,
+     "type": "A",
+     "desc": "Naturaleza del declarante ('S' si no está en las categorías a-d; si no, blanco)"
+    },
+    {
+     "n": 24,
+     "pos": 236,
+     "len": 252,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 25,
+     "pos": 488,
+     "len": 13,
+     "type": "An",
+     "desc": "Sello electrónico (blancos)"
+    }
+   ]
+  },
+  {
+   "sheet": "193-2",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "193"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio (igual que registro tipo 1)"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante (igual que registro tipo 1)"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del perceptor"
+    },
+    {
+     "n": 6,
+     "pos": 27,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante legal (perceptor menor de edad; si no, blancos)"
+    },
+    {
+     "n": 7,
+     "pos": 36,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre, razón social o denominación del perceptor"
+    },
+    {
+     "n": 8,
+     "pos": 76,
+     "len": 1,
+     "type": "A",
+     "desc": "Perceptor mediador ('X'; solo claves A, B o D; blanco si naturaleza del declarante = 'S')"
+    },
+    {
+     "n": 9,
+     "pos": 77,
+     "len": 2,
+     "type": "Num",
+     "desc": "Código provincia del domicilio del perceptor"
+    },
+    {
+     "n": 10,
+     "pos": 79,
+     "len": 1,
+     "type": "Num",
+     "desc": "Clave código 1-4 (solo claves A, B o D; ceros si naturaleza del declarante = 'S')"
+    },
+    {
+     "n": 11,
+     "pos": 80,
+     "len": 12,
+     "type": "An",
+     "desc": "Código emisor (solo claves A, B o D; blancos si naturaleza del declarante = 'S')"
+    },
+    {
+     "n": 12,
+     "pos": 92,
+     "len": 1,
+     "type": "A",
+     "desc": "Clave de percepción (A, B, C o D)"
+    },
+    {
+     "n": 13,
+     "pos": 93,
+     "len": 2,
+     "type": "Num",
+     "desc": "Naturaleza (según la clave de percepción; A.02 dividendos, A.08 dividendos no sometidos a retención)"
+    },
+    {
+     "n": 14,
+     "pos": 95,
+     "len": 1,
+     "type": "Num",
+     "desc": "Pago 1-5 (solo claves A, B o D; ceros si naturaleza del declarante = 'S')"
+    },
+    {
+     "n": 15,
+     "pos": 96,
+     "len": 1,
+     "type": "A",
+     "desc": "Tipo código C/O/P (solo claves A, B o D; blancos si naturaleza del declarante = 'S')"
+    },
+    {
+     "n": 16,
+     "pos": 97,
+     "len": 20,
+     "type": "An",
+     "desc": "Código cuenta valores / número operación préstamo (solo entidades financieras)"
+    },
+    {
+     "n": 17,
+     "pos": 117,
+     "len": 1,
+     "type": "A",
+     "desc": "Pendiente ('X' si no se presentaron los titulares al cobro)"
+    },
+    {
+     "n": 18,
+     "pos": 118,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio devengo (solo rentas de ejercicios anteriores pagadas en este; si no, ceros)"
+    },
+    {
+     "n": 19,
+     "pos": 122,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de percepción (1 dineraria, 2 en especie)"
+    },
+    {
+     "n": 20,
+     "pos": 123,
+     "len": 11,
+     "type": "Num",
+     "desc": "Importe de percepciones / remuneración al prestamista: parte entera"
+    },
+    {
+     "n": 21,
+     "pos": 134,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe de percepciones / remuneración al prestamista: parte decimal"
+    },
+    {
+     "n": 22,
+     "pos": 136,
+     "len": 3,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 23,
+     "pos": 139,
+     "len": 11,
+     "type": "Num",
+     "desc": "Importe reducciones (art. 26.2 LIRPF): parte entera"
+    },
+    {
+     "n": 24,
+     "pos": 150,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe reducciones: parte decimal"
+    },
+    {
+     "n": 25,
+     "pos": 152,
+     "len": 11,
+     "type": "Num",
+     "desc": "Base de retenciones e ingresos a cuenta: parte entera"
+    },
+    {
+     "n": 26,
+     "pos": 163,
+     "len": 2,
+     "type": "Num",
+     "desc": "Base de retenciones e ingresos a cuenta: parte decimal"
+    },
+    {
+     "n": 27,
+     "pos": 165,
+     "len": 2,
+     "type": "Num",
+     "desc": "% retención: parte entera"
+    },
+    {
+     "n": 28,
+     "pos": 167,
+     "len": 2,
+     "type": "Num",
+     "desc": "% retención: parte decimal"
+    },
+    {
+     "n": 29,
+     "pos": 169,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta: parte entera"
+    },
+    {
+     "n": 30,
+     "pos": 180,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta: parte decimal"
+    },
+    {
+     "n": 31,
+     "pos": 182,
+     "len": 9,
+     "type": "Num",
+     "desc": "Penalizaciones (claves B o D): parte entera"
+    },
+    {
+     "n": 32,
+     "pos": 191,
+     "len": 2,
+     "type": "Num",
+     "desc": "Penalizaciones: parte decimal"
+    },
+    {
+     "n": 33,
+     "pos": 193,
+     "len": 12,
+     "type": "An",
+     "desc": "Código ISIN (clave código 2 o 4)"
+    },
+    {
+     "n": 34,
+     "pos": 205,
+     "len": 3,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 35,
+     "pos": 208,
+     "len": 1,
+     "type": "A",
+     "desc": "Naturaleza del declarante ('S' igual que en el registro tipo 1)"
+    },
+    {
+     "n": 36,
+     "pos": 209,
+     "len": 8,
+     "type": "Num",
+     "desc": "Fecha de inicio del préstamo de valores (AAAAMMDD)"
+    },
+    {
+     "n": 37,
+     "pos": 217,
+     "len": 8,
+     "type": "Num",
+     "desc": "Fecha de vencimiento del préstamo de valores (AAAAMMDD)"
+    },
+    {
+     "n": 38,
+     "pos": 225,
+     "len": 10,
+     "type": "Num",
+     "desc": "Compensaciones (préstamo de valores): parte entera"
+    },
+    {
+     "n": 39,
+     "pos": 235,
+     "len": 2,
+     "type": "Num",
+     "desc": "Compensaciones: parte decimal"
+    },
+    {
+     "n": 40,
+     "pos": 237,
+     "len": 10,
+     "type": "Num",
+     "desc": "Garantías (préstamo de valores): parte entera"
+    },
+    {
+     "n": 41,
+     "pos": 247,
+     "len": 2,
+     "type": "Num",
+     "desc": "Garantías: parte decimal"
+    },
+    {
+     "n": 42,
+     "pos": 249,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Hacienda Estatal (solo ingreso en proporción al volumen de operaciones): parte entera"
+    },
+    {
+     "n": 43,
+     "pos": 260,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Hacienda Estatal: parte decimal"
+    },
+    {
+     "n": 44,
+     "pos": 262,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Comunidad Foral de Navarra: parte entera"
+    },
+    {
+     "n": 45,
+     "pos": 273,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Comunidad Foral de Navarra: parte decimal"
+    },
+    {
+     "n": 46,
+     "pos": 275,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Diputación Foral de Araba/Álava: parte entera"
+    },
+    {
+     "n": 47,
+     "pos": 286,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Diputación Foral de Araba/Álava: parte decimal"
+    },
+    {
+     "n": 48,
+     "pos": 288,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Diputación Foral de Gipuzkoa: parte entera"
+    },
+    {
+     "n": 49,
+     "pos": 299,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Diputación Foral de Gipuzkoa: parte decimal"
+    },
+    {
+     "n": 50,
+     "pos": 301,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Diputación Foral de Bizkaia: parte entera"
+    },
+    {
+     "n": 51,
+     "pos": 312,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones ingresadas en la Diputación Foral de Bizkaia: parte decimal"
+    },
+    {
+     "n": 52,
+     "pos": 314,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ceuta o Melilla (1) / Isla de La Palma (2) / otro caso (0)"
+    },
+    {
+     "n": 53,
+     "pos": 315,
+     "len": 7,
+     "type": "An",
+     "desc": "Número de orden del registro (secuencial)"
+    },
+    {
+     "n": 54,
+     "pos": 322,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del pagador anterior (solo claves A, B o D con pago 2-5)"
+    },
+    {
+     "n": 55,
+     "pos": 331,
+     "len": 2,
+     "type": "Num",
+     "desc": "Fecha de devengo (solo clave A): día"
+    },
+    {
+     "n": 56,
+     "pos": 333,
+     "len": 2,
+     "type": "Num",
+     "desc": "Fecha de devengo: mes"
+    },
+    {
+     "n": 57,
+     "pos": 335,
+     "len": 4,
+     "type": "Num",
+     "desc": "Fecha de devengo: año"
+    },
+    {
+     "n": 58,
+     "pos": 339,
+     "len": 1,
+     "type": "A",
+     "desc": "Clave de mercado A-D (solo claves A, B o D; D = otros)"
+    },
+    {
+     "n": 59,
+     "pos": 340,
+     "len": 161,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  }
+ ]
+}

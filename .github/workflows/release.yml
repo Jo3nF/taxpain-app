@@ -1,0 +1,385 @@
+# Compilación de una versión para macOS (Fase 8). Se ejecuta a mano (Actions → Release →
+# Run workflow) o al subir una etiqueta v*. Deja el DMG y los ficheros del actualizador como
+# artefactos privados del workflow y, con etiqueta, los sube además a la release de GitHub de
+# esa etiqueta (como BORRADOR: la publica quien mantiene el proyecto). Ver docs/RELEASE.md.
+#
+# Tres trabajos, para que el código que se compila y se prueba nunca vea un secreto:
+#   1. «compilar» (sin secretos, token de sólo lectura): npm ci, ci.sh y `tauri build` SIN
+#      firmar. Sube el .app (en un .tar.gz, para no perder permisos ni enlaces) y el DMG.
+#   2. «firmar» (environment `release`, con revisor en GitHub; token de sólo lectura): descarga
+#      el artefacto y, sin compilar nada, firma, notariza y grapa el .app, rehace el DMG y lo
+#      firma, notariza y grapa, empaqueta y firma el paquete del actualizador y genera
+#      latest.json. Cada paso recibe sólo sus secretos. El certificado de Apple sólo existe
+#      dentro de scripts/firmar-macos.sh (llavero temporal, clave no exportable, borrado al
+#      salir) y el .p8 de notarización dentro de scripts/notarizar-macos.sh; todo eso acaba
+#      antes de instalar nada. No ejecuta scripts de instalación de npm: sólo instala (con
+#      --ignore-scripts) la CLI de Tauri para `tauri signer sign`.
+#   3. «release» (contents: write, sin secretos): sube lo firmado a la release en borrador.
+#
+# Firma y notarización: sólo si existen los secretos de Apple; si no, sale el DMG sin firmar de
+# «compilar» (Gatekeeper avisará al abrirlo). Actualizador: sólo si existe la clave de firma de
+# Tauri. Con una etiqueta v* (versión para distribuir) faltar cualquiera de ellos es un error.
+# Notarización preferida: clave de API de App Store Connect (APPLE_API_*); si no, Apple ID y
+# contraseña de app (idea de reforma-digital, docs/research/REFORMA_DIGITAL.md).
+#
+# Seguridad (auditoría, CONSTRUCCION-WEB-PRUEBAS-13): las acciones van fijadas por hash de
+# commit (Dependabot las actualiza). Los secretos van como secretos del environment `release`
+# (docs/RELEASE.md §2): así sólo los ve el trabajo «firmar» y sólo después de que el revisor lo
+# apruebe.
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  compilar:
+    name: Compilar y probar (sin secretos)
+    runs-on: macos-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    env:
+      IS_TAG: ${{ github.ref_type == 'tag' }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      # Quien distribuye una compilación es el productor del sistema informático de facturación
+      # (RD 1007/2023 art. 13): sus datos van en cada registro VERI*FACTU. No se compila con los
+      # de ejemplo de la versión pública (publico/productor.rs).
+      - name: Datos del productor (no los de ejemplo)
+        run: |
+          set -euo pipefail
+          if grep -Eq 'B00000000|PRODUCTOR SIN CONFIGURAR' crates/core/src/productor.rs; then
+            echo "::error file=crates/core/src/productor.rs::crates/core/src/productor.rs tiene los datos de ejemplo (NIF B00000000 o «PRODUCTOR SIN CONFIGURAR»). Quien distribuye una compilación es el productor del sistema informático de facturación (RD 1007/2023 art. 13) y sus datos van en cada registro VERI*FACTU: pon tu nombre o razón social y tu NIF en crates/core/src/productor.rs antes de compilar una versión."
+            exit 1
+          fi
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - name: Rust (versión de rust-toolchain.toml) y destinos Intel + Apple Silicon
+        run: |
+          rustup show active-toolchain || rustup toolchain install
+          rustup target add aarch64-apple-darwin x86_64-apple-darwin
+      - uses: Swatinem/rust-cache@e9d7b9f1e587218970671bac74e5511ed9506e6a # v2
+      - run: npm ci --no-audit --no-fund
+      - name: Versión (etiqueta = Cargo.toml = tauri.conf.json = package.json, con notas)
+        if: env.IS_TAG == 'true'
+        run: node scripts/version.mjs tag "$GITHUB_REF_NAME"
+      - name: Comprobaciones (las mismas que el CI)
+        run: ./scripts/ci.sh
+      - name: Compilar sin firmar
+        working-directory: apps/desktop
+        env:
+          # La clave PÚBLICA del actualizador va compilada en la app (updates.rs, option_env!).
+          # Es una variable, no un secreto.
+          TAXPAIN_UPDATER_PUBKEY: ${{ vars.TAXPAIN_UPDATER_PUBKEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TAXPAIN_UPDATER_PUBKEY:-}" ]; then unset TAXPAIN_UPDATER_PUBKEY; fi
+          # Sin las rutas de la máquina en el ejecutable (los mensajes de pánico y la información
+          # de depuración llevan la ruta de cada fuente): el registro de crates y el repositorio
+          # salen como /cargo y /src. Lo mismo para lo que se compila en C (SQLCipher).
+          export RUSTFLAGS="${RUSTFLAGS:-} --remap-path-prefix=$HOME/.cargo=/cargo --remap-path-prefix=$GITHUB_WORKSPACE=/src"
+          export CFLAGS="${CFLAGS:-} -ffile-prefix-map=$HOME/.cargo=/cargo -ffile-prefix-map=$GITHUB_WORKSPACE=/src"
+          npx tauri build --target universal-apple-darwin
+      - name: Sin rutas de usuario en el ejecutable
+        run: |
+          set -euo pipefail
+          exe=$(ls -d target/universal-apple-darwin/release/bundle/macos/*.app | head -1)/Contents/MacOS/taxpain-desktop
+          test -f "$exe"
+          if strings -a "$exe" | grep -E '/Users/|/home/' | sort -u | head -20 | grep .; then
+            echo "::error::$exe lleva rutas de /Users/ o /home/ (arriba): revisa --remap-path-prefix"
+            exit 1
+          fi
+      - name: Preparar el artefacto sin firmar
+        run: |
+          set -euo pipefail
+          b=target/universal-apple-darwin/release/bundle
+          mkdir -p unsigned
+          app=$(ls -d $b/macos/*.app | head -1)
+          # upload-artifact pierde el bit de ejecución y los enlaces: el .app va en un tar.
+          COPYFILE_DISABLE=1 tar -czf unsigned/app.tar.gz -C "$(dirname "$app")" "$(basename "$app")"
+          cp $b/dmg/*.dmg unsigned/
+          ls -l unsigned
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: taxpain-macos-sin-firmar-${{ github.ref_name }}
+          retention-days: 7
+          if-no-files-found: error
+          path: unsigned/
+
+  # Firma, notarización y actualizador. No compila ni prueba nada: sólo trabaja sobre el
+  # artefacto de «compilar». El environment `release` permite exigir la aprobación de un
+  # revisor antes de que este trabajo reciba los secretos (docs/RELEASE.md §2).
+  firmar:
+    name: Firmar, notarizar y firmar el actualizador
+    needs: compilar
+    runs-on: macos-latest
+    timeout-minutes: 60
+    environment: release
+    permissions:
+      contents: read
+    env:
+      IS_TAG: ${{ github.ref_type == 'tag' }}
+      # ¿Hay cada secreto? (un secreto no se puede leer en `if`, pero sí compararlo).
+      HAS_UPDATER_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY != '' }}
+      HAS_APPLE_CERT: ${{ secrets.APPLE_CERTIFICATE != '' && secrets.APPLE_SIGNING_IDENTITY != '' }}
+      HAS_NOTARY: ${{ (secrets.APPLE_API_KEY != '' && secrets.APPLE_API_ISSUER != '' && secrets.APPLE_API_PRIVATE_KEY != '') || (secrets.APPLE_ID != '' && secrets.APPLE_PASSWORD != '' && secrets.APPLE_TEAM_ID != '') }}
+    steps:
+      # Para scripts/firmar-macos.sh, scripts/notarizar-macos.sh, scripts/updater-manifest.mjs,
+      # CHANGELOG.md y la CLI de Tauri.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: taxpain-macos-sin-firmar-${{ github.ref_name }}
+          path: unsigned
+      # Una versión para distribuir (etiqueta) ha de salir firmada, notarizada y con actualizador.
+      - name: Secretos necesarios para una versión
+        env:
+          TAXPAIN_UPDATER_PUBKEY: ${{ vars.TAXPAIN_UPDATER_PUBKEY }}
+        run: |
+          set -euo pipefail
+          if [ "$IS_TAG" = true ]; then
+            missing=()
+            [ "$HAS_APPLE_CERT" = true ] || missing+=("certificado Developer ID (APPLE_CERTIFICATE y APPLE_SIGNING_IDENTITY)")
+            [ "$HAS_NOTARY" = true ] || missing+=("credenciales de notarización (APPLE_API_* o APPLE_ID)")
+            [ "$HAS_UPDATER_KEY" = true ] || missing+=("clave del actualizador (TAURI_SIGNING_PRIVATE_KEY)")
+            if [ ${#missing[@]} -gt 0 ]; then
+              echo "::error::Versión ${GITHUB_REF_NAME} sin: ${missing[*]}"
+              exit 1
+            fi
+          fi
+          if [ "$HAS_UPDATER_KEY" = true ] && [ -z "${TAXPAIN_UPDATER_PUBKEY:-}" ]; then
+            echo "::error::Falta la variable TAXPAIN_UPDATER_PUBKEY (clave pública del actualizador)"
+            exit 1
+          fi
+          [ "$HAS_UPDATER_KEY" = true ] || echo "::warning::Sin TAURI_SIGNING_PRIVATE_KEY: no se generan ficheros del actualizador"
+          [ "$HAS_APPLE_CERT" = true ] || echo "::warning::Sin certificado de Apple: el DMG sale SIN FIRMAR ni notarizar"
+          mkdir -p work out
+          tar -xzf unsigned/app.tar.gz -C work
+          ls -d work/*.app
+      # La identidad de firma sólo existe dentro de scripts/firmar-macos.sh: llavero temporal,
+      # clave no exportable (-x) y borrado al salir del script. Firma y notarización (del .app y
+      # del DMG) van todas antes de instalar nada de npm o brew en este trabajo.
+      - name: Firmar el .app (Developer ID, hardened runtime)
+        if: env.HAS_APPLE_CERT == 'true'
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+        run: |
+          set -euo pipefail
+          ./scripts/firmar-macos.sh "$(ls -d work/*.app | head -1)"
+      - name: Notarizar y grapar el .app
+        if: env.HAS_APPLE_CERT == 'true' && env.HAS_NOTARY == 'true'
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_PRIVATE_KEY: ${{ secrets.APPLE_API_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          app=$(ls -d work/*.app | head -1)
+          ./scripts/notarizar-macos.sh "$app"
+          xcrun stapler staple "$app"
+          xcrun stapler validate "$app"
+          spctl --assess --type execute --verbose=4 "$app"
+      - name: DMG
+        run: |
+          set -euo pipefail
+          dmg=$(ls unsigned/*.dmg | head -1)
+          if [ "$HAS_APPLE_CERT" != true ]; then
+            # Sin certificado: el DMG de «compilar», tal cual.
+            cp "$dmg" out/
+          else
+            # Con el .app firmado (y grapado) se rehace el DMG con el mismo nombre. Sale sin el
+            # fondo ni la colocación de iconos de `tauri build` (docs/RELEASE.md §2).
+            app=$(ls -d work/*.app | head -1)
+            src="$RUNNER_TEMP/dmg"
+            mkdir -p "$src"
+            ditto "$app" "$src/$(basename "$app")"
+            ln -s /Applications "$src/Applications"
+            hdiutil create -volname TaxPain -srcfolder "$src" -fs HFS+ -format UDZO -ov \
+              "out/$(basename "$dmg")"
+            hdiutil verify "out/$(basename "$dmg")"
+          fi
+          ls -l out
+      # Un DMG firmado y sin notarizar Gatekeeper lo puede marcar como «Unnotarized Developer ID»:
+      # se firma sólo si también se va a notarizar (con etiqueta, ambos son obligatorios).
+      - name: Firmar el DMG
+        if: env.HAS_APPLE_CERT == 'true' && env.HAS_NOTARY == 'true'
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+        run: |
+          set -euo pipefail
+          ./scripts/firmar-macos.sh "$(ls out/*.dmg | head -1)"
+      - name: Notarizar y grapar el DMG
+        if: env.HAS_APPLE_CERT == 'true' && env.HAS_NOTARY == 'true'
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_PRIVATE_KEY: ${{ secrets.APPLE_API_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          dmg=$(ls out/*.dmg | head -1)
+          ./scripts/notarizar-macos.sh "$dmg"
+          xcrun stapler staple "$dmg"
+          xcrun stapler validate "$dmg"
+          spctl --assess --type open --context context:primary-signature --verbose=4 "$dmg"
+      - name: DMG sin notarizar (aviso)
+        if: env.HAS_APPLE_CERT == 'true' && env.HAS_NOTARY != 'true'
+        run: |
+          echo "::warning::Sin credenciales de notarización: el .app va firmado pero sin notarizar y el DMG sin firmar; Gatekeeper avisará al abrirlo"
+      # Red de seguridad, antes de instalar nada: si un paso de firma o de notarización se ha
+      # cortado sin pasar por su trap, aquí se borran los llaveros temporales y los .p8 que
+      # queden. Corre siempre (también si algo ha fallado antes).
+      - name: Borrar llaveros temporales y claves de notarización
+        if: always()
+        run: |
+          for kc in "$RUNNER_TEMP"/firmar.*/taxpain-firma.keychain-db; do
+            [ -e "$kc" ] && security delete-keychain "$kc" || true
+          done
+          rm -rf "$RUNNER_TEMP"/firmar.* "$RUNNER_TEMP"/notarizar.*
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      # Sólo la CLI de Tauri para `tauri signer sign`, sin ejecutar scripts de instalación de
+      # ningún paquete (este trabajo tiene secretos).
+      - name: CLI de Tauri (sin scripts) y minisign
+        if: env.HAS_UPDATER_KEY == 'true'
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          brew install minisign
+      - name: Paquete del actualizador (.app.tar.gz firmado con la clave de Tauri)
+        if: env.HAS_UPDATER_KEY == 'true'
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          TAXPAIN_UPDATER_PUBKEY: ${{ vars.TAXPAIN_UPDATER_PUBKEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TAURI_SIGNING_PRIVATE_KEY_PASSWORD:-}" ]; then unset TAURI_SIGNING_PRIVATE_KEY_PASSWORD; fi
+          app=$(ls -d work/*.app | head -1)
+          name=$(basename "$app")
+          mkdir -p out/macos
+          archive="out/macos/$name.tar.gz"
+          # El mismo formato que `createUpdaterArtifacts` de Tauri: el .app en la raíz del tar.
+          COPYFILE_DISABLE=1 tar -czf "$archive" -C "$(dirname "$app")" "$name"
+          # La versión va dentro de la firma: la app la compara con la de latest.json.
+          ver=$(node -p "require('./apps/desktop/src-tauri/tauri.conf.json').version")
+          npx --no-install tauri signer sign --app-version "$ver" "$archive"
+          # Que la clave pública compilada en la app corresponde a la privada que ha firmado el
+          # paquete (CONSTRUCCION-WEB-PRUEBAS-04): si no, ninguna copia instalada aceptaría
+          # jamás una actualización. Tauri guarda el .sig y la clave pública en base64 del texto
+          # minisign; `minisign -P` quiere sólo la línea de la clave y `-x` el fichero de firma.
+          base64 --decode < "$archive.sig" > "$RUNNER_TEMP/updater.minisig"
+          pub=$(printf '%s' "$TAXPAIN_UPDATER_PUBKEY" | base64 --decode | tail -n 1)
+          if ! minisign -Vm "$archive" -x "$RUNNER_TEMP/updater.minisig" -P "$pub"; then
+            echo "::error::La firma de $(basename "$archive") NO verifica con TAXPAIN_UPDATER_PUBKEY: la clave pública compilada no es la del par que firma"
+            exit 1
+          fi
+          # La app exige (`requireSignedVersion`) que la versión que anuncia latest.json sea
+          # la firmada en el comentario de confianza del .sig (`--app-version` al firmar). Si no
+          # la llevara, ninguna copia instalada aceptaría esta versión.
+          if ! grep '^trusted comment:' "$RUNNER_TEMP/updater.minisig" | tr '\t' '\n' \
+              | grep -x "version:$ver" > /dev/null; then
+            echo "::error::La firma de $(basename "$archive") no lleva «version:$ver» en el comentario de confianza: las apps instaladas la rechazarían"
+            exit 1
+          fi
+          # Dato para docs/RELEASE.md (límite de 25 MiB por fichero en Cloudflare Pages).
+          echo "Paquete del actualizador: $(du -h "$archive" | cut -f1) ($(basename "$archive"))"
+      - name: Manifiesto del actualizador (latest.json → paquete en la release de GitHub)
+        if: env.HAS_UPDATER_KEY == 'true'
+        run: |
+          set -euo pipefail
+          # Con etiqueta, las URL apuntan al asset público de la release de esa etiqueta; a mano
+          # (sin etiqueta) sale un manifiesto de prueba con la URL por defecto del script.
+          base=()
+          if [ "$IS_TAG" = true ]; then
+            base=("${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}")
+          fi
+          node scripts/updater-manifest.mjs out/macos ${base[@]+"${base[@]}"} > out/latest.json
+          cat out/latest.json
+      - name: Ficheros esperados
+        run: |
+          set -euo pipefail
+          ls out/*.dmg
+          if [ "$HAS_UPDATER_KEY" = true ]; then
+            ls out/macos/*.app.tar.gz out/macos/*.app.tar.gz.sig out/latest.json
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: taxpain-macos-${{ github.ref_name }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            out/*.dmg
+            out/macos/*.app.tar.gz
+            out/macos/*.app.tar.gz.sig
+            out/latest.json
+
+  # Sube el DMG y los ficheros del actualizador a la release de GitHub de la etiqueta (la crea
+  # como BORRADOR si no existe; quien mantiene el proyecto la revisa y la publica). Trabajo aparte: necesita escribir
+  # en el repositorio, pero no ve ningún secreto. Sólo con etiqueta.
+  release:
+    name: Subir a la release de GitHub (borrador)
+    needs: firmar
+    # Con etiqueta, «firmar» ya ha fallado si faltaba algún secreto.
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: taxpain-macos-${{ github.ref_name }}
+          path: dist
+      - name: Notas de la versión (CHANGELOG.md) para la release
+        run: |
+          set -euo pipefail
+          # El artefacto guarda las rutas relativas a out/: el paquete viene en dist/macos/.
+          if [ -d dist/macos ]; then mv dist/macos/* dist/ && rmdir dist/macos; fi
+          ls -l dist
+          node --input-type=module -e "
+            import { readFileSync, writeFileSync } from 'node:fs';
+            import { current, notesOf } from './scripts/version.mjs';
+            const notes = notesOf(readFileSync('CHANGELOG.md', 'utf8'), current());
+            if (!notes) { console.error('CHANGELOG.md sin notas de la versión'); process.exit(1); }
+            writeFileSync('notes.md', notes + '\n');
+          "
+      - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: TaxPain ${{ github.ref_name }}
+          body_path: notes.md
+          draft: true
+          fail_on_unmatched_files: true
+          files: |
+            dist/*.dmg
+            dist/*.app.tar.gz
+            dist/*.app.tar.gz.sig
+            dist/latest.json

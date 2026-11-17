@@ -1,0 +1,1102 @@
+{
+ "model": "184",
+ "source": "DR_Modelo_184_2025.pdf",
+ "sha256": "b1e2b7884946061d5584f03253745b2936bcd99359f4b096acfe238c42bc9fba",
+ "transcribed": "a mano desde el PDF (diseños lógicos modelo 184, ejercicio 2025, Orden HAP/2250/2015 act. por Orden HAC/1430/2025; tipo 1 págs. 3-8, tipo 2 entidad págs. 8-36, tipo 2 socio/comunero págs. 36-49)",
+ "pages": [
+  {
+   "sheet": "184-1",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "1"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "184"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante (entidad en régimen de atribución de rentas)"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 40,
+     "type": "An",
+     "desc": "Denominación o razón social del declarante"
+    },
+    {
+     "n": 6,
+     "pos": 58,
+     "len": 1,
+     "type": "An",
+     "desc": "Tipo de soporte (T transmisión telemática; C soporte legible por ordenador, derogado)"
+    },
+    {
+     "n": 7,
+     "pos": 59,
+     "len": 9,
+     "type": "Num",
+     "desc": "Persona con quién relacionarse: teléfono"
+    },
+    {
+     "n": 8,
+     "pos": 68,
+     "len": 40,
+     "type": "An",
+     "desc": "Persona con quién relacionarse: apellidos y nombre"
+    },
+    {
+     "n": 9,
+     "pos": 108,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración (empieza por 184)"
+    },
+    {
+     "n": 10,
+     "pos": 121,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración complementaria (C)"
+    },
+    {
+     "n": 11,
+     "pos": 122,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración sustitutiva (S)"
+    },
+    {
+     "n": 12,
+     "pos": 123,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración anterior"
+    },
+    {
+     "n": 13,
+     "pos": 136,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de registros de socios, herederos, comuneros o partícipes (tipo 2 con hoja S)"
+    },
+    {
+     "n": 14,
+     "pos": 145,
+     "len": 1,
+     "type": "Num",
+     "desc": "Entidad constituida en España: tipo de entidad (1 sociedad civil, 2 comunidad de bienes, 3 herencia yacente, 4 comunidad de propietarios, 5 otros)"
+    },
+    {
+     "n": 15,
+     "pos": 146,
+     "len": 1,
+     "type": "Num",
+     "desc": "Entidad constituida en España: actividad principal (1 empresarial, 2 profesional, 3 inmuebles, 4 valores o activos financieros, 5 otras)"
+    },
+    {
+     "n": 16,
+     "pos": 147,
+     "len": 1,
+     "type": "Num",
+     "desc": "Entidad constituida en el extranjero: tipo de entidad (1-4)"
+    },
+    {
+     "n": 17,
+     "pos": 148,
+     "len": 1,
+     "type": "An",
+     "desc": "Entidad constituida en el extranjero: objeto (A empresarial, B profesional)"
+    },
+    {
+     "n": 18,
+     "pos": 149,
+     "len": 2,
+     "type": "An",
+     "desc": "Entidad constituida en el extranjero: clave país"
+    },
+    {
+     "n": 19,
+     "pos": 151,
+     "len": 3,
+     "type": "Num",
+     "desc": "Entidad constituida en el extranjero: porcentaje de renta atribuible a miembros residentes: parte entera"
+    },
+    {
+     "n": 20,
+     "pos": 154,
+     "len": 2,
+     "type": "Num",
+     "desc": "Entidad constituida en el extranjero: porcentaje de renta atribuible a miembros residentes: parte decimal"
+    },
+    {
+     "n": 21,
+     "pos": 156,
+     "len": 1,
+     "type": "An",
+     "desc": "Tributación en régimen del Impuesto sobre Sociedades (X si todos los miembros son contribuyentes del IS o IRNR con EP)"
+    },
+    {
+     "n": 22,
+     "pos": 157,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe neto de la cifra de negocios: parte entera"
+    },
+    {
+     "n": 23,
+     "pos": 170,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe neto de la cifra de negocios: parte decimal"
+    },
+    {
+     "n": 24,
+     "pos": 172,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante"
+    },
+    {
+     "n": 25,
+     "pos": 181,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o razón social del representante"
+    },
+    {
+     "n": 26,
+     "pos": 221,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de registros de entidad (tipo 2 con hoja E)"
+    },
+    {
+     "n": 27,
+     "pos": 230,
+     "len": 258,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 28,
+     "pos": 488,
+     "len": 13,
+     "type": "An",
+     "desc": "Sello electrónico (blancos salvo programas de la AEAT)"
+    }
+   ]
+  },
+  {
+   "sheet": "184-2E",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "184"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF entidad (= NIF del declarante, pos. 9-17 del tipo 1)"
+    },
+    {
+     "n": 6,
+     "pos": 27,
+     "len": 9,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 7,
+     "pos": 36,
+     "len": 40,
+     "type": "An",
+     "desc": "Denominación o razón social del declarante (= pos. 18-57 del tipo 1)"
+    },
+    {
+     "n": 8,
+     "pos": 76,
+     "len": 1,
+     "type": "An",
+     "desc": "Tipo de hoja",
+     "const": "E"
+    },
+    {
+     "n": 9,
+     "pos": 77,
+     "len": 1,
+     "type": "An",
+     "desc": "Clave (A-L)"
+    },
+    {
+     "n": 10,
+     "pos": 78,
+     "len": 2,
+     "type": "An",
+     "desc": "Subclave"
+    },
+    {
+     "n": 11,
+     "pos": 80,
+     "len": 2,
+     "type": "An",
+     "desc": "Clave país (A/02, B, C/02, D/02, F/03-04, G/03-04-06-08, L)"
+    },
+    {
+     "n": 12,
+     "pos": 82,
+     "len": 1,
+     "type": "Num",
+     "desc": "Régimen de determinación de rendimientos (clave D: 1 ED normal, 2 ED simplificada, 3 EO)"
+    },
+    {
+     "n": 13,
+     "pos": 83,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de actividad (clave D: 1-5)"
+    },
+    {
+     "n": 14,
+     "pos": 84,
+     "len": 4,
+     "type": "Num",
+     "desc": "Grupo o epígrafe IAE (clave D)"
+    },
+    {
+     "n": 15,
+     "pos": 88,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF de la persona o entidad cesionaria (clave B) / NIF de la IIC (clave E)"
+    },
+    {
+     "n": 16,
+     "pos": 97,
+     "len": 20,
+     "type": "An",
+     "desc": "Denominación del cesionario (clave B) / de la IIC (clave E)"
+    },
+    {
+     "n": 17,
+     "pos": 117,
+     "len": 4,
+     "type": "Num",
+     "desc": "Fecha de adquisición (clave E): año"
+    },
+    {
+     "n": 18,
+     "pos": 121,
+     "len": 2,
+     "type": "Num",
+     "desc": "Fecha de adquisición (clave E): mes"
+    },
+    {
+     "n": 19,
+     "pos": 123,
+     "len": 2,
+     "type": "Num",
+     "desc": "Fecha de adquisición (clave E): día"
+    },
+    {
+     "n": 20,
+     "pos": 125,
+     "len": 11,
+     "type": "Num",
+     "desc": "Valor liquidativo (clave E) / ajustes: aumentos (clave H): parte entera"
+    },
+    {
+     "n": 21,
+     "pos": 136,
+     "len": 2,
+     "type": "Num",
+     "desc": "Valor liquidativo (clave E) / ajustes: aumentos (clave H): parte decimal"
+    },
+    {
+     "n": 22,
+     "pos": 138,
+     "len": 11,
+     "type": "Num",
+     "desc": "Valor de adquisición, suscripción o contable (clave E) / ajustes: disminuciones (clave H): parte entera"
+    },
+    {
+     "n": 23,
+     "pos": 149,
+     "len": 2,
+     "type": "Num",
+     "desc": "Valor de adquisición, suscripción o contable (clave E) / ajustes: disminuciones (clave H): parte decimal"
+    },
+    {
+     "n": 24,
+     "pos": 151,
+     "len": 1,
+     "type": "An",
+     "desc": "Ingresos íntegros / importe rendimientos devengados / resultado contable: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 25,
+     "pos": 152,
+     "len": 11,
+     "type": "Num",
+     "desc": "Ingresos íntegros / importe rendimientos devengados / resultado contable: parte entera"
+    },
+    {
+     "n": 26,
+     "pos": 163,
+     "len": 2,
+     "type": "Num",
+     "desc": "Ingresos íntegros / importe rendimientos devengados / resultado contable: parte decimal"
+    },
+    {
+     "n": 27,
+     "pos": 165,
+     "len": 10,
+     "type": "Num",
+     "desc": "Gastos fiscalmente deducibles / exceso de rentas negativas (clave L): parte entera"
+    },
+    {
+     "n": 28,
+     "pos": 175,
+     "len": 2,
+     "type": "Num",
+     "desc": "Gastos fiscalmente deducibles / exceso de rentas negativas (clave L): parte decimal"
+    },
+    {
+     "n": 29,
+     "pos": 177,
+     "len": 1,
+     "type": "An",
+     "desc": "Renta atribuible / rendimiento neto atribuible / rendimiento neto atribuible previo: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 30,
+     "pos": 178,
+     "len": 11,
+     "type": "Num",
+     "desc": "Renta atribuible / rendimiento neto atribuible / rendimiento neto atribuible previo: parte entera"
+    },
+    {
+     "n": 31,
+     "pos": 189,
+     "len": 2,
+     "type": "Num",
+     "desc": "Renta atribuible / rendimiento neto atribuible / rendimiento neto atribuible previo: parte decimal"
+    },
+    {
+     "n": 32,
+     "pos": 191,
+     "len": 3,
+     "type": "Num",
+     "desc": "Porcentaje de reducción (A/03, C/03): parte entera"
+    },
+    {
+     "n": 33,
+     "pos": 194,
+     "len": 2,
+     "type": "Num",
+     "desc": "Porcentaje de reducción (A/03, C/03): parte decimal"
+    },
+    {
+     "n": 34,
+     "pos": 196,
+     "len": 1,
+     "type": "An",
+     "desc": "Renta atribuible con derecho a reducción (A/03, C/03, D/03): signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 35,
+     "pos": 197,
+     "len": 9,
+     "type": "Num",
+     "desc": "Renta atribuible con derecho a reducción (A/03, C/03, D/03): parte entera"
+    },
+    {
+     "n": 36,
+     "pos": 206,
+     "len": 2,
+     "type": "Num",
+     "desc": "Renta atribuible con derecho a reducción (A/03, C/03, D/03): parte decimal"
+    },
+    {
+     "n": 37,
+     "pos": 208,
+     "len": 11,
+     "type": "Num",
+     "desc": "Ganancias / pérdidas (claves F y G): parte entera"
+    },
+    {
+     "n": 38,
+     "pos": 219,
+     "len": 2,
+     "type": "Num",
+     "desc": "Ganancias / pérdidas (claves F y G): parte decimal"
+    },
+    {
+     "n": 39,
+     "pos": 221,
+     "len": 10,
+     "type": "Num",
+     "desc": "Base de la deducción / importe (claves I y J): parte entera"
+    },
+    {
+     "n": 40,
+     "pos": 231,
+     "len": 2,
+     "type": "Num",
+     "desc": "Base de la deducción / importe (claves I y J): parte decimal"
+    },
+    {
+     "n": 41,
+     "pos": 233,
+     "len": 10,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta (clave K): parte entera"
+    },
+    {
+     "n": 42,
+     "pos": 243,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta (clave K): parte decimal"
+    },
+    {
+     "n": 43,
+     "pos": 245,
+     "len": 1,
+     "type": "Num",
+     "desc": "Situación del inmueble (clave C: 1-5)"
+    },
+    {
+     "n": 44,
+     "pos": 246,
+     "len": 20,
+     "type": "An",
+     "desc": "Referencia catastral (clave C)"
+    },
+    {
+     "n": 45,
+     "pos": 266,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE (D/01-02): gastos de personal: parte entera"
+    },
+    {
+     "n": 46,
+     "pos": 276,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE (D/01-02): gastos de personal: parte decimal"
+    },
+    {
+     "n": 47,
+     "pos": 278,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: consumos de explotación: parte entera"
+    },
+    {
+     "n": 48,
+     "pos": 288,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: consumos de explotación: parte decimal"
+    },
+    {
+     "n": 49,
+     "pos": 290,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: tributos fiscalmente deducibles: parte entera"
+    },
+    {
+     "n": 50,
+     "pos": 300,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: tributos fiscalmente deducibles: parte decimal"
+    },
+    {
+     "n": 51,
+     "pos": 302,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: arrendamientos y cánones: parte entera"
+    },
+    {
+     "n": 52,
+     "pos": 312,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: arrendamientos y cánones: parte decimal"
+    },
+    {
+     "n": 53,
+     "pos": 314,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: reparaciones y conservación: parte entera"
+    },
+    {
+     "n": 54,
+     "pos": 324,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: reparaciones y conservación: parte decimal"
+    },
+    {
+     "n": 55,
+     "pos": 326,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: servicios profesionales independientes: parte entera"
+    },
+    {
+     "n": 56,
+     "pos": 336,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: servicios profesionales independientes: parte decimal"
+    },
+    {
+     "n": 57,
+     "pos": 338,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: suministros: parte entera"
+    },
+    {
+     "n": 58,
+     "pos": 348,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: suministros: parte decimal"
+    },
+    {
+     "n": 59,
+     "pos": 350,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: gastos financieros: parte entera"
+    },
+    {
+     "n": 60,
+     "pos": 360,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: gastos financieros: parte decimal"
+    },
+    {
+     "n": 61,
+     "pos": 362,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: amortizaciones: parte entera"
+    },
+    {
+     "n": 62,
+     "pos": 372,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: amortizaciones: parte decimal"
+    },
+    {
+     "n": 63,
+     "pos": 374,
+     "len": 10,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: provisiones: parte entera"
+    },
+    {
+     "n": 64,
+     "pos": 384,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: provisiones: parte decimal"
+    },
+    {
+     "n": 65,
+     "pos": 386,
+     "len": 8,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: otros gastos fiscalmente deducibles: parte entera"
+    },
+    {
+     "n": 66,
+     "pos": 394,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos AE: otros gastos fiscalmente deducibles: parte decimal"
+    },
+    {
+     "n": 67,
+     "pos": 396,
+     "len": 1,
+     "type": "An",
+     "desc": "Criterio de cobros y pagos (X; si no, blanco)"
+    },
+    {
+     "n": 68,
+     "pos": 397,
+     "len": 9,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI (C/01-02): intereses y demás gastos de financiación: parte entera"
+    },
+    {
+     "n": 69,
+     "pos": 406,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI (C/01-02): intereses y demás gastos de financiación: parte decimal"
+    },
+    {
+     "n": 70,
+     "pos": 408,
+     "len": 9,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: conservación y reparación: parte entera"
+    },
+    {
+     "n": 71,
+     "pos": 417,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: conservación y reparación: parte decimal"
+    },
+    {
+     "n": 72,
+     "pos": 419,
+     "len": 9,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: intereses/gastos de reparación y conservación pendientes: parte entera"
+    },
+    {
+     "n": 73,
+     "pos": 428,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: intereses/gastos de reparación y conservación pendientes: parte decimal"
+    },
+    {
+     "n": 74,
+     "pos": 430,
+     "len": 8,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: tributos y recargos: parte entera"
+    },
+    {
+     "n": 75,
+     "pos": 438,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: tributos y recargos: parte decimal"
+    },
+    {
+     "n": 76,
+     "pos": 440,
+     "len": 9,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: saldos de dudoso cobro: parte entera"
+    },
+    {
+     "n": 77,
+     "pos": 449,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: saldos de dudoso cobro: parte decimal"
+    },
+    {
+     "n": 78,
+     "pos": 451,
+     "len": 8,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: cantidades devengadas por terceros: parte entera"
+    },
+    {
+     "n": 79,
+     "pos": 459,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: cantidades devengadas por terceros: parte decimal"
+    },
+    {
+     "n": 80,
+     "pos": 461,
+     "len": 8,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: primas de seguros: parte entera"
+    },
+    {
+     "n": 81,
+     "pos": 469,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: primas de seguros: parte decimal"
+    },
+    {
+     "n": 82,
+     "pos": 471,
+     "len": 8,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: amortización del inmueble: parte entera"
+    },
+    {
+     "n": 83,
+     "pos": 479,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: amortización del inmueble: parte decimal"
+    },
+    {
+     "n": 84,
+     "pos": 481,
+     "len": 6,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: amortización de bienes muebles: parte entera"
+    },
+    {
+     "n": 85,
+     "pos": 487,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: amortización de bienes muebles: parte decimal"
+    },
+    {
+     "n": 86,
+     "pos": 489,
+     "len": 7,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: otros gastos deducibles: parte entera"
+    },
+    {
+     "n": 87,
+     "pos": 496,
+     "len": 2,
+     "type": "Num",
+     "desc": "Detalle de gastos RCI: otros gastos deducibles: parte decimal"
+    },
+    {
+     "n": 88,
+     "pos": 498,
+     "len": 3,
+     "type": "Num",
+     "desc": "Número de días de arrendamiento o cesión de uso y disfrute (C/01-02)"
+    }
+   ]
+  },
+  {
+   "sheet": "184-2S",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "184"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del miembro (socio, heredero, comunero o partícipe)"
+    },
+    {
+     "n": 6,
+     "pos": 27,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante fiscal (menor de 14 años o no residente; si no, blancos)"
+    },
+    {
+     "n": 7,
+     "pos": 36,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre, razón social o denominación del miembro"
+    },
+    {
+     "n": 8,
+     "pos": 76,
+     "len": 1,
+     "type": "An",
+     "desc": "Tipo de hoja",
+     "const": "S"
+    },
+    {
+     "n": 9,
+     "pos": 77,
+     "len": 2,
+     "type": "Num",
+     "desc": "Código provincia del domicilio del miembro (99 no residente sin EP)"
+    },
+    {
+     "n": 10,
+     "pos": 79,
+     "len": 2,
+     "type": "An",
+     "desc": "Clave país (sólo no residentes sin EP; si no, blancos)"
+    },
+    {
+     "n": 11,
+     "pos": 81,
+     "len": 1,
+     "type": "Num",
+     "desc": "Clave tipo de partícipe (1 residente, 2 no residente sin EP, 3 no residente con EP)"
+    },
+    {
+     "n": 12,
+     "pos": 82,
+     "len": 1,
+     "type": "An",
+     "desc": "Miembro a 31 de diciembre (X)"
+    },
+    {
+     "n": 13,
+     "pos": 83,
+     "len": 3,
+     "type": "Num",
+     "desc": "Número de días miembro"
+    },
+    {
+     "n": 14,
+     "pos": 86,
+     "len": 3,
+     "type": "Num",
+     "desc": "Porcentaje de participación: parte entera"
+    },
+    {
+     "n": 15,
+     "pos": 89,
+     "len": 4,
+     "type": "Num",
+     "desc": "Porcentaje de participación: parte decimal (4 decimales)"
+    },
+    {
+     "n": 16,
+     "pos": 93,
+     "len": 1,
+     "type": "An",
+     "desc": "Clave (A, C, D, E, F, G, I, J, K)"
+    },
+    {
+     "n": 17,
+     "pos": 94,
+     "len": 2,
+     "type": "Num",
+     "desc": "Subclave"
+    },
+    {
+     "n": 18,
+     "pos": 96,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe (rendimiento / retención / deducción): signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 19,
+     "pos": 97,
+     "len": 10,
+     "type": "Num",
+     "desc": "Importe (rendimiento / retención / deducción): parte entera"
+    },
+    {
+     "n": 20,
+     "pos": 107,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe (rendimiento / retención / deducción): parte decimal"
+    },
+    {
+     "n": 21,
+     "pos": 109,
+     "len": 9,
+     "type": "Num",
+     "desc": "Reducción (claves A/02, C, D): parte entera"
+    },
+    {
+     "n": 22,
+     "pos": 118,
+     "len": 2,
+     "type": "Num",
+     "desc": "Reducción (claves A/02, C, D): parte decimal"
+    },
+    {
+     "n": 23,
+     "pos": 120,
+     "len": 40,
+     "type": "An",
+     "desc": "Domicilio fiscal del miembro"
+    },
+    {
+     "n": 24,
+     "pos": 160,
+     "len": 12,
+     "type": "Num",
+     "desc": "Provisiones deducibles y gastos de difícil justificación (clave D con régimen 2 en la entidad)"
+    },
+    {
+     "n": 25,
+     "pos": 172,
+     "len": 1,
+     "type": "Num",
+     "desc": "Naturaleza del inmueble (clave C: 1 urbano, 2 rústico)"
+    },
+    {
+     "n": 26,
+     "pos": 173,
+     "len": 1,
+     "type": "Num",
+     "desc": "Situación del inmueble (clave C: 1-5)"
+    },
+    {
+     "n": 27,
+     "pos": 174,
+     "len": 20,
+     "type": "An",
+     "desc": "Referencia catastral (clave C con situación 1, 2 o 3)"
+    },
+    {
+     "n": 28,
+     "pos": 194,
+     "len": 1,
+     "type": "An",
+     "desc": "Clave de declarado (N nudo propietario, T titular, U usufructuario, O otro derecho real)"
+    },
+    {
+     "n": 29,
+     "pos": 195,
+     "len": 3,
+     "type": "Num",
+     "desc": "Porcentaje de titularidad del inmueble: parte entera"
+    },
+    {
+     "n": 30,
+     "pos": 198,
+     "len": 2,
+     "type": "Num",
+     "desc": "Porcentaje de titularidad del inmueble: parte decimal"
+    },
+    {
+     "n": 31,
+     "pos": 200,
+     "len": 3,
+     "type": "Num",
+     "desc": "Número de días de arrendamiento o cesión de uso y disfrute del inmueble (clave C)"
+    },
+    {
+     "n": 32,
+     "pos": 203,
+     "len": 11,
+     "type": "Num",
+     "desc": "Rendimiento neto previo AE en estimación objetiva excepto agrícolas (D/03): parte entera"
+    },
+    {
+     "n": 33,
+     "pos": 214,
+     "len": 2,
+     "type": "Num",
+     "desc": "Rendimiento neto previo AE en estimación objetiva excepto agrícolas (D/03): parte decimal"
+    },
+    {
+     "n": 34,
+     "pos": 216,
+     "len": 1,
+     "type": "An",
+     "desc": "Rendimiento neto minorado AE agrícolas, ganaderas y forestales en EO (D/04): signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 35,
+     "pos": 217,
+     "len": 11,
+     "type": "Num",
+     "desc": "Rendimiento neto minorado AE agrícolas, ganaderas y forestales en EO (D/04): parte entera"
+    },
+    {
+     "n": 36,
+     "pos": 228,
+     "len": 2,
+     "type": "Num",
+     "desc": "Rendimiento neto minorado AE agrícolas, ganaderas y forestales en EO (D/04): parte decimal"
+    },
+    {
+     "n": 37,
+     "pos": 230,
+     "len": 271,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  }
+ ]
+}

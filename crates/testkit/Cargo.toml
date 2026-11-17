@@ -1,0 +1,17 @@
+[package]
+name = "taxpain-testkit"
+description = "Utilidades de test: PKI sintética con CA propia y .p12 estilo FNMT (nunca datos reales)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[dependencies]
+p12-keystore = "0.4.1"
+rcgen = "0.14.10"
+time = "0.3.55"
+
+[lints]
+workspace = true

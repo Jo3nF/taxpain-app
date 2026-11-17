@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Esquema de DEPOSITO.XML del depósito de cuentas, transcrito de la Resolución de la DGSJFP de
+     19 de mayo de 2026 (BOE-A-2026-11581, Anexo II, pág. 72965-72966). Corregido el espacio que
+     falta en el BOE entre type="xs:boolean" y nillable. -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+  <xs:element name="Esquema">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Cabecera">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="CIF" type="xs:string" nillable="false"/>
+              <xs:element name="RazonSocial" type="xs:string" nillable="false"/>
+              <xs:element name="TipoCuestionario" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Normal"/>
+                    <xs:enumeration value="Abreviado"/>
+                    <xs:enumeration value="Pymes"/>
+                    <xs:enumeration value="Mixto"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IdiomaCuestionario" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Castellano"/>
+                    <xs:enumeration value="Catalan"/>
+                    <xs:enumeration value="Valenciano"/>
+                    <xs:enumeration value="Gallego"/>
+                    <xs:enumeration value="Euskera"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MemoriaNormalizada" type="xs:boolean" nillable="false"/>
+              <xs:element name="Ejercicio" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="2008"/>
+                    <xs:totalDigits value="4"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Claves">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Clave" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="Codigo" type="xs:integer" nillable="false"/>
+                    <xs:element name="Valor" type="xs:string"/>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

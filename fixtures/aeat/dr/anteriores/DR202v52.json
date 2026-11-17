@@ -1,0 +1,933 @@
+{
+ "model": "202",
+ "source": "DR202v52.xlsx",
+ "sha256": "96160cf2a82a4e6f2c9c9848c6061b2cfe5c4877de7a455126704af86f3ac7db",
+ "pages": [
+  {
+   "sheet": "dr M202 (0)",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 2,
+     "type": "An",
+     "desc": "Constante.",
+     "note": "\"<T\"",
+     "const": "<T"
+    },
+    {
+     "n": 2,
+     "pos": 3,
+     "len": 3,
+     "type": "An",
+     "desc": "Modelo",
+     "note": "\"202\""
+    },
+    {
+     "n": 3,
+     "pos": 6,
+     "len": 1,
+     "type": "An",
+     "desc": "Constante.",
+     "note": "\"0\"",
+     "const": "0"
+    },
+    {
+     "n": 4,
+     "pos": 7,
+     "len": 4,
+     "type": "An",
+     "desc": "Ejercicio devengo. (AAAA)"
+    },
+    {
+     "n": 5,
+     "pos": 11,
+     "len": 2,
+     "type": "An",
+     "desc": "Período. (PP)",
+     "note": "\"1P\", \"2P\", \"3P\" o \"0A\""
+    },
+    {
+     "n": 6,
+     "pos": 13,
+     "len": 5,
+     "type": "An",
+     "desc": "Constante.",
+     "note": "\"0000>\"",
+     "const": "0000>"
+    },
+    {
+     "n": 7,
+     "pos": 18,
+     "len": 5,
+     "type": "An",
+     "desc": "Constante",
+     "note": "\"<AUX>\"",
+     "const": "<AUX>"
+    },
+    {
+     "n": 8,
+     "pos": 23,
+     "len": 70,
+     "type": "An",
+     "desc": "Reservado para la Administración. Rellenar con blancos",
+     "note": "BLANCOS"
+    },
+    {
+     "n": 9,
+     "pos": 93,
+     "len": 4,
+     "type": "An",
+     "desc": "Versión del Programa (Nota 1)"
+    },
+    {
+     "n": 10,
+     "pos": 97,
+     "len": 4,
+     "type": "An",
+     "desc": "Reservado para la Administración. Rellenar con blancos",
+     "note": "BLANCOS"
+    },
+    {
+     "n": 11,
+     "pos": 101,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF Empresa Desarrollo (Nota 1)"
+    },
+    {
+     "n": 12,
+     "pos": 110,
+     "len": 213,
+     "type": "An",
+     "desc": "Reservado para la Administración. Rellenar con blancos",
+     "note": "BLANCOS"
+    },
+    {
+     "n": 13,
+     "pos": 323,
+     "len": 6,
+     "type": "An",
+     "desc": "Constante",
+     "note": "\"</AUX>\"",
+     "const": "</AUX>"
+    }
+   ]
+  },
+  {
+   "sheet": "dr M202 (1)",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 2,
+     "type": "An",
+     "desc": "Inicio del identificador de modelo y página",
+     "note": "Constante \"<T\"",
+     "const": "<T"
+    },
+    {
+     "n": 2,
+     "pos": 3,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo",
+     "note": "Constante \"202\"",
+     "const": "202"
+    },
+    {
+     "n": 3,
+     "pos": 6,
+     "len": 2,
+     "type": "Num",
+     "desc": "Página",
+     "note": "Constante \"01\"",
+     "const": "01"
+    },
+    {
+     "n": 4,
+     "pos": 8,
+     "len": 4,
+     "type": "An",
+     "desc": "Fin de identificador de modelo",
+     "note": "Constante \"000>\"",
+     "const": "000>"
+    },
+    {
+     "n": 5,
+     "pos": 12,
+     "len": 1,
+     "type": "An",
+     "desc": "Reservado para la Administración",
+     "note": "En blanco"
+    },
+    {
+     "n": 6,
+     "pos": 13,
+     "len": 1,
+     "type": "A",
+     "desc": "Tipo de declaración",
+     "note": "Ver nota 1"
+    },
+    {
+     "n": 7,
+     "pos": 14,
+     "len": 9,
+     "type": "An",
+     "desc": "Identificación (1). NIF"
+    },
+    {
+     "n": 8,
+     "pos": 23,
+     "len": 60,
+     "type": "An",
+     "desc": "Identificación (1). Denominación o apellidos"
+    },
+    {
+     "n": 9,
+     "pos": 83,
+     "len": 20,
+     "type": "An",
+     "desc": "Identificación (1). Nombre"
+    },
+    {
+     "n": 10,
+     "pos": 103,
+     "len": 4,
+     "type": "Num",
+     "desc": "Devengo (2). Ejercicio"
+    },
+    {
+     "n": 11,
+     "pos": 107,
+     "len": 2,
+     "type": "An",
+     "desc": "Devengo (2). Periodo",
+     "note": "\"1P\", \"2P\", \"3P\" o \"0A\""
+    },
+    {
+     "n": 12,
+     "pos": 109,
+     "len": 8,
+     "type": "Num",
+     "desc": "Devengo (2). Fecha de inicio del período impositivo",
+     "note": "ddmmaaaa"
+    },
+    {
+     "n": 13,
+     "pos": 117,
+     "len": 4,
+     "type": "Num",
+     "desc": "Devengo (2). C.N.A.E. actividad principal"
+    },
+    {
+     "n": 14,
+     "pos": 121,
+     "len": 1,
+     "type": "An",
+     "desc": "Datos adicionales (3) - Entidad que aplica el régimen de la Ley 49/2002 de 23 de diciembre",
+     "note": "X o blanco"
+    },
+    {
+     "n": 15,
+     "pos": 122,
+     "len": 1,
+     "type": "An",
+     "desc": "Datos adicionales (3) - Entidad que aplica el régimen de la Ley 11/2009 de 26 de octubre",
+     "note": "X o blanco"
+    },
+    {
+     "n": 16,
+     "pos": 123,
+     "len": 1,
+     "type": "An",
+     "desc": "Datos adicionales (3) - Entidad que aplica el régimen de las entidades navieras en función del tonelaje",
+     "note": "X o blanco"
+    },
+    {
+     "n": 17,
+     "pos": 124,
+     "len": 1,
+     "type": "An",
+     "desc": "Datos adicionales (3) - Entidad que cumpla los requisitos del art. 101 LIS y apliquen tipo de gravamen art.29.1 1er párrafo LIS",
+     "note": "X o blanco"
+    },
+    {
+     "n": 18,
+     "pos": 125,
+     "len": 1,
+     "type": "An",
+     "desc": "Datos adicionales (3) - Cifra de negocios de los 12 meses anteriores a la fecha de inicio del período impositivo > 6.000.000 €",
+     "note": "X o blanco"
+    },
+    {
+     "n": 19,
+     "pos": 126,
+     "len": 1,
+     "type": "Num",
+     "desc": "Datos adicionales (3) - Cooperativa fiscalmente protegida u Otras entidades con posibilidad de aplicar dos tipos impositivos (ej. entidades ZEC)",
+     "note": "\"0\" No consta, \"1\" Cooperativa, \"2\" Otras entidades"
+    },
+    {
+     "n": 20,
+     "pos": 127,
+     "len": 5,
+     "type": "An",
+     "desc": "Datos adicionales (3) - Tipo de gravamen del Impuesto sobre Sociedades del ejercicio en curso",
+     "note": "Cadena alfanumérica de 5 posiciones para permitir consignar dos tipos. Ver Nota 3"
+    },
+    {
+     "n": 21,
+     "pos": 132,
+     "len": 1,
+     "type": "Num",
+     "desc": "Datos adicionales (3) - Importe neto de la cifra de negocios",
+     "note": "\"0\" No consta, \"1\" (>= 10 M y < 20 M €), \"2\" (>= 20 M y < 60 M €), \"3\" (>= 60 M €)"
+    },
+    {
+     "n": 22,
+     "pos": 133,
+     "len": 1,
+     "type": "An",
+     "desc": "Datos adicionales (3) - Marca instrumental (ver nota 7)",
+     "note": "X o blanco (ver Nota 7)"
+    },
+    {
+     "n": 23,
+     "pos": 134,
+     "len": 17,
+     "type": "Num",
+     "desc": "A) Liquidación. Mod. 40.2 LIS - Base del pago fraccionado [01]",
+     "note": "15 enteros + 2 decimales",
+     "box": 1
+    },
+    {
+     "n": 24,
+     "pos": 151,
+     "len": 17,
+     "type": "Num",
+     "desc": "A) Liquidación. Mod. 40.2 LIS - Resultado de la declaración anterior (complementarias) [02]",
+     "note": "15 enteros + 2 decimales",
+     "box": 2
+    },
+    {
+     "n": 25,
+     "pos": 168,
+     "len": 17,
+     "type": "Num",
+     "desc": "A) Liquidación. Mod. 40.2 LIS - A Ingresar [03]",
+     "note": "15 enteros + 2 decimales",
+     "box": 3
+    },
+    {
+     "n": 26,
+     "pos": 185,
+     "len": 17,
+     "type": "N",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Resultado contable después del IS [04]",
+     "note": "15 enteros + 2 decimales",
+     "box": 4
+    },
+    {
+     "n": 27,
+     "pos": 202,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Correcciones al resultado contable - por Impuesto sobre Sociedades - Aumentos [05]",
+     "note": "15 enteros + 2 decimales",
+     "box": 5
+    },
+    {
+     "n": 28,
+     "pos": 219,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Correcciones al resultado contable - por Impuesto sobre Sociedades - Disminuciones [06]",
+     "note": "15 enteros + 2 decimales",
+     "box": 6
+    },
+    {
+     "n": 29,
+     "pos": 236,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - 30% gastos amortiz - Disminuciones [37]",
+     "note": "15 enteros + 2 decimales",
+     "box": 37
+    },
+    {
+     "n": 30,
+     "pos": 253,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Resto correcciones al resultado contable, excepto comp. - Aumentos [07]",
+     "note": "15 enteros + 2 decimales",
+     "box": 7
+    },
+    {
+     "n": 31,
+     "pos": 270,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Resto correcciones al resultado contable, excepto comp. - Disminuciones [08]",
+     "note": "15 enteros + 2 decimales",
+     "box": 8
+    },
+    {
+     "n": 32,
+     "pos": 287,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - TOTAL. - Aumentos [38]",
+     "note": "15 enteros + 2 decimales",
+     "box": 38
+    },
+    {
+     "n": 33,
+     "pos": 304,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - TOTAL - Disminuciones [39]",
+     "note": "15 enteros + 2 decimales",
+     "box": 39
+    },
+    {
+     "n": 34,
+     "pos": 321,
+     "len": 17,
+     "type": "N",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Base imponible previa [13]",
+     "note": "15 enteros + 2 decimales",
+     "box": 13
+    },
+    {
+     "n": 35,
+     "pos": 338,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Remanente reserva de capitalización no aplicada por insuficiencia de base [44]",
+     "note": "15 enteros + 2 decimales",
+     "box": 44
+    },
+    {
+     "n": 36,
+     "pos": 355,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Compensación de bases negativas de ejercicios anteriores [14]",
+     "note": "15 enteros + 2 decimales",
+     "box": 14
+    },
+    {
+     "n": 37,
+     "pos": 372,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Reserva de nivelación (art. 105 LIS) (Solo entidades del art. 101 LIS) - Aumentos [45]",
+     "note": "15 enteros + 2 decimales",
+     "box": 45
+    },
+    {
+     "n": 38,
+     "pos": 389,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Reserva de nivelación (art. 105 LIS) (Solo entidades del art. 101 LIS) - Disminuciones [46]",
+     "note": "15 enteros + 2 decimales",
+     "box": 46
+    },
+    {
+     "n": 39,
+     "pos": 406,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B1 - Caso general (porcentaje único) - Base pago fraccionado [16]",
+     "note": "15 enteros + 2 decimales",
+     "box": 16
+    },
+    {
+     "n": 40,
+     "pos": 423,
+     "len": 5,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B1 - Caso general (porcentaje único) - Porcentaje [17]",
+     "note": "3 enteros + 2 decimales",
+     "box": 17
+    },
+    {
+     "n": 41,
+     "pos": 428,
+     "len": 17,
+     "type": "N",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B1 - Caso general - Dotaciones del art. 11.12 LIS (DF 4ª LIS) [47]",
+     "note": "15 enteros + 2 decimales",
+     "box": 47
+    },
+    {
+     "n": 42,
+     "pos": 445,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B1 - Caso general - Compensación de cuotas negativas ejer. anteriores (sólo cooperativas) [40]",
+     "note": "15 enteros + 2 decimales",
+     "box": 40
+    },
+    {
+     "n": 43,
+     "pos": 462,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B1 -Reserva de nivelación (105 LIS) convertido en cuotas - Aumentos [48]",
+     "note": "15 enteros + 2 decimales",
+     "box": 48
+    },
+    {
+     "n": 44,
+     "pos": 479,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B1 -Reserva de nivelación (105 LIS) convertido en cuotas - Disminuciones [49]",
+     "note": "15 enteros + 2 decimales",
+     "box": 49
+    },
+    {
+     "n": 45,
+     "pos": 496,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B1 - Caso general - Resultado previo (clave ([16] x [17]) + [47]-[40]+[48]-[49]) [18]",
+     "note": "15 enteros + 2 decimales",
+     "box": 18
+    },
+    {
+     "n": 46,
+     "pos": 513,
+     "len": 1,
+     "type": "An",
+     "desc": "Discriminante para declaraciones Negativas. Liquidación de modalidad A ó B",
+     "note": "A ó B ó blanco"
+    },
+    {
+     "n": 47,
+     "pos": 514,
+     "len": 1,
+     "type": "An",
+     "desc": "Identificación (1) - Contribuyente sometido a normativa de Territorio Foral de Navarra, Guipúzcoa, Vizcaya o Álava",
+     "note": "Nota 2"
+    },
+    {
+     "n": 48,
+     "pos": 515,
+     "len": 1,
+     "type": "An",
+     "desc": "Datos adicionales (3). Entidad de capital-riesgo que aplica el régimen fiscal especial del art. 50 LIS",
+     "note": "X o blanco. Nota 1"
+    },
+    {
+     "n": 49,
+     "pos": 516,
+     "len": 1,
+     "type": "An",
+     "desc": "Reservado para la Administración",
+     "note": "En blanco"
+    },
+    {
+     "n": 50,
+     "pos": 517,
+     "len": 172,
+     "type": "An",
+     "desc": "Reservado para la Administración",
+     "note": "En blanco"
+    },
+    {
+     "n": 51,
+     "pos": 689,
+     "len": 12,
+     "type": "An",
+     "desc": "Indicador de fin de registro",
+     "note": "Constante \"</T20201000>\"",
+     "const": "</T20201000>"
+    }
+   ]
+  },
+  {
+   "sheet": "dr M202 (2)",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 2,
+     "type": "An",
+     "desc": "Inicio del identificador de modelo y página",
+     "note": "Constante \"<T\"",
+     "const": "<T"
+    },
+    {
+     "n": 2,
+     "pos": 3,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo",
+     "note": "Constante \"202\"",
+     "const": "202"
+    },
+    {
+     "n": 3,
+     "pos": 6,
+     "len": 2,
+     "type": "Num",
+     "desc": "Página",
+     "note": "Constante \"02\"",
+     "const": "02"
+    },
+    {
+     "n": 4,
+     "pos": 8,
+     "len": 4,
+     "type": "An",
+     "desc": "Fin de identificador de modelo",
+     "note": "Constante \"000>\"",
+     "const": "000>"
+    },
+    {
+     "n": 5,
+     "pos": 12,
+     "len": 1,
+     "type": "An",
+     "desc": "Reservado para la Administración",
+     "note": "En blanco"
+    },
+    {
+     "n": 6,
+     "pos": 13,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje) - Base del pago fraccionado [19]",
+     "note": "15 enteros + 2 decimales",
+     "box": 19
+    },
+    {
+     "n": 7,
+     "pos": 30,
+     "len": 17,
+     "type": "N",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje) - Base a tipo 1 [20]",
+     "note": "15 enteros + 2 decimales",
+     "box": 20
+    },
+    {
+     "n": 8,
+     "pos": 47,
+     "len": 5,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje) - Porcentaje [21]",
+     "note": "3 enteros + 2 decimales",
+     "box": 21
+    },
+    {
+     "n": 9,
+     "pos": 52,
+     "len": 17,
+     "type": "N",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje) - Importe pago fraccionado [22]",
+     "note": "15 enteros + 2 decimales",
+     "box": 22
+    },
+    {
+     "n": 10,
+     "pos": 69,
+     "len": 17,
+     "type": "N",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje) - Base a tipo 2 [23]",
+     "note": "15 enteros + 2 decimales",
+     "box": 23
+    },
+    {
+     "n": 11,
+     "pos": 86,
+     "len": 5,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje) - Porcentaje [24]",
+     "note": "3 enteros + 2 decimales",
+     "box": 24
+    },
+    {
+     "n": 12,
+     "pos": 91,
+     "len": 17,
+     "type": "N",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje) - Importe pago fraccionado [25]",
+     "note": "15 enteros + 2 decimales",
+     "box": 25
+    },
+    {
+     "n": 13,
+     "pos": 108,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje) - Dotac. art. 11.12 LIS (solo cooperativas) (DF 4 LIS) [50]",
+     "note": "15 enteros + 2 decimales",
+     "box": 50
+    },
+    {
+     "n": 14,
+     "pos": 125,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje). Compensación de cuotas negativas de períodos anteriores (sólo cooperativas) [42]",
+     "note": "15 enteros + 2 decimales",
+     "box": 42
+    },
+    {
+     "n": 15,
+     "pos": 142,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje)-Reserva de nivelación (art. 105 LIS) (sólo entidades del art. 101 LIS). Aumentos [51]",
+     "note": "15 enteros + 2 decimales",
+     "box": 51
+    },
+    {
+     "n": 16,
+     "pos": 159,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje)-Reserva de nivelación (art. 105 LIS) (sólo entidades del art. 101 LIS). Disminuciones [52]",
+     "note": "15 enteros + 2 decimales",
+     "box": 52
+    },
+    {
+     "n": 17,
+     "pos": 176,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - B2 - Casos específicos (más de un porcentaje)-Resultado previo(claves [22]+[25]+[50]-[42]+[51]-[52]) [26]",
+     "note": "15 enteros + 2 decimales",
+     "box": 26
+    },
+    {
+     "n": 18,
+     "pos": 193,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Bonificaciones correspondientes al periodo computado (total) [27]",
+     "note": "15 enteros + 2 decimales",
+     "box": 27
+    },
+    {
+     "n": 19,
+     "pos": 210,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Retenciones e ingresos a cuenta practicados sobre ingresos periodo computado [28]",
+     "note": "15 enteros + 2 decimales",
+     "box": 28
+    },
+    {
+     "n": 20,
+     "pos": 227,
+     "len": 5,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Volumen operaciones en Territorio Común (%) [29]",
+     "note": "3 enteros + 2 decimales",
+     "box": 29
+    },
+    {
+     "n": 21,
+     "pos": 232,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Pagos fraccionados de periodos anteriores en Territorio Común [30]",
+     "note": "15 enteros + 2 decimales",
+     "box": 30
+    },
+    {
+     "n": 22,
+     "pos": 249,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Resultado de la declaración anterior (exclusivamente si ésta es complementaria) [31]",
+     "note": "15 enteros + 2 decimales",
+     "box": 31
+    },
+    {
+     "n": 23,
+     "pos": 266,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Resultado [32]",
+     "note": "15 enteros + 2 decimales",
+     "box": 32
+    },
+    {
+     "n": 24,
+     "pos": 283,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Mínimo a ingresar (sólo para empresas con CN igual o superior a 10 millones euros) [33]",
+     "note": "15 enteros + 2 decimales",
+     "box": 33
+    },
+    {
+     "n": 25,
+     "pos": 300,
+     "len": 17,
+     "type": "Num",
+     "desc": "B) Liquidación. Mod. 40.3 LIS - Cantidad a ingresar (mayor de claves [32] y [33] ) [34]",
+     "note": "15 enteros + 2 decimales",
+     "box": 34
+    },
+    {
+     "n": 26,
+     "pos": 317,
+     "len": 1,
+     "type": "An",
+     "desc": "Información adicional (5). Comunicación de datos adicionales a la declaración",
+     "note": "X o blanco"
+    },
+    {
+     "n": 27,
+     "pos": 318,
+     "len": 22,
+     "type": "An",
+     "desc": "Información adicional (5). Numero de Referencia de Sociedades (NRS)"
+    },
+    {
+     "n": 28,
+     "pos": 340,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Importe excluido por operaciones de quita o espera",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 29,
+     "pos": 357,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Parte integrada en la base imponible por operaciones de quita o espera",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 30,
+     "pos": 374,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Parte integrada en la base imponible a nivel cuota por op. de quita o espera (sólo cooperativas)",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 31,
+     "pos": 391,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Rentas de reversión de deterioros que se integran en la base imponible",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 32,
+     "pos": 408,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Importe correspondiente a la reserva para inversiones en Canarias",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 33,
+     "pos": 425,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Importe correspondiente a la bonificación prevista en el art. 26 de la Ley 19/1994",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 34,
+     "pos": 442,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Importe no computable por aplicación del régimen fiscal de la ZEC",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 35,
+     "pos": 459,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Importe de la minoración correspondiente a las rentas que tengan derecho a la bonificación art. 33 LIS",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 36,
+     "pos": 476,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Importe excluido por operaciones de aumento de capital o fondos propios por compensación de créditos que no se integren en la base imponible por aplicación del art. 17.2 LIS",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 37,
+     "pos": 493,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Importe renta exenta de las entidades que aplican el régimen fiscal especial Cap. XIV del Tit. VII LIS",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 38,
+     "pos": 510,
+     "len": 17,
+     "type": "Num",
+     "desc": "Información adicional (5). Importe de la bonificación prevista en el art. 34 LIS",
+     "note": "15 enteros + 2 decimales"
+    },
+    {
+     "n": 39,
+     "pos": 527,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración complementaria (6)",
+     "note": "X o blanco"
+    },
+    {
+     "n": 40,
+     "pos": 528,
+     "len": 13,
+     "type": "An",
+     "desc": "Declaración complementaria (6). Número de justificante de la declaración anterior"
+    },
+    {
+     "n": 41,
+     "pos": 541,
+     "len": 34,
+     "type": "An",
+     "desc": "Domiciliación - IBAN",
+     "note": "nota 7"
+    },
+    {
+     "n": 42,
+     "pos": 575,
+     "len": 101,
+     "type": "An",
+     "desc": "Reservado para la Administración",
+     "note": "En blanco"
+    },
+    {
+     "n": 43,
+     "pos": 676,
+     "len": 13,
+     "type": "An",
+     "desc": "Reservado para el sello electrónico de la AEAT"
+    },
+    {
+     "n": 44,
+     "pos": 689,
+     "len": 12,
+     "type": "An",
+     "desc": "Indicador de fin de registro",
+     "note": "Constante \"</T20202000>\"",
+     "const": "</T20202000>"
+    }
+   ]
+  }
+ ]
+}

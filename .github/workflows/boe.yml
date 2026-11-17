@@ -1,0 +1,47 @@
+# Vigía del BOE: cada mañana (lunes a sábado) lee el sumario del día y, si hay disposiciones que
+# pueden afectar a TaxPain (modelos de la AEAT, VERI*FACTU, IVA, IRPF, Sociedades, contabilidad,
+# depósito de cuentas, fiestas laborales), abre una incidencia para revisarlas a mano. No cambia
+# código ni datos. Ver tools/boe/watch.mjs.
+name: BOE
+
+# Sólo a mano: sin minutos gratuitos, cada ejecución programada fallaría y mandaría un correo.
+# Para vigilar el BOE en local: node tools/boe/watch.mjs
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Fecha del BOE (AAAAMMDD); vacío = hoy'
+        required: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      - name: Leer el sumario
+        id: boe
+        env:
+          DATE: ${{ inputs.date }}
+        run: |
+          set -euo pipefail
+          node tools/boe/watch.mjs ${DATE:+"$DATE"} > boe.md
+          if [ -s boe.md ]; then echo "found=true" >> "$GITHUB_OUTPUT"; fi
+          cat boe.md
+      - name: Abrir incidencia
+        if: steps.boe.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DATE: ${{ inputs.date }}
+        run: |
+          set -euo pipefail
+          day="${DATE:-$(TZ=Europe/Madrid date +%Y%m%d)}"
+          gh label create boe --color 1d76db --description "Revisión de novedades del BOE" --force
+          gh issue create --title "BOE ${day}: revisar novedades" --body-file boe.md --label boe

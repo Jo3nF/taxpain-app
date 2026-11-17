@@ -1,0 +1,19 @@
+[package]
+name = "taxpain-models"
+description = "Modelos tributarios: cálculo, borrador y fichero según el diseño de registro (DR) de la AEAT"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+taxpain-core.workspace = true
+thiserror.workspace = true
+time = { version = "0.3.55", features = ["macros"] }
+
+[lints]
+workspace = true

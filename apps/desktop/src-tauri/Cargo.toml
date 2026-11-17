@@ -1,0 +1,51 @@
+[package]
+name = "taxpain-desktop"
+description = "TaxPain: app de escritorio (Tauri 2)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[lib]
+name = "taxpain_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2.8"
+tauri-plugin-notification = "2.3"
+tauri-plugin-opener = "2"
+# 2.14: `requireSignedVersion` (tauri.conf.json) sólo existe desde esta versión.
+tauri-plugin-updater = "2.14"
+# El tipo de versión del comparador del actualizador (`updates.rs`); ya lo trae el plugin.
+semver = "1.0.28"
+tauri-plugin-autostart = "2"
+url = "2.5.8"
+serde = { version = "1", features = ["derive"] }
+# `generate_context!` lo necesita al haber configuración de plugins en tauri.conf.json.
+serde_json = "1.0.154"
+time = { version = "0.3.55", features = ["local-offset"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["fmt", "env-filter"] }
+zeroize = "1.9.1"
+getrandom = "0.4.3"
+hex = "0.4.3"
+# `O_NOFOLLOW` al guardar lo que pide la interfaz (`salida.rs`).
+libc = "0.2.190"
+taxpain-core.workspace = true
+taxpain-app.workspace = true
+taxpain-assistant.workspace = true
+taxpain-banca.workspace = true
+taxpain-aeat.workspace = true
+taxpain-invoicing.workspace = true
+taxpain-secrets.workspace = true
+taxpain-vault.workspace = true
+taxpain-macos.workspace = true
+
+[lints]
+workspace = true

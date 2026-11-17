@@ -1,0 +1,41 @@
+# Dependabot: una vez por semana propone actualizar las dependencias de Rust (Cargo.lock del
+# workspace), las de npm (package-lock.json de la raíz, que cubre apps/desktop) y las acciones
+# de los workflows (fijadas por hash: así los hashes se actualizan solos). Los avisos de
+# seguridad también llegan por aquí. Cada propuesta pasa el CI de Linux (pull_request).
+version: 2
+updates:
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '07:00'
+      timezone: Europe/Madrid
+    open-pull-requests-limit: 5
+    groups:
+      cargo-menores:
+        update-types: [minor, patch]
+    commit-message:
+      prefix: 'build(deps)'
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '07:00'
+      timezone: Europe/Madrid
+    open-pull-requests-limit: 5
+    groups:
+      npm-menores:
+        update-types: [minor, patch]
+    commit-message:
+      prefix: 'build(deps)'
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '07:00'
+      timezone: Europe/Madrid
+    commit-message:
+      prefix: 'ci(deps)'

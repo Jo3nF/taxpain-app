@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/PeticionAcceso.xsd"
+	xmlns:pa=		"https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/PeticionAcceso.xsd"
+	xmlns:gn=		"https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd"
+	elementFormDefault="qualified">
+
+	<import schemaLocation="TiposGN.xsd"
+		namespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd" />
+	<element name="PeticionAcceso" type="pa:TipoPeticionAcceso"/>
+
+	<complexType name="TipoPeticionAcceso">
+		<sequence>		
+			<element name="Version" type="gn:TipoVersion" nillable="true" minOccurs="0"/>
+			<element name="NumeroCertificado" type="gn:TipoNumeroCertificado"/>
+			<element name="Operacion" type="gn:TipoOperacion"/>
+		</sequence>
+	</complexType>
+</schema>

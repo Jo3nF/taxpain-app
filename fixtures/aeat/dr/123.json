@@ -1,0 +1,366 @@
+{
+ "model": "123",
+ "source": "DR123e24.xls",
+ "sha256": "85ffe058c1728a50d11d3c6fcfe03f77e172e0458b53920a620aa434d66d07b4",
+ "pages": [
+  {
+   "sheet": "DR 12300",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 2,
+     "type": "An",
+     "desc": "Constante.",
+     "note": "\"<T\"",
+     "const": "<T"
+    },
+    {
+     "n": 2,
+     "pos": 3,
+     "len": 3,
+     "type": "An",
+     "desc": "Modelo",
+     "note": "\"123\""
+    },
+    {
+     "n": 3,
+     "pos": 6,
+     "len": 1,
+     "type": "An",
+     "desc": "Constante.",
+     "note": "\"0\"",
+     "const": "0"
+    },
+    {
+     "n": 4,
+     "pos": 7,
+     "len": 4,
+     "type": "An",
+     "desc": "Ejercicio devengo. (AAAA)"
+    },
+    {
+     "n": 5,
+     "pos": 11,
+     "len": 2,
+     "type": "An",
+     "desc": "Período. (PP)",
+     "note": "\"01\" ... \"12\" o \"1T\" … \"4T\""
+    },
+    {
+     "n": 6,
+     "pos": 13,
+     "len": 5,
+     "type": "An",
+     "desc": "Constante.",
+     "note": "\"0000>\"",
+     "const": "0000>"
+    },
+    {
+     "n": 7,
+     "pos": 18,
+     "len": 5,
+     "type": "An",
+     "desc": "Constante",
+     "note": "\"<AUX>\"",
+     "const": "<AUX>"
+    },
+    {
+     "n": 8,
+     "pos": 23,
+     "len": 70,
+     "type": "An",
+     "desc": "Reservado para la Administración. Rellenar con blancos",
+     "note": "BLANCOS"
+    },
+    {
+     "n": 9,
+     "pos": 93,
+     "len": 4,
+     "type": "An",
+     "desc": "Versión del Programa (Nota 1)"
+    },
+    {
+     "n": 10,
+     "pos": 97,
+     "len": 4,
+     "type": "An",
+     "desc": "Reservado para la Administración. Rellenar con blancos",
+     "note": "BLANCOS"
+    },
+    {
+     "n": 11,
+     "pos": 101,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF Empresa Desarrollo (Nota 1)"
+    },
+    {
+     "n": 12,
+     "pos": 110,
+     "len": 213,
+     "type": "An",
+     "desc": "Reservado para la Administración. Rellenar con blancos",
+     "note": "BLANCOS"
+    },
+    {
+     "n": 13,
+     "pos": 323,
+     "len": 6,
+     "type": "An",
+     "desc": "Constante",
+     "note": "\"</AUX>\"",
+     "const": "</AUX>"
+    }
+   ]
+  },
+  {
+   "sheet": "DR 12301",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 2,
+     "type": "An",
+     "desc": "Inicio del identificador de modelo y página",
+     "note": "Constante \"<T\"",
+     "const": "<T"
+    },
+    {
+     "n": 2,
+     "pos": 3,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo",
+     "note": "Constante \"123\"",
+     "const": "123"
+    },
+    {
+     "n": 3,
+     "pos": 6,
+     "len": 2,
+     "type": "Num",
+     "desc": "Página",
+     "note": "Constante \"01\"",
+     "const": "01"
+    },
+    {
+     "n": 4,
+     "pos": 8,
+     "len": 4,
+     "type": "An",
+     "desc": "Fin de identificador de modelo",
+     "note": "Constante \"000>\"",
+     "const": "000>"
+    },
+    {
+     "n": 5,
+     "pos": 12,
+     "len": 1,
+     "type": "A",
+     "desc": "Indicador de página complementaria",
+     "note": "En blanco"
+    },
+    {
+     "n": 6,
+     "pos": 13,
+     "len": 1,
+     "type": "A",
+     "desc": "Tipo de declaración",
+     "note": "Ver nota 1"
+    },
+    {
+     "n": 7,
+     "pos": 14,
+     "len": 9,
+     "type": "An",
+     "desc": "Identificación(1). Sujeto pasivo. NIF"
+    },
+    {
+     "n": 8,
+     "pos": 23,
+     "len": 80,
+     "type": "An",
+     "desc": "Identificación(1). Sujeto pasivo. Razón/denominación social, apellidos y nombre"
+    },
+    {
+     "n": 9,
+     "pos": 103,
+     "len": 4,
+     "type": "Num",
+     "desc": "Devengo(2). Ejercicio"
+    },
+    {
+     "n": 10,
+     "pos": 107,
+     "len": 2,
+     "type": "An",
+     "desc": "Devengo(2). Periodo",
+     "note": "\"01\" ... \"12\" o \"1T\" … \"4T\""
+    },
+    {
+     "n": 11,
+     "pos": 109,
+     "len": 15,
+     "type": "Num",
+     "desc": "Liquidación(3). Número de rentas. Dividendos y otras rentas (...) [01]",
+     "box": 1
+    },
+    {
+     "n": 12,
+     "pos": 124,
+     "len": 15,
+     "type": "Num",
+     "desc": "Liquidación(3). Número de rentas. Resto de rentas [02]",
+     "box": 2
+    },
+    {
+     "n": 13,
+     "pos": 139,
+     "len": 15,
+     "type": "Num",
+     "desc": "Liquidación(3). Número de rentas. Totales [03]",
+     "box": 3
+    },
+    {
+     "n": 14,
+     "pos": 154,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Base de retenciones e ingresos a cuenta. Dividendos y otras rentas (...) [04]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 4
+    },
+    {
+     "n": 15,
+     "pos": 171,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Base de retenciones e ingresos a cuenta. Resto de rentas [05]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 5
+    },
+    {
+     "n": 16,
+     "pos": 188,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Base de retenciones e ingresos a cuenta. Totales [06]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 6
+    },
+    {
+     "n": 17,
+     "pos": 205,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Retenciones e ingresos a cuenta. Dividendos y otras rentas (...) [07]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 7
+    },
+    {
+     "n": 18,
+     "pos": 222,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Retenciones e ingresos a cuenta. Resto de rentas [08]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 8
+    },
+    {
+     "n": 19,
+     "pos": 239,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Retenciones e ingresos a cuenta. Totales [09]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 9
+    },
+    {
+     "n": 20,
+     "pos": 256,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Periodificación. Ingresos ejercicios anteriores [10]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 10
+    },
+    {
+     "n": 21,
+     "pos": 273,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Periodificación. Regularización. [11]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 11
+    },
+    {
+     "n": 22,
+     "pos": 290,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Suma de retenciones e ingresos a cuenta y regularización, en su caso ( [09] + [11] ) [12]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 12
+    },
+    {
+     "n": 23,
+     "pos": 307,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Resultados a ingresar de anteriores autoliquidaciones por el mismo concepto, ejercicio y periodo [13]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 13
+    },
+    {
+     "n": 24,
+     "pos": 324,
+     "len": 17,
+     "type": "Num",
+     "desc": "Liquidación(3). Resultado a ingresar ( [12] - [13] ) [14]",
+     "note": "[quince enteros + dos decimales]",
+     "box": 14
+    },
+    {
+     "n": 25,
+     "pos": 341,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración complementaria.",
+     "note": "blanco o \"X\""
+    },
+    {
+     "n": 26,
+     "pos": 342,
+     "len": 13,
+     "type": "An",
+     "desc": "Número de justificante de la declaración anterior"
+    },
+    {
+     "n": 27,
+     "pos": 355,
+     "len": 34,
+     "type": "An",
+     "desc": "Domiciliación IBAN"
+    },
+    {
+     "n": 28,
+     "pos": 389,
+     "len": 200,
+     "type": "An",
+     "desc": "Reservado AEAT",
+     "note": "En blanco"
+    },
+    {
+     "n": 29,
+     "pos": 589,
+     "len": 12,
+     "type": "An",
+     "desc": "Indicador de fin de registro.",
+     "note": "Constante \"</T12301000>\"",
+     "const": "</T12301000>"
+    }
+   ]
+  }
+ ]
+}

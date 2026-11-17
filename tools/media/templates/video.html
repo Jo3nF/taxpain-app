@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root { --bg: #ffffff; --ink: #0f172a; --g: #2b50d6; --acc: #2b50d6; --mut: #475569; --navy: #0f1733; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: InterV, sans-serif; }
+      .scene { display: none; position: absolute; inset: 0; }
+      .scene.on { display: block; }
+      .logo { display: inline-flex; align-items: center; gap: 22px; font: 700 64px InterV, sans-serif; letter-spacing: -0.02em; } .logo svg { border-radius: 22px; } .dark .logo svg { box-shadow: 0 0 0 2px rgba(255,255,255,.25); }
+      .serif { font-family: InterV, sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+      .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+      h1 { font: 800 150px/1.02 InterV, sans-serif; letter-spacing: -0.04em; margin: 30px 0 0; } h1 em { color: var(--g); font-style: normal; }
+      h2 { font: 800 84px/1.1 InterV, sans-serif; letter-spacing: -0.03em; margin: 0; } h2 em { font-style: normal; color: var(--g); }
+      p.sub { font-size: 40px; color: var(--mut); margin: 26px 0 0; max-width: 1400px; line-height: 1.35; }
+      .split { position: absolute; inset: 0; display: grid; grid-template-columns: 560px 1fr; gap: 60px; align-items: center; padding: 0 70px; }
+      .split h2 { font-size: 72px; }
+      .split p { font-size: 34px; color: var(--mut); line-height: 1.4; margin: 28px 0 0; }
+      .kicker { color: var(--acc); font: 700 26px/1 InterV, sans-serif; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px; }
+      .win { border-radius: 22px; overflow: hidden; background: #fff; box-shadow: 0 50px 90px -30px rgba(15,23,42,.35), 0 0 0 1px rgba(15,23,42,.08); }
+      .win .dots { height: 42px; background-color: #eef1f6; background-image: radial-gradient(circle at 26px 21px,#ec6a5e 8px,transparent 9px), radial-gradient(circle at 54px 21px,#f4bf4f 8px,transparent 9px), radial-gradient(circle at 82px 21px,#61c554 8px,transparent 9px); }
+      .win img { width: 100%; display: block; }
+      .chips { display: flex; gap: 22px; margin-top: 46px; flex-wrap: wrap; justify-content: center; }
+      .chip { background: var(--g); color: #fff; font-weight: 700; font-size: 32px; padding: 16px 30px; border-radius: 999px; }
+      .chip.alt { background: #fff; color: var(--g); box-shadow: inset 0 0 0 3px var(--g); }
+      .lock { width: 220px; height: 220px; border-radius: 50px; background: var(--g); display: flex; align-items: center; justify-content: center; margin-bottom: 40px; box-shadow: 0 40px 70px -30px rgba(75,86,226,.6); }
+      .big-num { font: 800 230px/1 InterV, sans-serif; letter-spacing: -0.04em; color: var(--g); }
+      .dark { background: var(--navy) radial-gradient(1200px 700px at 100% 0%, rgba(109,124,255,.25), transparent 60%); color: #c0d1fd; }
+      .dark h2, .dark .logo { color: #fff; } .dark p.sub { color: #c0d1fd; } .dark h2 em { color: #96b2fa; }
+      .url { font: 700 56px InterV, sans-serif; color: #fff; margin-top: 40px; }
+    </style>
+  </head>
+  <body>
+    <section class="scene" id="s1">
+      <div class="center">
+        <div class="logo"><svg aria-hidden="true" width="84" height="84" viewBox="0 0 512 512"><rect width="512" height="512" rx="116" fill="#c0141f" /><rect x="124" y="124" width="264" height="58" rx="29" fill="#fff" /><path d="M296 182 L226 392" stroke="#fff" stroke-width="58" stroke-linecap="round" /><circle cx="168" cy="262" r="30" fill="#fabd00" /><circle cx="352" cy="346" r="30" fill="#fabd00" /></svg>TaxPain</div>
+        <h1>Tus impuestos,<br /><em>sin dolor.</em></h1>
+      </div>
+    </section>
+
+    <section class="scene" id="s2">
+      <div class="center">
+        <div class="big-num">12+</div>
+        <h2>modelos al año, plazos que cambian<br />con cada festivo… y VERI*FACTU.</h2>
+        <p class="sub">Ser autónomo o tener una pyme en España no debería doler tanto.</p>
+      </div>
+    </section>
+
+    <section class="scene" id="s3">
+      <div class="split">
+        <div>
+          <div class="kicker">Calendario fiscal</div>
+          <h2>Sabe qué te toca y cuándo.</h2>
+          <p>Con festivos nacionales, de tu comunidad y locales. Contrastado con las 99 fechas oficiales de la AEAT de 2026.</p>
+        </div>
+        <div class="win"><div class="dots"></div><img src="../../../media/screens/01-calendario.png" alt="" /></div>
+      </div>
+    </section>
+
+    <section class="scene" id="s4">
+      <div class="split">
+        <div>
+          <div class="kicker">Facturas</div>
+          <h2>VERI*FACTU desde el primer día.</h2>
+          <p>Registro encadenado, QR tributario y Facturae validados contra los esquemas oficiales. Tú confirmas cada factura.</p>
+        </div>
+        <div class="win"><div class="dots"></div><img src="../../../media/screens/03-emitir-confirmacion.png" alt="" /></div>
+      </div>
+    </section>
+
+    <section class="scene" id="s5">
+      <div class="split">
+        <div>
+          <div class="kicker">Facturas recibidas</div>
+          <h2>Arrastra el PDF. Revisa. Listo.</h2>
+          <p>Extrae proveedor, NIF, fecha e importes y te marca lo que no tiene claro.</p>
+        </div>
+        <div class="win"><div class="dots"></div><img src="../../../media/screens/04-recibidas-revision.png" alt="" /></div>
+      </div>
+    </section>
+
+    <section class="scene" id="s6">
+      <div class="split">
+        <div>
+          <div class="kicker">Contabilidad</div>
+          <h2>Que cuadra sola.</h2>
+          <p>Asientos automáticos, banco Norma 43, balance y pérdidas y ganancias PYMES, libros registro para la AEAT.</p>
+        </div>
+        <div class="win"><div class="dots"></div><img src="../../../media/screens/07-banco-conciliacion.png" alt="" /></div>
+      </div>
+    </section>
+
+    <section class="scene" id="s7">
+      <div class="center">
+        <div class="lock">
+          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </div>
+        <h2>Tu certificado nunca sale de tu Mac.</h2>
+        <div class="chips">
+          <span class="chip">Cifrado con el Llavero</span>
+          <span class="chip">Touch ID en cada uso</span>
+          <span class="chip alt">Un test automático lo comprueba</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene dark" id="s8">
+      <div class="center">
+        <div class="logo"><svg aria-hidden="true" width="84" height="84" viewBox="0 0 512 512"><rect width="512" height="512" rx="116" fill="#c0141f" /><rect x="124" y="124" width="264" height="58" rx="29" fill="#fff" /><path d="M296 182 L226 392" stroke="#fff" stroke-width="58" stroke-linecap="round" /><circle cx="168" cy="262" r="30" fill="#fabd00" /><circle cx="352" cy="346" r="30" fill="#fabd00" /></svg>TaxPain</div>
+        <h2 style="margin-top: 30px">Tu gestoría, en tu Mac.</h2>
+        <p class="sub">Código abierto · macOS · en desarrollo</p>
+        <div class="url">taxpain.es</div>
+      </div>
+    </section>
+
+    <script>
+      const id = location.hash.slice(1) || 's1';
+      document.getElementById(id).classList.add('on');
+    </script>
+  </body>
+</html>

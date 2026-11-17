@@ -1,0 +1,815 @@
+{
+ "model": "347",
+ "source": "347.pdf",
+ "sha256": "14583ea5ee04441356c4572d30630d46bfe0818366e575ac186370dd3fe38361",
+ "transcribed": "a mano desde el PDF (Ejercicio 2025 y siguientes, Orden HAC/1431/2025; tipo 1 págs. 1-6, declarado págs. 6-20, inmueble págs. 20-25)",
+ "pages": [
+  {
+   "sheet": "347-1",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "1"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "347"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre, razón social o denominación del declarante"
+    },
+    {
+     "n": 6,
+     "pos": 58,
+     "len": 1,
+     "type": "An",
+     "desc": "Tipo de soporte (C soporte / T telemática)"
+    },
+    {
+     "n": 7,
+     "pos": 59,
+     "len": 9,
+     "type": "Num",
+     "desc": "Persona con quién relacionarse: teléfono"
+    },
+    {
+     "n": 8,
+     "pos": 68,
+     "len": 40,
+     "type": "An",
+     "desc": "Persona con quién relacionarse: apellidos y nombre"
+    },
+    {
+     "n": 9,
+     "pos": 108,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración (empieza por 347)"
+    },
+    {
+     "n": 10,
+     "pos": 121,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración complementaria ('C')"
+    },
+    {
+     "n": 11,
+     "pos": 122,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración sustitutiva ('S')"
+    },
+    {
+     "n": 12,
+     "pos": 123,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración anterior"
+    },
+    {
+     "n": 13,
+     "pos": 136,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de personas y entidades (registros de declarado)"
+    },
+    {
+     "n": 14,
+     "pos": 145,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe total anual de las operaciones: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 15,
+     "pos": 146,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe total anual de las operaciones: parte entera"
+    },
+    {
+     "n": 16,
+     "pos": 159,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe total anual de las operaciones: parte decimal"
+    },
+    {
+     "n": 17,
+     "pos": 161,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de inmuebles (registros de inmueble)"
+    },
+    {
+     "n": 18,
+     "pos": 170,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe total de las operaciones de arrendamiento de locales de negocio: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 19,
+     "pos": 171,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe total de las operaciones de arrendamiento de locales de negocio: parte entera"
+    },
+    {
+     "n": 20,
+     "pos": 184,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe total de las operaciones de arrendamiento de locales de negocio: parte decimal"
+    },
+    {
+     "n": 21,
+     "pos": 186,
+     "len": 205,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 22,
+     "pos": 391,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante legal"
+    },
+    {
+     "n": 23,
+     "pos": 400,
+     "len": 88,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 24,
+     "pos": 488,
+     "len": 13,
+     "type": "An",
+     "desc": "Sello electrónico (reservado AEAT)"
+    }
+   ]
+  },
+  {
+   "sheet": "347-2D",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "347"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarado"
+    },
+    {
+     "n": 6,
+     "pos": 27,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante legal"
+    },
+    {
+     "n": 7,
+     "pos": 36,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre, razón social o denominación del declarado"
+    },
+    {
+     "n": 8,
+     "pos": 76,
+     "len": 1,
+     "type": "An",
+     "desc": "Tipo de hoja",
+     "const": "D"
+    },
+    {
+     "n": 9,
+     "pos": 77,
+     "len": 2,
+     "type": "Num",
+     "desc": "Código provincia"
+    },
+    {
+     "n": 10,
+     "pos": 79,
+     "len": 2,
+     "type": "An",
+     "desc": "Código país"
+    },
+    {
+     "n": 11,
+     "pos": 81,
+     "len": 1,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 12,
+     "pos": 82,
+     "len": 1,
+     "type": "An",
+     "desc": "Clave operación (A-G)"
+    },
+    {
+     "n": 13,
+     "pos": 83,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe anual de las operaciones: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 14,
+     "pos": 84,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe anual de las operaciones: parte entera"
+    },
+    {
+     "n": 15,
+     "pos": 97,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe anual de las operaciones: parte decimal"
+    },
+    {
+     "n": 16,
+     "pos": 99,
+     "len": 1,
+     "type": "An",
+     "desc": "Operación seguro ('X')"
+    },
+    {
+     "n": 17,
+     "pos": 100,
+     "len": 1,
+     "type": "An",
+     "desc": "Arrendamiento local negocio ('X')"
+    },
+    {
+     "n": 18,
+     "pos": 101,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe percibido en metálico: parte entera"
+    },
+    {
+     "n": 19,
+     "pos": 114,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe percibido en metálico: parte decimal"
+    },
+    {
+     "n": 20,
+     "pos": 116,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe anual percibido por transmisiones de inmuebles sujetas a IVA: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 21,
+     "pos": 117,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe anual percibido por transmisiones de inmuebles sujetas a IVA: parte entera"
+    },
+    {
+     "n": 22,
+     "pos": 130,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe anual percibido por transmisiones de inmuebles sujetas a IVA: parte decimal"
+    },
+    {
+     "n": 23,
+     "pos": 132,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio (de las operaciones que originan el cobro en metálico)"
+    },
+    {
+     "n": 24,
+     "pos": 136,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe de las operaciones primer trimestre: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 25,
+     "pos": 137,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe de las operaciones primer trimestre: parte entera"
+    },
+    {
+     "n": 26,
+     "pos": 150,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe de las operaciones primer trimestre: parte decimal"
+    },
+    {
+     "n": 27,
+     "pos": 152,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA primer trimestre: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 28,
+     "pos": 153,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA primer trimestre: parte entera"
+    },
+    {
+     "n": 29,
+     "pos": 166,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA primer trimestre: parte decimal"
+    },
+    {
+     "n": 30,
+     "pos": 168,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe de las operaciones segundo trimestre: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 31,
+     "pos": 169,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe de las operaciones segundo trimestre: parte entera"
+    },
+    {
+     "n": 32,
+     "pos": 182,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe de las operaciones segundo trimestre: parte decimal"
+    },
+    {
+     "n": 33,
+     "pos": 184,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA segundo trimestre: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 34,
+     "pos": 185,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA segundo trimestre: parte entera"
+    },
+    {
+     "n": 35,
+     "pos": 198,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA segundo trimestre: parte decimal"
+    },
+    {
+     "n": 36,
+     "pos": 200,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe de las operaciones tercer trimestre: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 37,
+     "pos": 201,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe de las operaciones tercer trimestre: parte entera"
+    },
+    {
+     "n": 38,
+     "pos": 214,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe de las operaciones tercer trimestre: parte decimal"
+    },
+    {
+     "n": 39,
+     "pos": 216,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA tercer trimestre: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 40,
+     "pos": 217,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA tercer trimestre: parte entera"
+    },
+    {
+     "n": 41,
+     "pos": 230,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA tercer trimestre: parte decimal"
+    },
+    {
+     "n": 42,
+     "pos": 232,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe de las operaciones cuarto trimestre: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 43,
+     "pos": 233,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe de las operaciones cuarto trimestre: parte entera"
+    },
+    {
+     "n": 44,
+     "pos": 246,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe de las operaciones cuarto trimestre: parte decimal"
+    },
+    {
+     "n": 45,
+     "pos": 248,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA cuarto trimestre: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 46,
+     "pos": 249,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA cuarto trimestre: parte entera"
+    },
+    {
+     "n": 47,
+     "pos": 262,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe percibido por transmisiones de inmuebles sujetas a IVA cuarto trimestre: parte decimal"
+    },
+    {
+     "n": 48,
+     "pos": 264,
+     "len": 2,
+     "type": "An",
+     "desc": "NIF operador comunitario: código país"
+    },
+    {
+     "n": 49,
+     "pos": 266,
+     "len": 15,
+     "type": "An",
+     "desc": "NIF operador comunitario: número"
+    },
+    {
+     "n": 50,
+     "pos": 281,
+     "len": 1,
+     "type": "An",
+     "desc": "Operaciones régimen especial criterio de caja IVA ('X')"
+    },
+    {
+     "n": 51,
+     "pos": 282,
+     "len": 1,
+     "type": "An",
+     "desc": "Operación con inversión del sujeto pasivo ('X')"
+    },
+    {
+     "n": 52,
+     "pos": 283,
+     "len": 1,
+     "type": "An",
+     "desc": "Operación con bienes vinculados al régimen de depósito distinto del aduanero ('X')"
+    },
+    {
+     "n": 53,
+     "pos": 284,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe anual de las operaciones devengadas conforme al criterio de caja del IVA: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 54,
+     "pos": 285,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe anual de las operaciones devengadas conforme al criterio de caja del IVA: parte entera"
+    },
+    {
+     "n": 55,
+     "pos": 298,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe anual de las operaciones devengadas conforme al criterio de caja del IVA: parte decimal"
+    },
+    {
+     "n": 56,
+     "pos": 300,
+     "len": 6,
+     "type": "Num",
+     "desc": "Número de convocatoria BDNS (solo clave E)"
+    },
+    {
+     "n": 57,
+     "pos": 306,
+     "len": 195,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  },
+  {
+   "sheet": "347-2I",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "347"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del arrendatario"
+    },
+    {
+     "n": 6,
+     "pos": 27,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante legal"
+    },
+    {
+     "n": 7,
+     "pos": 36,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre, razón social o denominación del arrendatario"
+    },
+    {
+     "n": 8,
+     "pos": 76,
+     "len": 1,
+     "type": "An",
+     "desc": "Tipo de hoja",
+     "const": "I"
+    },
+    {
+     "n": 9,
+     "pos": 77,
+     "len": 22,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 10,
+     "pos": 99,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe de la operación: signo ('N' si negativo; blanco en otro caso)"
+    },
+    {
+     "n": 11,
+     "pos": 100,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe de la operación: parte entera"
+    },
+    {
+     "n": 12,
+     "pos": 113,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe de la operación: parte decimal"
+    },
+    {
+     "n": 13,
+     "pos": 115,
+     "len": 1,
+     "type": "Num",
+     "desc": "Situación del inmueble (1-4)"
+    },
+    {
+     "n": 14,
+     "pos": 116,
+     "len": 25,
+     "type": "An",
+     "desc": "Referencia catastral"
+    },
+    {
+     "n": 15,
+     "pos": 141,
+     "len": 5,
+     "type": "An",
+     "desc": "Dirección: tipo de vía"
+    },
+    {
+     "n": 16,
+     "pos": 146,
+     "len": 50,
+     "type": "An",
+     "desc": "Dirección: nombre vía pública"
+    },
+    {
+     "n": 17,
+     "pos": 196,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección: tipo de numeración"
+    },
+    {
+     "n": 18,
+     "pos": 199,
+     "len": 5,
+     "type": "An",
+     "desc": "Dirección: número de casa"
+    },
+    {
+     "n": 19,
+     "pos": 204,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección: calificador del número"
+    },
+    {
+     "n": 20,
+     "pos": 207,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección: bloque"
+    },
+    {
+     "n": 21,
+     "pos": 210,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección: portal"
+    },
+    {
+     "n": 22,
+     "pos": 213,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección: escalera"
+    },
+    {
+     "n": 23,
+     "pos": 216,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección: planta o piso"
+    },
+    {
+     "n": 24,
+     "pos": 219,
+     "len": 3,
+     "type": "An",
+     "desc": "Dirección: puerta"
+    },
+    {
+     "n": 25,
+     "pos": 222,
+     "len": 40,
+     "type": "An",
+     "desc": "Dirección: complemento"
+    },
+    {
+     "n": 26,
+     "pos": 262,
+     "len": 30,
+     "type": "An",
+     "desc": "Dirección: localidad o población"
+    },
+    {
+     "n": 27,
+     "pos": 292,
+     "len": 30,
+     "type": "An",
+     "desc": "Dirección: municipio"
+    },
+    {
+     "n": 28,
+     "pos": 322,
+     "len": 5,
+     "type": "An",
+     "desc": "Dirección: código de municipio (INE)"
+    },
+    {
+     "n": 29,
+     "pos": 327,
+     "len": 2,
+     "type": "An",
+     "desc": "Dirección: código provincia"
+    },
+    {
+     "n": 30,
+     "pos": 329,
+     "len": 5,
+     "type": "An",
+     "desc": "Dirección: código postal"
+    },
+    {
+     "n": 31,
+     "pos": 334,
+     "len": 167,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  }
+ ]
+}

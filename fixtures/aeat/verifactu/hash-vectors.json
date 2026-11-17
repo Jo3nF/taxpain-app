@@ -1,0 +1,80 @@
+{
+  "source": "https://www.agenciatributaria.es/static_files/AEAT_Desarrolladores/EEDD/IVA/VERI-FACTU/Veri-Factu_especificaciones_huella_hash_registros.pdf",
+  "document": "Detalle de las especificaciones técnicas para generación de la huella o hash de los registros de facturación, v0.1.2, 27/08/2024",
+  "document_sha256": "f4334c254bb875b417247b54315199f89d75a8c4814dfd1e86efec562653d7de",
+  "downloaded": "2026-10-13",
+  "verified_locally": "2026-10-13: SHA-256 (printf '%s' \"$input\" | sha256sum, pasado a mayúsculas) coincide con 'expected' en los 3 vectores",
+  "rules": {
+    "algorithm": "SHA-256 (único permitido; lista L12, TipoHuella=01). Pág. 4",
+    "field_order_alta": ["IDEmisorFactura", "NumSerieFactura", "FechaExpedicionFactura", "TipoFactura", "CuotaTotal", "ImporteTotal", "Huella", "FechaHoraHusoGenRegistro"],
+    "field_order_anulacion": ["IDEmisorFacturaAnulada", "NumSerieFacturaAnulada", "FechaExpedicionFacturaAnulada", "Huella", "FechaHoraHusoGenRegistro"],
+    "field_order_evento": ["NIF (SistemaInformatico/NIF)", "ID (SistemaInformatico/IDOtro/ID)", "IdSistemaInformatico", "Version", "NumeroInstalacion", "NIF (ObligadoEmision/NIF)", "TipoEvento", "HuellaEvento (EventoAnterior)", "FechaHoraHusoGenEvento"],
+    "huella_field_meaning": "En el alta, 'Huella' es RegistroAlta/Encadenamiento/RegistroAnterior/Huella (la del registro anterior); en la anulación, RegistroAnulacion/Encadenamiento/RegistroAnterior/Huella. Págs. 5-6",
+    "concatenation": "nombreCampo1=valorCampo1&nombreCampo2=valorCampo2&...&nombreCampoN=valorCampoN, en el orden indicado; el nombre es la etiqueta XML literal. Pág. 6",
+    "trim": "Se eliminan los espacios al inicio y al final de cada valor (ej.: '<NumSerieFactura> 12345678 / G33 </NumSerieFactura>' -> '12345678 / G33'). Los espacios internos se conservan. Pág. 6",
+    "numeric": "En los campos numéricos se tratan indistintamente los valores con una o dos posiciones decimales, sin relevancia de los ceros a la derecha (ej.: '123.1' y '123.10' son igualmente válidos). Pág. 6. TODO(VERIFY): el documento no aclara si la AEAT recalcula con el texto literal del XML o normalizado; usar en la huella exactamente el mismo texto que se escribe en el XML.",
+    "empty_or_missing": "Si el campo no aparece o va vacío, se pone solo 'nombreCampo=' (ej.: primer registro '...&ImporteTotal=123.45&Huella=&FechaHoraHusoGenRegistro=...'; evento con NIF y sin ID: 'NIF=89890001K&ID=&IdSistemaInformatico=...'). Págs. 6-7",
+    "encoding": "La cadena se codifica en UTF-8 antes de aplicar el hash. Pág. 7",
+    "output": "Hexadecimal, en mayúsculas, 64 caracteres. Pág. 9",
+    "first_record": "Aunque sea el primer registro (Encadenamiento/PrimerRegistro='S', sin bloque RegistroAnterior) se calcula e informa igualmente el campo Huella del propio registro. Pág. 9",
+    "date_format": "FechaExpedicionFactura en formato DD-MM-YYYY (XSD 'fecha': patrón \\d{2}-\\d{2}-\\d{4}), p. ej. '01-01-2024'",
+    "timestamp_format": "FechaHoraHusoGenRegistro ISO 8601 con huso: YYYY-MM-DDThh:mm:ssTZD, p. ej. '2024-01-01T19:20:30+01:00' (DsRegistroVeriFactu.xlsx, hoja 2). El huso es el que usa el SIF al generar el registro.",
+    "aeat_validation": "Si en VERI*FACTU la huella no coincide con el cálculo de la AEAT, el registro se marca 'Aceptado con errores'. Pág. 13",
+    "java_reference": "Pág. 8 (imagen): getValorCampo(nombre, valor, separador) = nombre + '=' + (valor == null ? '' : valor.trim()) + ('&' si separador); digest SHA-256 sobre msg.getBytes(UTF_8), Base16 en mayúsculas"
+  },
+  "vectors": [
+    {
+      "id": "caso1-alta-primer-registro",
+      "type": "alta",
+      "page": "10/13 (apartado 6.1)",
+      "fields": {
+        "IDEmisorFactura": "89890001K",
+        "NumSerieFactura": "12345678/G33",
+        "FechaExpedicionFactura": "01-01-2024",
+        "TipoFactura": "F1",
+        "CuotaTotal": "12.35",
+        "ImporteTotal": "123.45",
+        "Huella": "",
+        "FechaHoraHusoGenRegistro": "2024-01-01T19:20:30+01:00"
+      },
+      "input": "IDEmisorFactura=89890001K&NumSerieFactura=12345678/G33&FechaExpedicionFactura=01-01-2024&TipoFactura=F1&CuotaTotal=12.35&ImporteTotal=123.45&Huella=&FechaHoraHusoGenRegistro=2024-01-01T19:20:30+01:00",
+      "expected": "3C464DAF61ACB827C65FDA19F352A4E3BDC2C640E9E9FC4CC058073F38F12F60"
+    },
+    {
+      "id": "caso2-alta-encadenada",
+      "type": "alta",
+      "page": "11/13 (apartado 6.2)",
+      "fields": {
+        "IDEmisorFactura": "89890001K",
+        "NumSerieFactura": "12345679/G34",
+        "FechaExpedicionFactura": "01-01-2024",
+        "TipoFactura": "F1",
+        "CuotaTotal": "12.35",
+        "ImporteTotal": "123.45",
+        "Huella": "3C464DAF61ACB827C65FDA19F352A4E3BDC2C640E9E9FC4CC058073F38F12F60",
+        "FechaHoraHusoGenRegistro": "2024-01-01T19:20:35+01:00"
+      },
+      "input": "IDEmisorFactura=89890001K&NumSerieFactura=12345679/G34&FechaExpedicionFactura=01-01-2024&TipoFactura=F1&CuotaTotal=12.35&ImporteTotal=123.45&Huella=3C464DAF61ACB827C65FDA19F352A4E3BDC2C640E9E9FC4CC058073F38F12F60&FechaHoraHusoGenRegistro=2024-01-01T19:20:35+01:00",
+      "expected": "F7B94CFD8924EDFF273501B01EE5153E4CE8F259766F88CF6ACB8935802A2B97"
+    },
+    {
+      "id": "caso3-anulacion-encadenada",
+      "type": "anulacion",
+      "page": "12/13 (apartado 6.3)",
+      "fields": {
+        "IDEmisorFacturaAnulada": "89890001K",
+        "NumSerieFacturaAnulada": "12345679/G34",
+        "FechaExpedicionFacturaAnulada": "01-01-2024",
+        "Huella": "F7B94CFD8924EDFF273501B01EE5153E4CE8F259766F88CF6ACB8935802A2B97",
+        "FechaHoraHusoGenRegistro": "2024-01-01T19:20:40+01:00"
+      },
+      "input": "IDEmisorFacturaAnulada=89890001K&NumSerieFacturaAnulada=12345679/G34&FechaExpedicionFacturaAnulada=01-01-2024&Huella=F7B94CFD8924EDFF273501B01EE5153E4CE8F259766F88CF6ACB8935802A2B97&FechaHoraHusoGenRegistro=2024-01-01T19:20:40+01:00",
+      "expected": "177547C0D57AC74748561D054A9CEC14B4C4EA23D1BEFD6F2E69E3A388F90C68"
+    }
+  ],
+  "notes": [
+    "El PDF parte las cadenas en varias líneas por maquetación; aquí se reproducen unidas sin saltos (así es como validan).",
+    "No hay ningún ejemplo oficial de huella de registro de evento (solo se usan en sistemas NO VERI*FACTU). TODO(VERIFY) si se necesitan.",
+    "Tampoco hay ejemplo oficial con importes de un solo decimal ni con espacios a recortar."
+  ]
+}

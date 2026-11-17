@@ -1,0 +1,30 @@
+ref/
+target/
+node_modules/
+# También los enlaces simbólicos a node_modules de otra copia (worktrees).
+node_modules
+dist/
+*.db
+*.db-wal
+*.db-shm
+.env
+.env.*
+*.p12
+*.pfx
+!fixtures/**/*.p12
+# Clave privada del actualizador (docs/RELEASE.md), clave .p8 de App Store Connect y firmas
+# minisign sueltas: nunca al repositorio.
+*.key
+*.p8
+*.minisign
+# Paquetes del actualizador (decenas de MB por versión): viven en la release de GitHub, nunca
+# en git ni en Cloudflare Pages. En web/updates/ sólo puede ir latest.json (docs/RELEASE.md §3).
+web/updates/*.tar.gz
+web/updates/*.tar.gz.*
+web/updates/*.dmg
+.DS_Store
+apps/desktop/src-tauri/gen/
+media/web-*.png
+media/video/
+.claude/worktrees/
+__pycache__/

@@ -1,0 +1,1665 @@
+@import "tailwindcss";
+
+/*
+ * Sistema de diseño de TaxPain.
+ *
+ * Sobrio y profesional: superficies blancas, líneas finas y un solo color de marca.
+ * - Marca: azul (`brand-*`), para la acción principal, lo activo y los enlaces.
+ * - España, con mesura: el logo (cuadrado rojo y el «%» en gualda), la franja rojigualda de
+ *   arriba y la banderita de «Hecho en España» (`es-red`, `es-gold`). Nunca en botones ni avisos.
+ * - Neutros fríos (`stone`, redefinida como pizarra) y tinta azul marino para el texto.
+ * - Los colores con significado: verde (`emerald`) correcto, ámbar (`amber`) aviso, rojo (`red`)
+ *   error o peligro. Nunca como decoración.
+ * - En modo oscuro las escalas se invierten con variables: los componentes no necesitan `dark:`.
+ * - Fuente del sistema (SF Pro en el Mac): nada se descarga.
+ */
+@theme {
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-display:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --color-brand-50: #eff4ff;
+  --color-brand-100: #dce6fe;
+  --color-brand-200: #c0d1fd;
+  --color-brand-300: #96b2fa;
+  --color-brand-400: #6589f5;
+  --color-brand-500: #4068ec;
+  --color-brand-600: #2b50d6;
+  --color-brand-700: #2341b3;
+  --color-brand-800: #22398f;
+  --color-brand-900: #213371;
+  --color-brand-950: #0f1733;
+
+  /* Rojo y gualda de la bandera (sólo para la identidad). */
+  --color-es-red: #c60b1e;
+  --color-es-gold: #ffc400;
+
+  --color-stone-50: #f8fafc;
+  --color-stone-100: #f1f4f8;
+  --color-stone-200: #e3e8ef;
+  --color-stone-300: #cdd5df;
+  --color-stone-400: #97a3b6;
+  --color-stone-500: #5f6b7d;
+  --color-stone-600: #4a5568;
+  --color-stone-700: #364152;
+  --color-stone-800: #202939;
+  --color-stone-900: #111827;
+  --color-stone-950: #0b1120;
+
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+  --color-emerald-900: #064e3b;
+
+  --color-red-500: #dc2f3c;
+  --color-link: #2341b3;
+
+  /* Superficies y sombras con nombre, para el armazón y las tarjetas. */
+  --color-canvas: #ffffff;
+  --color-surface: #ffffff;
+  --color-sidebar: #f7f8fb;
+  --color-hairline: #e6eaf0;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.04);
+  --shadow-raised: 0 1px 2px rgb(15 23 42 / 0.05), 0 8px 24px -12px rgb(15 23 42 / 0.12);
+  --shadow-pop: 0 16px 48px -16px rgb(15 23 42 / 0.3);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.75rem;
+}
+
+:root {
+  --shadow-field: 0 1px 2px rgb(15 23 42 / 0.04);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--color-brand-500) 22%, transparent);
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%235f6b7d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2398a2b3' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    --color-canvas: #0d0f14;
+    --color-surface: #13161d;
+    --color-sidebar: #0f1218;
+    --color-hairline: #232834;
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.5), 0 10px 28px -12px rgb(0 0 0 / 0.6);
+    --color-link: #9bb6fc;
+    --shadow-field: none;
+
+    --color-white: #13161d;
+    --color-stone-50: #171a22;
+    --color-stone-100: #1c2029;
+    --color-stone-200: #262b36;
+    --color-stone-300: #353b48;
+    --color-stone-400: #5a6273;
+    --color-stone-500: #98a2b3;
+    --color-stone-600: #b0b8c6;
+    --color-stone-700: #c9d0db;
+    --color-stone-800: #dfe4ec;
+    --color-stone-900: #eef1f6;
+    --color-stone-950: #f7f9fc;
+
+    --color-brand-50: #142040;
+    --color-brand-100: #1a2a55;
+    --color-brand-700: #9bb6fc;
+    --color-brand-800: #c0d1fd;
+
+    --color-emerald-50: #0c2a22;
+    --color-emerald-100: #0f3a2e;
+    --color-emerald-300: #17785d;
+    --color-emerald-600: #34d399;
+    --color-emerald-700: #6ee7b7;
+    --color-emerald-800: #86efc5;
+    --color-emerald-900: #b6f5dc;
+
+    --color-red-50: #2a1416;
+    --color-red-100: #3a191c;
+    --color-red-300: #8a3a40;
+    --color-red-500: #e5555f;
+    --color-red-700: #f19aa0;
+    --color-red-800: #f5b3b7;
+    --color-red-900: #f8cdd0;
+
+    --color-amber-50: #29200f;
+    --color-amber-100: #3a2d12;
+    --color-amber-200: #5c4618;
+    --color-amber-300: #8a6a22;
+    --color-amber-400: #c99a33;
+    --color-amber-600: #e0ad45;
+    --color-amber-700: #f0c46a;
+    --color-amber-800: #f5d58e;
+    --color-amber-900: #f8e3b0;
+    --color-amber-950: #fcefd2;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 15px;
+  }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-stone-900);
+    font-feature-settings: "cv11", "ss01";
+  }
+  h2,
+  h3 {
+    letter-spacing: -0.01em;
+    color: var(--color-stone-900);
+  }
+  button {
+    cursor: pointer;
+    transition:
+      background-color 120ms ease,
+      border-color 120ms ease,
+      color 120ms ease,
+      box-shadow 120ms ease;
+  }
+  /* Botones sin estilo propio: como enlaces. */
+  main button {
+    color: var(--color-link);
+  }
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  input:not([type="checkbox"], [type="radio"], [type="file"], [type="range"]),
+  select,
+  textarea {
+    background-color: var(--color-white);
+    border-color: var(--color-stone-300);
+    transition:
+      border-color 120ms ease,
+      box-shadow 120ms ease;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-stone-400);
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    accent-color: var(--color-brand-600);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+    border-color: var(--color-brand-500);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-500) 20%, transparent);
+  }
+  table {
+    border-collapse: collapse;
+  }
+  thead th {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--color-stone-500);
+    padding-block: 0.55rem;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  th,
+  td {
+    padding-inline: 0.5rem;
+  }
+  tbody td {
+    padding-block: 0.5rem;
+  }
+  td.text-right,
+  th.text-right,
+  td.tabular-nums {
+    white-space: nowrap;
+  }
+  tbody tr {
+    transition: background-color 100ms ease;
+  }
+  tbody tr:hover {
+    background-color: var(--color-stone-50);
+  }
+  a {
+    color: var(--color-link);
+  }
+  summary {
+    cursor: pointer;
+  }
+  /* Casilla y su texto, uno al lado del otro (cada pantalla puede apilarlas con «flex»). */
+  main label:has(> input[type="checkbox"]),
+  main label:has(> input[type="radio"]) {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+  }
+  hr {
+    border-color: var(--color-hairline);
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--color-brand-400) 30%, transparent);
+  }
+}
+
+@layer components {
+  /* Acción principal. */
+  .btn-primary {
+    background: var(--color-brand-600);
+    color: #fff;
+    font-weight: 500;
+    border: 1px solid var(--color-brand-700);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.12),
+      0 1px 2px rgb(15 23 42 / 0.12);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-brand-700);
+  }
+  /* En el modo oscuro el brand-700 es un azul claro para textos: al pasar, el botón se aclara
+   * sólo un poco, para que el texto blanco se siga leyendo. */
+  @media (prefers-color-scheme: dark) {
+    .btn-primary:hover:not(:disabled) {
+      background: var(--color-brand-500);
+    }
+  }
+  .btn-danger {
+    background: #c62f3b;
+    color: #fff;
+    font-weight: 500;
+    border: 1px solid #a8222d;
+  }
+  .btn-danger:hover:not(:disabled) {
+    background: #a8222d;
+  }
+  /* Mensaje propio en el chat del asistente. */
+  .bubble-me {
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.05rem 0.45rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    background: var(--color-brand-50);
+    color: var(--color-brand-700);
+    border: 1px solid color-mix(in srgb, var(--color-brand-500) 25%, transparent);
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .pill-stone {
+    background: var(--color-stone-100);
+    color: var(--color-stone-700);
+  }
+  .pill-amber {
+    background: var(--color-amber-50);
+    color: var(--color-amber-800);
+  }
+  .pill-green {
+    background: var(--color-emerald-50);
+    color: var(--color-emerald-800);
+  }
+  .pill-red {
+    background: var(--color-red-50);
+    color: var(--color-red-800);
+  }
+  .pill-brand {
+    background: var(--color-brand-50);
+    color: var(--color-brand-700);
+  }
+  .count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.4rem;
+    height: 1.4rem;
+    padding: 0 0.35rem;
+    margin-right: 0.15rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+  .bar-income {
+    border-radius: 4px 4px 1px 1px;
+    background: var(--color-brand-500);
+  }
+  .bar-expense {
+    border-radius: 4px 4px 1px 1px;
+    background: var(--color-stone-300);
+  }
+  .chart {
+    background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px);
+    background-size: 100% 25%;
+    background-position: 0 -1px;
+  }
+  .date-tile {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 0.15rem;
+    width: 3rem;
+    height: 3.25rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    background: var(--color-surface);
+    color: var(--color-stone-900);
+    border: 1px solid var(--color-hairline);
+    box-shadow: var(--shadow-card);
+  }
+  .date-tile > :last-child {
+    color: var(--color-brand-700);
+    font-weight: 600;
+  }
+  .icon-tile {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    border-radius: 0.6rem;
+    background: var(--color-stone-100);
+    color: var(--color-stone-600);
+  }
+  /* Cabecera del panel: blanca, con el próximo plazo destacado. */
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.4rem 1.5rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-hairline);
+    background:
+      radial-gradient(
+        90% 140% at 100% 0%,
+        color-mix(in srgb, var(--color-brand-500) 9%, transparent),
+        transparent 60%
+      ),
+      var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+  .hero-main {
+    flex: 1 1 24rem;
+    min-width: 0;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-brand-700);
+  }
+  .hero-title {
+    margin-top: 0.2rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    color: var(--color-stone-900);
+  }
+  .hero-sub {
+    margin-top: 0.25rem;
+    max-width: 38rem;
+    font-size: 0.875rem;
+    color: var(--color-stone-500);
+  }
+  .hero-next {
+    min-width: 15rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-hairline);
+    box-shadow: var(--shadow-card);
+    color: var(--color-stone-900);
+  }
+  .hero-next strong {
+    color: var(--color-brand-700);
+  }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+/* Armazón: barra lateral clara, cabecera de página y contenido sobre blanco. */
+.app-shell {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  min-height: 100vh;
+}
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 0.75rem 0.9rem;
+  background: var(--color-sidebar);
+  color: var(--color-stone-700);
+  border-right: 1px solid var(--color-hairline);
+}
+.sidebar-title {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--color-stone-900);
+}
+.sidebar-group {
+  padding: 0 0.7rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-stone-500);
+}
+.sidebar-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.42rem 0.7rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-stone-600);
+  /* Con la ventana estrecha, los nombres largos pasan a dos líneas alineadas con la primera. */
+  text-align: left;
+}
+.sidebar-item span {
+  min-width: 0;
+  line-height: 1.25;
+}
+.sidebar-item svg {
+  flex-shrink: 0;
+  color: var(--color-stone-400);
+}
+.sidebar-item:hover {
+  background: var(--color-stone-100);
+  color: var(--color-stone-900);
+}
+.sidebar-item[aria-current="page"] {
+  background: var(--color-surface);
+  color: var(--color-stone-900);
+  box-shadow:
+    0 0 0 1px var(--color-hairline),
+    0 1px 2px rgb(15 23 42 / 0.06);
+}
+.sidebar-item[aria-current="page"] svg {
+  color: var(--color-brand-600);
+}
+aside.sidebar select {
+  width: 100%;
+  font-weight: 500;
+}
+/* Selector de empresa: distintivo con las iniciales, nombre y NIF. */
+.company-trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  color: var(--color-stone-500);
+}
+.company-trigger:hover,
+.company-trigger[aria-expanded="true"] {
+  border-color: var(--color-stone-300);
+}
+.company-badge {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-50);
+  color: var(--color-brand-700);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.company-name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-stone-900);
+}
+.company-nif {
+  display: block;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-stone-500);
+}
+.sidebar-foot {
+  margin-top: 0.75rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-hairline);
+  background: var(--color-surface);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--color-stone-500);
+}
+/* Franja rojigualda arriba de la ventana: rojo, gualda (doble) y rojo, como la bandera. */
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  height: 4px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-es-red) 0 25%,
+    var(--color-es-gold) 25% 75%,
+    var(--color-es-red) 75%
+  );
+  pointer-events: none;
+}
+.sidebar-made {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--color-hairline);
+  font-weight: 500;
+  color: var(--color-stone-600);
+}
+.sidebar-made .block {
+  font-weight: 400;
+  color: var(--color-stone-500);
+}
+.es-flag {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(15 23 42 / 0.08);
+}
+.app-main {
+  min-width: 0;
+  padding: 1.75rem 2.25rem 3rem;
+}
+.page-head {
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-hairline);
+}
+.page-head h2 {
+  font-family: var(--font-display);
+}
+.page-body {
+  max-width: 76rem;
+  margin-inline: auto;
+  margin-top: 0.25rem;
+}
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 4rem minmax(0, 1fr);
+  }
+  .sidebar h1,
+  .sidebar-group,
+  .sidebar-item span,
+  .sidebar-foot,
+  .sidebar select,
+  .company-trigger > :not(.company-badge) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .sidebar-item {
+    justify-content: center;
+  }
+  .company-trigger {
+    justify-content: center;
+    padding: 0.3rem;
+  }
+  aside.sidebar .sidebar-search {
+    justify-content: center;
+    padding-inline: 0;
+  }
+  aside.sidebar .sidebar-search > :not(svg) {
+    display: none;
+  }
+  .app-main {
+    padding: 1.25rem 1rem 2rem;
+  }
+}
+
+/*
+ * Patrones que comparten muchas pantallas, fuera de las capas para que manden sobre las clases
+ * de utilidad de cada una: así se rediseña todo sin tocar cada componente.
+ */
+
+/*
+ * Botones normales (los que tienen borde): altura, radio y estado al pasar. Los que traen un
+ * color con significado (aviso en ámbar, peligro en rojo, correcto en verde) lo conservan.
+ */
+main button.border:not(.btn-primary) {
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  box-shadow: 0 1px 1px rgb(16 24 20 / 0.04);
+}
+main
+  button.border:not(
+    .btn-primary,
+    [class*="bg-amber"],
+    [class*="bg-red"],
+    [class*="bg-emerald"],
+    [class*="border-amber"],
+    [class*="border-red"],
+    [class*="border-emerald"]
+  ) {
+  color: var(--color-stone-900);
+  background-color: var(--color-surface);
+  border-color: var(--color-stone-300);
+}
+main
+  button.border:not(
+    .btn-primary,
+    [class*="bg-amber"],
+    [class*="bg-red"],
+    [class*="bg-emerald"],
+    [class*="border-amber"],
+    [class*="border-red"],
+    [class*="border-emerald"]
+  ):hover:not(:disabled) {
+  background-color: var(--color-stone-50);
+  border-color: var(--color-stone-400);
+}
+main button.border:is([class*="border-amber"], [class*="border-red"]):not([class*="bg-"]) {
+  color: var(--color-stone-900);
+  background-color: var(--color-surface);
+}
+main button.border:is([class*="border-amber"], [class*="border-red"]):hover:not(:disabled) {
+  background-color: var(--color-stone-50);
+}
+
+/*
+ * Campos de formulario: misma altura, radio, tipografía y estados (encima, enfocado, erróneo,
+ * desactivado, sólo lectura) en todos. WebKit en el Mac dibuja los desplegables y las fechas a su
+ * manera si no se le dice nada.
+ */
+:where(main, .sidebar)
+:is(
+  input:not([type="checkbox"], [type="radio"], [type="file"], [type="range"], [type="color"]),
+  select,
+  textarea
+) {
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  color: var(--color-stone-900);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-stone-300);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-field);
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    background-color 120ms ease;
+}
+:where(main, .sidebar)
+  :is(
+    input:not([type="checkbox"], [type="radio"], [type="file"], [type="range"], [type="color"]),
+    select
+  ) {
+  height: 2.25rem;
+  min-height: 2.25rem;
+  padding: 0 0.75rem;
+}
+:where(main) textarea {
+  padding: 0.5rem 0.75rem;
+}
+:where(main, .sidebar)
+  :is(
+    input:not([type="checkbox"], [type="radio"], [type="file"], [type="range"]),
+    select,
+    textarea
+  ):hover:not(:disabled, :focus, [readonly]) {
+  border-color: var(--color-stone-400);
+}
+:where(main, .sidebar)
+  :is(
+    input:not([type="checkbox"], [type="radio"], [type="file"], [type="range"]),
+    select,
+    textarea
+  ):focus {
+  outline: none;
+  border-color: var(--color-brand-500);
+  box-shadow: var(--ring);
+}
+/* Erróneo: cuando el navegador lo valida tras tocarlo, o cuando la pantalla lo marca. */
+:where(main) :is(input, select, textarea):is(:user-invalid, [aria-invalid="true"]) {
+  border-color: var(--color-red-500);
+}
+:where(main) :is(input, select, textarea):is(:user-invalid, [aria-invalid="true"]):focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-500) 20%, transparent);
+}
+:where(main, .sidebar) :is(input, select, textarea):disabled {
+  background-color: var(--color-stone-100);
+  border-color: var(--color-stone-200);
+  color: var(--color-stone-500);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+:where(main) :is(input, textarea)[readonly] {
+  background-color: var(--color-stone-50);
+  color: var(--color-stone-700);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-stone-400);
+  opacity: 1;
+}
+
+/* Desplegables: flecha propia (en claro y en oscuro) y el texto recortado con «…». */
+main select {
+  min-width: 6.5rem;
+}
+:is(main, aside.sidebar) select:not([multiple], [size]) {
+  padding-right: 2.1rem;
+  background-image: var(--select-arrow);
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+main select option {
+  background-color: var(--color-surface);
+  color: var(--color-stone-900);
+}
+
+/*
+ * Lista de opciones con el diseño de la app donde el motor lo permite (Safari 27, Chrome 135):
+ * sigue siendo un <select> de verdad (teclado, VoiceOver y formularios igual). En un macOS más
+ * antiguo sale el menú del sistema, que también está bien.
+ */
+@supports (appearance: base-select) {
+  :is(main, aside.sidebar) select:not([multiple], [size]),
+  :is(main, aside.sidebar) select:not([multiple], [size])::picker(select) {
+    appearance: base-select;
+  }
+  /*
+   * Sin cambiar el «display» (manda el de cada pantalla: `block`, `hidden`…): el texto se centra
+   * con el relleno y la flecha es una pieza propia, con el fondo del campo, que tapa el texto que
+   * no cabe (si no, pasaba por debajo de la flecha).
+   */
+  :is(main, aside.sidebar) select:not([multiple], [size]) {
+    position: relative;
+    padding-block: calc(0.5rem - 1px);
+    background-image: none;
+    overflow: hidden;
+  }
+  /* Con `block`, el ancho de lo que muestra (como el del sistema); `w-*` y la rejilla mandan. */
+  @layer base {
+    :is(main, aside.sidebar) select:not([multiple], [size]) {
+      width: fit-content;
+      max-width: 100%;
+    }
+  }
+  :is(main, aside.sidebar) select:not([multiple], [size])::picker-icon {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 2.1rem;
+    background: var(--select-arrow) center / 1rem no-repeat;
+    background-color: inherit;
+  }
+  :is(main, aside.sidebar) select::picker(select) {
+    margin-block: 0.3rem;
+    padding: 0.3rem;
+    min-width: anchor-size(width);
+    max-height: min(24rem, 70vh);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-pop);
+    scrollbar-width: thin;
+  }
+  :is(main, aside.sidebar) select option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    color: var(--color-stone-800);
+    background: transparent;
+    white-space: normal;
+    cursor: pointer;
+  }
+  :is(main, aside.sidebar) select option::checkmark {
+    order: 1;
+    margin-left: auto;
+    padding-left: 0.75rem;
+    color: var(--color-brand-600);
+    font-weight: 700;
+  }
+  :is(main, aside.sidebar) select option:is(:hover, :focus-visible) {
+    background: var(--color-stone-100);
+    color: var(--color-stone-900);
+    outline: none;
+  }
+  :is(main, aside.sidebar) select option:checked {
+    background: var(--color-brand-50);
+    color: var(--color-brand-800);
+    font-weight: 600;
+  }
+  :is(main, aside.sidebar) select option:disabled {
+    color: var(--color-stone-400);
+    cursor: default;
+  }
+  :is(main, aside.sidebar) select optgroup {
+    padding-top: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-stone-500);
+  }
+  :is(main, aside.sidebar) select optgroup option {
+    font-size: 0.875rem;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+  :is(main, aside.sidebar) select optgroup + optgroup {
+    margin-top: 0.3rem;
+    border-top: 1px solid var(--color-hairline);
+  }
+}
+
+/* Fechas y números. */
+main input[type="date"],
+main input[type="month"] {
+  min-width: 9.5rem;
+  line-height: 2.1rem;
+  font-variant-numeric: tabular-nums;
+}
+main input[type="date"]::-webkit-datetime-edit,
+main input[type="month"]::-webkit-datetime-edit {
+  padding: 0;
+  line-height: 1.25rem;
+}
+main input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+  margin: 0;
+}
+main input::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+main input::-webkit-calendar-picker-indicator:hover {
+  opacity: 0.85;
+}
+main input[type="number"] {
+  min-width: 4.5rem;
+  -moz-appearance: textfield;
+  font-variant-numeric: tabular-nums;
+}
+main input[type="number"]::-webkit-inner-spin-button,
+main input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+main input[inputmode="decimal"] {
+  font-variant-numeric: tabular-nums;
+}
+main input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+/* Campo con sugerencias (provincia): la misma flecha que los desplegables, no el ▼ del motor. */
+main input[list]::-webkit-calendar-picker-indicator {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 -0.2rem 0 0;
+  padding: 0;
+  background: var(--select-arrow) center / 1rem no-repeat;
+  color: transparent;
+  opacity: 1;
+}
+main input[list]::-webkit-list-button {
+  -webkit-appearance: none;
+  display: block;
+  align-self: center;
+  width: 1rem;
+  height: 1rem;
+  margin: auto 0;
+  background: var(--select-arrow) center / 1rem no-repeat;
+  color: transparent;
+  opacity: 1;
+}
+
+/* Botón de los campos de fichero, como un botón secundario. */
+main input[type="file"] {
+  font-size: 0.875rem;
+  color: var(--color-stone-600);
+}
+main input[type="file"]::file-selector-button {
+  height: 2.25rem;
+  margin-right: 0.75rem;
+  padding-inline: 0.85rem;
+  border: 1px solid var(--color-stone-300);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-stone-900);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-field);
+}
+main input[type="file"]::file-selector-button:hover {
+  background: var(--color-stone-50);
+  border-color: var(--color-stone-400);
+}
+
+/*
+ * Casillas y botones de opción dibujados por la app (los del sistema son pequeños y grises):
+ * cuadrado redondeado con la marca al marcar, y el mismo anillo de foco que los campos.
+ */
+:where(main, dialog, .sidebar) :is(input[type="checkbox"], input[type="radio"]) {
+  -webkit-appearance: none;
+  appearance: none;
+  flex-shrink: 0;
+  display: inline-block;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  vertical-align: -0.22em;
+  border: 1.5px solid var(--color-stone-400);
+  background-color: var(--color-white);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+:where(main, dialog, .sidebar) input[type="checkbox"] {
+  border-radius: 0.3rem;
+  background-size: 0.8rem;
+}
+:where(main, dialog, .sidebar) input[type="radio"] {
+  border-radius: 999px;
+}
+:where(main, dialog, .sidebar)
+  :is(input[type="checkbox"], input[type="radio"]):hover:not(:disabled) {
+  border-color: var(--color-brand-500);
+}
+:where(main, dialog, .sidebar) :is(input[type="checkbox"], input[type="radio"]):focus-visible {
+  outline: none;
+  border-color: var(--color-brand-500);
+  box-shadow: var(--ring);
+}
+:where(main, dialog, .sidebar) input[type="checkbox"]:checked {
+  border-color: var(--color-brand-600);
+  background-color: var(--color-brand-600);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
+}
+:where(main, dialog, .sidebar) input[type="checkbox"]:indeterminate {
+  border-color: var(--color-brand-600);
+  background-color: var(--color-brand-600);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M4 8h8'/%3E%3C/svg%3E");
+}
+:where(main, dialog, .sidebar) input[type="radio"]:checked {
+  border-color: var(--color-brand-600);
+  background-color: var(--color-brand-600);
+  background-image: radial-gradient(circle, #fff 0 0.2rem, transparent calc(0.2rem + 0.5px));
+}
+:where(main, dialog, .sidebar) :is(input[type="checkbox"], input[type="radio"]):disabled {
+  border-color: var(--color-stone-300);
+  background-color: var(--color-stone-100);
+  cursor: not-allowed;
+}
+:where(main, dialog, .sidebar) :is(input[type="checkbox"], input[type="radio"]):checked:disabled {
+  border-color: var(--color-stone-300);
+  background-color: var(--color-stone-300);
+}
+
+/* Interruptor (casilla con role="switch"): para lo que se enciende o se apaga en los ajustes. */
+:where(main, dialog) input[type="checkbox"][role="switch"] {
+  width: 2.25rem;
+  height: 1.3rem;
+  border: 0;
+  border-radius: 999px;
+  background-color: var(--color-stone-300);
+  background-image: radial-gradient(
+    circle,
+    #fff 0 0.47rem,
+    rgb(15 23 42 / 0.18) calc(0.47rem + 0.5px) 0.52rem,
+    transparent calc(0.52rem + 0.5px)
+  );
+  background-size: 1.3rem 1.3rem;
+  background-position: left center;
+  transition:
+    background-color 160ms ease,
+    background-position 160ms ease,
+    box-shadow 120ms ease;
+}
+:where(main, dialog) input[type="checkbox"][role="switch"]:hover:not(:disabled) {
+  background-color: var(--color-stone-400);
+}
+:where(main, dialog) input[type="checkbox"][role="switch"]:checked {
+  background-color: var(--color-brand-600);
+  background-position: right center;
+}
+:where(main, dialog) input[type="checkbox"][role="switch"]:checked:hover:not(:disabled) {
+  background-color: var(--color-brand-700);
+}
+:where(main, dialog) input[type="checkbox"][role="switch"]:disabled {
+  opacity: 0.55;
+}
+
+/*
+ * Etiquetas: el nombre del campo un poco más pequeño y con peso, encima; las ayudas dentro, en
+ * normal. La casilla, al lado de su texto y alineada con la primera línea aunque haya más.
+ */
+main label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-stone-700);
+}
+main label :is(.text-stone-400, .text-stone-500, .text-stone-600, .text-xs, small, p) {
+  font-weight: 400;
+}
+main label > :is(input, select, textarea) {
+  margin-top: 0.3rem;
+}
+main label:has(> input[type="checkbox"]),
+main label:has(> input[type="radio"]) {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-stone-800);
+  cursor: pointer;
+}
+main label:has(> input[type="checkbox"]) > input,
+main label:has(> input[type="radio"]) > input {
+  margin-top: 0.07rem;
+}
+main label:has(> input[role="switch"]) > input {
+  margin-top: 0;
+}
+main label:has(> input:disabled) {
+  cursor: not-allowed;
+  color: var(--color-stone-500);
+}
+/*
+ * Formulario en rejilla: cada campo con su etiqueta encima, en columnas que se adaptan al ancho.
+ * `.span-2` ocupa dos columnas y `.span-full` toda la fila (p. ej. los botones).
+ */
+main .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr));
+  gap: 0.85rem 1rem;
+  align-items: end;
+}
+main .form-grid > label:not(:has(> input[type="checkbox"], > input[type="radio"])) {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+main .form-grid > label > :is(input:not([type="checkbox"], [type="radio"]), select, textarea) {
+  width: 100%;
+}
+main .form-grid > label:has(> input[type="checkbox"], > input[type="radio"]) {
+  align-self: end;
+  align-items: center;
+  min-height: 2.25rem;
+}
+main .form-grid > .span-2 {
+  grid-column: span 2;
+}
+main .form-grid > .span-full {
+  grid-column: 1 / -1;
+}
+@media (max-width: 640px) {
+  main .form-grid > .span-2 {
+    grid-column: 1 / -1;
+  }
+}
+main .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Un grupo de casillas con su título (fieldset > legend). */
+main fieldset.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+main fieldset.choices > legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-stone-700);
+}
+
+/* Botones con borde (secundarios) y principales: la misma altura que los campos. */
+main button.border,
+main button.btn-primary,
+main button.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding-inline: 0.85rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+main button.btn-primary,
+main button.btn-danger {
+  border-radius: var(--radius-md);
+}
+
+/* Desplegables «details»: cabecera clicable con flecha propia. */
+main details > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+  color: var(--color-stone-800);
+}
+main details > summary::-webkit-details-marker {
+  display: none;
+}
+main details > summary::before {
+  content: "";
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7671' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 6l4 4-4 4'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  transition: transform 120ms ease;
+}
+main details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+/*
+ * Acciones de texto en la cabecera de cada pantalla (la fila del título): como botones
+ * discretos de la marca, con el mismo alto que el resto.
+ */
+main
+  section
+  > .justify-between:first-child
+  button:not(.border, .btn-primary, .btn-danger, .btn-ghost, .stepper button) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.25rem;
+  padding-inline: 0.7rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-link);
+  text-decoration: none;
+}
+main
+  section
+  > .justify-between:first-child
+  button:not(.border, .btn-primary, .btn-danger, .btn-ghost, .stepper button):hover {
+  background: var(--color-stone-100);
+}
+
+/* Barra de año (‹ 2026 ›) y botones de icono. */
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-stone-300);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  height: 2.25rem;
+  overflow: hidden;
+}
+.stepper button {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 100%;
+  color: var(--color-stone-600);
+}
+.stepper button:hover {
+  background: var(--color-stone-100);
+  color: var(--color-stone-900);
+}
+.stepper span {
+  min-width: 3.5rem;
+  padding-inline: 0.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-stone-900);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.25rem;
+  padding-inline: 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-link);
+}
+.btn-ghost:hover {
+  background: var(--color-stone-100);
+}
+
+/* Botón de búsqueda (⌘K) en la barra lateral. */
+aside.sidebar .sidebar-search {
+  margin: 0.75rem 0.25rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.25rem;
+  padding-inline: 0.65rem;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  color: var(--color-stone-500);
+  font-size: 0.875rem;
+}
+aside.sidebar .sidebar-search:hover {
+  color: var(--color-stone-700);
+  border-color: var(--color-stone-300);
+}
+aside.sidebar .sidebar-search kbd {
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--color-stone-500);
+}
+/* Pestañas internas (Libros de contabilidad y similares): control segmentado. */
+main nav[aria-label]:not([aria-label="Secciones"]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-stone-100);
+  border: 1px solid var(--color-stone-200);
+  width: fit-content;
+  max-width: 100%;
+}
+main nav[aria-label]:not([aria-label="Secciones"]) > button {
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
+  padding: 0.3rem 0.7rem;
+  color: var(--color-stone-600);
+  font-weight: 500;
+}
+main nav[aria-label]:not([aria-label="Secciones"]) > button:hover {
+  color: var(--color-stone-900);
+}
+main nav[aria-label]:not([aria-label="Secciones"]) > button[aria-current="page"] {
+  background: var(--color-surface);
+  color: var(--color-stone-900);
+  box-shadow:
+    0 1px 2px rgb(16 24 20 / 0.08),
+    0 0 0 1px var(--color-stone-200);
+}
+main button[aria-pressed="true"].border,
+main button[aria-pressed="true"] {
+  background: var(--color-surface);
+  box-shadow: 0 0 0 1px var(--color-brand-500);
+  color: var(--color-stone-900);
+}
+
+/* Filas de tareas (botón con borde): texto a la izquierda y flecha a la derecha. */
+main button.task-row.border {
+  justify-content: space-between;
+  text-align: left;
+  font-weight: 400;
+}
+
+/* Tarjetas que ya existían como «borde + fondo blanco + redondeado». */
+main .rounded-lg.border.bg-white,
+main .rounded-md.border.bg-white,
+main .rounded-xl.border.bg-white {
+  border-color: var(--color-stone-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+/* Avisos (role=alert/status con fondo de color): más aire y radio. */
+main [role="alert"][class*="bg-"],
+main [role="status"][class*="bg-"] {
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem;
+}
+
+/* Menús de acciones (Menu.tsx): el botón que lo abre y la lista flotante. */
+.menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  height: 2rem;
+  padding-inline: 0.6rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-link);
+  white-space: nowrap;
+}
+.menu-trigger:hover,
+.menu-trigger[aria-expanded="true"] {
+  background: var(--color-stone-100);
+}
+main .menu-trigger.menu-icon-only {
+  width: 2rem;
+  justify-content: center;
+  padding: 0;
+  color: var(--color-stone-600);
+}
+.menu-pop {
+  position: fixed;
+  z-index: 60;
+  min-width: 12rem;
+  max-width: min(24rem, calc(100vw - 16px));
+  overflow-y: auto;
+  padding: 0.3rem;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-pop);
+  outline: none;
+  animation: menu-in 110ms ease-out;
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+}
+.menu-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  text-align: left;
+  color: var(--color-stone-800);
+}
+.menu-item:is(:hover, :focus) {
+  outline: none;
+  background: var(--color-stone-100);
+  color: var(--color-stone-900);
+}
+.menu-item[aria-disabled="true"] {
+  color: var(--color-stone-400);
+  background: none;
+  cursor: default;
+}
+.menu-item.menu-danger {
+  color: var(--color-red-700);
+}
+.menu-item.menu-danger:is(:hover, :focus) {
+  background: var(--color-red-50);
+}
+.menu-item[aria-checked="true"] {
+  font-weight: 600;
+  color: var(--color-stone-900);
+}
+.menu-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--color-stone-500);
+}
+.menu-label {
+  flex: 1;
+  min-width: 0;
+}
+.menu-hint {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-stone-500);
+}
+.menu-check {
+  flex-shrink: 0;
+  color: var(--color-brand-600);
+}
+.menu-sep {
+  margin: 0.3rem 0.2rem;
+  border: 0;
+  border-top: 1px solid var(--color-hairline);
+}
+.menu-heading {
+  padding: 0.4rem 0.6rem 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-stone-500);
+}
+
+/* Diálogos de confirmación. */
+dialog {
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-pop);
+  background: var(--color-surface);
+  color: var(--color-stone-900);
+}
+dialog::backdrop {
+  background: rgb(8 17 15 / 0.45);
+  backdrop-filter: blur(3px);
+}
+
+/* Conversación con la IA: panel a la derecha (diálogo modal). */
+dialog.ai-panel {
+  margin: 0 0 0 auto;
+  padding: 0;
+  width: min(36rem, 100vw);
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  border: 0;
+  border-left: 1px solid var(--color-hairline);
+  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+}
+dialog.ai-panel[data-fallback] {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 50;
+}
+/* Sin diálogo modal del sistema (macOS anteriores a 12.3): el fondo, a mano. */
+.ai-panel-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: rgb(8 17 15 / 0.45);
+}
+dialog.ai-panel[open] {
+  animation: ai-panel-in 140ms ease-out;
+}
+@keyframes ai-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(1.5rem);
+  }
+}
+@media (max-width: 900px) {
+  dialog.ai-panel {
+    width: 100vw;
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Formularios: Facturación y Ajustes */
+/*
+ * Campo en línea («Ejercicio [Todos]», «Día [31] de [diciembre]»): la etiqueta al lado del
+ * campo y centrada con él, para filtros y frases cortas fuera de una rejilla.
+ */
+main label.field-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+main label.field-inline > :is(input, select) {
+  margin-top: 0;
+}
+/* Acción discreta que borra o descarta: en rojo, no como enlace. */
+main .btn-ghost.text-red-700 {
+  color: var(--color-red-700);
+}
+main .btn-ghost.text-red-700:hover {
+  background: var(--color-red-50);
+}
+/* Dato leído con dudas (Recibidas): ámbar si la confianza es media, rojo si es baja o falta. */
+:where(main) input:where([data-confidence="media"]):not(:user-invalid) {
+  border-color: var(--color-amber-400);
+}
+:where(main) input:where([data-confidence="baja"], [data-confidence="falta"]):not(:user-invalid) {
+  border-color: var(--color-red-300);
+}
+:where(main) input[data-confidence="falta"] {
+  background-color: var(--color-red-50);
+}
+/*
+ * Apartados de una página larga (Ajustes): el control segmentado, pegado arriba al desplazarse,
+ * con una línea debajo cuando ya va pegado. Cada sección deja sitio para que no la tape.
+ */
+main .section-nav-bar {
+  position: sticky;
+  top: 4px;
+  z-index: 20;
+  margin-top: 1rem;
+  padding-block: 0.5rem;
+  background: var(--color-canvas);
+  border-bottom: 1px solid transparent;
+  transition: border-color 120ms ease;
+}
+main .section-nav-bar[data-stuck] {
+  border-bottom-color: var(--color-hairline);
+}
+main .section-nav-bar nav > button[aria-current="location"] {
+  background: var(--color-surface);
+  color: var(--color-stone-900);
+  box-shadow:
+    0 1px 2px rgb(16 24 20 / 0.08),
+    0 0 0 1px var(--color-stone-200);
+}
+main .section-anchor {
+  scroll-margin-top: 4.75rem;
+}
+/* Botón de sólo icono (quitar una línea): discreto, en rojo al pasar. */
+main .btn-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-md);
+  color: var(--color-stone-500);
+}
+main .btn-icon:hover {
+  background: var(--color-red-50);
+  color: var(--color-red-700);
+}
+
+/* Respuestas de la IA en Markdown (Markdown.tsx). */
+.md-text > * + * {
+  margin-top: 0.5rem;
+}
+.md-text ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.md-text ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+.md-text li + li {
+  margin-top: 0.15rem;
+}
+.md-text strong {
+  font-weight: 600;
+}
+.md-text .md-h {
+  font-weight: 600;
+}
+.md-text code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.85em;
+  background: var(--color-stone-100);
+  border-radius: 0.25rem;
+  padding: 0 0.2rem;
+}
+.md-text pre {
+  white-space: pre-wrap;
+  background: var(--color-stone-100);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+}
+.md-text pre code {
+  background: none;
+  padding: 0;
+}

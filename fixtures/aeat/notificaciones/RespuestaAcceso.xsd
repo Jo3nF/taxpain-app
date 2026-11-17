@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaAcceso.xsd" 
+		xmlns:ra=		"https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaAcceso.xsd"
+		xmlns:gn=		"https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd" 
+		elementFormDefault="qualified"> 
+
+    <import schemaLocation="TiposGN.xsd" 
+    		namespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd"/>
+    <element name="RespuestaAcceso" type="ra:TipoRespuestaAcceso"/>
+
+	<complexType name="TipoRespuestaAcceso">
+    	<sequence>    	
+    		<element name="Version" type="gn:TipoVersion" nillable="true" minOccurs="0"/>    	
+    		<element name="NumeroCertificado" type="gn:TipoNumeroCertificado"/>
+    		<element name="Envio" type="ra:TipoEnvioAcceso" maxOccurs="1" minOccurs="0"/>
+    		<element name="CodRespuesta" type="string"/>
+    		<element name="MsgRespuesta" type="string"/>	
+    	</sequence>
+	</complexType>
+
+
+    <complexType name="TipoEnvioAcceso">
+    	<sequence>
+    		<element name="MetadatosPrivados" type="ra:TipoMetadatosPrivados"/>
+    		<element name="DocumentoPDF" type="base64Binary"/>
+    		<element name="CertificacionPDF" type="base64Binary"/>
+    	</sequence>
+    </complexType>
+
+    <complexType name="TipoMetadatosPrivados">
+    	<sequence>
+    		<element name="NifTitularProcedimiento" type="gn:TipoNif" />
+    		<element name="NombreTitularProcedimiento" type="string" />
+    		<element name="NifTitular" type="gn:TipoNif" />
+    		<element name="NombreTitular" type="string" />
+    		<element name="NifDestinatario" type="gn:TipoNif" />
+    		<element name="NombreDestinatario" type="string" />
+    		<element name="FechaEmision" type="dateTime"  />
+    		<element name="FechaAcceso" type="dateTime"  />
+    		<element name="CodOficinaRemitente" type="string" />
+    		<element name="NombreOficinaRemitente" type="string" />
+    		<element name="DireccionOficinaRemitente" type="string" />
+    		<element name="ClaveAplicacion" type="string" />
+    		<element name="Concepto" type="string" />
+    		<element name="CodProcedimiento" type="string" />
+    		<element name="DescripcionProcedimiento" type="string" />
+    		<element name="Ejercicio" type="string" />
+    		<element name="Modelo" type="string" />
+    		<element name="Periodo" type="string" />
+    		<element name="Importe" type="string" />
+    		<element name="CSVDocumentoPDF" type="string" />
+    		<element name="CSVCertificacionPDF" type="string"/>
+    	</sequence>
+    </complexType>
+</schema>

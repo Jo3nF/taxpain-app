@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Respuesta SINTÉTICA basada en el ejemplo de la especificación v1.7 (§4.3, versión 1.3). -->
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rc="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaConsulta.xsd">
+  <env:Header/>
+  <env:Body>
+    <rc:RespuestaConsulta>
+      <rc:Version>1.3</rc:Version>
+      <rc:ClavePaginacion>1</rc:ClavePaginacion>
+      <rc:Envios>
+        <rc:Envio>
+          <rc:NumeroCertificado>2319486500018</rc:NumeroCertificado>
+          <rc:Rol>T</rc:Rol>
+          <rc:Estado>A</rc:Estado>
+          <rc:MetadatosPublicos>
+            <rc:TipoEnvio>N</rc:TipoEnvio>
+            <rc:FechaPuestaDisposicion>2023-01-02T10:34:53</rc:FechaPuestaDisposicion>
+            <rc:Asunto>Notificación administrativa</rc:Asunto>
+            <rc:NifTitular>12345678Z</rc:NifTitular>
+            <rc:NifDestinatario>12345678Z</rc:NifDestinatario>
+          </rc:MetadatosPublicos>
+        </rc:Envio>
+        <rc:Envio>
+          <rc:NumeroCertificado>2319979900012</rc:NumeroCertificado>
+          <rc:Rol>T</rc:Rol>
+          <rc:Estado>P</rc:Estado>
+          <rc:MetadatosPublicos>
+            <rc:TipoEnvio>N</rc:TipoEnvio>
+            <rc:FechaPuestaDisposicion>2023-01-02T10:31:50</rc:FechaPuestaDisposicion>
+            <rc:Asunto>Notificación administrativa</rc:Asunto>
+            <rc:NifTitular>12345678Z</rc:NifTitular>
+            <rc:NifDestinatario>12345678Z</rc:NifDestinatario>
+          </rc:MetadatosPublicos>
+        </rc:Envio>
+      </rc:Envios>
+      <rc:CodRespuesta>00</rc:CodRespuesta>
+      <rc:MsgRespuesta>Respuesta correcta</rc:MsgRespuesta>
+    </rc:RespuestaConsulta>
+  </env:Body>
+</env:Envelope>

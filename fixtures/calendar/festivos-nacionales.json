@@ -1,0 +1,1243 @@
+{
+  "retrieved": "2026-10-13",
+  "notes": [
+    "national = filas del anexo marcadas (* o **) en las 19 columnas (17 CCAA + Ceuta + Melilla). '*' = Fiesta Nacional no sustituible; '**' = Fiesta Nacional respecto de la que no se ha ejercido la facultad de sustitución; '***' = Fiesta de Comunidad Autónoma.",
+    "Las fiestas nacionales que caen en domingo no figuran en el anexo (2026: 1 nov y 6 dic; 2027: 15 ago).",
+    "No incluye fiestas locales (art. 46 RD 2001/1983: hasta 2 por municipio, publicadas en boletines autonómicos/provinciales) ni las fiestas insulares de Canarias ni la sustitución de Arán (ver notas_aclaratorias).",
+    "Para cómputo de plazos administrativos de la AGE en 2026 ver también BOE-A-2025-23702 (calendario de días inhábiles)."
+  ],
+  "years": {
+    "2026": {
+      "source_url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-21667",
+      "boe_id": "BOE-A-2025-21667",
+      "published": "BOE núm. 259, de 28 de octubre de 2025",
+      "national": [
+        {
+          "date": "2026-01-01",
+          "name": "Año Nuevo",
+          "code": "*"
+        },
+        {
+          "date": "2026-01-06",
+          "name": "Epifanía del Señor",
+          "code": "**"
+        },
+        {
+          "date": "2026-04-03",
+          "name": "Viernes Santo",
+          "code": "*"
+        },
+        {
+          "date": "2026-05-01",
+          "name": "Fiesta del Trabajo",
+          "code": "*"
+        },
+        {
+          "date": "2026-08-15",
+          "name": "Asunción de la Virgen",
+          "code": "*"
+        },
+        {
+          "date": "2026-10-12",
+          "name": "Fiesta Nacional de España",
+          "code": "*"
+        },
+        {
+          "date": "2026-12-08",
+          "name": "Inmaculada Concepción",
+          "code": "*"
+        },
+        {
+          "date": "2026-12-25",
+          "name": "Natividad del Señor",
+          "code": "*"
+        }
+      ],
+      "all_regions": [
+        {
+          "date": "2026-01-01",
+          "name": "Año Nuevo",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2026-01-06",
+          "name": "Epifanía del Señor",
+          "codes": ["**"],
+          "regions": "all"
+        },
+        {
+          "date": "2026-02-28",
+          "name": "Día de Andalucía",
+          "codes": ["***"],
+          "regions": ["Andalucía"]
+        },
+        {
+          "date": "2026-03-02",
+          "name": "Lunes siguiente al Día de les Illes Balears",
+          "codes": ["***"],
+          "regions": ["Illes Balears"]
+        },
+        {
+          "date": "2026-03-19",
+          "name": "San José",
+          "codes": ["**"],
+          "regions": [
+            "Galicia",
+            "Región Murcia",
+            "C. Foral Navarra",
+            "País Vasco",
+            "Comunitat Valenciana"
+          ]
+        },
+        {
+          "date": "2026-03-20",
+          "name": "Fiesta del Eid Fitr",
+          "codes": ["***"],
+          "regions": ["Ciudad de Melilla"]
+        },
+        {
+          "date": "2026-04-02",
+          "name": "Jueves Santo",
+          "codes": ["**"],
+          "regions": [
+            "Andalucía",
+            "Aragón",
+            "Asturias",
+            "Illes Balears",
+            "Canarias",
+            "Cantabria",
+            "Castilla-La Mancha",
+            "Castilla y León",
+            "Extremadura",
+            "Galicia",
+            "Com. Madrid",
+            "Región Murcia",
+            "C. Foral Navarra",
+            "País Vasco",
+            "La Rioja",
+            "Ciudad de Ceuta",
+            "Ciudad de Melilla"
+          ]
+        },
+        {
+          "date": "2026-04-03",
+          "name": "Viernes Santo",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2026-04-06",
+          "name": "Lunes de Pascua",
+          "codes": ["***"],
+          "regions": [
+            "Illes Balears",
+            "Castilla-La Mancha",
+            "Cataluña",
+            "C. Foral Navarra",
+            "País Vasco",
+            "La Rioja",
+            "Comunitat Valenciana"
+          ]
+        },
+        {
+          "date": "2026-04-23",
+          "name": "San Jorge/Día de Aragón",
+          "codes": ["***"],
+          "regions": ["Aragón"]
+        },
+        {
+          "date": "2026-04-23",
+          "name": "Fiesta de Castilla y León",
+          "codes": ["***"],
+          "regions": ["Castilla y León"]
+        },
+        {
+          "date": "2026-05-01",
+          "name": "Fiesta del Trabajo",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2026-05-02",
+          "name": "Fiesta de la Comunidad de Madrid",
+          "codes": ["***"],
+          "regions": ["Com. Madrid"]
+        },
+        {
+          "date": "2026-05-27",
+          "name": "Fiesta Sacrificio-Eidul Adha",
+          "codes": ["***"],
+          "regions": ["Ciudad de Ceuta"]
+        },
+        {
+          "date": "2026-05-27",
+          "name": "Fiesta Sacrificio-Aid al Adha",
+          "codes": ["***"],
+          "regions": ["Ciudad de Melilla"]
+        },
+        {
+          "date": "2026-05-30",
+          "name": "Día de Canarias",
+          "codes": ["***"],
+          "regions": ["Canarias"]
+        },
+        {
+          "date": "2026-06-04",
+          "name": "Corpus Christi",
+          "codes": ["***"],
+          "regions": ["Castilla-La Mancha"]
+        },
+        {
+          "date": "2026-06-09",
+          "name": "Día de la Región de Murcia",
+          "codes": ["***"],
+          "regions": ["Región Murcia"]
+        },
+        {
+          "date": "2026-06-09",
+          "name": "Día de la Rioja",
+          "codes": ["***"],
+          "regions": ["La Rioja"]
+        },
+        {
+          "date": "2026-06-24",
+          "name": "San Juan",
+          "codes": ["***"],
+          "regions": ["Cataluña", "Galicia", "Comunitat Valenciana"]
+        },
+        {
+          "date": "2026-07-25",
+          "name": "Santiago Apóstol/Día Nacional de Galicia",
+          "codes": ["**"],
+          "regions": ["Galicia", "País Vasco"]
+        },
+        {
+          "date": "2026-07-28",
+          "name": "Día de las Instituciones de Cantabria",
+          "codes": ["***"],
+          "regions": ["Cantabria"]
+        },
+        {
+          "date": "2026-08-05",
+          "name": "Nuestra Señora de África",
+          "codes": ["***"],
+          "regions": ["Ciudad de Ceuta"]
+        },
+        {
+          "date": "2026-08-15",
+          "name": "Asunción de la Virgen",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2026-09-02",
+          "name": "Día de Ceuta",
+          "codes": ["***"],
+          "regions": ["Ciudad de Ceuta"]
+        },
+        {
+          "date": "2026-09-08",
+          "name": "Día de Asturias",
+          "codes": ["***"],
+          "regions": ["Asturias"]
+        },
+        {
+          "date": "2026-09-08",
+          "name": "Día de Extremadura",
+          "codes": ["***"],
+          "regions": ["Extremadura"]
+        },
+        {
+          "date": "2026-09-11",
+          "name": "Fiesta Nacional de Cataluña",
+          "codes": ["***"],
+          "regions": ["Cataluña"]
+        },
+        {
+          "date": "2026-09-15",
+          "name": "La Bien Aparecida",
+          "codes": ["***"],
+          "regions": ["Cantabria"]
+        },
+        {
+          "date": "2026-10-09",
+          "name": "Día de la Comunitat Valenciana",
+          "codes": ["***"],
+          "regions": ["Comunitat Valenciana"]
+        },
+        {
+          "date": "2026-10-12",
+          "name": "Fiesta Nacional de España",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2026-11-02",
+          "name": "Día siguiente a Todos los Santos",
+          "codes": ["**"],
+          "regions": [
+            "Andalucía",
+            "Aragón",
+            "Asturias",
+            "Canarias",
+            "Castilla-La Mancha",
+            "Castilla y León",
+            "Extremadura",
+            "Com. Madrid",
+            "C. Foral Navarra"
+          ]
+        },
+        {
+          "date": "2026-12-07",
+          "name": "Lunes siguiente al Día de la Constitución Española",
+          "codes": ["**"],
+          "regions": [
+            "Andalucía",
+            "Aragón",
+            "Asturias",
+            "Cantabria",
+            "Castilla y León",
+            "Extremadura",
+            "Com. Madrid",
+            "Región Murcia",
+            "La Rioja",
+            "Ciudad de Melilla"
+          ]
+        },
+        {
+          "date": "2026-12-08",
+          "name": "Inmaculada Concepción",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2026-12-25",
+          "name": "Natividad del Señor",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2026-12-26",
+          "name": "San Esteban",
+          "codes": ["***"],
+          "regions": ["Illes Balears", "Cataluña"]
+        }
+      ],
+      "by_region": {
+        "Andalucía": [
+          {
+            "date": "2026-02-28",
+            "name": "Día de Andalucía"
+          },
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "Aragón": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-04-23",
+            "name": "San Jorge/Día de Aragón"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "Asturias": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-09-08",
+            "name": "Día de Asturias"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "Illes Balears": [
+          {
+            "date": "2026-03-02",
+            "name": "Lunes siguiente al Día de les Illes Balears"
+          },
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-04-06",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2026-12-26",
+            "name": "San Esteban"
+          }
+        ],
+        "Canarias": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-05-30",
+            "name": "Día de Canarias"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          }
+        ],
+        "Cantabria": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-07-28",
+            "name": "Día de las Instituciones de Cantabria"
+          },
+          {
+            "date": "2026-09-15",
+            "name": "La Bien Aparecida"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "Castilla-La Mancha": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-04-06",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2026-06-04",
+            "name": "Corpus Christi"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          }
+        ],
+        "Castilla y León": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-04-23",
+            "name": "Fiesta de Castilla y León"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "Cataluña": [
+          {
+            "date": "2026-04-06",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2026-06-24",
+            "name": "San Juan"
+          },
+          {
+            "date": "2026-09-11",
+            "name": "Fiesta Nacional de Cataluña"
+          },
+          {
+            "date": "2026-12-26",
+            "name": "San Esteban"
+          }
+        ],
+        "Extremadura": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-09-08",
+            "name": "Día de Extremadura"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "Galicia": [
+          {
+            "date": "2026-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-06-24",
+            "name": "San Juan"
+          },
+          {
+            "date": "2026-07-25",
+            "name": "Santiago Apóstol/Día Nacional de Galicia"
+          }
+        ],
+        "Com. Madrid": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-05-02",
+            "name": "Fiesta de la Comunidad de Madrid"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "Región Murcia": [
+          {
+            "date": "2026-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-06-09",
+            "name": "Día de la Región de Murcia"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "C. Foral Navarra": [
+          {
+            "date": "2026-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-04-06",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2026-11-02",
+            "name": "Día siguiente a Todos los Santos"
+          }
+        ],
+        "País Vasco": [
+          {
+            "date": "2026-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-04-06",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2026-07-25",
+            "name": "Santiago Apóstol/Día Nacional de Galicia"
+          }
+        ],
+        "La Rioja": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-04-06",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2026-06-09",
+            "name": "Día de la Rioja"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ],
+        "Comunitat Valenciana": [
+          {
+            "date": "2026-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2026-04-06",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2026-06-24",
+            "name": "San Juan"
+          },
+          {
+            "date": "2026-10-09",
+            "name": "Día de la Comunitat Valenciana"
+          }
+        ],
+        "Ciudad de Ceuta": [
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-05-27",
+            "name": "Fiesta Sacrificio-Eidul Adha"
+          },
+          {
+            "date": "2026-08-05",
+            "name": "Nuestra Señora de África"
+          },
+          {
+            "date": "2026-09-02",
+            "name": "Día de Ceuta"
+          }
+        ],
+        "Ciudad de Melilla": [
+          {
+            "date": "2026-03-20",
+            "name": "Fiesta del Eid Fitr"
+          },
+          {
+            "date": "2026-04-02",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2026-05-27",
+            "name": "Fiesta Sacrificio-Aid al Adha"
+          },
+          {
+            "date": "2026-12-07",
+            "name": "Lunes siguiente al Día de la Constitución Española"
+          }
+        ]
+      },
+      "notas_aclaratorias": [
+        "1. En la Comunidad Autónoma de Canarias, el Decreto 61/2025, de 28 de abril, por el que se determina el calendario de fiestas laborales de la Comunidad Autónoma de Canarias para el año 2026 (BOC de 5 de mayo de 2025) dispone que: «En las islas de El Hierro, Fuerteventura, Gran Canaria, La Gomera, La Palma, Lanzarote, La Graciosa y Tenerife, las fiestas laborales serán, además, las siguientes: en El Hierro: el 24 de septiembre, festividad de Nuestra Señora de los Reyes; en Fuerteventura: el 18 de septiembre, festividad de Nuestra Señora de la Peña; en Gran Canaria: el 8 de septiembre, festividad de Nuestra Señora del Pino; en La Gomera: el 5 de octubre, festividad de Nuestra Señora de Guadalupe; en La Palma: el 5 de agosto, festividad de Nuestra Señora de Las Nieves; en Lanzarote y La Graciosa: el 15 de septiembre, festividad de Nuestra Señora de los Volcanes; en Tenerife: el 2 de febrero, festividad de la Virgen de la Candelaria».",
+        "2. En la Comunidad Autónoma de Cataluña, la Orden EMT/66/2025, de 30 de abril, por la que se establece el calendario oficial de fiestas laborales en Cataluña para el año 2026 (DOGC de 6 de mayo de 2025) dispone que: «En el territorio de Arán, la fiesta del día 26 de diciembre (Sant Esteve) queda sustituida por la de 17 de junio (Fiesta de Arán), miércoles»."
+      ]
+    },
+    "2027": {
+      "source_url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21254",
+      "boe_id": "BOE-A-2026-21254",
+      "published": "BOE núm. 254, de 13 de octubre de 2026",
+      "national": [
+        {
+          "date": "2027-01-01",
+          "name": "Año Nuevo",
+          "code": "*"
+        },
+        {
+          "date": "2027-01-06",
+          "name": "Epifanía del Señor",
+          "code": "**"
+        },
+        {
+          "date": "2027-03-26",
+          "name": "Viernes Santo",
+          "code": "*"
+        },
+        {
+          "date": "2027-05-01",
+          "name": "Fiesta del Trabajo",
+          "code": "*"
+        },
+        {
+          "date": "2027-10-12",
+          "name": "Fiesta Nacional de España",
+          "code": "*"
+        },
+        {
+          "date": "2027-11-01",
+          "name": "Todos los Santos",
+          "code": "*"
+        },
+        {
+          "date": "2027-12-06",
+          "name": "Día de la Constitución Española",
+          "code": "*"
+        },
+        {
+          "date": "2027-12-08",
+          "name": "Inmaculada Concepción",
+          "code": "*"
+        },
+        {
+          "date": "2027-12-25",
+          "name": "Natividad del Señor",
+          "code": "*"
+        }
+      ],
+      "all_regions": [
+        {
+          "date": "2027-01-01",
+          "name": "Año Nuevo",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2027-01-06",
+          "name": "Epifanía del Señor",
+          "codes": ["**"],
+          "regions": "all"
+        },
+        {
+          "date": "2027-03-01",
+          "name": "Día de Andalucía",
+          "codes": ["***"],
+          "regions": ["Andalucía"]
+        },
+        {
+          "date": "2027-03-01",
+          "name": "Día de les Illes Balears",
+          "codes": ["***"],
+          "regions": ["Illes Balears"]
+        },
+        {
+          "date": "2027-03-10",
+          "name": "Fiesta del Eid Fitr",
+          "codes": ["***"],
+          "regions": ["Ciudad de Melilla"]
+        },
+        {
+          "date": "2027-03-19",
+          "name": "San José",
+          "codes": ["**"],
+          "regions": [
+            "Galicia",
+            "Com. de Madrid",
+            "Región Murcia",
+            "C. Foral Navarra",
+            "Comunitat Valenciana"
+          ]
+        },
+        {
+          "date": "2027-03-25",
+          "name": "Jueves Santo",
+          "codes": ["**"],
+          "regions": [
+            "Andalucía",
+            "Aragón",
+            "Asturias",
+            "Illes Balears",
+            "Canarias",
+            "Cantabria",
+            "Castilla-La Mancha",
+            "Castilla y León",
+            "Extremadura",
+            "Galicia",
+            "Com. de Madrid",
+            "Región Murcia",
+            "C. Foral Navarra",
+            "País Vasco",
+            "La Rioja",
+            "Ciudad de Ceuta",
+            "Ciudad de Melilla"
+          ]
+        },
+        {
+          "date": "2027-03-26",
+          "name": "Viernes Santo",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2027-03-29",
+          "name": "Lunes de Pascua",
+          "codes": ["***"],
+          "regions": [
+            "Illes Balears",
+            "Cataluña",
+            "C. Foral Navarra",
+            "País Vasco",
+            "La Rioja",
+            "Comunitat Valenciana"
+          ]
+        },
+        {
+          "date": "2027-04-23",
+          "name": "San Jorge/Día de Aragón",
+          "codes": ["***"],
+          "regions": ["Aragón"]
+        },
+        {
+          "date": "2027-04-23",
+          "name": "Fiesta de Castilla y León",
+          "codes": ["***"],
+          "regions": ["Castilla y León"]
+        },
+        {
+          "date": "2027-05-01",
+          "name": "Fiesta del Trabajo",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2027-05-17",
+          "name": "Día de las Letras Gallegas",
+          "codes": ["***"],
+          "regions": ["Galicia"]
+        },
+        {
+          "date": "2027-05-17",
+          "name": "Eidul Adha-Fiesta Sacrificio",
+          "codes": ["***"],
+          "regions": ["Ciudad de Ceuta"]
+        },
+        {
+          "date": "2027-05-17",
+          "name": "Fiesta Sacrificio-Aid Al Adha",
+          "codes": ["***"],
+          "regions": ["Ciudad de Melilla"]
+        },
+        {
+          "date": "2027-05-27",
+          "name": "Corpus Christi",
+          "codes": ["***"],
+          "regions": ["Castilla-La Mancha"]
+        },
+        {
+          "date": "2027-05-31",
+          "name": "Día de Castilla-La Mancha",
+          "codes": ["***"],
+          "regions": ["Castilla-La Mancha"]
+        },
+        {
+          "date": "2027-06-09",
+          "name": "Día de la Región de Murcia",
+          "codes": ["***"],
+          "regions": ["Región Murcia"]
+        },
+        {
+          "date": "2027-06-09",
+          "name": "Día de La Rioja",
+          "codes": ["***"],
+          "regions": ["La Rioja"]
+        },
+        {
+          "date": "2027-06-24",
+          "name": "Día de San Juan",
+          "codes": ["***"],
+          "regions": ["Cataluña"]
+        },
+        {
+          "date": "2027-07-28",
+          "name": "Día de las Instituciones de Cantabria",
+          "codes": ["***"],
+          "regions": ["Cantabria"]
+        },
+        {
+          "date": "2027-08-05",
+          "name": "Nuestra Señora de África",
+          "codes": ["***"],
+          "regions": ["Ciudad de Ceuta"]
+        },
+        {
+          "date": "2027-08-16",
+          "name": "Lunes siguiente a asunción de la Virgen",
+          "codes": ["**"],
+          "regions": [
+            "Andalucía",
+            "Aragón",
+            "Asturias",
+            "Canarias",
+            "Castilla y León",
+            "Com. de Madrid"
+          ]
+        },
+        {
+          "date": "2027-09-08",
+          "name": "Día de Asturias",
+          "codes": ["***"],
+          "regions": ["Asturias"]
+        },
+        {
+          "date": "2027-09-08",
+          "name": "Día de Extremadura",
+          "codes": ["***"],
+          "regions": ["Extremadura"]
+        },
+        {
+          "date": "2027-09-11",
+          "name": "Fiesta Nacional de Cataluña",
+          "codes": ["***"],
+          "regions": ["Cataluña"]
+        },
+        {
+          "date": "2027-09-15",
+          "name": "La Bien Aparecida",
+          "codes": ["***"],
+          "regions": ["Cantabria"]
+        },
+        {
+          "date": "2027-10-07",
+          "name": "Aniversario 1er Gobierno Euskadi",
+          "codes": ["***"],
+          "regions": ["País Vasco"]
+        },
+        {
+          "date": "2027-10-09",
+          "name": "Día de la Comunitat Valenciana",
+          "codes": ["***"],
+          "regions": ["Comunitat Valenciana"]
+        },
+        {
+          "date": "2027-10-11",
+          "name": "Sustitución 15 de agosto",
+          "codes": ["***"],
+          "regions": ["Extremadura"]
+        },
+        {
+          "date": "2027-10-12",
+          "name": "Fiesta Nacional de España",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2027-11-01",
+          "name": "Todos los Santos",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2027-12-06",
+          "name": "Día de la Constitución Española",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2027-12-08",
+          "name": "Inmaculada Concepción",
+          "codes": ["*"],
+          "regions": "all"
+        },
+        {
+          "date": "2027-12-25",
+          "name": "Natividad del Señor",
+          "codes": ["*"],
+          "regions": "all"
+        }
+      ],
+      "by_region": {
+        "Andalucía": [
+          {
+            "date": "2027-03-01",
+            "name": "Día de Andalucía"
+          },
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-08-16",
+            "name": "Lunes siguiente a asunción de la Virgen"
+          }
+        ],
+        "Aragón": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-04-23",
+            "name": "San Jorge/Día de Aragón"
+          },
+          {
+            "date": "2027-08-16",
+            "name": "Lunes siguiente a asunción de la Virgen"
+          }
+        ],
+        "Asturias": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-08-16",
+            "name": "Lunes siguiente a asunción de la Virgen"
+          },
+          {
+            "date": "2027-09-08",
+            "name": "Día de Asturias"
+          }
+        ],
+        "Illes Balears": [
+          {
+            "date": "2027-03-01",
+            "name": "Día de les Illes Balears"
+          },
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-03-29",
+            "name": "Lunes de Pascua"
+          }
+        ],
+        "Canarias": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-08-16",
+            "name": "Lunes siguiente a asunción de la Virgen"
+          }
+        ],
+        "Cantabria": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-07-28",
+            "name": "Día de las Instituciones de Cantabria"
+          },
+          {
+            "date": "2027-09-15",
+            "name": "La Bien Aparecida"
+          }
+        ],
+        "Castilla-La Mancha": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-05-27",
+            "name": "Corpus Christi"
+          },
+          {
+            "date": "2027-05-31",
+            "name": "Día de Castilla-La Mancha"
+          }
+        ],
+        "Castilla y León": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-04-23",
+            "name": "Fiesta de Castilla y León"
+          },
+          {
+            "date": "2027-08-16",
+            "name": "Lunes siguiente a asunción de la Virgen"
+          }
+        ],
+        "Cataluña": [
+          {
+            "date": "2027-03-29",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2027-06-24",
+            "name": "Día de San Juan"
+          },
+          {
+            "date": "2027-09-11",
+            "name": "Fiesta Nacional de Cataluña"
+          }
+        ],
+        "Extremadura": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-09-08",
+            "name": "Día de Extremadura"
+          },
+          {
+            "date": "2027-10-11",
+            "name": "Sustitución 15 de agosto"
+          }
+        ],
+        "Galicia": [
+          {
+            "date": "2027-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-05-17",
+            "name": "Día de las Letras Gallegas"
+          }
+        ],
+        "Com. de Madrid": [
+          {
+            "date": "2027-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-08-16",
+            "name": "Lunes siguiente a asunción de la Virgen"
+          }
+        ],
+        "Región Murcia": [
+          {
+            "date": "2027-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-06-09",
+            "name": "Día de la Región de Murcia"
+          }
+        ],
+        "C. Foral Navarra": [
+          {
+            "date": "2027-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-03-29",
+            "name": "Lunes de Pascua"
+          }
+        ],
+        "País Vasco": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-03-29",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2027-10-07",
+            "name": "Aniversario 1er Gobierno Euskadi"
+          }
+        ],
+        "La Rioja": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-03-29",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2027-06-09",
+            "name": "Día de La Rioja"
+          }
+        ],
+        "Comunitat Valenciana": [
+          {
+            "date": "2027-03-19",
+            "name": "San José"
+          },
+          {
+            "date": "2027-03-29",
+            "name": "Lunes de Pascua"
+          },
+          {
+            "date": "2027-10-09",
+            "name": "Día de la Comunitat Valenciana"
+          }
+        ],
+        "Ciudad de Ceuta": [
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-05-17",
+            "name": "Eidul Adha-Fiesta Sacrificio"
+          },
+          {
+            "date": "2027-08-05",
+            "name": "Nuestra Señora de África"
+          }
+        ],
+        "Ciudad de Melilla": [
+          {
+            "date": "2027-03-10",
+            "name": "Fiesta del Eid Fitr"
+          },
+          {
+            "date": "2027-03-25",
+            "name": "Jueves Santo"
+          },
+          {
+            "date": "2027-05-17",
+            "name": "Fiesta Sacrificio-Aid Al Adha"
+          }
+        ]
+      },
+      "notas_aclaratorias": [
+        "1. En la Comunidad Autónoma de Canarias, el Decreto 115/2026, de 29 de junio, por el que se determina el calendario de fiestas laborales de la Comunidad Autónoma de Canarias para el año 2027 (BOC de 3 de julio de 2026) dispone que: «En las islas de El Hierro, Fuerteventura, Gran Canaria, La Gomera, La Palma, Lanzarote y La Graciosa, y Tenerife, las fiestas laborales serán, además, las siguientes: en El Hierro: el 24 de septiembre, festividad de Nuestra Señora de los Reyes; en Fuerteventura: el 17 de septiembre, festividad de Nuestra Señora de la Peña; en Gran Canaria: el 8 de septiembre, festividad de Nuestra Señora del Pino; en La Gomera: el 4 de octubre, festividad de Nuestra Señora de Guadalupe; en La Palma: el 5 de agosto, festividad de Nuestra Señora de Las Nieves; en Lanzarote y La Graciosa: el 15 de septiembre, festividad de Nuestra Señora de los Volcanes; en Tenerife: el 2 de febrero, festividad de la Virgen de la Candelaria».",
+        "2. En la Comunidad Autónoma de Cataluña, la Orden EMT/52/2026, de 25 de marzo, por la que se establece el calendario oficial de fiestas laborales en Cataluña para el año 2027 (DOGC de 1 de abril de 2026) dispone que: «En el territorio de Arán, la fiesta del día 29 de marzo (Pasqua Florida) queda sustituida por la de 17 de junio (Fiesta de Arán), jueves»."
+      ]
+    }
+  }
+}

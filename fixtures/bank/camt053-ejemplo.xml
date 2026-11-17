@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Extracto camt.053.001.02 sintético (datos inventados) para los tests. -->
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02">
+ <BkToCstmrStmt>
+  <GrpHdr><MsgId>EXT-2026-10-01</MsgId><CreDtTm>2026-10-02T08:00:00</CreDtTm></GrpHdr>
+  <Stmt>
+   <Id>2026-10-01</Id>
+   <FrToDt><FrDtTm>2026-10-01T00:00:00</FrDtTm><ToDtTm>2026-10-01T23:59:59</ToDtTm></FrToDt>
+   <Acct><Id><IBAN>ES9121000418450200051332</IBAN></Id><Ccy>EUR</Ccy><Ownr><Nm>TAXPAIN SINTETICO SL</Nm></Ownr></Acct>
+   <Bal><Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp><Amt Ccy="EUR">1000.00</Amt><CdtDbtInd>CRDT</CdtDbtInd><Dt><Dt>2026-10-01</Dt></Dt></Bal>
+   <Bal><Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp><Amt Ccy="EUR">2131.40</Amt><CdtDbtInd>CRDT</CdtDbtInd><Dt><Dt>2026-10-01</Dt></Dt></Bal>
+   <Ntry>
+    <Amt Ccy="EUR">1210.00</Amt><CdtDbtInd>CRDT</CdtDbtInd><Sts>BOOK</Sts>
+    <BookgDt><Dt>2026-10-01</Dt></BookgDt><ValDt><Dt>2026-10-01</Dt></ValDt>
+    <AcctSvcrRef>REF-0001</AcctSvcrRef>
+    <NtryDtls><TxDtls><RltdPties><Dbtr><Nm>CLIENTE EJEMPLO SA</Nm></Dbtr></RltdPties><RmtInf><Ustrd>FRA 2026-0042</Ustrd></RmtInf></TxDtls></NtryDtls>
+   </Ntry>
+   <Ntry>
+    <Amt Ccy="EUR">78.60</Amt><CdtDbtInd>DBIT</CdtDbtInd><Sts>BOOK</Sts>
+    <BookgDt><Dt>2026-10-01</Dt></BookgDt><AcctSvcrRef>REF-0002</AcctSvcrRef>
+    <AddtlNtryInf>RECIBO TELEFONIA EJEMPLO</AddtlNtryInf>
+   </Ntry>
+  </Stmt>
+ </BkToCstmrStmt>
+</Document>

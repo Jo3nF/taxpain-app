@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/PeticionConsulta.xsd" 
+		xmlns:pc="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/PeticionConsulta.xsd"  
+		xmlns:gn="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd"
+		elementFormDefault="qualified"> 
+
+    <import schemaLocation="TiposGN.xsd" 
+    	namespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd"/>
+    <element name="PeticionConsulta" type="pc:TipoPeticionConsulta"/>
+    
+    <complexType name="TipoPeticionConsulta">
+    	<sequence>    	
+			<element name="Version" type="gn:TipoVersion" nillable="true" minOccurs="0"/>
+    		<element name="Nif" type="gn:TipoNif"/>	
+			<element name="TipoEnvio" type="gn:TipoEnvio"  />
+			<element name="Estado" type="gn:TipoEstado"  />
+			<element name="FechaInicio" type="gn:TipoFecha"  />
+			<element name="FechaFin" type="gn:TipoFecha"  />
+			<element name="ClavePaginacion" type="gn:TipoClavePaginacion" nillable="true" minOccurs="0"/>
+    	</sequence>
+    </complexType>
+
+</schema>

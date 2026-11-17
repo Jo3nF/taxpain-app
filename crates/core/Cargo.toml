@@ -1,0 +1,22 @@
+[package]
+name = "taxpain-core"
+description = "Dominio fiscal y contable puro de TaxPain (sin IO)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+quick-xml = "0.42.0"
+thiserror.workspace = true
+time = { version = "0.3.55", features = ["macros", "serde", "serde-human-readable"] }
+
+[dev-dependencies]
+proptest = "1"
+
+[lints]
+workspace = true

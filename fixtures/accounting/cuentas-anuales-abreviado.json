@@ -1,0 +1,833 @@
+{
+  "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2007-19884",
+  "source_title": "RD 1514/2007 (PGC), Tercera parte «Cuentas anuales», III. Modelos abreviados: «Balance abreviado» (bloque actualizado 24/09/2010, RD 1159/2010, BOE-A-2010-14621) y «Cuenta de pérdidas y ganancias abreviada» (redacción original 20/11/2007) — texto consolidado; obtenido de la API de datos abiertos del BOE (/datosabiertos/api/legislacion-consolidada/id/BOE-A-2007-19884/texto/bloque/{balanceabreviado-2,cuentaabreviada})",
+  "retrieved": "2026-10-22",
+  "mapping_origin": "Contra lo que suele creerse, los modelos abreviados del PGC (RD 1514/2007) SÍ incluyen la columna 'N° CUENTAS': 'accounts' es la transcripción del BOE. 'from' es derivado: lista de ids de cuentas-anuales-normal.json que la partida abreviada agrega.",
+  "codigo_source": "Orden JUS/616/2022, de 30 de junio (BOE núm. 159, de 4 de julio de 2022, BOE-A-2022-10975, https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-10975), anexo I — «Balance de situación abreviado» (BA1, BA2.1, BA2.2, págs. 93524–93526) y «Cuenta de pérdidas y ganancias abreviada» (PA, pág. 93527). Estas páginas del BOE son imagen (sin capa de texto); los códigos se han leído de la imagen renderizada.",
+  "notation": {
+    "NNN": "saldo de la cuenta/subgrupo/grupo suma (prefijo: '20' = todas las cuentas 20x; '57' = todas las 57x)",
+    "(NNN)": "entre paréntesis: el saldo se resta (en balance minora el epígrafe; en PyG figura en el Debe, signo negativo)",
+    "NNN*": "«Su signo puede ser positivo o negativo» (nota del modelo de PyG)",
+    "sin cuentas": "null = epígrafe agregado (suma de sus partidas hijas) o total",
+    "codigo": "código numérico de la partida en los modelos normalizados de depósito de cuentas en el Registro Mercantil (Orden JUS/616/2022, anexo I). Se omite en las líneas que no tienen casilla en el modelo de depósito",
+    "from": "ids del modelo normal (cuentas-anuales-normal.json) cuya suma es la partida abreviada; un id incluye todas sus partidas hijas"
+  },
+  "notes": [
+    "'accounts' normaliza solo los espacios alrededor de las comas; 'accounts_literal' conserva el texto del BOE cuando difiere. A.V tiene la lista partida en dos filas en el BOE; 'accounts_literal' las concatena con un espacio.",
+    "En PyG la cabecera de columna es '(Debe) Haber'; las cuentas sin paréntesis son de Haber (+) y las entre paréntesis de Debe (−).",
+    "Derivación de 'from': se ha comparado, por prefijo de cuenta, la lista de cuentas de cada partida abreviada con la unión de las cuentas de las partidas normales indicadas; coinciden en todas salvo A.V (la cuenta 257 figura en el abreviado pero no en el balance normal del PGC).",
+    "Reagrupaciones que no son 1:1 con el modelo normal: B.III.1 Clientes = normal B.III.1 + B.III.2 (clientes empresas del grupo); B.III.2 Accionistas = normal B.III.7; B.III.3 Otros deudores = normal B.III.3 + B.III.4 + B.III.5 + B.III.6 (deudores varios, personal, activos por impuesto corriente y otros créditos con AAPP); PB.II.1/PB.II.2 = normal PB.II.2/PB.II.3; PB.II.3 Otras deudas a l/p = normal PB.II.1 (obligaciones) + PB.II.4 (derivados) + PB.II.5; PC.III.1/2 = normal PC.III.2/3; PC.III.3 Otras deudas a c/p = normal PC.III.1 + PC.III.4 + PC.III.5; PC.V.1 Proveedores = normal PC.V.1 + PC.V.2; PC.V.2 Otros acreedores = normal PC.V.3 … PC.V.7 (incluye pasivos por impuesto corriente 4752 y anticipos de clientes 438).",
+    "Las demás partidas abreviadas sin subdivisión (A.I…A.VI, B.II Existencias, B.IV, B.V, B.VII, PA-1.III Reservas, PA-1.V, PA-2, PB.I, etc.) agregan la partida normal homónima con todas sus hijas.",
+    "PyG: el modelo abreviado del PGC no tiene la sección «Operaciones interrumpidas»; 'D) RESULTADO DEL EJERCICIO' se hace corresponder con el normal 'A.5' (= A.4 + 18). Si hubiera operaciones interrumpidas, la NECA 7.ª exige presentarlas aparte, cosa que el modelo abreviado no prevé: ambigüedad no resuelta por el BOE.",
+    "PyG: 6 «Gastos de personal» del abreviado incluye 7950 y 7957 (exceso de provisiones por retribuciones al personal), igual que la partida normal 6.c; 12 «Ingresos financieros» incluye 767 (normal 12.b2).",
+    "La etiqueta '14. Variación de valor razonable en instrumentos financiero.' (sin 's') es literal del BOE.",
+    "Códigos del depósito: el balance abreviado de depósito ordena los deudores como 12380 Clientes, 12370 Accionistas, 12390 Otros deudores (12370 coincide con el normal B.III.7); Reservas → 21300 (el depósito la desglosa en 21350 Reserva de capitalización y 21360 Otras reservas); deudas l/p 31220/31230/31290; deudas c/p 32320/32330/32390; acreedores 32580/32590. En PyG las partidas 12–16 del PGC son 14–18 en el depósito (41400–41800) y 17 Impuestos es la 20 (41900), porque el depósito añade 12 «Diferencia negativa de combinaciones de negocio» (41200), 13 «Otros resultados» (41300) y 19 «Otros ingresos y gastos de carácter financiero» (42100–42130); además desglosa 41400 en 41430 (imputación de subvenciones de carácter financiero) y 41490 (otros ingresos financieros).",
+    "Partidas del depósito abreviado sin línea en el PGC (no incluidas): 11700 Deudores comerciales no corrientes, 12381/12382, 21350/21360, 31600, 31700, 32581/32582, 32700, 41200, 41300, 41430, 41490, 42100–42130.",
+    "'codigo': casillas de Orden JUS/616/2022, de 30 de junio (BOE núm. 159, de 4 de julio de 2022, BOE-A-2022-10975, https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-10975), anexo I. El modelo de depósito es un superconjunto del modelo del PGC (añade partidas de las NECA y consultas del ICAC) y renumera algunas partidas; la correspondencia PGC→código se ha hecho por denominación y comprobado con las tablas «Correspondencia entre los conceptos ... y el Plan General de Contabilidad de 2007» del propio anexo cuando existen.",
+    "El modelo de depósito vigente puede haberse actualizado con posterioridad a la Orden JUS/616/2022 (las órdenes de modelos se renuevan periódicamente); los códigos de las partidas del PGC no han variado entre versiones conocidas, pero conviene revisarlo si se publica una orden nueva."
+  ],
+  "balance": [
+    {
+      "id": "A",
+      "label": "A) ACTIVO NO CORRIENTE",
+      "codigo": "11000",
+      "accounts": null,
+      "from": [
+        "A"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "A.I",
+      "label": "I. Inmovilizado intangible.",
+      "codigo": "11100",
+      "accounts": "20, (280), (290)",
+      "accounts_literal": "20,(280),(290)",
+      "from": [
+        "A.I"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "A.II",
+      "label": "II. Inmovilizado material.",
+      "codigo": "11200",
+      "accounts": "21, (281), (291), 23",
+      "accounts_literal": "21,(281),(291),23",
+      "from": [
+        "A.II"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "A.III",
+      "label": "III. Inversiones inmobiliarias.",
+      "codigo": "11300",
+      "accounts": "22, (282), (292)",
+      "accounts_literal": "22,(282),(292)",
+      "from": [
+        "A.III"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "A.IV",
+      "label": "IV. Inversiones en empresas del grupo y asociadas a largo plazo.",
+      "codigo": "11400",
+      "accounts": "2403, 2404, 2413, 2414, 2423, 2424, (2493), (2494), (293), (2943), (2944), (2953), (2954)",
+      "accounts_literal": "2403,2404,2413,2414,2423,2424,(2493),(2494),(293), (2943),(2944),(2953),(2954)",
+      "from": [
+        "A.IV"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "A.V",
+      "label": "V. Inversiones financieras a largo plazo.",
+      "codigo": "11500",
+      "accounts": "2405, 2415, 2425, (2495), 250, 251, 252, 253, 254, 255, 257, 258, (259), 26, (2945), (2955), (297), (298)",
+      "accounts_literal": "2405,2415,2425,(2495),250,251,252,253,254,255,257,258, (259),26,(2945),(2955),(297), (298)",
+      "from": [
+        "A.V"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "A.VI",
+      "label": "VI. Activos por Impuesto diferido.",
+      "codigo": "11600",
+      "accounts": "474",
+      "from": [
+        "A.VI"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B",
+      "label": "B) ACTIVO CORRIENTE",
+      "codigo": "12000",
+      "accounts": null,
+      "from": [
+        "B"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.I",
+      "label": "I. Activos no corrientes mantenidos para la venta.",
+      "codigo": "12100",
+      "accounts": "580, 581, 582, 583, 584, (599)",
+      "accounts_literal": "580,581,582,583,584,(599)",
+      "from": [
+        "B.I"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.II",
+      "label": "II. Existencias.",
+      "codigo": "12200",
+      "accounts": "30, 31, 32, 33, 34, 35, 36, (39), 407",
+      "accounts_literal": "30,31,32,33,34,35,36,(39),407",
+      "from": [
+        "B.II"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.III",
+      "label": "III. Deudores comerciales y otras cuentas a cobrar.",
+      "codigo": "12300",
+      "accounts": null,
+      "from": [
+        "B.III"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.III.1",
+      "label": "1. Clientes por ventas y prestaciones de servicios.",
+      "codigo": "12380",
+      "accounts": "430, 431, 432, 433, 434, 435, 436, (437), (490), (493)",
+      "accounts_literal": "430,431,432,433,434,435,436, (437),(490),(493)",
+      "from": [
+        "B.III.1",
+        "B.III.2"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.III.2",
+      "label": "2. Accionistas (socios) por desembolsos exigidos.",
+      "codigo": "12370",
+      "accounts": "5580",
+      "from": [
+        "B.III.7"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.III.3",
+      "label": "3. Otros deudores.",
+      "codigo": "12390",
+      "accounts": "44, 460, 470, 471, 472, 544, 473",
+      "accounts_literal": "44,460,470,471,472,544,473",
+      "from": [
+        "B.III.3",
+        "B.III.4",
+        "B.III.5",
+        "B.III.6"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.IV",
+      "label": "IV. Inversiones en empresas del grupo y asociadas a corto plazo.",
+      "codigo": "12400",
+      "accounts": "5303, 5304, 5313, 5314, 5323, 5324, 5333, 5334, 5343, 5344, 5353, 5354, (5393), (5394), 5523, 5524, (593), (5943), (5944), (5953), (5954)",
+      "accounts_literal": "5303,5304,5313,5314,5323,5324,5333,5334, 5343,5344,5353,5354,(5393),(5394),5523,5524, (593),(5943),(5944),(5953),(5954)",
+      "from": [
+        "B.IV"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.V",
+      "label": "V. Inversiones financieras a corto plazo.",
+      "codigo": "12500",
+      "accounts": "5305, 5315, 5325, 5335, 5345, 5355, (5395), 540, 541, 542, 543, 545, 546, 547, 548, (549), 551, 5525, 5590, 5593, 565, 566, (5945), (5955), (597), (598)",
+      "accounts_literal": "5305,5315,5325,5335, 5345,5355,(5395),540,541,542,543,545,546,547,548, (549),551, 5525,5590,5593,565,566,(5945),(5955),(597),(598)",
+      "from": [
+        "B.V"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.VI",
+      "label": "VI. Periodificaciones a corto plazo.",
+      "codigo": "12600",
+      "accounts": "480, 567",
+      "accounts_literal": "480,567",
+      "from": [
+        "B.VI"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "B.VII",
+      "label": "VII. Efectivo y otros activos líquidos equivalentes.",
+      "codigo": "12700",
+      "accounts": "57",
+      "from": [
+        "B.VII"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "TA",
+      "label": "TOTAL ACTIVO (A + B)",
+      "codigo": "10000",
+      "accounts": null,
+      "from": [
+        "TA"
+      ],
+      "side": "activo"
+    },
+    {
+      "id": "PA",
+      "label": "A) PATRIMONIO NETO",
+      "codigo": "20000",
+      "accounts": null,
+      "from": [
+        "PA"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1",
+      "label": "A-1) Fondos propios.",
+      "codigo": "21000",
+      "accounts": null,
+      "from": [
+        "PA-1"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.I",
+      "label": "I. Capital.",
+      "codigo": "21100",
+      "accounts": null,
+      "from": [
+        "PA-1.I"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.I.1",
+      "label": "1. Capital escriturado.",
+      "codigo": "21110",
+      "accounts": "100, 101, 102",
+      "accounts_literal": "100,101,102",
+      "from": [
+        "PA-1.I.1"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.I.2",
+      "label": "2. (Capital no exigido).",
+      "codigo": "21120",
+      "accounts": "(1030), (1040)",
+      "from": [
+        "PA-1.I.2"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.II",
+      "label": "II. Prima de emisión.",
+      "codigo": "21200",
+      "accounts": "110",
+      "from": [
+        "PA-1.II"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.III",
+      "label": "III. Reservas.",
+      "codigo": "21300",
+      "accounts": "112, 113, 114, 115, 119",
+      "accounts_literal": "112,113,114,115,119",
+      "from": [
+        "PA-1.III"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.IV",
+      "label": "IV. (Acciones y participaciones en patrimonio propias).",
+      "codigo": "21400",
+      "accounts": "(108), (109)",
+      "accounts_literal": "(108),(109)",
+      "from": [
+        "PA-1.IV"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.V",
+      "label": "V. Resultados de ejercicios anteriores.",
+      "codigo": "21500",
+      "accounts": "120, (121)",
+      "accounts_literal": "120,(121)",
+      "from": [
+        "PA-1.V"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.VI",
+      "label": "VI. Otras aportaciones de socios.",
+      "codigo": "21600",
+      "accounts": "118",
+      "from": [
+        "PA-1.VI"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.VII",
+      "label": "VII. Resultado del ejercicio.",
+      "codigo": "21700",
+      "accounts": "129",
+      "from": [
+        "PA-1.VII"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.VIII",
+      "label": "VIII. (Dividendo a cuenta).",
+      "codigo": "21800",
+      "accounts": "(557)",
+      "from": [
+        "PA-1.VIII"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-1.IX",
+      "label": "IX. Otros instrumentos de patrimonio neto.",
+      "codigo": "21900",
+      "accounts": "111",
+      "from": [
+        "PA-1.IX"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-2",
+      "label": "A-2) Ajustes por cambios de valor.",
+      "codigo": "22000",
+      "accounts": "133, 1340, 137",
+      "accounts_literal": "133,1340,137",
+      "from": [
+        "PA-2"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PA-3",
+      "label": "A-3) Subvenciones, donaciones y legados recibidos.",
+      "codigo": "23000",
+      "accounts": "130, 131, 132",
+      "accounts_literal": "130,131,132",
+      "from": [
+        "PA-3"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB",
+      "label": "B) PASIVO NO CORRIENTE",
+      "codigo": "31000",
+      "accounts": null,
+      "from": [
+        "PB"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB.I",
+      "label": "I. Provisiones a largo plazo.",
+      "codigo": "31100",
+      "accounts": "14",
+      "from": [
+        "PB.I"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB.II",
+      "label": "II. Deudas a largo plazo.",
+      "codigo": "31200",
+      "accounts": null,
+      "from": [
+        "PB.II"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB.II.1",
+      "label": "1. Deudas con entidades de crédito.",
+      "codigo": "31220",
+      "accounts": "1605, 170",
+      "from": [
+        "PB.II.2"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB.II.2",
+      "label": "2. Acreedores por arrendamiento financiero",
+      "codigo": "31230",
+      "accounts": "1625, 174",
+      "accounts_literal": "1625,174",
+      "from": [
+        "PB.II.3"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB.II.3",
+      "label": "3. Otras deudas a largo plazo.",
+      "codigo": "31290",
+      "accounts": "1615, 1635, 171, 172, 173, 175, 176, 177, 178, 179, 180, 185, 189",
+      "accounts_literal": "1615,1635,171,172,173,175,176,177,178, 179,180,185,189",
+      "from": [
+        "PB.II.1",
+        "PB.II.4",
+        "PB.II.5"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB.III",
+      "label": "III. Deudas con empresas del grupo y asociadas a largo plazo.",
+      "codigo": "31300",
+      "accounts": "1603, 1604, 1613, 1614, 1623, 1624, 1633, 1634",
+      "accounts_literal": "1603,1604,1613,1614,1623,1624,1633,1634",
+      "from": [
+        "PB.III"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB.IV",
+      "label": "IV. Pasivos por impuesto diferido.",
+      "codigo": "31400",
+      "accounts": "479",
+      "from": [
+        "PB.IV"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PB.V",
+      "label": "V. Periodificaciones a largo plazo",
+      "codigo": "31500",
+      "accounts": "181",
+      "from": [
+        "PB.V"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC",
+      "label": "C) PASIVO CORRIENTE",
+      "codigo": "32000",
+      "accounts": null,
+      "from": [
+        "PC"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.I",
+      "label": "I. Pasivos vinculados con activos no corrientes mantenidos para la venta.",
+      "codigo": "32100",
+      "accounts": "585, 586, 587, 588, 589",
+      "accounts_literal": "585,586,587,588,589",
+      "from": [
+        "PC.I"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.II",
+      "label": "II. Provisiones a corto plazo.",
+      "codigo": "32200",
+      "accounts": "499, 529",
+      "accounts_literal": "499,529",
+      "from": [
+        "PC.II"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.III",
+      "label": "III. Deudas a corto plazo.",
+      "codigo": "32300",
+      "accounts": null,
+      "from": [
+        "PC.III"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.III.1",
+      "label": "1. Deudas con entidades de crédito.",
+      "codigo": "32320",
+      "accounts": "5105, 520, 527",
+      "accounts_literal": "5105,520,527",
+      "from": [
+        "PC.III.2"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.III.2",
+      "label": "2. Acreedores por arrendamiento financiero.",
+      "codigo": "32330",
+      "accounts": "5125, 524",
+      "accounts_literal": "5125,524",
+      "from": [
+        "PC.III.3"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.III.3",
+      "label": "3. Otras deudas a corto plazo.",
+      "codigo": "32390",
+      "accounts": "(1034), (1044), (190), (192), 194, 500, 501, 505, 506, 509, 5115, 5135, 5145, 521, 522, 523, 525, 526, 528, 551, 5525, 555, 5565, 5566, 5595, 5598, 560, 561, 569",
+      "accounts_literal": "(1034),(1044), (190),(192),194,500,501,505,506,509,5115, 5135,5145, 521,522, 523,525,526,528,551,5525, 555,5565,5566,5595, 5598, 560,561,569",
+      "from": [
+        "PC.III.1",
+        "PC.III.4",
+        "PC.III.5"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.IV",
+      "label": "IV. Deudas con empresas del grupo y asociadas a corto plazo.",
+      "codigo": "32400",
+      "accounts": "5103, 5104, 5113, 5114, 5123, 5124, 5133, 5134, 5143, 5144, 5523, 5524, 5563, 5564",
+      "accounts_literal": "5103,5104,5113,5114,5123,5124,5133,5134, 5143,5144,5523,5524,5563,5564",
+      "from": [
+        "PC.IV"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.V",
+      "label": "V. Acreedores comerciales y otras cuentas a pagar.",
+      "codigo": "32500",
+      "accounts": null,
+      "from": [
+        "PC.V"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.V.1",
+      "label": "1. Proveedores.",
+      "codigo": "32580",
+      "accounts": "400, 401, 403, 404, 405, (406)",
+      "accounts_literal": "400,401,403,404,405,(406)",
+      "from": [
+        "PC.V.1",
+        "PC.V.2"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.V.2",
+      "label": "2. Otros acreedores.",
+      "codigo": "32590",
+      "accounts": "41, 438, 465, 466, 475, 476, 477",
+      "accounts_literal": "41,438,465,466,475,476,477",
+      "from": [
+        "PC.V.3",
+        "PC.V.4",
+        "PC.V.5",
+        "PC.V.6",
+        "PC.V.7"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "PC.VI",
+      "label": "VI. Periodificaciones a corto plazo.",
+      "codigo": "32600",
+      "accounts": "485, 568",
+      "accounts_literal": "485,568",
+      "from": [
+        "PC.VI"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    },
+    {
+      "id": "TP",
+      "label": "TOTAL PATRIMONIO NETO Y PASIVO (A + B + C)",
+      "codigo": "30000",
+      "accounts": null,
+      "from": [
+        "TP"
+      ],
+      "side": "patrimonio_neto_y_pasivo"
+    }
+  ],
+  "pyg": [
+    {
+      "id": "1",
+      "label": "1. Importe neto de la cifra de negocios.",
+      "codigo": "40100",
+      "accounts": "700, 701, 702, 703, 704, 705, (706), (708), (709)",
+      "accounts_literal": "700,701,702,703,704, 705,(706),(708),(709)",
+      "from": [
+        "1"
+      ]
+    },
+    {
+      "id": "2",
+      "label": "2. Variación de existencias de productos terminados y en curso de fabricación.",
+      "codigo": "40200",
+      "accounts": "(6930), 71*, 7930",
+      "from": [
+        "2"
+      ]
+    },
+    {
+      "id": "3",
+      "label": "3. Trabajos realizados por la empresa para su activo.",
+      "codigo": "40300",
+      "accounts": "73",
+      "from": [
+        "3"
+      ]
+    },
+    {
+      "id": "4",
+      "label": "4. Aprovisionamientos.",
+      "codigo": "40400",
+      "accounts": "(600), (601), (602), 606, (607), 608, 609, 61*, (6931), (6932), (6933), 7931, 7932, 7933, (693), 793",
+      "from": [
+        "4"
+      ]
+    },
+    {
+      "id": "5",
+      "label": "5. Otros ingresos de explotación.",
+      "codigo": "40500",
+      "accounts": "740, 747, 75",
+      "from": [
+        "5"
+      ]
+    },
+    {
+      "id": "6",
+      "label": "6. Gastos de personal.",
+      "codigo": "40600",
+      "accounts": "(64), 7950, 7957",
+      "from": [
+        "6"
+      ]
+    },
+    {
+      "id": "7",
+      "label": "7. Otros gastos de explotación.",
+      "codigo": "40700",
+      "accounts": "(62), (631), (634), 636, 639, (65), (694), (695), 794, 7954",
+      "from": [
+        "7"
+      ]
+    },
+    {
+      "id": "8",
+      "label": "8. Amortización del inmovilizado.",
+      "codigo": "40800",
+      "accounts": "(68)",
+      "from": [
+        "8"
+      ]
+    },
+    {
+      "id": "9",
+      "label": "9. Imputación de subvenciones de inmovilizado no financiero y otras.",
+      "codigo": "40900",
+      "accounts": "746",
+      "from": [
+        "9"
+      ]
+    },
+    {
+      "id": "10",
+      "label": "10. Excesos de provisiones.",
+      "codigo": "41000",
+      "accounts": "7951, 7952, 7955, 7956",
+      "from": [
+        "10"
+      ]
+    },
+    {
+      "id": "11",
+      "label": "11. Deterioro y resultado por enajenaciones del inmovilizado.",
+      "codigo": "41100",
+      "accounts": "(670), (671), (672), (690), (691), (692), 770, 771, 772, 790, 791, 792",
+      "from": [
+        "11"
+      ]
+    },
+    {
+      "id": "OR",
+      "label": "Otros resultados.",
+      "codigo": "41300",
+      "accounts": "(678), 778",
+      "accounts_literal": "(678),778"
+    },
+    {
+      "id": "A",
+      "label": "A) RESULTADO DE EXPLOTACIÓN (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11)",
+      "codigo": "49100",
+      "accounts": null,
+      "from": [
+        "A.1"
+      ]
+    },
+    {
+      "id": "12",
+      "label": "12. Ingresos financieros.",
+      "codigo": "41400",
+      "accounts": "760, 761, 762, 767, 769",
+      "from": [
+        "12"
+      ]
+    },
+    {
+      "id": "13",
+      "label": "13. Gastos financieros.",
+      "codigo": "41500",
+      "accounts": "(660), (661), (662), (664), (665), (669)",
+      "from": [
+        "13"
+      ]
+    },
+    {
+      "id": "14",
+      "label": "14. Variación de valor razonable en instrumentos financiero.",
+      "codigo": "41600",
+      "accounts": "(663), 763",
+      "from": [
+        "14"
+      ]
+    },
+    {
+      "id": "15",
+      "label": "15. Diferencias de cambio.",
+      "codigo": "41700",
+      "accounts": "(668), 768",
+      "from": [
+        "15"
+      ]
+    },
+    {
+      "id": "16",
+      "label": "16. Deterioro y resultado por enajenaciones de instrumentos financieros.",
+      "codigo": "41800",
+      "accounts": "(666), (667), (673), (675), (696), (697), (698), (699), 766, 773, 775, 796, 797, 798, 799",
+      "from": [
+        "16"
+      ]
+    },
+    {
+      "id": "B",
+      "label": "B) RESULTADO FINANCIERO (12 + 13 + 14 + 15 + 16)",
+      "codigo": "49200",
+      "accounts": null,
+      "from": [
+        "A.2"
+      ]
+    },
+    {
+      "id": "C",
+      "label": "C) RESULTADO ANTES DE IMPUESTOS (A + B)",
+      "codigo": "49300",
+      "accounts": null,
+      "from": [
+        "A.3"
+      ]
+    },
+    {
+      "id": "17",
+      "label": "17. Impuestos sobre beneficios.",
+      "codigo": "41900",
+      "accounts": "(6300)*, 6301*, (633), 638, (630)",
+      "from": [
+        "17"
+      ]
+    },
+    {
+      "id": "D",
+      "label": "D) RESULTADO DEL EJERCICIO (C + 17)",
+      "codigo": "49500",
+      "accounts": null,
+      "from": [
+        "A.5"
+      ]
+    }
+  ]
+}

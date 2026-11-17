@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+				  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+				  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				  xmlns:gn="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd"
+				  xmlns:pa="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/PeticionAcceso.xsd"
+				  xmlns:ra="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaAcceso.xsd"
+				  xmlns:gnWsdl="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/AccesoEnvio.wsdl"
+				  targetNamespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/AccesoEnvio.wsdl">
+  <wsdl:types>
+    <xsd:schema targetNamespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/AccesoEnvio.wsdl"
+    	elementFormDefault="qualified"
+    	xmlns:gn="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd"
+    	xmlns:pa="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/PeticionAcceso.xsd"
+    	xmlns:ra="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaAcceso.xsd">
+    	<xsd:import namespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/TiposGN.xsd" schemaLocation="TiposGN.xsd"/>
+    	<xsd:import namespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/PeticionAcceso.xsd" schemaLocation="PeticionAcceso.xsd"/>
+    	<xsd:import namespace="https://www2.agenciatributaria.gob.es/static_files/common/dep/aduanas/es/aeat/gnno/jdit/ws/RespuestaAcceso.xsd" schemaLocation="RespuestaAcceso.xsd"/>
+    	
+      <xsd:element name="ConsultaResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="ConsultaRequest">
+    <wsdl:part name="Consulta" element="pa:PeticionAcceso"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultaResponse">
+    <wsdl:part name="Respuesta" element="ra:RespuestaAcceso" />
+  </wsdl:message>
+  <wsdl:portType name="sedeSOAP">
+    <wsdl:operation name="Consulta">
+      <wsdl:input message="gnWsdl:ConsultaRequest"/>
+      <wsdl:output message="gnWsdl:ConsultaResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="sedeBinding" type="gnWsdl:sedeSOAP">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Consulta">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="sedeService">
+    <!--  Entorno de PRUEBAS -->
+     <wsdl:port name="AccesoEnvioPruebas" binding="gnWsdl:sedeBinding">
+      <soap:address location="https://prewww1.aeat.es/wlpl/GNNO-JDIT/sede/descargas/AccesoV1SOAP"/>
+    </wsdl:port>
+    <!--  Entorno de PRODUCCIÓN-->
+    <wsdl:port name="AccesoEnvio" binding="gnWsdl:sedeBinding">
+      <soap:address location="https://www1.agenciatributaria.gob.es/wlpl/GNNO-JDIT/sede/descargas/AccesoV1SOAP"/>
+    </wsdl:port>
+    <!--  Entorno de PRODUCCIÓN SELLO-->
+    <wsdl:port name="AccesoEnvioSello" binding="gnWsdl:sedeBinding">
+      <soap:address location="https://www10.agenciatributaria.gob.es/wlpl/GNNO-JDIT/sede/descargas/AccesoV1SOAP"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

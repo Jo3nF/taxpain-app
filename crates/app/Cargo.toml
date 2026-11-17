@@ -1,0 +1,50 @@
+[package]
+name = "taxpain-app"
+description = "Casos de uso de TaxPain (orquesta almacén, facturación y AEAT); sin dependencias de UI"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[dependencies]
+taxpain-core.workspace = true
+taxpain-vault.workspace = true
+taxpain-invoicing.workspace = true
+taxpain-models.workspace = true
+taxpain-assistant.workspace = true
+taxpain-banca.workspace = true
+thiserror.workspace = true
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+base64 = "0.23.1"
+sha2 = "0.11.1"
+hex = "0.4.3"
+time = { version = "0.3.55", features = ["formatting", "macros"] }
+tracing = "0.1.44"
+getrandom = "0.4.3"
+url = "2.5.8"
+zeroize = "1.9.1"
+pdf-extract = "0.12.1"
+# Ya venía en el árbol (zip, lopdf): para medir lo que descomprime un PDF antes de abrirlo.
+flate2 = "1.1.10"
+# Ya venía en el árbol (lopdf 0.42): para medir también el `LZWDecode`.
+weezl = "0.1.12"
+# Ya venía en el árbol (pdf-extract): para contar los códigos de un `/ToUnicode` como él.
+adobe-cmap-parser = "0.4.1"
+regex = "1.13.1"
+rust_xlsxwriter = { version = "0.101.0", default-features = false }
+zip = { version = "9.0.5", default-features = false, features = ["deflate"] }
+calamine = { version = "0.38", default-features = false }
+quick-xml = "0.42.0"
+
+[dev-dependencies]
+tempfile = "3.27.0"
+taxpain-testkit.workspace = true
+ring = "0.17.14"
+x509-parser = "0.18.1"
+tokio = { version = "1.53.2", features = ["macros", "rt-multi-thread", "net", "io-util"] }
+
+[lints]
+workspace = true

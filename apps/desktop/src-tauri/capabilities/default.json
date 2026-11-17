@@ -1,0 +1,24 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Permisos mínimos de la ventana principal",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "dialog:allow-open",
+    "dialog:allow-save",
+    "notification:default",
+    {
+      "identifier": "opener:allow-open-url",
+      "allow": [
+        { "url": "https://sede.agenciatributaria.gob.es/*" },
+        { "url": "https://www.boe.es/*" },
+        { "url": "https://dehu.redsara.es/*" },
+        { "url": "https://sede.seg-social.gob.es/*" },
+        { "url": "https://www.aepd.es/*" },
+        { "url": "https://eur-lex.europa.eu/*" },
+        { "url": "https://enablebanking.com/*" }
+      ]
+    }
+  ]
+}

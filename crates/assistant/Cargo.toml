@@ -1,0 +1,31 @@
+[package]
+name = "taxpain-assistant"
+description = "Asistente IA de TaxPain: proveedor configurable (BYOK o local), datos anonimizados y nunca secretos"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+# A propósito NO depende de taxpain-vault ni de taxpain-secrets: este crate no puede ver el
+# certificado, las contraseñas ni las claves. Sólo recibe texto ya preparado por la app.
+[dependencies]
+reqwest = { version = "0.13.5", default-features = false, features = ["rustls-no-provider", "json"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+rustls-platform-verifier = "0.7.1"
+regex = "1.13.1"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+taxpain-core.workspace = true
+thiserror.workspace = true
+tracing = "0.1.44"
+unicode-normalization = "0.1.25"
+url = "2.5.8"
+
+[dev-dependencies]
+sha2 = "0.11.1"
+tokio = { version = "1.53.2", features = ["macros", "rt-multi-thread", "net", "io-util"] }
+
+[lints]
+workspace = true

@@ -1,0 +1,32 @@
+[package]
+name = "taxpain-macos"
+description = "Integración con macOS: Keychain, Touch ID y reconocimiento de texto (Vision)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[dependencies]
+taxpain-secrets.workspace = true
+
+[dev-dependencies]
+taxpain-vault.workspace = true
+tempfile = "3.27.0"
+serde_json = "1.0.154"
+time = "0.3"
+
+[lints]
+workspace = true
+
+[target.'cfg(target_os = "macos")'.dependencies]
+block2 = "0.6.2"
+objc2 = "0.6.5"
+objc2-foundation = "0.3.2"
+objc2-local-authentication = "0.3.2"
+objc2-vision = { version = "0.3.2", default-features = false, features = ["std", "VNRequest", "VNRecognizeTextRequest", "VNRequestHandler", "VNObservation", "VNTypes", "objc2-core-foundation"] }
+objc2-pdf-kit = { version = "0.3.2", default-features = false, features = ["std", "PDFDocument", "PDFPage", "objc2-app-kit"] }
+objc2-app-kit = { version = "0.3.2", default-features = false, features = ["std", "NSImage", "NSImageRep", "NSBitmapImageRep", "objc2-core-foundation"] }
+objc2-core-foundation = { version = "0.3.2", default-features = false, features = ["std", "CFCGTypes"] }
+security-framework = { version = "3.7.0", features = ["OSX_10_15"] }

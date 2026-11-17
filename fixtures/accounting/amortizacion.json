@@ -1,0 +1,288 @@
+{
+ "retrieved": "2026-10-13",
+ "impuesto_sociedades": {
+  "applies_to": "Impuesto sobre Sociedades (SL) y, por remisión del art. 28 LIRPF, IRPF estimación directa NORMAL",
+  "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-12328#a12",
+  "norma": "Ley 27/2014, de 27 de noviembre, del Impuesto sobre Sociedades, art. 12.1.a) (redacción vigente: última actualización del artículo publicada el 21/07/2015, en vigor desde 17/06/2016; la tabla no ha cambiado desde el texto original)",
+  "notes": [
+   "'categoria' es la fila de agrupación de la tabla (sin coeficiente propio).",
+   "Literal 'Sistemas y programas informáticos.' conserva el punto final del BOE en el original; aquí sin punto.",
+   "Art. 12.1.b/c: degresivo (1,5 / 2 / 2,5 según periodo <5, 5-8, >=8 años; mínimo 11 %) y números dígitos — no aplicables a edificios, mobiliario y enseres."
+  ],
+  "rows": [
+   {
+    "categoria": "Obra civil",
+    "tipo_elemento": "Obra civil general",
+    "coeficiente_lineal_maximo_pct": 2.0,
+    "periodo_maximo_anios": 100
+   },
+   {
+    "categoria": "Obra civil",
+    "tipo_elemento": "Pavimentos",
+    "coeficiente_lineal_maximo_pct": 6.0,
+    "periodo_maximo_anios": 34
+   },
+   {
+    "categoria": "Obra civil",
+    "tipo_elemento": "Infraestructuras y obras mineras",
+    "coeficiente_lineal_maximo_pct": 7.0,
+    "periodo_maximo_anios": 30
+   },
+   {
+    "categoria": "Centrales",
+    "tipo_elemento": "Centrales hidráulicas",
+    "coeficiente_lineal_maximo_pct": 2.0,
+    "periodo_maximo_anios": 100
+   },
+   {
+    "categoria": "Centrales",
+    "tipo_elemento": "Centrales nucleares",
+    "coeficiente_lineal_maximo_pct": 3.0,
+    "periodo_maximo_anios": 60
+   },
+   {
+    "categoria": "Centrales",
+    "tipo_elemento": "Centrales de carbón",
+    "coeficiente_lineal_maximo_pct": 4.0,
+    "periodo_maximo_anios": 50
+   },
+   {
+    "categoria": "Centrales",
+    "tipo_elemento": "Centrales renovables",
+    "coeficiente_lineal_maximo_pct": 7.0,
+    "periodo_maximo_anios": 30
+   },
+   {
+    "categoria": "Centrales",
+    "tipo_elemento": "Otras centrales",
+    "coeficiente_lineal_maximo_pct": 5.0,
+    "periodo_maximo_anios": 40
+   },
+   {
+    "categoria": "Edificios",
+    "tipo_elemento": "Edificios industriales",
+    "coeficiente_lineal_maximo_pct": 3.0,
+    "periodo_maximo_anios": 68
+   },
+   {
+    "categoria": "Edificios",
+    "tipo_elemento": "Terrenos dedicados exclusivamente a escombreras",
+    "coeficiente_lineal_maximo_pct": 4.0,
+    "periodo_maximo_anios": 50
+   },
+   {
+    "categoria": "Edificios",
+    "tipo_elemento": "Almacenes y depósitos (gaseosos, líquidos y sólidos)",
+    "coeficiente_lineal_maximo_pct": 7.0,
+    "periodo_maximo_anios": 30
+   },
+   {
+    "categoria": "Edificios",
+    "tipo_elemento": "Edificios comerciales, administrativos, de servicios y viviendas",
+    "coeficiente_lineal_maximo_pct": 2.0,
+    "periodo_maximo_anios": 100
+   },
+   {
+    "categoria": "Instalaciones",
+    "tipo_elemento": "Subestaciones. Redes de transporte y distribución de energía",
+    "coeficiente_lineal_maximo_pct": 5.0,
+    "periodo_maximo_anios": 40
+   },
+   {
+    "categoria": "Instalaciones",
+    "tipo_elemento": "Cables",
+    "coeficiente_lineal_maximo_pct": 7.0,
+    "periodo_maximo_anios": 30
+   },
+   {
+    "categoria": "Instalaciones",
+    "tipo_elemento": "Resto instalaciones",
+    "coeficiente_lineal_maximo_pct": 10.0,
+    "periodo_maximo_anios": 20
+   },
+   {
+    "categoria": "Instalaciones",
+    "tipo_elemento": "Maquinaria",
+    "coeficiente_lineal_maximo_pct": 12.0,
+    "periodo_maximo_anios": 18
+   },
+   {
+    "categoria": "Instalaciones",
+    "tipo_elemento": "Equipos médicos y asimilados",
+    "coeficiente_lineal_maximo_pct": 15.0,
+    "periodo_maximo_anios": 14
+   },
+   {
+    "categoria": "Elementos de transporte",
+    "tipo_elemento": "Locomotoras, vagones y equipos de tracción",
+    "coeficiente_lineal_maximo_pct": 8.0,
+    "periodo_maximo_anios": 25
+   },
+   {
+    "categoria": "Elementos de transporte",
+    "tipo_elemento": "Buques, aeronaves",
+    "coeficiente_lineal_maximo_pct": 10.0,
+    "periodo_maximo_anios": 20
+   },
+   {
+    "categoria": "Elementos de transporte",
+    "tipo_elemento": "Elementos de transporte interno",
+    "coeficiente_lineal_maximo_pct": 10.0,
+    "periodo_maximo_anios": 20
+   },
+   {
+    "categoria": "Elementos de transporte",
+    "tipo_elemento": "Elementos de transporte externo",
+    "coeficiente_lineal_maximo_pct": 16.0,
+    "periodo_maximo_anios": 14
+   },
+   {
+    "categoria": "Elementos de transporte",
+    "tipo_elemento": "Autocamiones",
+    "coeficiente_lineal_maximo_pct": 20.0,
+    "periodo_maximo_anios": 10
+   },
+   {
+    "categoria": "Mobiliario y enseres",
+    "tipo_elemento": "Mobiliario",
+    "coeficiente_lineal_maximo_pct": 10.0,
+    "periodo_maximo_anios": 20
+   },
+   {
+    "categoria": "Mobiliario y enseres",
+    "tipo_elemento": "Lencería",
+    "coeficiente_lineal_maximo_pct": 25.0,
+    "periodo_maximo_anios": 8
+   },
+   {
+    "categoria": "Mobiliario y enseres",
+    "tipo_elemento": "Cristalería",
+    "coeficiente_lineal_maximo_pct": 50.0,
+    "periodo_maximo_anios": 4
+   },
+   {
+    "categoria": "Mobiliario y enseres",
+    "tipo_elemento": "Útiles y herramientas",
+    "coeficiente_lineal_maximo_pct": 25.0,
+    "periodo_maximo_anios": 8
+   },
+   {
+    "categoria": "Mobiliario y enseres",
+    "tipo_elemento": "Moldes, matrices y modelos",
+    "coeficiente_lineal_maximo_pct": 33.0,
+    "periodo_maximo_anios": 6
+   },
+   {
+    "categoria": "Mobiliario y enseres",
+    "tipo_elemento": "Otros enseres",
+    "coeficiente_lineal_maximo_pct": 15.0,
+    "periodo_maximo_anios": 14
+   },
+   {
+    "categoria": "Equipos electrónicos e informáticos. Sistemas y programas",
+    "tipo_elemento": "Equipos electrónicos",
+    "coeficiente_lineal_maximo_pct": 20.0,
+    "periodo_maximo_anios": 10
+   },
+   {
+    "categoria": "Equipos electrónicos e informáticos. Sistemas y programas",
+    "tipo_elemento": "Equipos para procesos de información",
+    "coeficiente_lineal_maximo_pct": 25.0,
+    "periodo_maximo_anios": 8
+   },
+   {
+    "categoria": "Equipos electrónicos e informáticos. Sistemas y programas",
+    "tipo_elemento": "Sistemas y programas informáticos",
+    "coeficiente_lineal_maximo_pct": 33.0,
+    "periodo_maximo_anios": 6
+   },
+   {
+    "categoria": "Equipos electrónicos e informáticos. Sistemas y programas",
+    "tipo_elemento": "Producciones cinematográficas, fonográficas, videos y series audiovisuales",
+    "coeficiente_lineal_maximo_pct": 33.0,
+    "periodo_maximo_anios": 6
+   },
+   {
+    "categoria": "Equipos electrónicos e informáticos. Sistemas y programas",
+    "tipo_elemento": "Otros elementos",
+    "coeficiente_lineal_maximo_pct": 10.0,
+    "periodo_maximo_anios": 20
+   }
+  ]
+ },
+ "irpf_estimacion_directa_simplificada": {
+  "applies_to": "IRPF, modalidad simplificada de estimación directa (art. 30.1.ª RIRPF: amortización lineal según la tabla de amortizaciones simplificada aprobada por el Ministro de Hacienda)",
+  "in_force_2026": true,
+  "source": "https://www.boe.es/boe/dias/1998/03/28/pdfs/A10544-10545.pdf",
+  "boe_id": "BOE-A-1998-7200",
+  "norma": "Orden de 27 de marzo de 1998 por la que se aprueba la Tabla de Amortización Simplificada (BOE núm. 75, 28/03/1998), efectos 1/1/1998. La ficha BOE no registra referencias posteriores (ni derogación ni modificación).",
+  "confirmation": "Manual práctico de Renta 2025 (AEAT, página actualizada 17/03/2026) reproduce la misma tabla citando la Orden de 27 de marzo de 1998: https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c07-rendimientos-actividades-economicas-estimacion-directa/fase-1-determinacion-rendimiento-neto/amortizaciones-dotaciones-ejercicio-fiscalmente-deducibles/especialidades-fiscales-amortizaciones-modalidad-simplificada.html",
+  "notes": [
+   "No existe una 'Orden HAC/1164/2025' que sustituya esta tabla: no se ha encontrado ninguna orden posterior en BOE ni en la AEAT; la orden anual de módulos no la modifica (TODO(VERIFY) si se publica una orden de módulos para 2027 que la cambie).",
+   "Nota del Manual AEAT: para activos nuevos adquiridos entre 01-01-2003 y 31-12-2004 el coeficiente máximo se multiplica por 1,1 (histórico).",
+   "Sobre estas cuantías se aplican las normas de empresas de reducida dimensión de la LIS (art. 30.1.ª RIRPF)."
+  ],
+  "rows": [
+   {
+    "grupo": 1,
+    "elementos_patrimoniales": "Edificios y otras construcciones",
+    "coeficiente_lineal_maximo_pct": 3,
+    "periodo_maximo_anios": 68
+   },
+   {
+    "grupo": 2,
+    "elementos_patrimoniales": "Instalaciones, mobiliario, enseres y resto del inmovilizado material",
+    "coeficiente_lineal_maximo_pct": 10,
+    "periodo_maximo_anios": 20
+   },
+   {
+    "grupo": 3,
+    "elementos_patrimoniales": "Maquinaria",
+    "coeficiente_lineal_maximo_pct": 12,
+    "periodo_maximo_anios": 18
+   },
+   {
+    "grupo": 4,
+    "elementos_patrimoniales": "Elementos de transporte",
+    "coeficiente_lineal_maximo_pct": 16,
+    "periodo_maximo_anios": 14
+   },
+   {
+    "grupo": 5,
+    "elementos_patrimoniales": "Equipos para tratamiento de la información y sistemas y programas informáticos",
+    "coeficiente_lineal_maximo_pct": 26,
+    "periodo_maximo_anios": 10
+   },
+   {
+    "grupo": 6,
+    "elementos_patrimoniales": "Útiles y herramientas",
+    "coeficiente_lineal_maximo_pct": 30,
+    "periodo_maximo_anios": 8
+   },
+   {
+    "grupo": 7,
+    "elementos_patrimoniales": "Ganado vacuno, porcino, ovino y caprino",
+    "coeficiente_lineal_maximo_pct": 16,
+    "periodo_maximo_anios": 14
+   },
+   {
+    "grupo": 8,
+    "elementos_patrimoniales": "Ganado equino y frutales no cítricos",
+    "coeficiente_lineal_maximo_pct": 8,
+    "periodo_maximo_anios": 25
+   },
+   {
+    "grupo": 9,
+    "elementos_patrimoniales": "Frutales cítricos y viñedos",
+    "coeficiente_lineal_maximo_pct": 4,
+    "periodo_maximo_anios": 50
+   },
+   {
+    "grupo": 10,
+    "elementos_patrimoniales": "Olivar",
+    "coeficiente_lineal_maximo_pct": 2,
+    "periodo_maximo_anios": 100
+   }
+  ]
+ }
+}

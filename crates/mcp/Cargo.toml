@@ -1,0 +1,32 @@
+[package]
+name = "taxpain-mcp"
+description = "Servidor MCP de TaxPain: Claude consulta los datos de la empresa y deja borradores"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "taxpain-mcp"
+path = "src/main.rs"
+
+[dependencies]
+taxpain-app.workspace = true
+# Sólo por `pii`: quitar caracteres invisibles y reconocer claves y certificados. El servidor no
+# habla con ningún proveedor de IA.
+taxpain-assistant.workspace = true
+taxpain-core.workspace = true
+taxpain-vault.workspace = true
+serde = "1.0.229"
+taxpain-macos.workspace = true
+serde_json = "1.0.154"
+quick-xml = "0.42.0"
+time = { version = "0.3.55", features = ["macros", "local-offset"] }
+
+[dev-dependencies]
+tempfile = "3.27.0"
+
+[lints]
+workspace = true

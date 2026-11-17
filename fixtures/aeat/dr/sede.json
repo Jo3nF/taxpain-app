@@ -1,0 +1,1003 @@
+{
+ "enlaces": {
+  "115_2008.pdf": {
+   "modelo": "115",
+   "nombre": "115_2008.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/115_2008.pdf",
+   "texto": "115 - Orden EHA/3435/2007 (Ejercicios 2014 y anteriores)(30 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2014,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "123_2008.pdf": {
+   "modelo": "123",
+   "nombre": "123_2008.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/123_2008.pdf",
+   "texto": "123 - Orden EHA/3435/2007 (Ejercicios 2014 y anteriores)(40 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2014,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "180.pdf": {
+   "modelo": "180",
+   "nombre": "180.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos/180.pdf",
+   "texto": "180 - Orden HAP/1732/2014, de 24 de septiembre(105 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2014,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "202_2008.pdf": {
+   "modelo": "202",
+   "nombre": "202_2008.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/202_2008.pdf",
+   "texto": "202 - Ejercicio 2008 y 2009 - Orden EHA/3435/2007(32 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2008,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "347-2008-TIPOS.pdf": {
+   "modelo": "347",
+   "nombre": "347-2008-TIPOS.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/347-2008-TIPOS.pdf",
+   "texto": "347 - Ejercicio 2008 y 2009(30 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2008,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "347.pdf": {
+   "modelo": "347",
+   "nombre": "347.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos/347.pdf",
+   "texto": "347 - Ejercicio 2025 y siguientes. Modificados por Orden HAC/1431/2025, de 3 de diciembre(332 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2025,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "347_2010_TIPOSV1.0.pdf": {
+   "modelo": "347",
+   "nombre": "347_2010_TIPOSV1.0.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/347_2010_TIPOSV1.0.pdf",
+   "texto": "347 - Orden EHA/3062/2010. Ejercicio 2010(181 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2010,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "390v01e2015_v1.00.pdf": {
+   "modelo": "390",
+   "nombre": "390v01e2015_v1.00.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/390v01e2015_v1.00.pdf",
+   "texto": "390 - Ejercicio 2015(103 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2015,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "390v01e2016_v1.00.xlsx": {
+   "modelo": "390",
+   "nombre": "390v01e2016_v1.00.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/390v01e2016_v1.00.xlsx",
+   "texto": "390 - Ejercicio 2016 (22-12-2016)(505 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2016,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DISENOS_LOGICOS_190-2024.pdf": {
+   "modelo": "190",
+   "nombre": "DISENOS_LOGICOS_190-2024.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos_24/DISENOS_LOGICOS_190-2024.pdf",
+   "texto": "190 - Orden EHA/3127/2009, de 10 de noviembre (actualizada por Orden HAC/1432/2024, de 11 de diciembre)(1,49 MB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2024,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DISENOS_LOGICOS_190_2025.pdf": {
+   "modelo": "190",
+   "nombre": "DISENOS_LOGICOS_190_2025.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos_25/DISENOS_LOGICOS_190_2025.pdf",
+   "texto": "190 - Orden EHA/3127/2009, de 10 de noviembre (actualizada por Orden HAC/1431/2025, de 3 de diciembre)(1.085 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2025,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DLogicos_Registros_347.pdf": {
+   "modelo": "347",
+   "nombre": "DLogicos_Registros_347.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/DLogicos_Registros_347.pdf",
+   "texto": "347 - Orden EHA/3378/2011, de 1 de diciembre(579 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2011,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR115e15v12.xls": {
+   "modelo": "115",
+   "nombre": "DR115e15v12.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/DR115e15v12.xls",
+   "texto": "115 - Orden EHA/3435/2007 (Ejercicios 2015 hasta 2018) (168 KB - xls)",
+   "actualizado": "",
+   "ejercicio": 2015,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR115e15v13.xls": {
+   "modelo": "115",
+   "nombre": "DR115e15v13.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos/DR115e15v13.xls",
+   "texto": "115 - Orden EHA/3435/2007 (Ejercicios 2019 y siguientes, actualizado Febrero 2019)(172 KB - xls)",
+   "actualizado": "Febrero 2019",
+   "ejercicio": 2019,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR123e15v12.xls": {
+   "modelo": "123",
+   "nombre": "DR123e15v12.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/DR123e15v12.xls",
+   "texto": "123 - Orden EHA/3435/2007 (Ejercicios 2015 hasta 2018)(164 KB - xls)",
+   "actualizado": "",
+   "ejercicio": 2015,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR123e15v13.xls": {
+   "modelo": "123",
+   "nombre": "DR123e15v13.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos/DR123e15v13.xls",
+   "texto": "123 - EHA/3435/2007 (Ejercicios 2019-2023)(169 KB - xls)",
+   "actualizado": "",
+   "ejercicio": 2019,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR123e24.xls": {
+   "modelo": "123",
+   "nombre": "DR123e24.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos_24/DR123e24.xls",
+   "texto": "123 - Orden EHA/3435/2007 (Ejercicio 2024 y siguientes)(190 KB - xls)",
+   "actualizado": "",
+   "ejercicio": 2024,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR130e15v11.xls": {
+   "modelo": "130",
+   "nombre": "DR130e15v11.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/DR130e15v11.xls",
+   "texto": "130 - Orden HAP/258/2015 (Ejercicios 2015 hasta 2018)(170 KB - xls)",
+   "actualizado": "",
+   "ejercicio": 2015,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR130e15v12.xls": {
+   "modelo": "130",
+   "nombre": "DR130e15v12.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos/DR130e15v12.xls",
+   "texto": "130 - Orden HAP/258/2015 (Ejercicios 2019 y siguientes, actualizado Marzo 2019)(176 KB - xls)",
+   "actualizado": "Marzo 2019",
+   "ejercicio": 2019,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR184_2016.pdf": {
+   "modelo": "184",
+   "nombre": "DR184_2016.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos/DR184_2016.pdf",
+   "texto": "184 - Orden HAP/2250/2015 (actualizado por Orden HAC/1276/2019)(257 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2019,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DR193_2016.pdf": {
+   "modelo": "193",
+   "nombre": "DR193_2016.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/DR193_2016.pdf",
+   "texto": "193 - Orden EHA/3377/2011 (actualizado por Orden HFP/1822/2016)(185 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2016,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR193_2017.pdf": {
+   "modelo": "193",
+   "nombre": "DR193_2017.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos_17/DR193_2017.pdf",
+   "texto": "193 - Orden EHA/3377/2011 (actualizado por Orden HAC/1276/2019)(406 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2019,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DR200-2011.pdf": {
+   "modelo": "200",
+   "nombre": "DR200-2011.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2011.pdf",
+   "texto": "200 - Ejercicio 2011(522 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2011,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR200-2012.pdf": {
+   "modelo": "200",
+   "nombre": "DR200-2012.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2012.pdf",
+   "texto": "200 - Ejercicio 2012. Actualizado a 28/06/2013(539 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2012,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR200-2013.pdf": {
+   "modelo": "200",
+   "nombre": "DR200-2013.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2013.pdf",
+   "texto": "200 - Ejercicio 2013. Actualizado a 27/06/2014(548 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2013,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR200-2014.pdf": {
+   "modelo": "200",
+   "nombre": "DR200-2014.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2014.pdf",
+   "texto": "200 - Ejercicio 2014(588 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2014,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR200-2015.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2015.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2015.xls",
+   "texto": "200 - Ejercicio 2015. Actualizado a 05/07/2016(7,71 MB - xls)",
+   "actualizado": "",
+   "ejercicio": 2015,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR200-2016.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2016.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2016.xls",
+   "texto": "200 - Ejercicio 2016 (8,22 MB - xls)",
+   "actualizado": "",
+   "ejercicio": 2016,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR200-2017-1_00.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2017-1_00.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2017-1_00.xls",
+   "texto": "200 - Ejercicio 2017(8,40 MB - xls)",
+   "actualizado": "",
+   "ejercicio": 2017,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "4e11acb94c3cae59248c954860e2c35cf33dfd93976f9494344c3136b610da4e"
+  },
+  "DR200-2018.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2018.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2018.xls",
+   "texto": "200 - Ejercicio 2018 - (Actualizado 28/11/2019)(8,69 MB - xls)",
+   "actualizado": "28/11/2019",
+   "ejercicio": 2018,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "c561bc77e6525adac94bb5f5c8e69974fc0e20151506706b1376725effdd3625"
+  },
+  "DR200-2019.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2019.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200-2019.xls",
+   "texto": "200 - Ejercicio 2019 - (Actualizado 10/06/2020)(9,43 MB - xls)",
+   "actualizado": "10/06/2020",
+   "ejercicio": 2019,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "ce43a011a3cd0774aed54cb08379724f7077fd423ed94026dc58a590798d4797"
+  },
+  "DR200-2020.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2020.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_20/DR200-2020.xls",
+   "texto": "200 - Ejercicio 2020 - (Actualizado 28/07/2021)(9,56 MB - xls)",
+   "actualizado": "28/07/2021",
+   "ejercicio": 2020,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "1754e834411536c05ed25ebd4e0395e1330806c91c69154614c6178acf0e80de"
+  },
+  "DR200-2021.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2021.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_21/DR200-2021.xls",
+   "texto": "200 - Ejercicio 2021 (actualizado 22/06/2022)(11,1 MB - xls)",
+   "actualizado": "22/06/2022",
+   "ejercicio": 2021,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "3db076b4c6b604cce9dc2f1550a1b8ce792c48981149bf2e9f732970555a2620"
+  },
+  "DR200-2022.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2022.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_22/DR200-2022.xls",
+   "texto": "200 - Ejercicio 2022 (actualizado 30/06/2023)(10,2 MB - xls)",
+   "actualizado": "30/06/2023",
+   "ejercicio": 2022,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "a69d73692c40f8be07005e2df8add251f9949a2d6780f3816189372bdd98f69d"
+  },
+  "DR200-2023.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2023.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_23/DR200-2023.xls",
+   "texto": "200 - Ejercicio 2023 (actualizado 15/07/2024)(10,4 MB - xls)",
+   "actualizado": "15/07/2024",
+   "ejercicio": 2023,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "07ab6b44ac6b46317d965ef59680aeb0a3380f197f55f94af824383d228190b6"
+  },
+  "DR200-2024.xls": {
+   "modelo": "200",
+   "nombre": "DR200-2024.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_24/DR200-2024.xls",
+   "texto": "200 - Ejercicio 2024 (actualizado 13/10/2025)(10,7 MB - xls)",
+   "actualizado": "13/10/2025",
+   "ejercicio": 2024,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "ed4df89a451abc2184bc60a1d13ff53a3d38e9a6201698fb635cf0b8ee455218"
+  },
+  "DR200_2010.pdf": {
+   "modelo": "200",
+   "nombre": "DR200_2010.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR200_2010.pdf",
+   "texto": "200 - Ejercicio 2010(472 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2010,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR200e25.xls": {
+   "modelo": "200",
+   "nombre": "DR200e25.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_25/DR200e25.xls",
+   "texto": "200 - Ejercicio 2025 (actualizado 19-06-2026)(11,2 MB - xls)",
+   "actualizado": "19-06-2026",
+   "ejercicio": 2025,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR202e15v42.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202e15v42.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR202e15v42.xlsx",
+   "texto": "202 - Orden HAP/523/2015 (Ejercicios 2015)(125 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2015,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR202e16v43.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202e16v43.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR202e16v43.xlsx",
+   "texto": "202 - Orden HAP/523/2015 (1P 2016)(124 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2016,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR202e16v44.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202e16v44.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR202e16v44.xlsx",
+   "texto": "202 - Orden HAP/1552/2016 (Ejercicio 2P y 3P 2016)(128 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2016,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR202e17v47.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202e17v47.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR202e17v47.xlsx",
+   "texto": "202 - Orden HFP/227/2017 (Ejercicio 2017 y 1P de 2018)(129 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2017,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR202e17v48.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202e17v48.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR202e17v48.xlsx",
+   "texto": "202 - Orden HAC/941/2018 (Ejercicio 2018 2P y 3P) (129 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2018,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR202e17v50.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202e17v50.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/DR202e17v50.xlsx",
+   "texto": "202 - Orden HAC/941/2018 (Ejercicios 2019 y siguientes, actualizado Septiembre 2019)(128 KB - xlsx)",
+   "actualizado": "Septiembre 2019",
+   "ejercicio": 2019,
+   "estado": "ignorado",
+   "motivo": "Sustituido por DR202v52 para los mismos periodos"
+  },
+  "DR202e23.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202e23.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_23/DR202e23.xlsx",
+   "texto": "202 - Ejercicio 2023 a 2024 (actualizado 16-04-24)(130 KB - xlsx)",
+   "actualizado": "16-04-24",
+   "ejercicio": 2023,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR202e25.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202e25.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_25/DR202e25.xlsx",
+   "texto": "202 - Ejercicio 2025 y siguientes (actualizado 14-07-26)(131 KB - xlsx)",
+   "actualizado": "14-07-26",
+   "ejercicio": 2025,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR202v52.xlsx": {
+   "modelo": "202",
+   "nombre": "DR202v52.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_200_299/archivos_19/DR202v52.xlsx",
+   "texto": "202 - Orden HAC/941/2018 (Ejercicios 2019 a 2022, actualizado Mayo 2020)(132 KB - xlsx)",
+   "actualizado": "Mayo 2020",
+   "ejercicio": 2019,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e12v11.pdf": {
+   "modelo": "303",
+   "nombre": "DR303e12v11.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/DR303e12v11.pdf",
+   "texto": "303 - Orden EHA/3786/2008 (v1.1)(36 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2008,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR303e14v22.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e14v22.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/DR303e14v22.xlsx",
+   "texto": "303 - Orden HAP/2373/2014, de 9 de diciembre (ejercicio 2014)(246 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2014,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR303e15v34.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e15v34.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/DR303e15v34.xlsx",
+   "texto": "303 - Orden HAP/2373/2014, de 9 de diciembre (ejercicio 2015 y 2016)(247 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2015,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "DR303e17v20_04.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e17v20_04.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/DR303e17v20_04.xlsx",
+   "texto": "303 - Orden HAP/2373/2014, de 9 de diciembre (ejercicio 2017)(292 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2017,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e18v10_10.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e18v10_10.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/DR303e18v10_10.xlsx",
+   "texto": "303 - Orden HAP/2373/2014, de 9 de diciembre (ejercicio 2018, salvo último periodo (12M/4T) de 2018)(292 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2018,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e18v10_40.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e18v10_40.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/DR303e18v10_40.xlsx",
+   "texto": "303 - Orden HAP/2373/2014, de 9 de diciembre (ejercicio 2018)(292 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2018,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e20v10_20.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e20v10_20.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/DR303e20v10_20.xlsx",
+   "texto": "303 - Orden HAP/2373/2014, de 9 de diciembre (ejercicio 2019 y 2020)(290 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2019,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e21v103.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e21v103.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_21/DR303e21v103.xlsx",
+   "texto": "303 - Orden HAP/2373/2014, de 9 de diciembre (ejercicio 2021 - hasta periodo 06) - actualizado 27/04/2021(336 KB - xlsx)",
+   "actualizado": "27/04/2021",
+   "ejercicio": 2021,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e21v200.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e21v200.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_21/DR303e21v200.xlsx",
+   "texto": "303 - Orden HAC/646/2021 (ejercicio 2021 - desde periodo 07) - actualizado 22/12/2021(334 KB - xlsx)",
+   "actualizado": "22/12/2021",
+   "ejercicio": 2021,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e22.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e22.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_22/DR303e22.xlsx",
+   "texto": "303 - Ejercicio 2022 y siguientes (actualizado 27/12/2021)(332 KB - xlsx)",
+   "actualizado": "27/12/2021",
+   "ejercicio": 2022,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e23.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e23.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_23/DR303e23.xlsx",
+   "texto": "303 - Ejercicio 2023 (actualizado 14/12/23)(376 KB - xlsx)",
+   "actualizado": "14/12/23",
+   "ejercicio": 2023,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e24.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e24.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_24/DR303e24.xlsx",
+   "texto": "303 - Ejercicio 2024 (hasta periodos 08 y 2T) (actualizado 01/04/24)(376 KB - xlsx)",
+   "actualizado": "01/04/24",
+   "ejercicio": 2024,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e24v200.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e24v200.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_24/DR303e24v200.xlsx",
+   "texto": "303 - Ejercicio 2024 (a partir de periodos 09 y 3T) y siguientes (actualizado 29/11/24)(381 KB - xlsx)",
+   "actualizado": "29/11/24",
+   "ejercicio": 2024,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e25.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e25.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_25/DR303e25.xlsx",
+   "texto": "303 - Ejercicio 2025 (actualizado 04/12/2025) (380 KB - xlsx)",
+   "actualizado": "04/12/2025",
+   "ejercicio": 2025,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR303e26v101.xlsx": {
+   "modelo": "303",
+   "nombre": "DR303e26v101.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_26/DR303e26v101.xlsx",
+   "texto": "303 - Ejercicio 2026 y siguientes (actualizado 28/01/26)(378 KB - xlsx)",
+   "actualizado": "28/01/26",
+   "ejercicio": 2026,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR_184_2022.pdf": {
+   "modelo": "184",
+   "nombre": "DR_184_2022.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos_22/DR_184_2022.pdf",
+   "texto": "184 - Orden HAP/2250/2015 (actualizado por Orden HFP/1192/2022, de 1 de diciembre)(399 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2022,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DR_190_2023.pdf": {
+   "modelo": "190",
+   "nombre": "DR_190_2023.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/DR_190_2023.pdf",
+   "texto": "190 - Orden EHA/3127/2009, de 10 de noviembre (actualizada por Orden HFP/1286/2023, de 28 de noviembre)(377 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2023,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DR_193_2023.pdf": {
+   "modelo": "193",
+   "nombre": "DR_193_2023.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/DR_193_2023.pdf",
+   "texto": "193 - Diseño de registro Modelo 193 - 2023(866 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2023,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DR_Anexo_349.pdf": {
+   "modelo": "349",
+   "nombre": "DR_Anexo_349.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_20/DR_Anexo_349.pdf",
+   "texto": "349 - Orden HAC/174/2020, de 4 de febrero (Ejercicio 2020 y siguientes)(894 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2020,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR_Mod_180_2023.pdf": {
+   "modelo": "180",
+   "nombre": "DR_Mod_180_2023.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos_23/DR_Mod_180_2023.pdf",
+   "texto": "180 - Orden HAP/1732/2014 (actualizado por Orden HFP/1284/2023 de 28 de noviembre)(251 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2023,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR_Mod_184_2023.pdf": {
+   "modelo": "184",
+   "nombre": "DR_Mod_184_2023.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos_23/DR_Mod_184_2023.pdf",
+   "texto": "184 - Orden HAP/2250/2015 (actualizado por Orden HFP/1284/2023 de 28 de noviembre)(263 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2023,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DR_Mod_193.pdf": {
+   "modelo": "193",
+   "nombre": "DR_Mod_193.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/DR_Mod_193.pdf",
+   "texto": "193 - Orden HAC/56/2024 (Ejercicios 2024 y siguientes)(556 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2024,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DR_Modelo_184_2025.pdf": {
+   "modelo": "184",
+   "nombre": "DR_Modelo_184_2025.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/DR_Modelo_184_2025.pdf",
+   "texto": "184 - Orden HAP/2250/2015 (actualizado por Orden HAC/1430/2025, de 3 de diciembre)(365 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2025,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "DR_Modelo_193_2024.pdf": {
+   "modelo": "193",
+   "nombre": "DR_Modelo_193_2024.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/DR_Modelo_193_2024.pdf",
+   "texto": "193 - Orden EHA/3377/2011 (actualizado por Orden HAC/1504/2024, de 26 de diciembre)(352 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2024,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "DR_Modelo_193_2025.pdf": {
+   "modelo": "193",
+   "nombre": "DR_Modelo_193_2025.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/DR_Modelo_193_2025.pdf",
+   "texto": "193 - Orden EHA/3377/2011 (actualizado por Orden HAC/1430/2025, de 3 de diciembre)(357 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2025,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "Disenyos_registro_193.pdf": {
+   "modelo": "193",
+   "nombre": "Disenyos_registro_193.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/Disenyos_registro_193.pdf",
+   "texto": "193 - Orden EHA/3377/2011, de 1 de diciembre(512 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2011,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "Dr_190_2020.pdf": {
+   "modelo": "190",
+   "nombre": "Dr_190_2020.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/Dr_190_2020.pdf",
+   "texto": "190 - Orden EHA/3127/2009 (actualizada por Orden HAC/1285/2020)(814 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2020,
+   "estado": "ignorado",
+   "motivo": "PDF de un ejercicio anterior: de las informativas TaxPain lee sólo los totales del registro de declarante, que no cambian (comprobado con 190, 193, 347 y 349 reales de 2018 a 2026)"
+  },
+  "TIPOS18000.pdf": {
+   "modelo": "180",
+   "nombre": "TIPOS18000.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/TIPOS18000.pdf",
+   "texto": "180 - Orden de 20 de noviembre de 2000(12 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2000,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "TIPOS34905.pdf": {
+   "modelo": "349",
+   "nombre": "TIPOS34905.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/TIPOS34905.pdf",
+   "texto": "349 - Orden HAC/360/2002(28 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2002,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr111_2000.pdf": {
+   "modelo": "111",
+   "nombre": "dr111_2000.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr111_2000.pdf",
+   "texto": "111 - Ejercicios anteriores al 2001(65 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2001,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr111_2007.pdf": {
+   "modelo": "111",
+   "nombre": "dr111_2007.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr111_2007.pdf",
+   "texto": "111 - Ejercicios 2004 a 2009(49 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2004,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr111_v16.pdf": {
+   "modelo": "111",
+   "nombre": "dr111_v16.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr111_v16.pdf",
+   "texto": "111 - Orden EHA/3127/2009 (Ejercicios 2012 a 2015)(35 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2012,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr111e16v17.xls": {
+   "modelo": "111",
+   "nombre": "dr111e16v17.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr111e16v17.xls",
+   "texto": "111 - Orden EHA/3127/2009 (Ejercicios 2016 hasta 2018)(167 KB - xls)",
+   "actualizado": "",
+   "ejercicio": 2016,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr111e16v18.xls": {
+   "modelo": "111",
+   "nombre": "dr111e16v18.xls",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_100_199/archivos/dr111e16v18.xls",
+   "texto": "111 - Orden EHA/3127/2009 (Ejercicios 2019 y siguientes, actualizado Mayo 2021)(179 KB - xls)",
+   "actualizado": "Mayo 2021",
+   "ejercicio": 2019,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr111v14.pdf": {
+   "modelo": "111",
+   "nombre": "dr111v14.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr111v14.pdf",
+   "texto": "111 - Ejercicios 2010 a 2011(32 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2010,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr130.08.pdf": {
+   "modelo": "130",
+   "nombre": "dr130.08.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr130.08.pdf",
+   "texto": "130 - Ejercicio 2008 (Trimestre 2º, 3º y 4º)(30 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2008,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr130.09.pdf": {
+   "modelo": "130",
+   "nombre": "dr130.09.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr130.09.pdf",
+   "texto": "130 - Orden EHA/580/2009 (Ejercicios 2009 a 2014)(36 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2009,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr130.pdf": {
+   "modelo": "130",
+   "nombre": "dr130.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr130.pdf",
+   "texto": "130 - Ejercicio 2007 y 2008 (Primer Trimestre)(48 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2007,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr184.pdf": {
+   "modelo": "184",
+   "nombre": "dr184.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_100_199/archivos/dr184.pdf",
+   "texto": "184 - Orden EHA/3127/2009(34 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2009,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr200e09v20.pdf": {
+   "modelo": "200",
+   "nombre": "dr200e09v20.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/dr200e09v20.pdf",
+   "texto": "200 - Orden EHA/1338/2010 (Actualizado a 11/06/2010)(283 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2010,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr202e12v32.pdf": {
+   "modelo": "202",
+   "nombre": "dr202e12v32.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/dr202e12v32.pdf",
+   "texto": "202 - Orden HAP/2055/2012 (v3.2)(40 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2012,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr202e12v33.pdf": {
+   "modelo": "202",
+   "nombre": "dr202e12v33.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/dr202e12v33.pdf",
+   "texto": "202 - Orden HAP/636/2013 (v3.3)(39 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2013,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr202e13v34.pdf": {
+   "modelo": "202",
+   "nombre": "dr202e13v34.pdf",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_200_299/archivos/dr202e13v34.pdf",
+   "texto": "202 - Orden HAP/2214/2013 (Ejercicios 3P 2013 y 2014)(46 KB - pdf)",
+   "actualizado": "",
+   "ejercicio": 2014,
+   "estado": "ignorado",
+   "motivo": "anterior a 2017"
+  },
+  "dr390e2017v3.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2017v3.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/dr390e2017v3.xlsx",
+   "texto": "390 - Ejercicio 2017(492 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2017,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr390e2018v101.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2018v101.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/ant_300_399/archivos/dr390e2018v101.xlsx",
+   "texto": "390 - Ejercicio 2018 (488 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2018,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr390e2019v101.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2019v101.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_19/dr390e2019v101.xlsx",
+   "texto": "390 - Ejercicio 2019 y 2020 (actualizado 23/12/2020)(485 KB - xlsx)",
+   "actualizado": "23/12/2020",
+   "ejercicio": 2019,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr390e2021.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2021.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_21/dr390e2021.xlsx",
+   "texto": "390 - Ejercicio 2021 (actualizado 25/11/2021) (486 KB - xlsx)",
+   "actualizado": "25/11/2021",
+   "ejercicio": 2021,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr390e2022.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2022.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_22/dr390e2022.xlsx",
+   "texto": "390 - Ejercicio 2022 (actualizado 04/01/23)(491 KB - xlsx)",
+   "actualizado": "04/01/23",
+   "ejercicio": 2022,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr390e2023v100.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2023v100.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_23/dr390e2023v100.xlsx",
+   "texto": "390 - Ejercicio 2023 y siguientes(489 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2023,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr390e2024.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2024.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_24/dr390e2024.xlsx",
+   "texto": "390 - Ejercicio 2024 (actualizado 18/12/24)(544 KB - xlsx)",
+   "actualizado": "18/12/24",
+   "ejercicio": 2024,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr390e2025.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2025.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_25/dr390e2025.xlsx",
+   "texto": "390 - Ejercicio 2025 (actualizado 05/12/2025)(544 KB - xlsx)",
+   "actualizado": "05/12/2025",
+   "ejercicio": 2025,
+   "estado": "incluido",
+   "motivo": ""
+  },
+  "dr390e2026.xlsx": {
+   "modelo": "390",
+   "nombre": "dr390e2026.xlsx",
+   "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Disenyo_registro/DR_300_399/archivos_26/dr390e2026.xlsx",
+   "texto": "390 - Ejercicio 2026 y siguientes(544 KB - xlsx)",
+   "actualizado": "",
+   "ejercicio": 2026,
+   "estado": "incluido",
+   "motivo": "",
+   "sha256": "5ce047995347c2b5ad6e5d4e407f126eeb9bd214602ed7c99e9f85175176ec15"
+  }
+ }
+}

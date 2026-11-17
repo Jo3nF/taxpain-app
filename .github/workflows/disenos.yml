@@ -1,0 +1,38 @@
+# Vigía de los diseños de registro de la AEAT: mira en la Sede si hay diseños nuevos o
+# actualizados de los modelos que lee o genera TaxPain (cada año la AEAT publica los del ejercicio
+# siguiente) y, si los hay, abre una incidencia. No cambia código ni datos: bajarlos y revisarlos
+# es a mano con `python3 -I tools/aeat/dr_actualizar.py` (docs/RELEASE.md).
+name: Diseños de registro
+
+# Sólo a mano, como el del BOE: sin minutos gratuitos, una ejecución programada fallaría y
+# mandaría un correo. En local: python3 -I tools/aeat/dr_actualizar.py --comprobar
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Comprobar la Sede
+        id: dr
+        run: |
+          set -uo pipefail
+          python3 -I tools/aeat/dr_actualizar.py --comprobar > dr.md
+          code=$?
+          cat dr.md
+          if [ "$code" -eq 1 ]; then echo "found=true" >> "$GITHUB_OUTPUT"; fi
+          if [ "$code" -ne 0 ] && [ "$code" -ne 1 ] && [ "$code" -ne 3 ]; then exit "$code"; fi
+      - name: Abrir incidencia
+        if: steps.dr.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh label create disenos --color 5319e7 --description "Diseños de registro nuevos de la AEAT" --force
+          gh issue create --title "Diseños de registro nuevos en la Sede" --body-file dr.md --label disenos

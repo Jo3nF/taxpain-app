@@ -1,0 +1,827 @@
+{
+ "model": "190",
+ "source": "DISENOS_LOGICOS_190_2025.pdf",
+ "sha256": "a7d1092f78620431812354e560a5146a3ae244e0aed69d9d58c353370ba0134d",
+ "transcribed": "a mano desde el PDF (diseños de registro modelo 190, ejercicio 2025, Orden EHA/3127/2009 anexo II mod. por Orden HAC/1431/2025; tipo 1 págs. 3-6, tipo 2 págs. 7-53)",
+ "pages": [
+  {
+   "sheet": "190-1",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "1"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "190"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre, denominación o razón social del declarante"
+    },
+    {
+     "n": 6,
+     "pos": 58,
+     "len": 1,
+     "type": "An",
+     "desc": "Tipo de soporte ('T' = transmisión telemática)"
+    },
+    {
+     "n": 7,
+     "pos": 59,
+     "len": 9,
+     "type": "Num",
+     "desc": "Persona con quién relacionarse: teléfono"
+    },
+    {
+     "n": 8,
+     "pos": 68,
+     "len": 40,
+     "type": "An",
+     "desc": "Persona con quién relacionarse: apellidos y nombre"
+    },
+    {
+     "n": 9,
+     "pos": 108,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración"
+    },
+    {
+     "n": 10,
+     "pos": 121,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración complementaria ('C' o blanco)"
+    },
+    {
+     "n": 11,
+     "pos": 122,
+     "len": 1,
+     "type": "An",
+     "desc": "Declaración sustitutiva ('S' o blanco)"
+    },
+    {
+     "n": 12,
+     "pos": 123,
+     "len": 13,
+     "type": "Num",
+     "desc": "Número identificativo de la declaración anterior (ceros si no es C/S)"
+    },
+    {
+     "n": 13,
+     "pos": 136,
+     "len": 9,
+     "type": "Num",
+     "desc": "Número total de percepciones (número de registros tipo 2)"
+    },
+    {
+     "n": 14,
+     "pos": 145,
+     "len": 1,
+     "type": "An",
+     "desc": "Importe total de las percepciones: signo ('N' si la suma es negativa, si no blanco)"
+    },
+    {
+     "n": 15,
+     "pos": 146,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe total de las percepciones: parte entera"
+    },
+    {
+     "n": 16,
+     "pos": 159,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe total de las percepciones: parte decimal"
+    },
+    {
+     "n": 17,
+     "pos": 161,
+     "len": 13,
+     "type": "Num",
+     "desc": "Importe total de las retenciones e ingresos a cuenta: parte entera"
+    },
+    {
+     "n": 18,
+     "pos": 174,
+     "len": 2,
+     "type": "Num",
+     "desc": "Importe total de las retenciones e ingresos a cuenta: parte decimal"
+    },
+    {
+     "n": 19,
+     "pos": 176,
+     "len": 50,
+     "type": "An",
+     "desc": "Correo electrónico de la persona con quien relacionarse"
+    },
+    {
+     "n": 20,
+     "pos": 226,
+     "len": 262,
+     "type": "An",
+     "desc": "Blancos"
+    },
+    {
+     "n": 21,
+     "pos": 488,
+     "len": 13,
+     "type": "An",
+     "desc": "Sello electrónico (reservado AEAT; blancos)"
+    }
+   ]
+  },
+  {
+   "sheet": "190-2",
+   "fields": [
+    {
+     "n": 1,
+     "pos": 1,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de registro",
+     "const": "2"
+    },
+    {
+     "n": 2,
+     "pos": 2,
+     "len": 3,
+     "type": "Num",
+     "desc": "Modelo declaración",
+     "const": "190"
+    },
+    {
+     "n": 3,
+     "pos": 5,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio (igual que registro tipo 1)"
+    },
+    {
+     "n": 4,
+     "pos": 9,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del declarante (igual que registro tipo 1)"
+    },
+    {
+     "n": 5,
+     "pos": 18,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del perceptor"
+    },
+    {
+     "n": 6,
+     "pos": 27,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del representante legal (perceptor menor de 14 años; si no, blancos)"
+    },
+    {
+     "n": 7,
+     "pos": 36,
+     "len": 40,
+     "type": "An",
+     "desc": "Apellidos y nombre o denominación del perceptor"
+    },
+    {
+     "n": 8,
+     "pos": 76,
+     "len": 2,
+     "type": "Num",
+     "desc": "Código provincia del domicilio del perceptor (98 = residente en el extranjero art. 8.2 y 10 LIRPF)"
+    },
+    {
+     "n": 9,
+     "pos": 78,
+     "len": 1,
+     "type": "An",
+     "desc": "Clave de percepción (A-L)"
+    },
+    {
+     "n": 10,
+     "pos": 79,
+     "len": 2,
+     "type": "Num",
+     "desc": "Subclave (solo claves B, C, E, F, G, H, I, K y L; si no, ceros)"
+    },
+    {
+     "n": 11,
+     "pos": 81,
+     "len": 1,
+     "type": "An",
+     "desc": "Percepción íntegra dineraria no derivada de incapacidad laboral: signo ('N' si negativo/reintegro, si no blanco)"
+    },
+    {
+     "n": 12,
+     "pos": 82,
+     "len": 11,
+     "type": "Num",
+     "desc": "Percepción íntegra dineraria no derivada de incapacidad laboral: parte entera"
+    },
+    {
+     "n": 13,
+     "pos": 93,
+     "len": 2,
+     "type": "Num",
+     "desc": "Percepción íntegra dineraria no derivada de incapacidad laboral: parte decimal"
+    },
+    {
+     "n": 14,
+     "pos": 95,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones practicadas (dinerarias no IL): parte entera"
+    },
+    {
+     "n": 15,
+     "pos": 106,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones practicadas (dinerarias no IL): parte decimal"
+    },
+    {
+     "n": 16,
+     "pos": 108,
+     "len": 1,
+     "type": "An",
+     "desc": "Percepción en especie no IL: valoración: signo ('N' si negativo/reintegro, si no blanco)"
+    },
+    {
+     "n": 17,
+     "pos": 109,
+     "len": 11,
+     "type": "Num",
+     "desc": "Percepción en especie no IL: valoración: parte entera"
+    },
+    {
+     "n": 18,
+     "pos": 120,
+     "len": 2,
+     "type": "Num",
+     "desc": "Percepción en especie no IL: valoración: parte decimal"
+    },
+    {
+     "n": 19,
+     "pos": 122,
+     "len": 11,
+     "type": "Num",
+     "desc": "Ingresos a cuenta efectuados (especie no IL): parte entera"
+    },
+    {
+     "n": 20,
+     "pos": 133,
+     "len": 2,
+     "type": "Num",
+     "desc": "Ingresos a cuenta efectuados (especie no IL): parte decimal"
+    },
+    {
+     "n": 21,
+     "pos": 135,
+     "len": 11,
+     "type": "Num",
+     "desc": "Ingresos a cuenta repercutidos (especie no IL): parte entera"
+    },
+    {
+     "n": 22,
+     "pos": 146,
+     "len": 2,
+     "type": "Num",
+     "desc": "Ingresos a cuenta repercutidos (especie no IL): parte decimal"
+    },
+    {
+     "n": 23,
+     "pos": 148,
+     "len": 4,
+     "type": "Num",
+     "desc": "Ejercicio devengo (atrasos o reintegros; si no, ceros)"
+    },
+    {
+     "n": 24,
+     "pos": 152,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ceuta o Melilla (1 = Ceuta/Melilla, 2 = Isla de La Palma, 0 = otro caso)"
+    },
+    {
+     "n": 25,
+     "pos": 153,
+     "len": 4,
+     "type": "Num",
+     "desc": "Año de nacimiento del perceptor (solo claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 26,
+     "pos": 157,
+     "len": 1,
+     "type": "Num",
+     "desc": "Situación familiar 1/2/3 (solo claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 27,
+     "pos": 158,
+     "len": 9,
+     "type": "An",
+     "desc": "NIF del cónyuge (situación familiar 2; claves A, B.01/03/04/99 y C) / NIF del titular de la unidad de convivencia (clave L.29)"
+    },
+    {
+     "n": 28,
+     "pos": 167,
+     "len": 1,
+     "type": "Num",
+     "desc": "Discapacidad 0/1/2/3 (solo claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 29,
+     "pos": 168,
+     "len": 1,
+     "type": "Num",
+     "desc": "Contrato o relación 1/2/3/4 (solo clave A)"
+    },
+    {
+     "n": 30,
+     "pos": 169,
+     "len": 1,
+     "type": "Num",
+     "desc": "Titular unidad de convivencia (solo clave L.29)"
+    },
+    {
+     "n": 31,
+     "pos": 170,
+     "len": 1,
+     "type": "Num",
+     "desc": "Movilidad geográfica 0/1 (solo clave A)"
+    },
+    {
+     "n": 32,
+     "pos": 171,
+     "len": 11,
+     "type": "Num",
+     "desc": "Reducciones aplicables: parte entera (claves A, B.01/03/04/99, C, E, F.01-06, G.01-06 y 08, H, I)"
+    },
+    {
+     "n": 33,
+     "pos": 182,
+     "len": 2,
+     "type": "Num",
+     "desc": "Reducciones aplicables: parte decimal (claves A, B.01/03/04/99, C, E, F.01-06, G.01-06 y 08, H, I)"
+    },
+    {
+     "n": 34,
+     "pos": 184,
+     "len": 11,
+     "type": "Num",
+     "desc": "Gastos deducibles: parte entera (claves A, B.01/03/04/99, C, E.01/02)"
+    },
+    {
+     "n": 35,
+     "pos": 195,
+     "len": 2,
+     "type": "Num",
+     "desc": "Gastos deducibles: parte decimal (claves A, B.01/03/04/99, C, E.01/02)"
+    },
+    {
+     "n": 36,
+     "pos": 197,
+     "len": 11,
+     "type": "Num",
+     "desc": "Pensiones compensatorias: parte entera (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 37,
+     "pos": 208,
+     "len": 2,
+     "type": "Num",
+     "desc": "Pensiones compensatorias: parte decimal (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 38,
+     "pos": 210,
+     "len": 11,
+     "type": "Num",
+     "desc": "Anualidades por alimentos: parte entera (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 39,
+     "pos": 221,
+     "len": 2,
+     "type": "Num",
+     "desc": "Anualidades por alimentos: parte decimal (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 40,
+     "pos": 223,
+     "len": 1,
+     "type": "Num",
+     "desc": "Hijos y otros descendientes: < 3 años, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 41,
+     "pos": 224,
+     "len": 1,
+     "type": "Num",
+     "desc": "Hijos y otros descendientes: < 3 años, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 42,
+     "pos": 225,
+     "len": 2,
+     "type": "Num",
+     "desc": "Hijos y otros descendientes: resto, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 43,
+     "pos": 227,
+     "len": 2,
+     "type": "Num",
+     "desc": "Hijos y otros descendientes: resto, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 44,
+     "pos": 229,
+     "len": 2,
+     "type": "Num",
+     "desc": "Descendientes con discapacidad: >= 33% y < 65%, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 45,
+     "pos": 231,
+     "len": 2,
+     "type": "Num",
+     "desc": "Descendientes con discapacidad: >= 33% y < 65%, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 46,
+     "pos": 233,
+     "len": 2,
+     "type": "Num",
+     "desc": "Descendientes con discapacidad: movilidad reducida, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 47,
+     "pos": 235,
+     "len": 2,
+     "type": "Num",
+     "desc": "Descendientes con discapacidad: movilidad reducida, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 48,
+     "pos": 237,
+     "len": 2,
+     "type": "Num",
+     "desc": "Descendientes con discapacidad: >= 65%, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 49,
+     "pos": 239,
+     "len": 2,
+     "type": "Num",
+     "desc": "Descendientes con discapacidad: >= 65%, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 50,
+     "pos": 241,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes: < 75 años, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 51,
+     "pos": 242,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes: < 75 años, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 52,
+     "pos": 243,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes: >= 75 años, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 53,
+     "pos": 244,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes: >= 75 años, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 54,
+     "pos": 245,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes con discapacidad: >= 33% y < 65%, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 55,
+     "pos": 246,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes con discapacidad: >= 33% y < 65%, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 56,
+     "pos": 247,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes con discapacidad: movilidad reducida, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 57,
+     "pos": 248,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes con discapacidad: movilidad reducida, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 58,
+     "pos": 249,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes con discapacidad: >= 65%, n.º total (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 59,
+     "pos": 250,
+     "len": 1,
+     "type": "Num",
+     "desc": "Ascendientes con discapacidad: >= 65%, por entero (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 60,
+     "pos": 251,
+     "len": 1,
+     "type": "Num",
+     "desc": "Cómputo 3 primeros hijos: hijo 1.º (1 entero, 2 mitad) (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 61,
+     "pos": 252,
+     "len": 1,
+     "type": "Num",
+     "desc": "Cómputo 3 primeros hijos: hijo 2.º (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 62,
+     "pos": 253,
+     "len": 1,
+     "type": "Num",
+     "desc": "Cómputo 3 primeros hijos: hijo 3.º (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 63,
+     "pos": 254,
+     "len": 1,
+     "type": "Num",
+     "desc": "Comunicación préstamos vivienda habitual 0/1 (claves A, B.01/03/04/99 y C)"
+    },
+    {
+     "n": 64,
+     "pos": 255,
+     "len": 1,
+     "type": "An",
+     "desc": "Percepción íntegra dineraria derivada de incapacidad laboral: signo ('N' si negativo/reintegro, si no blanco) (claves A y B.01)"
+    },
+    {
+     "n": 65,
+     "pos": 256,
+     "len": 11,
+     "type": "Num",
+     "desc": "Percepción íntegra dineraria derivada de incapacidad laboral: parte entera (claves A y B.01)"
+    },
+    {
+     "n": 66,
+     "pos": 267,
+     "len": 2,
+     "type": "Num",
+     "desc": "Percepción íntegra dineraria derivada de incapacidad laboral: parte decimal (claves A y B.01)"
+    },
+    {
+     "n": 67,
+     "pos": 269,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones practicadas sobre prestaciones derivadas de incapacidad laboral: parte entera (claves A y B.01)"
+    },
+    {
+     "n": 68,
+     "pos": 280,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones practicadas sobre prestaciones derivadas de incapacidad laboral: parte decimal (claves A y B.01)"
+    },
+    {
+     "n": 69,
+     "pos": 282,
+     "len": 1,
+     "type": "An",
+     "desc": "Percepción en especie derivada de incapacidad laboral: valoración: signo ('N' si negativo/reintegro, si no blanco) (solo clave A)"
+    },
+    {
+     "n": 70,
+     "pos": 283,
+     "len": 11,
+     "type": "Num",
+     "desc": "Percepción en especie derivada de incapacidad laboral: valoración: parte entera (solo clave A)"
+    },
+    {
+     "n": 71,
+     "pos": 294,
+     "len": 2,
+     "type": "Num",
+     "desc": "Percepción en especie derivada de incapacidad laboral: valoración: parte decimal (solo clave A)"
+    },
+    {
+     "n": 72,
+     "pos": 296,
+     "len": 11,
+     "type": "Num",
+     "desc": "Ingresos a cuenta efectuados por prestaciones en especie derivadas de IL: parte entera (solo clave A)"
+    },
+    {
+     "n": 73,
+     "pos": 307,
+     "len": 2,
+     "type": "Num",
+     "desc": "Ingresos a cuenta efectuados por prestaciones en especie derivadas de IL: parte decimal (solo clave A)"
+    },
+    {
+     "n": 74,
+     "pos": 309,
+     "len": 11,
+     "type": "Num",
+     "desc": "Ingresos a cuenta repercutidos por prestaciones en especie derivadas de IL: parte entera (solo clave A)"
+    },
+    {
+     "n": 75,
+     "pos": 320,
+     "len": 2,
+     "type": "Num",
+     "desc": "Ingresos a cuenta repercutidos por prestaciones en especie derivadas de IL: parte decimal (solo clave A)"
+    },
+    {
+     "n": 76,
+     "pos": 322,
+     "len": 1,
+     "type": "Num",
+     "desc": "Complemento ayuda para la infancia 1/2 (solo clave L.29)"
+    },
+    {
+     "n": 77,
+     "pos": 323,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Hacienda Estatal: parte entera (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 78,
+     "pos": 334,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Hacienda Estatal: parte decimal (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 79,
+     "pos": 336,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Comunidad Foral de Navarra: parte entera (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 80,
+     "pos": 347,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Comunidad Foral de Navarra: parte decimal (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 81,
+     "pos": 349,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Diputación Foral de Álava: parte entera (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 82,
+     "pos": 360,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Diputación Foral de Álava: parte decimal (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 83,
+     "pos": 362,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Diputación Foral de Gipuzkoa: parte entera (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 84,
+     "pos": 373,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Diputación Foral de Gipuzkoa: parte decimal (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 85,
+     "pos": 375,
+     "len": 11,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Diputación Foral de Bizkaia: parte entera (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 86,
+     "pos": 386,
+     "len": 2,
+     "type": "Num",
+     "desc": "Retenciones e ingresos a cuenta ingresados en Diputación Foral de Bizkaia: parte decimal (solo clave E, consejeros y administradores)"
+    },
+    {
+     "n": 87,
+     "pos": 388,
+     "len": 1,
+     "type": "Num",
+     "desc": "Excesos entrega acciones empresas emergentes 0/1 (solo clave A, si hay especie)"
+    },
+    {
+     "n": 88,
+     "pos": 389,
+     "len": 1,
+     "type": "Num",
+     "desc": "Rendimientos gestión fondos vinculados al emprendimiento 0/1 (solo clave A)"
+    },
+    {
+     "n": 89,
+     "pos": 390,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de prestación B.01: jubilación 0/1 (solo clave B.01)"
+    },
+    {
+     "n": 90,
+     "pos": 391,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de prestación B.01: viudedad 0/1 (solo clave B.01)"
+    },
+    {
+     "n": 91,
+     "pos": 392,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de prestación B.01: incapacidad permanente total o parcial 0/1 (solo clave B.01)"
+    },
+    {
+     "n": 92,
+     "pos": 393,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de prestación B.01: pensiones no contributivas por invalidez o jubilación 0/1 (solo clave B.01)"
+    },
+    {
+     "n": 93,
+     "pos": 394,
+     "len": 1,
+     "type": "Num",
+     "desc": "Tipo de prestación B.01: resto de prestaciones art. 17.2.a) LIRPF no exentas 0/1 (solo clave B.01)"
+    },
+    {
+     "n": 94,
+     "pos": 395,
+     "len": 106,
+     "type": "An",
+     "desc": "Blancos"
+    }
+   ]
+  }
+ ]
+}

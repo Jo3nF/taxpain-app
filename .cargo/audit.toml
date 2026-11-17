@@ -1,0 +1,14 @@
+# Avisos de `cargo audit` que no se pueden arreglar desde TaxPain (revisados el 2026-11-13).
+# Revísalos cuando salgan versiones nuevas de Tauri o de sus dependencias.
+[advisories]
+ignore = [
+  # glib 0.18 (GTK de Linux, sólo para comprobar la app en la CI): pendiente de que Tauri suba de gtk-rs.
+  "RUSTSEC-2024-0429",
+  # Crates sin mantenimiento que traen dependencias de Tauri/wry y de fuentes; sin alternativa
+  # mientras no las cambien aguas arriba.
+  "RUSTSEC-2024-0370", # proc-macro-error
+  "RUSTSEC-2026-0192", # ttf-parser
+  "RUSTSEC-2026-0370", # zvariant (Linux)
+  "RUSTSEC-2026-0371", # zbus_names (Linux)
+  "RUSTSEC-2026-0372", # zvariant_derive (Linux)
+]
