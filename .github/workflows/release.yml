@@ -112,7 +112,7 @@ jobs:
           COPYFILE_DISABLE=1 tar -czf unsigned/app.tar.gz -C "$(dirname "$app")" "$(basename "$app")"
           cp $b/dmg/*.dmg unsigned/
           ls -l unsigned
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: taxpain-macos-sin-firmar-${{ github.ref_name }}
           retention-days: 7
@@ -327,7 +327,7 @@ jobs:
           if [ "$HAS_UPDATER_KEY" = true ]; then
             ls out/macos/*.app.tar.gz out/macos/*.app.tar.gz.sig out/latest.json
           fi
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: taxpain-macos-${{ github.ref_name }}
           retention-days: 30
