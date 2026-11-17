@@ -61,6 +61,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Liberar disco (sin esto el enlazador muere con «Bus error» al llenarse el disco con los binarios de tests)
+        run: |
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL
+          df -h /
       - name: Dependencias del sistema (SQLCipher con OpenSSL, libxml2 para tests XSD, pdftotext, WebKitGTK para la app Tauri)
         run: |
           sudo apt-get update
