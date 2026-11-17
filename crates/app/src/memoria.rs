@@ -1484,30 +1484,44 @@ fn rtf_escape(s: &str) -> String {
 
 /// Párrafos en RTF (también para otros documentos: el contrato de préstamo).
 pub fn to_rtf(paras: &[Para]) -> String {
+    to_rtf_docs(&[paras])
+}
+
+/// RTF de varios documentos, cada uno en página nueva (`\\page`).
+pub(crate) fn to_rtf_docs<D: AsRef<[Para]>>(docs: &[D]) -> String {
     let mut out = String::from(
         "{\\rtf1\\ansi\\ansicpg1252\\deff0{\\fonttbl{\\f0\\fswiss Helvetica;}}\\f0\\fs22\n",
     );
-    for p in paras {
-        match p {
-            Para::Title(t) => out.push_str(&format!(
-                "{{\\pard\\sa200\\b\\fs32 {}\\par}}\n",
-                rtf_escape(t)
-            )),
-            Para::Bold(t) => out.push_str(&format!(
-                "{{\\pard\\sb200\\sa100\\b\\fs24 {}\\par}}\n",
-                rtf_escape(t)
-            )),
-            Para::Text(t) => out.push_str(&format!("{{\\pard\\sa100 {}\\par}}\n", rtf_escape(t))),
-            Para::Row(l, r) => out.push_str(&format!(
-                "{{\\pard\\tqr\\tx9000 {}\\tab {}\\par}}\n",
-                rtf_escape(l),
-                rtf_escape(r)
-            )),
-            Para::Gap => out.push_str("{\\pard\\par}\n"),
+    for (i, doc) in docs.iter().enumerate() {
+        if i > 0 {
+            out.push_str("{\\pard\\page\\par}\n");
+        }
+        for p in doc.as_ref() {
+            para_rtf(&mut out, p);
         }
     }
     out.push('}');
     out
+}
+
+fn para_rtf(out: &mut String, p: &Para) {
+    match p {
+        Para::Title(t) => out.push_str(&format!(
+            "{{\\pard\\sa200\\b\\fs32 {}\\par}}\n",
+            rtf_escape(t)
+        )),
+        Para::Bold(t) => out.push_str(&format!(
+            "{{\\pard\\sb200\\sa100\\b\\fs24 {}\\par}}\n",
+            rtf_escape(t)
+        )),
+        Para::Text(t) => out.push_str(&format!("{{\\pard\\sa100 {}\\par}}\n", rtf_escape(t))),
+        Para::Row(l, r) => out.push_str(&format!(
+            "{{\\pard\\tqr\\tx9000 {}\\tab {}\\par}}\n",
+            rtf_escape(l),
+            rtf_escape(r)
+        )),
+        Para::Gap => out.push_str("{\\pard\\par}\n"),
+    }
 }
 
 #[cfg(test)]

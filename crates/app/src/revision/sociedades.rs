@@ -19,7 +19,10 @@ use super::actas::Aplicacion;
 use super::cruces::datos::MovBanco;
 use super::expediente::{Expediente, Modelo};
 use super::participadas::{Confirmado, bruto_con_retencion};
-use super::{Area, Destinatario, Gravedad, Nuevo, Responsable, Salida, UN_EURO, eur, fecha};
+use super::{
+    Area, Destinatario, DevolucionPendiente, Gravedad, Nuevo, Responsable, Salida, UN_EURO, eur,
+    fecha,
+};
 
 /// Casillas del 200 que se usan (sin ceros a la izquierda).
 mod c {
@@ -332,7 +335,8 @@ fn cauce(y: i32) -> &'static str {
     }
 }
 
-/// Un 200 por ejercicio: el de la carpeta con más casillas o, si no hay, el guardado en TaxPain.
+/// Un 200 por ejercicio: el de la carpeta presentado el último (con la misma fecha o sin ella,
+/// el de más casillas) o, si no hay, el guardado en TaxPain.
 fn por_ejercicio(exp: &Expediente) -> BTreeMap<i32, (Modelo, String)> {
     let mut out: BTreeMap<i32, (Modelo, String)> = BTreeMap::new();
     for f in &exp.presentados {
@@ -358,9 +362,15 @@ fn por_ejercicio(exp: &Expediente) -> BTreeMap<i32, (Modelo, String)> {
         if m.modelo != "200" || m.sin_casillas {
             continue;
         }
-        let mejor = de_carpeta
-            .get(&m.ejercicio)
-            .is_none_or(|(o, _)| m.casillas.len() > o.casillas.len());
+        // La vigente es la última presentada (la autoliquidación rectificativa, después de la
+        // original); con la misma fecha o sin ella, la lectura con más casillas.
+        let mejor =
+            de_carpeta
+                .get(&m.ejercicio)
+                .is_none_or(|(o, _)| match (m.presentado, o.presentado) {
+                    (Some(a), Some(b)) if a != b => a > b,
+                    _ => m.casillas.len() > o.casillas.len(),
+                });
         if mejor {
             de_carpeta.insert(m.ejercicio, (m.clone(), d.ruta.clone()));
         }
@@ -389,8 +399,15 @@ pub(crate) fn revisar(exp: &Expediente, hoy: Date, s: &mut Salida) {
             .map(|(m, _)| m.c(c::CIFRA_NEGOCIOS))
     };
     let sumadas = nivelacion_sumada(&doscientos);
+    let pedidas = solicitudes(exp);
     for (y, (m, fichero)) in &doscientos {
-        let rectificar = exencion(*y, m, anterior(*y), fichero, &con_exencion, &plazos, hoy, s);
+        let rectificar = match pedidas.get(y) {
+            Some(p) => {
+                exencion_pedida(exp, *y, m, anterior(*y), fichero, p, hoy, s);
+                false
+            }
+            None => exencion(*y, m, anterior(*y), fichero, &con_exencion, &plazos, hoy, s),
+        };
         participadas(*y, m, fichero, rectificar, s);
         participaciones_del_balance(*y, m, fichero, &plazos, hoy, s);
         let (acta, dotan) = actas_de(exp, *y);
@@ -558,6 +575,212 @@ fn bases_que_deja(y: i32, m: &Modelo, anterior: Option<Money>) -> Money {
         (exento - base_final(m).max(cero)).max(cero)
     } else {
         cero
+    }
+}
+
+/// Solicitud de rectificación de un 200 presentada en el registro de la Sede de la AEAT (para
+/// los ejercicios iniciados antes de 2024, en los que no hay autoliquidación rectificativa): el
+/// recibo de presentación, con su fecha y su número de asiento. Lo que se pide va en el escrito
+/// anexado, que no tiene por qué estar en la carpeta.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub(crate) struct Solicitud {
+    pub fecha: Option<Date>,
+    pub referencia: Option<String>,
+    pub fichero: String,
+}
+
+/// El ejercicio de una solicitud de rectificación del 200 por su asunto («Solicitud
+/// rectificación modelo 200 del ejercicio 2023») o, sin él, por el texto que se tenga (la ruta y
+/// la descripción): `None` si no es una solicitud de rectificación del 200 (texto plegado con
+/// [`crate::documentos::fold`]).
+fn ejercicio_solicitado(t: &str) -> Option<i32> {
+    static EJERCICIO: std::sync::LazyLock<regex::Regex> = std::sync::LazyLock::new(|| {
+        regex::Regex::new(r"200\D{1,30}?ejercicio\s+((?:19|20)\d{2})").expect("regla fija válida")
+    });
+    static AÑO: std::sync::LazyLock<regex::Regex> = std::sync::LazyLock::new(|| {
+        regex::Regex::new(r"(?:^|\D)((?:19|20)\d{2})(?:\D|$)").expect("regla fija válida")
+    });
+    let es = t.contains("solicitud") && t.contains("rectificaci") && t.contains("200");
+    if !es {
+        return None;
+    }
+    // El año del nombre del fichero antes que el de la carpeta en que está.
+    let nombre = t.rsplit('/').next().unwrap_or(t);
+    EJERCICIO
+        .captures(t)
+        .or_else(|| AÑO.captures(nombre))
+        .or_else(|| AÑO.captures(t))
+        .and_then(|c| c[1].parse().ok())
+}
+
+/// Las solicitudes de rectificación del 200 de la carpeta, por ejercicio (la última de cada
+/// uno): los recibos de registro de la Sede cuyo trámite o asunto lo dicen o, si el recibo no se
+/// ha leído como documento de la AEAT, los ficheros cuya ruta o descripción lo dicen.
+pub(crate) fn solicitudes(exp: &Expediente) -> BTreeMap<i32, Solicitud> {
+    use crate::documentos::fold;
+    let mut out: BTreeMap<i32, Solicitud> = BTreeMap::new();
+    for d in &exp.docs {
+        let (y, fecha, referencia) = match &d.oficial {
+            Some(o) => {
+                let t = fold(&format!(
+                    "{} {}",
+                    o.tramite.as_deref().unwrap_or_default(),
+                    o.asunto.as_deref().unwrap_or_default()
+                ));
+                let Some(y) = ejercicio_solicitado(&t) else {
+                    continue;
+                };
+                (y, o.fecha, o.referencia.clone())
+            }
+            // Un justificante leído con sus casillas es el modelo, no la solicitud.
+            None if d.modelo.as_ref().is_some_and(|m| !m.sin_casillas) => continue,
+            None => {
+                let t = fold(&format!("{} {}", d.ruta, d.descripcion));
+                let Some(y) = ejercicio_solicitado(&t).or(d.ruta_año.filter(|_| {
+                    t.contains("solicitud") && t.contains("rectificaci") && t.contains("200")
+                })) else {
+                    continue;
+                };
+                let referencia = t
+                    .split(|c: char| !c.is_ascii_alphanumeric())
+                    .find(|w| w.starts_with("rge") && w.len() > 6)
+                    .map(str::to_uppercase);
+                (y, None, referencia)
+            }
+        };
+        let nueva = Solicitud {
+            fecha,
+            referencia,
+            fichero: d.ruta.clone(),
+        };
+        if out.get(&y).is_none_or(|o| nueva.fecha > o.fecha) {
+            out.insert(y, nueva);
+        }
+    }
+    out
+}
+
+/// Dividendos sin la exención del art. 21 LIS en un 200 cuya rectificación ya se ha pedido (hay
+/// un recibo de la solicitud en la carpeta): una nota, no algo que rectificar, y la devolución
+/// estimada va con las pedidas pendientes de cobrar, no con lo recuperable.
+#[allow(clippy::too_many_arguments)]
+fn exencion_pedida(
+    exp: &Expediente,
+    y: i32,
+    m: &Modelo,
+    anterior: Option<Money>,
+    fichero: &str,
+    p: &Solicitud,
+    hoy: Date,
+    s: &mut Salida,
+) {
+    let Some(exento) = exento_que_falta(m) else {
+        return;
+    };
+    let importe = ahorro(y, m, anterior, exento, None).filter(|a| a.cents() > 0);
+    let cuando = match (&p.fecha, &p.referencia) {
+        (Some(f), Some(r)) => format!(" el {} (registro {r})", fecha(*f)),
+        (Some(f), None) => format!(" el {}", fecha(*f)),
+        (None, Some(r)) => format!(" (registro {r})"),
+        (None, None) => String::new(),
+    };
+    // TODO(VERIFY): plazo de seis meses para resolver la rectificación, desde la entrada de la
+    // solicitud en el registro (art. 104.1 LGT y la regulación del procedimiento en el RGAT,
+    // arts. 126 a 128); y si, pasado sin resolver, se puede entender desestimada (silencio
+    // negativo) a efectos de recurrir. Hasta verificarlo, la UI sólo dice el plazo.
+    let limite = p.fecha.and_then(|f| super::sede::mas_meses(f, 6));
+    let mut detalle = format!(
+        "En el 200 de {y} hay {} de dividendos de participaciones y la exención (casilla [00370]) \
+         está vacía: tributaron enteros ({} que, con al menos el 5 % de la participada durante \
+         un año, estaban exentos; art. 21.1 y 21.10 LIS). La rectificación ya está pedida{cuando}: \
+         no hay que pedirla otra vez.",
+        eur(m.c(c::DIVIDENDOS)),
+        eur(exento)
+    );
+    match importe {
+        Some(a) => detalle.push_str(&format!(
+            " Según la estimación de TaxPain, a devolver unos {}; el importe exacto está en el \
+             escrito de la gestoría que acompaña a la solicitud.",
+            eur(a)
+        )),
+        None if base_final(m).cents() <= 0 => detalle.push_str(
+            " Ese año la base salió negativa: la rectificación no devuelve dinero, pero aumenta \
+             las bases negativas que se pueden compensar después.",
+        ),
+        None => {}
+    }
+    let estado = match limite {
+        Some(l) if hoy <= l => {
+            detalle.push_str(&format!(
+                " Hacienda tiene seis meses desde que se presentó para resolverla: hasta el {}.",
+                fecha(l)
+            ));
+            format!(
+                "pendiente de resolver: Hacienda tiene hasta el {}",
+                fecha(l)
+            )
+        }
+        Some(l) => {
+            detalle.push_str(&format!(
+                " El plazo de seis meses para resolverla acabó el {}: mira en la Sede de la AEAT \
+                 («Mis expedientes») si se ha resuelto y pregunta a la gestoría cómo seguir.",
+                fecha(l)
+            ));
+            format!("sin resolver en plazo (acabó el {})", fecha(l))
+        }
+        None => "pendiente de resolver".to_owned(),
+    };
+    // Si ya se ve en el banco un abono de Hacienda de un importe parecido, no está pendiente.
+    let cobrada = importe.zip(p.fecha).and_then(|(a, f)| {
+        let (movs, _) = super::cruces::datos::movimientos(exp);
+        movs.into_iter()
+            .filter(|mv| mv.fecha >= f && super::cruces::pagos::de_hacienda(&mv.concepto))
+            .filter(|mv| {
+                mv.importe.cents() >= a.cents() / 2 && mv.importe.cents() <= a.cents() * 3 / 2
+            })
+            .min_by_key(|mv| mv.fecha)
+    });
+    if let Some(mv) = &cobrada {
+        detalle.push_str(&format!(
+            " En el banco hay un abono de Hacienda de {} el {} que puede ser esta devolución.",
+            eur(mv.importe),
+            fecha(mv.fecha)
+        ));
+    }
+    s.add(
+        Nuevo {
+            codigo: "sociedades.exencion_pedida",
+            area: Area::Sociedades,
+            gravedad: Gravedad::Info,
+            responsable: Responsable::Gestoria,
+            titulo: format!(
+                "Dividendos de {y} sin la exención: rectificación pedida{cuando}, {}",
+                if cobrada.is_some() {
+                    "parece cobrada"
+                } else {
+                    "pendiente de resolver"
+                }
+            ),
+            ficheros: vec![fichero.to_owned(), p.fichero.clone()],
+        }
+        .detalle(detalle),
+        Some(y),
+        None,
+    );
+    if let (Some(a), None) = (importe, cobrada) {
+        s.devoluciones_pendientes.push(DevolucionPendiente {
+            modelo: "200".into(),
+            ejercicio: y,
+            periodo: m.periodo.clone(),
+            importe: a,
+            estimado: true,
+            presentada: p.fecha.map(super::fecha_iso),
+            via: match &p.referencia {
+                Some(r) => format!("solicitud de rectificación (registro {r})"),
+                None => "solicitud de rectificación".to_owned(),
+            },
+            estado,
+        });
     }
 }
 
@@ -3579,5 +3802,89 @@ mod tests {
             ahorro(2025, &m, None, Money::from_cents(100_000), None),
             None
         );
+    }
+
+    /// Un justificante de 200 de la carpeta (cifras inventadas).
+    fn doc_200(
+        ruta: &str,
+        presentado: Option<Date>,
+        casillas: &[(u32, i64)],
+    ) -> super::super::expediente::Doc {
+        use super::super::expediente::{Clase, Doc};
+        Doc {
+            ruta: ruta.into(),
+            sha: ruta.into(),
+            clase: Clase::Modelo,
+            descripcion: String::new(),
+            con_ia: false,
+            ruta_año: None,
+            ruta_trimestre: None,
+            factura: None,
+            modelo: Some(Modelo {
+                presentado,
+                ..modelo(2025, casillas)
+            }),
+            libro: None,
+            autorrepercusion: Vec::new(),
+            extractos: Vec::new(),
+            extracto_error: None,
+            empresa: None,
+            tramite: None,
+            aplicacion: None,
+            nomina: None,
+            mencion_sin_iva: None,
+            oficial: None,
+            texto_no_aeat: false,
+            participada: None,
+        }
+    }
+
+    /// La autoliquidación rectificativa, presentada después de la original, es el 200 del año
+    /// aunque se hayan leído menos casillas de ella. Con la misma fecha, el de más casillas.
+    #[test]
+    fn el_200_del_año_es_el_ultimo_presentado() {
+        let mut exp = con_doscientos(&[]);
+        exp.docs = vec![
+            doc_200(
+                "200-original.pdf",
+                Some(hoy(2026, 7, 24)),
+                &[(500, 100), (550, 100), (552, 100), (1330, -100_000)],
+            ),
+            doc_200(
+                "200-rectificativa.pdf",
+                Some(hoy(2026, 11, 5)),
+                &[(500, 100), (1330, -150_000)],
+            ),
+        ];
+        let d = por_ejercicio(&exp);
+        assert_eq!(d[&2025].1, "200-rectificativa.pdf");
+        assert_eq!(d[&2025].0.c(1330), Money::from_cents(-150_000));
+        exp.docs[1].modelo.as_mut().unwrap().presentado = Some(hoy(2026, 7, 24));
+        assert_eq!(por_ejercicio(&exp)[&2025].1, "200-original.pdf");
+    }
+
+    /// El ejercicio de la solicitud, por su asunto o, sin él, por la ruta del fichero. Un 200
+    /// rectificativo o un escrito sin la palabra «solicitud» no lo son.
+    #[test]
+    fn el_ejercicio_de_la_solicitud_de_rectificacion() {
+        use crate::documentos::fold;
+        let e = |t: &str| ejercicio_solicitado(&fold(t));
+        assert_eq!(
+            e(
+                "GZ285 - Presentación de recurso o solicitud Solicitud rectificación modelo 200 \
+               del ejercicio 2023"
+            ),
+            Some(2023)
+        );
+        assert_eq!(
+            e("MODELOS/2024/Modelo_200_2023_solicitud_rectificacion_RGE000000012026.pdf"),
+            Some(2023)
+        );
+        assert_eq!(
+            e("solicitud_rectificacion_200_ejercicio_2022.pdf"),
+            Some(2022)
+        );
+        assert_eq!(e("Modelo_200_2025_rectificativa_justificante.pdf"), None);
+        assert_eq!(e("Solicitud de aplazamiento del modelo 303 de 2025"), None);
     }
 }

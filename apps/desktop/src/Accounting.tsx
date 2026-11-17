@@ -1,5 +1,6 @@
 import { Download } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Actas } from './Actas';
 import { AjustesCierre, type IrA } from './AjustesCierre';
 import { Analitica } from './Analitica';
 import { Apertura } from './Apertura';
@@ -1934,6 +1935,7 @@ export function Accounting({
           <AnnualAccountsView year={year} />
           <Ratios year={year} />
           <Deposito year={year} />
+          <Actas year={year} />
         </>
       )}
       {view === 'analitica' && <Analitica year={year} />}

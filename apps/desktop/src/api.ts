@@ -5379,6 +5379,29 @@ export interface ResumenRevision {
   /** Céntimos: de lo anterior, el impuesto que se ahorra con la exención (estimación). */
   exencion_proximo_200?: number;
   impuesto_dividendos_proximo_200?: number;
+  /**
+   * Céntimos: devoluciones ya pedidas a Hacienda que no se ven cobradas (suma de
+   * `devoluciones_pendientes`). Aparte de `recuperable`. Falta en revisiones antiguas.
+   */
+  pendiente_cobro?: number;
+}
+
+/** Devolución pedida a Hacienda que aún no se ve cobrada en el banco. */
+export interface DevolucionPendiente {
+  modelo: string;
+  ejercicio: number;
+  /** «0A», «4T»… */
+  periodo: string;
+  /** Céntimos. */
+  importe: number;
+  /** El importe es una estimación de TaxPain (el exacto está en el escrito de la gestoría). */
+  estimado: boolean;
+  /** AAAA-MM-DD: cuándo se pidió. */
+  presentada: string | null;
+  /** Cómo se pidió: «autoliquidación rectificativa», «solicitud de rectificación (RGE…)»… */
+  via: string;
+  /** «pendiente: Hacienda tiene hasta el …», «sin extractos de esas fechas», «no se ve el abono». */
+  estado: string;
 }
 
 /** Dividendo cobrado de una participada, con el bruto y la retención de sus documentos. */
@@ -5407,6 +5430,8 @@ export interface Revision {
   pedir: Peticion[];
   /** Dividendos para el próximo 200 confirmados con documentos (falta en revisiones antiguas). */
   dividendos?: DividendoConfirmado[];
+  /** Devoluciones pedidas, pendientes de cobrar (falta en revisiones antiguas). */
+  devoluciones_pendientes?: DevolucionPendiente[];
 }
 
 export const folderReview = (root: string) => invoke<Revision>('folder_review', { root });
@@ -6874,6 +6899,55 @@ export async function corporateBookSave(
   const path = await savePath(name, pdf);
   if (!path) return null;
   await invoke('corporate_book_save', { book, year, path, pdf });
+  return path;
+}
+
+// ---------- Actas y certificados de retenciones ----------
+
+/** Espejo de `taxpain_app::actas::ReserveChange`. */
+export interface ReserveChange {
+  date: string | null;
+  from: string;
+  to: string;
+  amount: number;
+  reason: string;
+}
+
+/** Espejo de `taxpain_app::actas::Request`. */
+export type ActaRequest =
+  | { kind: 'cuentas'; year: number }
+  | { kind: 'dividendo'; payment_id: number }
+  | ({ kind: 'reservas' } & ReserveChange)
+  | { kind: 'certificados'; year: number; nif: string | null };
+
+/** Certificado de retenciones de dividendos de un socio (art. 108.3 RIRPF). */
+export interface DividendCertificate {
+  year: number;
+  nif: string;
+  name: string;
+  resident: boolean;
+  lines: { date: string; gross: number; rate: number; withheld: number; net: number }[];
+  gross: number;
+  withheld: number;
+  net: number;
+}
+
+export const dividendCertificates = (year: number) =>
+  invoke<DividendCertificate[]>('dividend_certificates', { year });
+
+/** Pide dónde guardar el acta (RTF para editar o PDF) y la guarda. */
+export async function actaSave(
+  request: ActaRequest,
+  name: string,
+  pdf: boolean,
+): Promise<string | null> {
+  const { save } = await import('@tauri-apps/plugin-dialog');
+  const path = await save({
+    defaultPath: `${name}.${pdf ? 'pdf' : 'rtf'}`,
+    filters: [pdf ? { name: 'PDF', extensions: ['pdf'] } : { name: 'RTF', extensions: ['rtf'] }],
+  });
+  if (!path) return null;
+  await invoke('actas_save', { request, path, pdf });
   return path;
 }
 

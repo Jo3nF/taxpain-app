@@ -1046,10 +1046,12 @@ fn sin_diario_con_el_dividendo_confirmado_usa_el_bruto() {
             retenciones_proximo_200: Money::from_cents(23_457),
             exencion_proximo_200: Money::ZERO,
             impuesto_dividendos_proximo_200: Money::ZERO,
+            pendiente_cobro: Money::ZERO,
         },
         hallazgos: vec![],
         tablas: vec![],
         pedir: vec![],
+        devoluciones_pendientes: vec![],
         dividendos: vec![crate::revision::DividendoConfirmado {
             ejercicio: 2026,
             fecha: "2026-05-14".into(),

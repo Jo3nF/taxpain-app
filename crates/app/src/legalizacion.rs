@@ -8,6 +8,12 @@
 //!   completo o resumido por meses (una línea por cuenta y mes, como el «diario resumido» de a3).
 //! - `INV_CUEN_nnn`: balance inicial, sumas y saldos de cada trimestre, inventario de cierre,
 //!   balance y pérdidas y ganancias (art. 28.1).
+//! - `ACTASCON_nnn` (PDF, opcional): libro de actas con las actas de la junta o las decisiones
+//!   del socio único con fecha en el ejercicio ([`crate::actas::of_year`]). `TODO(VERIFY)`: la
+//!   Instrucción no explica cada prefijo de actas (`ACTASCON`, `ACTASDET`, `ACTALCON`,
+//!   `ACTACODE`, `SOCUNICO`); se usa `ACTASCON` para las de la junta general y las del socio
+//!   único (art. 15 LSC: van en el libro de actas), y `SOCUNICO` se deja para el libro registro
+//!   de contratos del socio único con la sociedad (art. 16 LSC).
 //!
 //! - `ACTASCON_nnn`, `SOCIOS_nnn` y `SOCUNICO_nnn` (PDF con folios, si se piden): libro de actas
 //!   con las aprobadas del ejercicio, libro registro de socios y libro registro de contratos del

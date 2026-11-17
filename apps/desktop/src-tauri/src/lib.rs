@@ -866,6 +866,8 @@ pub fn run() {
             socios::dividend_propose,
             socios::dividend_pay,
             socios::dividend_payments,
+            socios::dividend_certificates,
+            socios::actas_save,
             socios::dividend_undo,
             socios::dividend_agreement_check,
             socios::dividend_agreement_record,

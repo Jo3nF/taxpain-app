@@ -4,6 +4,7 @@
 
 pub mod a3;
 pub mod accounting;
+pub mod actas;
 pub mod ahorro;
 pub mod ajustes_cierre;
 pub mod analitica;

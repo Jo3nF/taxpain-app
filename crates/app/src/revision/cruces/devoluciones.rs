@@ -9,22 +9,30 @@ use time::{Date, Duration};
 
 use super::super::modelos::{Declarado, declarados};
 use super::super::sede::mas_meses;
-use super::super::{Area, Gravedad, Nuevo, Responsable, Salida, eur, fecha, lista, plural};
+use super::super::{
+    Area, DevolucionPendiente, Gravedad, Nuevo, Responsable, Salida, eur, fecha, fecha_iso, lista,
+    plural,
+};
 use super::datos::MovBanco;
 use super::datos::movimientos;
 use super::pagos::de_hacienda;
-use super::{Contexto, a_ingresar, nombre, primera};
+use super::{Contexto, a_ingresar, nombre, primera, rectificativa_200};
 
 /// Días entre la orden de pago de la AEAT y el abono en la cuenta.
 const MARGEN_ABONO: i64 = 5;
 
-/// ¿Se pidió la devolución? Lo dice la portada del justificante («Solicitud de devolución»).
-/// Sin ella, por las casillas: el 200 con resultado negativo (salvo una renuncia, que es rara) y
-/// el 303 del último periodo que aplica todo lo pendiente de compensar ([78] = [110], sin nada en
-/// la [87]).
+/// ¿Se pidió la devolución? En la rectificativa del 200, por su [00621] negativa. Si no, lo dice
+/// la portada del justificante («Solicitud de devolución»). Sin ella, por las casillas: el 200
+/// con resultado negativo (salvo una renuncia, que es rara) y el 303 del último periodo que
+/// aplica todo lo pendiente de compensar ([78] = [110], sin nada en la [87]).
 fn pidio_devolucion(m: &str, p: &str, d: &Declarado, resultado: Option<Money>) -> bool {
     if resultado.is_some_and(|r| r >= Money::ZERO) {
         return false;
+    }
+    // La autoliquidación rectificativa del 200 con la [00621] negativa pide la devolución
+    // (lo mismo en positivo en la [00866]), aunque su portada no lo diga.
+    if rectificativa_200(m, d) {
+        return resultado.is_some_and(|r| r < Money::ZERO);
     }
     if let Some(v) = d.devolucion {
         return v;
@@ -144,6 +152,20 @@ pub(super) fn revisar(cx: &Contexto<'_>, s: &mut Salida) {
             fecha(presentada),
             fecha(limite),
         ];
+        let pendiente = |estado: String| DevolucionPendiente {
+            modelo: m.clone(),
+            ejercicio: y,
+            periodo: p.clone(),
+            importe: importe.unwrap_or_default(),
+            estimado: false,
+            presentada: Some(fecha_iso(presentada)),
+            via: if rectificativa_200(m, d) {
+                "autoliquidación rectificativa".to_owned()
+            } else {
+                "declaración".to_owned()
+            },
+            estado,
+        };
         let Some(importe) = importe else {
             fila.extend([
                 String::new(),
@@ -205,21 +227,24 @@ pub(super) fn revisar(cx: &Contexto<'_>, s: &mut Salida) {
             continue;
         }
         if cx.hoy <= limite {
-            fila.extend([
-                String::new(),
-                format!("pendiente: Hacienda tiene hasta el {}", fecha(limite)),
-            ]);
+            let estado = format!("pendiente: Hacienda tiene hasta el {}", fecha(limite));
+            fila.extend([String::new(), estado.clone()]);
             filas.push(fila);
+            s.devoluciones_pendientes.push(pendiente(estado));
             continue;
         }
         if !cubre(presentada, limite.min(cx.hoy)) {
             sin_extracto.push(format!("{} ({})", primera(&cual), eur(importe)));
-            fila.extend([String::new(), "sin extractos de esas fechas".to_owned()]);
+            let estado = "sin extractos de esas fechas".to_owned();
+            fila.extend([String::new(), estado.clone()]);
             filas.push(fila);
+            s.devoluciones_pendientes.push(pendiente(estado));
             continue;
         }
-        fila.extend([String::new(), "no se ve el abono".to_owned()]);
+        let estado = "no se ve el abono".to_owned();
+        fila.extend([String::new(), estado.clone()]);
         filas.push(fila);
+        s.devoluciones_pendientes.push(pendiente(estado));
         s.add(
             Nuevo {
                 codigo: "aeat.devolucion_no_esta",

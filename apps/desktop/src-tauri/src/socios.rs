@@ -1,6 +1,7 @@
 //! Comandos de socios y dividendos, administradores y gastos de viaje (la lógica está en
 //! `taxpain_app::socios`, `taxpain_app::payroll` y `taxpain_app::viajes`).
 
+use taxpain_app::actas::{self, Certificate};
 use taxpain_app::dividendos::{self, Agreement, AgreementCheck, AgreementInput, Recorded};
 use taxpain_app::payroll::{self, DirectorTurnover};
 use taxpain_app::socios::{self, DividendPayment, PayoutInput, PayoutProposal, Shareholder};
@@ -86,6 +87,33 @@ pub fn dividend_payments(
     year: i32,
 ) -> CmdResult<Vec<DividendPayment>> {
     Ok(socios::payments_of_year(&*state.vault()?, year)?)
+}
+
+/// Certificados de retenciones de dividendos de `year`, uno por socio (art. 108.3 RIRPF).
+#[tauri::command]
+pub fn dividend_certificates(
+    state: tauri::State<'_, AppState>,
+    year: i32,
+) -> CmdResult<Vec<Certificate>> {
+    Ok(actas::certificates(&*state.vault()?, year)?)
+}
+
+/// Guarda un acta (aprobación de cuentas, dividendos o reservas) o los certificados de los
+/// socios en RTF (editable) o PDF.
+#[tauri::command]
+pub fn actas_save(
+    state: tauri::State<'_, AppState>,
+    request: actas::Request,
+    path: String,
+    pdf: bool,
+) -> CmdResult<()> {
+    let docs = actas::docs(&*state.vault()?, &request)?;
+    if pdf {
+        std::fs::write(&path, actas::pdf("Actas", &docs)?)?;
+    } else {
+        std::fs::write(&path, actas::rtf(&docs))?;
+    }
+    Ok(())
 }
 
 /// Deshace un pago de dividendos y borra su asiento: confirmación en la interfaz y Touch ID con

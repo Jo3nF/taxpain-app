@@ -277,10 +277,12 @@ mod tests {
                 retenciones_proximo_200: Money::ZERO,
                 exencion_proximo_200: Money::ZERO,
                 impuesto_dividendos_proximo_200: Money::ZERO,
+                pendiente_cobro: Money::ZERO,
             },
             hallazgos,
             tablas: vec![],
             pedir: vec![],
+            devoluciones_pendientes: vec![],
             dividendos: vec![],
         }
     }

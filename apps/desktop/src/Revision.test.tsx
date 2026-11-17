@@ -352,6 +352,54 @@ describe('Revisión de la carpeta', () => {
     ).toBeTruthy();
   });
 
+  it('pone aparte las devoluciones pedidas, pendientes de cobrar', async () => {
+    api.folderReview.mockResolvedValue({
+      ...REVIEW,
+      resumen: { ...REVIEW.resumen, pendiente_cobro: 395_485 },
+      devoluciones_pendientes: [
+        {
+          modelo: '200',
+          ejercicio: 2025,
+          periodo: '0A',
+          importe: 218_500,
+          estimado: false,
+          presentada: '2026-11-05',
+          via: 'autoliquidación rectificativa',
+          estado: 'pendiente: Hacienda tiene hasta el 05/05/2027',
+        },
+        {
+          modelo: '200',
+          ejercicio: 2023,
+          periodo: '0A',
+          importe: 176_985,
+          estimado: true,
+          presentada: '2026-11-10',
+          via: 'solicitud de rectificación (registro RGE000000012026)',
+          estado: 'pendiente de resolver: Hacienda tiene hasta el 10/05/2027',
+        },
+      ],
+    });
+    await revisar();
+    const caja = screen.getByRole('region', {
+      name: 'Devoluciones pedidas, pendientes de cobrar: 3.954,85 €',
+    });
+    const lineas = within(caja).getAllByRole('listitem');
+    expect(lineas.map((l) => l.textContent)).toEqual([
+      'El 200 de 2025: 2.185,00 €, pedida por autoliquidación rectificativa el 05/11/2026; pendiente: Hacienda tiene hasta el 05/05/2027.',
+      'El 200 de 2023: 1.769,85 € (estimación), pedida por solicitud de rectificación (registro RGE000000012026) el 10/11/2026; pendiente de resolver: Hacienda tiene hasta el 10/05/2027.',
+    ]);
+    // Ya pedidas: no suman a lo recuperable.
+    const cifra = (t: string) =>
+      screen.getByText(t, { selector: 'dt' }).nextElementSibling?.textContent;
+    expect(cifra('Recuperable estimado')).toBe('3.360,00 €');
+  });
+
+  it('sin devoluciones pedidas no pone el recuadro', async () => {
+    api.folderReview.mockResolvedValue(REVIEW);
+    await revisar();
+    expect(screen.queryByText(/Devoluciones pedidas, pendientes de cobrar/)).toBeNull();
+  });
+
   it('sin dividendos confirmados no dice nada del próximo 200', () => {
     expect(textoProximo200(REVIEW.resumen)).toBeNull();
     expect(

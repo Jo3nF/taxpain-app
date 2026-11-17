@@ -1202,6 +1202,7 @@ fn revision_carpeta(detalle: &str) -> Revision {
             retenciones_proximo_200: Money::ZERO,
             exencion_proximo_200: Money::ZERO,
             impuesto_dividendos_proximo_200: Money::ZERO,
+            pendiente_cobro: Money::ZERO,
         },
         hallazgos: vec![Hallazgo {
             codigo: "facturas.nif_control".into(),
@@ -1220,6 +1221,7 @@ fn revision_carpeta(detalle: &str) -> Revision {
         }],
         tablas: vec![],
         pedir: vec![],
+        devoluciones_pendientes: vec![],
         dividendos: vec![],
     }
 }

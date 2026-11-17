@@ -462,6 +462,7 @@ async fn un_hallazgo_de_la_carpeta_no_saca_rutas_ni_datos_de_la_empresa() {
                         retenciones_proximo_200: Money::ZERO,
                         exencion_proximo_200: Money::ZERO,
                         impuesto_dividendos_proximo_200: Money::ZERO,
+                        pendiente_cobro: Money::ZERO,
                     },
                     hallazgos: vec![Hallazgo {
                         codigo: "libros.sin_pdf".into(),
@@ -484,6 +485,7 @@ async fn un_hallazgo_de_la_carpeta_no_saca_rutas_ni_datos_de_la_empresa() {
                     }],
                     tablas: vec![],
                     pedir: vec![],
+                    devoluciones_pendientes: vec![],
                     dividendos: vec![],
                 },
             )

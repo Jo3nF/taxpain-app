@@ -63,6 +63,10 @@ pub(crate) struct Declarado {
     /// Si complementa o sustituye a otra: cuándo se presentó la primera del periodo, si se sabe
     /// (la AEAT o otra declaración de la carpeta presentada antes).
     pub original: Option<Date>,
+    /// Si complementa o sustituye a otra: las casillas de la primera del periodo (la que se
+    /// presentó en `original`), si está. En una rectificativa del 200 que no ingresa nada, el
+    /// pago del banco es el de la original.
+    pub casillas_original: BTreeMap<u32, Money>,
 }
 
 impl Default for Declarado {
@@ -82,6 +86,7 @@ impl Default for Declarado {
             rectifica: false,
             tipo: TipoDeclaracion::Normal,
             original: None,
+            casillas_original: BTreeMap::new(),
         }
     }
 }
@@ -121,7 +126,8 @@ struct Candidato {
 
 /// Modelos de la carpeta, los guardados en TaxPain (Importar → Comparar) y los que tiene la
 /// AEAT, por modelo, ejercicio y periodo. Si hay varias declaraciones del mismo periodo, vale
-/// la vigente (ver [`vigente`]): la de la AEAT; si no, una que ninguna otra complementa ni
+/// la vigente (ver [`vigente`]): la presentada la última (con la misma fecha o sin ella, la de
+/// la AEAT); si no, una que ninguna otra complementa ni
 /// sustituye (por el justificante anterior que dice cada una) y, entre las que quedan, la
 /// presentada más tarde, sin mezclar sus casillas con las de otra declaración (la sustitutiva o
 /// la complementaria de una autoliquidación traen el periodo entero: en el 111 la [28], con lo
@@ -181,6 +187,7 @@ pub(crate) fn declarados(exp: &Expediente) -> BTreeMap<Clave, Declarado> {
                     rectifica: false,
                     tipo: m.tipo,
                     original: m.original,
+                    casillas_original: BTreeMap::new(),
                 },
             },
         );
@@ -207,7 +214,7 @@ fn vigente(cs: Vec<Candidato>) -> Option<Declarado> {
     } else {
         vivos
     };
-    let base = vivos.iter().copied().max_by_key(|c| {
+    let mut base = vivos.iter().copied().max_by_key(|c| {
         (
             c.origen == Origen::Aeat,
             c.d.presentado,
@@ -216,6 +223,18 @@ fn vigente(cs: Vec<Candidato>) -> Option<Declarado> {
             c.orden,
         )
     })?;
+    // La AEAT sólo sabe lo presentado hasta que se consultó («Comprobar lo presentado»): una
+    // declaración de la carpeta presentada después (la autoliquidación rectificativa de una
+    // original que ya tenía la AEAT) es la vigente. Con la misma fecha o sin ella, la de la AEAT.
+    if let Some(b) = base.d.presentado
+        && let Some(despues) = vivos
+            .iter()
+            .copied()
+            .filter(|c| c.d.presentado.is_some_and(|p| p > b))
+            .max_by_key(|c| (c.d.presentado, !c.d.sin_casillas, c.origen, c.orden))
+    {
+        base = despues;
+    }
     let mut d = base.d.clone();
     // Otra lectura que seguro que es la misma declaración: el mismo justificante o, si alguna no
     // dice su número, la misma fecha de presentación.
@@ -251,6 +270,14 @@ fn vigente(cs: Vec<Candidato>) -> Option<Declarado> {
     d.rectifica = rectifica;
     if rectifica {
         d.original = primera();
+        if let Some(o) = d.original
+            && let Some(c) = cs
+                .iter()
+                .filter(|c| c.d.presentado == Some(o) && !c.d.sin_casillas)
+                .max_by_key(|c| (c.origen, c.d.casillas.len(), c.orden))
+        {
+            d.casillas_original = c.d.casillas.clone();
+        }
     }
     // Otra lectura de la misma declaración: el mismo justificante o, si alguna no dice su
     // número, la misma fecha de presentación. Sin la fecha de alguna, la misma salvo que la
@@ -409,6 +436,11 @@ fn juntar(viejo: &mut Declarado, nuevo: Declarado) {
             nuevo.tipo
         },
         original: nuevo.original.or(viejo_.original),
+        casillas_original: if nuevo.casillas_original.is_empty() {
+            viejo_.casillas_original
+        } else {
+            nuevo.casillas_original
+        },
         parcial: false,
     };
 }
@@ -3305,6 +3337,67 @@ mod tests {
         .unwrap();
         assert_eq!(d.c(2), Money::from_cents(120_000));
         assert!(d.con_casillas());
+    }
+
+    /// La consulta a la AEAT es anterior a la autoliquidación rectificativa del 200: la AEAT
+    /// sólo tiene la original, y la vigente es la rectificativa de la carpeta, presentada
+    /// después. Con la misma fecha (o sin la de la carpeta), la de la AEAT.
+    #[test]
+    fn la_rectificativa_presentada_despues_de_la_consulta_a_la_aeat() {
+        use time::macros::date;
+        let cand = |origen, orden, numero: &str, presentado, c1586| Candidato {
+            origen,
+            orden,
+            justificante: Some(numero.to_owned()),
+            anterior: None,
+            tipo: TipoDeclaracion::Normal,
+            modelo: "200".to_owned(),
+            d: Declarado {
+                casillas: [(1586, Money::from_cents(c1586))].into_iter().collect(),
+                presentado,
+                ..Declarado::default()
+            },
+        };
+        let aeat = || {
+            cand(
+                Origen::Aeat,
+                1,
+                "2000000000013",
+                Some(date!(2026 - 07 - 24)),
+                500_000,
+            )
+        };
+        let d = vigente(vec![
+            aeat(),
+            cand(
+                Origen::Carpeta,
+                2,
+                "2000000000021",
+                Some(date!(2026 - 11 - 05)),
+                450_000,
+            ),
+        ])
+        .unwrap();
+        assert_eq!(d.c(1586), Money::from_cents(450_000));
+        assert_eq!(d.presentado, Some(date!(2026 - 11 - 05)));
+        let d = vigente(vec![
+            aeat(),
+            cand(
+                Origen::Carpeta,
+                2,
+                "2000000000013",
+                Some(date!(2026 - 07 - 24)),
+                499_900,
+            ),
+        ])
+        .unwrap();
+        assert_eq!(d.c(1586), Money::from_cents(500_000));
+        let d = vigente(vec![
+            aeat(),
+            cand(Origen::Carpeta, 2, "2000000000021", None, 450_000),
+        ])
+        .unwrap();
+        assert_eq!(d.c(1586), Money::from_cents(500_000));
     }
 
     /// En una autoliquidación la complementaria trae el periodo entero: no se suma a nada.

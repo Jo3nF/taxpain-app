@@ -23,7 +23,7 @@ use super::modelos::{Clave, Declarado, declarados};
 mod anuales;
 pub(crate) mod datos;
 mod devoluciones;
-mod pagos;
+pub(crate) mod pagos;
 pub(crate) mod plazos;
 mod retenciones;
 pub(crate) mod socios;
@@ -143,7 +143,8 @@ pub(crate) fn perfil_amplio(exp: &Expediente) -> TaxpayerProfile {
 
 /// Casillas del resultado de un modelo, la primera que esté: [71] en el 303, [30] en el 111,
 /// [05] en el 115, [14] en el 123, [19] en el 130, [03] (o [34]) en el 202 y [01586] (o [00621]) en el
-/// 200. Vacío si el modelo no tiene resultado (los informativos).
+/// 200 (en una rectificativa del 200, sólo la [00621]: ver [`a_ingresar`]). Vacío si el modelo
+/// no tiene resultado (los informativos).
 fn casillas_resultado(modelo: &str) -> &'static [u32] {
     match modelo {
         "303" => &[71],
@@ -163,25 +164,71 @@ pub(crate) fn tiene_resultado(modelo: &str) -> bool {
     !casillas_resultado(modelo).is_empty()
 }
 
+/// Casilla [00621] del 200: «Resultado» de la autoliquidación rectificativa (o de la
+/// complementaria), lo que sale a ingresar o a devolver con ella.
+const RESULTADO_RECTIFICATIVA_200: u32 = 621;
+/// Casilla [00866] del 200: «Rectificación», lo que se pide devolver con la rectificativa.
+const RECTIFICACION_200: u32 = 866;
+
+/// ¿Es un 200 que rectifica otro (lo dice su tipo o su justificante anterior, o lleva la
+/// [00866])? Su [01586] es el resultado de la liquidación entera, no lo que sale a ingresar o a
+/// devolver con ella: eso es la [00621].
+pub(crate) fn rectificativa_200(modelo: &str, d: &Declarado) -> bool {
+    modelo == "200" && (d.rectifica || !d.c(RECTIFICACION_200).is_zero())
+}
+
+/// Las casillas del resultado de esta declaración: las del modelo ([`casillas_resultado`]) o, en
+/// una rectificativa del 200, la [00621].
+fn casillas_resultado_de(modelo: &str, d: &Declarado) -> &'static [u32] {
+    if rectificativa_200(modelo, d) {
+        &[RESULTADO_RECTIFICATIVA_200]
+    } else {
+        casillas_resultado(modelo)
+    }
+}
+
 /// ¿Se sabe lo que salía a ingresar? No si no se han podido leer las casillas de la declaración
 /// o las del resultado.
 pub(crate) fn resultado_sabido(modelo: &str, d: &Declarado) -> bool {
     d.con_casillas()
-        && !casillas_resultado(modelo)
+        && !casillas_resultado_de(modelo, d)
             .iter()
             .any(|c| d.dudosas.contains(c))
 }
 
 /// Lo que sale a ingresar de un modelo (positivo) o a compensar o devolver (negativo), con la
 /// casilla de su resultado ([`casillas_resultado`]). `None` si el modelo no tiene resultado, si
-/// no se leyó la casilla o si no se sabe ([`resultado_sabido`]).
+/// no se leyó la casilla o si no se sabe ([`resultado_sabido`]). En una rectificativa del 200,
+/// la [00621]; vacía, cero: la rectificativa no pide ni ingresa nada.
 pub(crate) fn a_ingresar(modelo: &str, d: &Declarado) -> Option<Money> {
     if !resultado_sabido(modelo, d) {
         return None;
     }
+    if rectificativa_200(modelo, d) {
+        return Some(d.c(RESULTADO_RECTIFICATIVA_200));
+    }
     casillas_resultado(modelo)
         .iter()
         .find_map(|c| d.casillas.get(c).copied())
+}
+
+/// El pago que se ve en el banco por una declaración: lo que sale a ingresar con ella
+/// ([`a_ingresar`]) y desde cuándo se puede pagar (su presentación). En una rectificativa del 200
+/// que no ingresa nada (sale a devolver o a cero), el pago es el de la original, con su fecha:
+/// sin esto, el cargo de la original quedaría como un cargo de Hacienda sin modelo.
+pub(crate) fn a_pagar(modelo: &str, d: &Declarado) -> Option<(Money, Option<Date>)> {
+    let propio = a_ingresar(modelo, d).filter(|c| *c > Money::ZERO);
+    if propio.is_some() || !rectificativa_200(modelo, d) || d.casillas_original.is_empty() {
+        return propio.map(|c| (c, d.presentado));
+    }
+    let original = Declarado {
+        casillas: d.casillas_original.clone(),
+        presentado: d.original,
+        ..Declarado::default()
+    };
+    a_ingresar(modelo, &original)
+        .filter(|c| *c > Money::ZERO)
+        .map(|c| (c, d.original))
 }
 
 /// «el 303 del 1T 2025», «el 390 de 2025».
@@ -231,4 +278,42 @@ pub(crate) fn revisar_sin_carpeta(exp: &Expediente, hoy: Date, s: &mut Salida) {
     anuales::revisar(&cx, s);
     plazos::revisar_sin_carpeta(&cx, s);
     retenciones::revisar(&cx, s);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn doscientos(rectifica: bool, casillas: &[(u32, i64)]) -> Declarado {
+        Declarado {
+            casillas: casillas
+                .iter()
+                .map(|(k, v)| (*k, Money::from_cents(*v)))
+                .collect(),
+            rectifica,
+            ..Declarado::default()
+        }
+    }
+
+    /// En la autoliquidación rectificativa del 200, lo que sale a devolver es la [00621] (la
+    /// [00866] lleva lo mismo en positivo); la [01586] es el resultado de toda la liquidación. Si
+    /// la [00621] está vacía, la rectificativa no pide nada.
+    #[test]
+    fn el_resultado_de_la_rectificativa_del_200_es_la_00621() {
+        let m = Money::from_cents;
+        let original = doscientos(false, &[(1586, 500_000)]);
+        assert_eq!(a_ingresar("200", &original), Some(m(500_000)));
+        let rectificativa = doscientos(true, &[(1586, 450_000), (621, -50_000), (866, 50_000)]);
+        assert_eq!(a_ingresar("200", &rectificativa), Some(m(-50_000)));
+        // Sin el tipo, la [00866] dice que lo es.
+        let sin_tipo = doscientos(false, &[(1586, 450_000), (621, -50_000), (866, 50_000)]);
+        assert_eq!(a_ingresar("200", &sin_tipo), Some(m(-50_000)));
+        // La que sólo cambia la base negativa: nada que ingresar ni devolver.
+        let sin_dinero = doscientos(true, &[(1586, -120_000)]);
+        assert_eq!(a_ingresar("200", &sin_dinero), Some(Money::ZERO));
+        // Con la [00621] dudosa, no se sabe.
+        let mut dudosa = doscientos(true, &[(1586, 450_000)]);
+        dudosa.dudosas.insert(621);
+        assert_eq!(a_ingresar("200", &dudosa), None);
+    }
 }

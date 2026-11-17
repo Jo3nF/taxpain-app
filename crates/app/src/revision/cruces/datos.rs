@@ -171,7 +171,7 @@ pub(crate) fn cargar(v: &Vault, hoy: Date) -> DatosTaxPain {
         })
         .collect();
     let mut movimientos = Vec::new();
-    let mut tramos: BTreeMap<String, (Date, Date)> = BTreeMap::new();
+    let mut por_cuenta: BTreeMap<String, Vec<(Date, Money, Option<Money>)>> = BTreeMap::new();
     for m in crate::bank::movements(v, false).unwrap_or_default() {
         let Some(fecha) = crate::import::parse_date(&m.op_date) else {
             continue;
@@ -179,11 +179,10 @@ pub(crate) fn cargar(v: &Vault, hoy: Date) -> DatosTaxPain {
         if m.currency != "EUR" {
             continue;
         }
-        let t = tramos
+        por_cuenta
             .entry(m.bank_account.clone())
-            .or_insert((fecha, fecha));
-        t.0 = t.0.min(fecha);
-        t.1 = t.1.max(fecha);
+            .or_default()
+            .push((fecha, m.amount, m.balance));
         movimientos.push(MovBanco {
             fecha,
             importe: m.amount,
@@ -197,15 +196,50 @@ pub(crate) fn cargar(v: &Vault, hoy: Date) -> DatosTaxPain {
         empleados,
         documentos,
         movimientos,
-        cobertura: tramos
+        cobertura: por_cuenta
             .into_iter()
-            .map(|(cuenta, (a, b))| (cuenta, a, b))
+            .flat_map(|(cuenta, movs)| {
+                tramos_por_saldo(&movs)
+                    .into_iter()
+                    .map(move |(a, b)| (cuenta.clone(), a, b))
+            })
             .collect(),
         saldos_socios: saldos_socios(v).unwrap_or_default(),
         iva_diario: iva_diario(v).unwrap_or_default(),
         retenciones_4751: retenciones_4751(v).unwrap_or_default(),
         comparaciones: comparaciones(v, hoy),
     }
+}
+
+/// Los tramos de fechas que cubren los movimientos de una cuenta (fecha, importe y saldo
+/// después): del primero al último, cortados donde el saldo no encadena de un día con
+/// movimientos al siguiente. Si el saldo del último movimiento de un día no es el de antes del
+/// primero del siguiente, faltan movimientos entre los dos (un mes que no se importó) y ese
+/// hueco no está cubierto: un pago de Hacienda de esas fechas no «falta», no se ve. Como los
+/// movimientos de un mismo día pueden venir en cualquier orden, se corta sólo si ningún saldo
+/// del día casa con ningún saldo de antes del día siguiente; sin saldos no se corta.
+pub(crate) fn tramos_por_saldo(movs: &[(Date, Money, Option<Money>)]) -> Vec<(Date, Date)> {
+    let mut dias: BTreeMap<Date, Vec<(Money, Option<Money>)>> = BTreeMap::new();
+    for (fecha, importe, saldo) in movs {
+        dias.entry(*fecha).or_default().push((*importe, *saldo));
+    }
+    let mut tramos: Vec<(Date, Date)> = Vec::new();
+    let mut anterior: Option<&Vec<(Money, Option<Money>)>> = None;
+    for (dia, ms) in &dias {
+        let encadena = anterior.is_none_or(|prev| {
+            let finales: Vec<Money> = prev.iter().filter_map(|(_, s)| *s).collect();
+            let iniciales: Vec<Money> = ms.iter().filter_map(|(i, s)| s.map(|s| s - *i)).collect();
+            finales.is_empty()
+                || iniciales.is_empty()
+                || iniciales.iter().any(|i| finales.contains(i))
+        });
+        match tramos.last_mut() {
+            Some(t) if encadena => t.1 = *dia,
+            _ => tramos.push((*dia, *dia)),
+        }
+        anterior = Some(ms);
+    }
+    tramos
 }
 
 /// Los modelos presentados que se comparan con TaxPain, de los ejercicios que aún se revisan.
@@ -684,6 +718,58 @@ pub(crate) fn tramite_de_lectura(j: &serde_json::Value, tipo: &str) -> Option<Tr
 mod tests {
     use super::*;
     use time::macros::date;
+
+    fn mov(d: Date, importe: i64, saldo: Option<i64>) -> (Date, Money, Option<Money>) {
+        (d, Money::from_cents(importe), saldo.map(Money::from_cents))
+    }
+
+    #[test]
+    fn la_cobertura_se_corta_donde_el_saldo_no_encadena() {
+        // Tras el 03/10 no se importó nada hasta el 14/11, y por medio salieron 2.000,00 € (un
+        // pago de Hacienda del 20/10, por ejemplo): ese hueco no está cubierto.
+        let movs = [
+            mov(date!(2024 - 09 - 16), -10_000, Some(1_000_000)),
+            mov(date!(2024 - 10 - 03), -500, Some(999_500)),
+            mov(date!(2024 - 11 - 14), -10_000, Some(789_500)),
+            mov(date!(2024 - 11 - 14), -50_000, Some(739_500)),
+            mov(date!(2024 - 11 - 23), 100_000, Some(839_500)),
+        ];
+        assert_eq!(
+            tramos_por_saldo(&movs),
+            vec![
+                (date!(2024 - 09 - 16), date!(2024 - 10 - 03)),
+                (date!(2024 - 11 - 14), date!(2024 - 11 - 23)),
+            ]
+        );
+    }
+
+    #[test]
+    fn la_cobertura_sigue_si_encadena_aunque_el_dia_venga_desordenado() {
+        // Los dos del 14/11 vienen al revés (el último del día primero): encadena igual.
+        let movs = [
+            mov(date!(2024 - 11 - 10), -100, Some(799_500)),
+            mov(date!(2024 - 11 - 14), -50_000, Some(739_500)),
+            mov(date!(2024 - 11 - 14), -10_000, Some(789_500)),
+            mov(date!(2024 - 11 - 23), 100_000, Some(839_500)),
+        ];
+        assert_eq!(
+            tramos_por_saldo(&movs),
+            vec![(date!(2024 - 11 - 10), date!(2024 - 11 - 23))]
+        );
+    }
+
+    #[test]
+    fn sin_saldos_la_cobertura_va_del_primero_al_ultimo() {
+        let movs = [
+            mov(date!(2024 - 01 - 04), -500, None),
+            mov(date!(2024 - 12 - 30), 10_000, None),
+        ];
+        assert_eq!(
+            tramos_por_saldo(&movs),
+            vec![(date!(2024 - 01 - 04), date!(2024 - 12 - 30))]
+        );
+        assert!(tramos_por_saldo(&[]).is_empty());
+    }
 
     #[test]
     fn apertura_y_cierre_de_un_diario_importado() {

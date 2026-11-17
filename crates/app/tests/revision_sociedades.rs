@@ -1766,3 +1766,261 @@ fn el_administrador_de_nominas_con_su_nombre_entero() {
         h.detalle
     );
 }
+
+// ---------- Rectificaciones del 200 ya pedidas ----------
+
+/// Un 200 con su fecha de presentación y, si lo es, su tipo («complementaria» para la
+/// autoliquidación rectificativa, que el justificante marca así).
+fn doscientos_presentado(
+    ruta: &str,
+    ejercicio: i32,
+    presentado: &str,
+    tipo: Option<&str>,
+    casillas: Value,
+) -> Fichero {
+    let mut l = modelo("200", ejercicio, "0A", casillas);
+    l["modelo"]["presentado"] = json!(presentado);
+    if let Some(t) = tipo {
+        l["modelo"]["tipo"] = json!(t);
+    }
+    con(ruta, l)
+}
+
+/// 2023: 10.000 € de dividendos del grupo sin la exención. Base previa 40.000 €, capitalización
+/// 4.000 €, bases negativas 6.000 €, nivelación 3.000 €, base 27.000 € y cuota 6.210 € (23 %).
+/// Con la exención, la cuota baja unos 1.769,85 € (estimación).
+fn doscientos_2023_sin_exencion() -> Fichero {
+    doscientos_presentado(
+        "MODELOS/2023/200.pdf",
+        2023,
+        "2024-07-20",
+        None,
+        json!({
+            "00255": "500000.00", "00298": "10000.00", "00299": "10000.00",
+            "00550": "40000.00", "01032": "4000.00", "00547": "6000.00", "00552": "30000.00",
+            "01034": "3000.00", "01330": "27000.00", "00562": "6210.00", "01586": "1210.00"
+        }),
+    )
+}
+
+/// 2024: la original deja 3.000 € de base negativa; la rectificativa, presentada después y
+/// leída con menos casillas, 5.000 € (suma menos reserva de nivelación). Ninguna de las dos
+/// pide dinero con la rectificación: la devolución de 500 € se cobró con la original.
+fn doscientos_2024() -> Vec<Fichero> {
+    vec![
+        doscientos_presentado(
+            "MODELOS/2024/200.pdf",
+            2024,
+            "2025-07-22",
+            None,
+            json!({
+                "00255": "500000.00", "00500": "-3000.00", "00550": "-3000.00",
+                "00552": "-3000.00", "01330": "-3000.00", "01586": "-500.00"
+            }),
+        ),
+        doscientos_presentado(
+            "MODELOS/2024/200_rectificativa.pdf",
+            2024,
+            "2026-11-05",
+            Some("complementaria"),
+            json!({ "00255": "500000.00", "01330": "-5000.00", "01586": "-500.00" }),
+        ),
+    ]
+}
+
+/// 2025: la original sin la exención (8.050 € a ingresar) y la autoliquidación rectificativa con
+/// ella: [00621] −2.185 € (lo que se pide devolver; la [00866], lo mismo en positivo) y la
+/// [01586], el resultado de toda la liquidación. Las dos compensan 5.000 € de bases negativas.
+fn doscientos_2025_rectificado() -> Vec<Fichero> {
+    vec![
+        doscientos_presentado(
+            "MODELOS/2025/200.pdf",
+            2025,
+            "2026-07-20",
+            None,
+            json!({
+                "00255": "500000.00", "00298": "10000.00", "00299": "10000.00",
+                "00550": "40000.00", "00547": "5000.00", "00552": "35000.00",
+                "01330": "35000.00", "00562": "8050.00", "01586": "8050.00"
+            }),
+        ),
+        doscientos_presentado(
+            "MODELOS/2025/200_rectificativa.pdf",
+            2025,
+            "2026-11-05",
+            Some("complementaria"),
+            json!({
+                "00255": "500000.00", "00298": "10000.00", "00299": "10000.00",
+                "00370": "9500.00", "00550": "30500.00", "00547": "5000.00",
+                "00552": "25500.00", "01330": "25500.00", "00562": "5865.00",
+                "01586": "5865.00", "00621": "-2185.00", "00866": "2185.00"
+            }),
+        ),
+    ]
+}
+
+/// Recibo de la Sede de la solicitud de rectificación del 200 de 2023 (inventado, con la forma
+/// del de verdad): el importe va en el escrito anexado, que no está en la carpeta.
+fn solicitud_2023() -> Fichero {
+    let lineas = [
+        "Página 1".to_owned(),
+        "Recibo de presentación".to_owned(),
+        "Datos del asiento registral".to_owned(),
+        "Número de asiento registral: RGE000000012026".to_owned(),
+        "Fecha: 10-11-2026".to_owned(),
+        "Hora: 10:00:00".to_owned(),
+        "Vía de entrada: Internet con certificado electrónico".to_owned(),
+        "Datos del trámite".to_owned(),
+        "Trámite: GZ285 - Presentación de recurso o solicitud".to_owned(),
+        "Procedimiento: GZ28 - Rectificación de Autoliquidaciones de Gestión Tributaria".to_owned(),
+        "Asunto: Solicitud rectificación modelo 200 del ejercicio 2023".to_owned(),
+        "Datos del interesado".to_owned(),
+        format!("NIF: {PROPIO}"),
+        "Nombre / Razón social: EMPRESA DEMO SL".to_owned(),
+        "Relación de ficheros anexados".to_owned(),
+        "1 Escrito rectificación IS 2023.pdf ESCRITO RECTIFICACION IS 2023".to_owned(),
+        "Documento firmado electrónicamente (Ley 40/2015). Autenticidad verificable mediante \
+         Código Seguro de Verificación DEMO1234SOLI5678 en https://sede.agenciatributaria.gob.es."
+            .to_owned(),
+    ];
+    (
+        "MODELOS/2023/200_solicitud_rectificacion.pdf".to_owned(),
+        pdf(lineas.into_iter().map(Para::Text).collect()),
+        None,
+    )
+}
+
+fn carpeta_rectificada() -> Vec<Fichero> {
+    let mut f = vec![doscientos_2023_sin_exencion(), solicitud_2023()];
+    f.extend(doscientos_2024());
+    f.extend(doscientos_2025_rectificado());
+    f
+}
+
+/// La gestoría ya rectificó: el 200 de 2025 con una autoliquidación rectificativa que aplica la
+/// exención y pide 2.185 €, el de 2024 con otra que sube la base negativa, y el de 2023 con una
+/// solicitud de rectificación (el recibo de la Sede). Vale la última presentada de cada año: no
+/// sale la exención de 2025 ni unas bases negativas compensadas de más en 2025 (con la original
+/// de 2024 quedaban 3.000 € y se compensan 5.000 €). La exención de 2023 ya está pedida: una
+/// nota, sin sumar a lo recuperable ni pedir a la gestoría que la rectifique. Lo pedido sale en
+/// las devoluciones pendientes de cobrar (la de 2023, estimada); la rectificativa de 2024, que
+/// no pide nada, no es una devolución nueva.
+#[test]
+fn las_rectificaciones_ya_pedidas_son_devoluciones_pendientes() {
+    let r = revisar(carpeta_rectificada(), date!(2026 - 11 - 17));
+    assert!(
+        !hay(&r, "sociedades.exencion_dividendos"),
+        "{:?}",
+        r.hallazgos
+    );
+    assert!(!hay(&r, "sociedades.bases_negativas"), "{:?}", r.hallazgos);
+    let pedida = hallazgo(&r, "sociedades.exencion_pedida");
+    assert_eq!(pedida.ejercicio, Some(2023));
+    assert_eq!(pedida.gravedad, Gravedad::Info);
+    assert_eq!(pedida.importe, None);
+    assert!(pedida.rectificable_hasta.is_none());
+    assert!(
+        pedida.titulo.contains("rectificación pedida el 10/11/2026")
+            && pedida.titulo.contains("RGE000000012026"),
+        "{}",
+        pedida.titulo
+    );
+    assert!(
+        pedida.detalle.contains("unos 1.769,85 €")
+            && pedida.detalle.contains("escrito de la gestoría")
+            && pedida.detalle.contains("hasta el 10/05/2027"),
+        "{}",
+        pedida.detalle
+    );
+    assert!(
+        !hay(&r, "sociedades.orden_rectificativas"),
+        "{:?}",
+        r.hallazgos
+    );
+    assert!(
+        !r.pedir
+            .iter()
+            .any(|p| p.que.contains("Rectificar el Impuesto sobre Sociedades")),
+        "{:?}",
+        r.pedir
+    );
+    assert!(r.resumen.recuperable.is_zero(), "{:?}", r.resumen);
+
+    let d = &r.devoluciones_pendientes;
+    assert_eq!(d.len(), 2, "{d:?}");
+    let de = |y: i32| d.iter().find(|x| x.ejercicio == y).unwrap();
+    let y25 = de(2025);
+    assert_eq!(y25.importe.cents(), 218_500);
+    assert!(!y25.estimado);
+    assert_eq!(y25.via, "autoliquidación rectificativa");
+    assert_eq!(y25.presentada.as_deref(), Some("2026-11-05"));
+    assert!(y25.estado.starts_with("pendiente"), "{}", y25.estado);
+    let y23 = de(2023);
+    assert_eq!(y23.importe.cents(), 176_985);
+    assert!(y23.estimado);
+    assert!(y23.via.contains("RGE000000012026"), "{}", y23.via);
+    assert_eq!(y23.presentada.as_deref(), Some("2026-11-10"));
+    assert!(!d.iter().any(|x| x.ejercicio == 2024));
+    assert_eq!(r.resumen.pendiente_cobro.cents(), 218_500 + 176_985);
+    // La original de 2025 ingresó 8.050 €: la rectificativa no espera otro pago en el banco.
+    assert!(!hay(&r, "cruces.pago_no_esta"), "{:?}", r.hallazgos);
+
+    let md = revision::informe::markdown(&r);
+    assert!(
+        md.contains("Devoluciones pedidas, pendientes de cobrar: 3.954,85 €."),
+        "{md}"
+    );
+    assert!(
+        md.contains(
+            "El 200 de 2023: 1.769,85 € (estimación), pedida por solicitud de rectificación"
+        ),
+        "{md}"
+    );
+}
+
+/// Sin el recibo de la solicitud, la exención de 2023 sigue siendo algo que rectificar y suma a
+/// lo recuperable.
+#[test]
+fn sin_la_solicitud_la_exencion_sigue_siendo_recuperable() {
+    let mut f = carpeta_rectificada();
+    f.retain(|(ruta, _, _)| !ruta.contains("solicitud"));
+    let r = revisar(f, date!(2026 - 11 - 17));
+    let ex = hallazgo(&r, "sociedades.exencion_dividendos");
+    assert_eq!(ex.ejercicio, Some(2023));
+    assert!(!hay(&r, "sociedades.exencion_pedida"));
+    assert_eq!(r.resumen.recuperable.cents(), 176_985);
+    assert_eq!(r.devoluciones_pendientes.len(), 1);
+}
+
+/// El abono de la AEAT de la rectificativa de 2025 y otro de un importe parecido al estimado
+/// para la solicitud de 2023 están en el extracto: ninguna sale como pendiente de cobrar.
+#[test]
+fn la_devolucion_cobrada_no_sale_como_pendiente() {
+    let mut f = carpeta_rectificada();
+    f.push((
+        "BANCO/extracto.sta".to_owned(),
+        mt940(&[
+            (
+                "261210",
+                "C",
+                "2185,00",
+                "DEVOLUCION AEAT IMPUESTO SOCIEDADES",
+            ),
+            ("270105", "C", "1800,00", "TRANSFERENCIA AEAT DEVOLUCION"),
+        ]),
+        None,
+    ));
+    let r = revisar(f, date!(2027 - 01 - 15));
+    assert!(
+        r.devoluciones_pendientes.is_empty(),
+        "{:?}",
+        r.devoluciones_pendientes
+    );
+    assert!(r.resumen.pendiente_cobro.is_zero());
+    let pedida = hallazgo(&r, "sociedades.exencion_pedida");
+    assert!(
+        pedida.titulo.contains("parece cobrada"),
+        "{}",
+        pedida.titulo
+    );
+}

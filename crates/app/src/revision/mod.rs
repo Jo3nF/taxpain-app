@@ -271,6 +271,30 @@ pub struct Resumen {
     /// Impuesto que corresponde a esos dividendos con la exención (estimación).
     #[serde(default)]
     pub impuesto_dividendos_proximo_200: Money,
+    /// Devoluciones ya pedidas a Hacienda que no se ven cobradas (la suma de
+    /// [`Revision::devoluciones_pendientes`]). Ya están pedidas: no van en `recuperable`.
+    #[serde(default)]
+    pub pendiente_cobro: Money,
+}
+
+/// Devolución pedida a Hacienda (con la declaración, una autoliquidación rectificativa o una
+/// solicitud de rectificación) que no se ve cobrada en el banco.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct DevolucionPendiente {
+    pub modelo: String,
+    pub ejercicio: i32,
+    pub periodo: String,
+    pub importe: Money,
+    /// El importe es una estimación de TaxPain: el exacto está en el escrito que se presentó.
+    pub estimado: bool,
+    /// Cuándo se pidió (`aaaa-mm-dd`), si se sabe.
+    pub presentada: Option<String>,
+    /// Cómo se pidió: «declaración», «autoliquidación rectificativa», «solicitud de
+    /// rectificación (registro RGE…)».
+    pub via: String,
+    /// «pendiente: Hacienda tiene hasta el …», «sin extractos de esas fechas», «no se ve el
+    /// abono»…
+    pub estado: String,
 }
 
 /// Dividendo cobrado de una participada en un año cuyo 200 aún no se ha presentado, con el bruto
@@ -306,6 +330,9 @@ pub struct Revision {
     /// participadas (Ahorrar impuestos usa su bruto y su retención).
     #[serde(default)]
     pub dividendos: Vec<DividendoConfirmado>,
+    /// Devoluciones pedidas, pendientes de cobrar.
+    #[serde(default)]
+    pub devoluciones_pendientes: Vec<DevolucionPendiente>,
 }
 
 /// Lo que van dejando las comprobaciones.
@@ -315,6 +342,7 @@ pub(crate) struct Salida {
     pub tablas: Vec<Tabla>,
     pub pedir: Vec<Peticion>,
     pub dividendos: Vec<DividendoConfirmado>,
+    pub devoluciones_pendientes: Vec<DevolucionPendiente>,
     /// Impuesto que se ahorra con la exención de los dividendos confirmados (estimación).
     pub exencion_proximo_200: Money,
     /// Impuesto que corresponde a esos dividendos con la exención (estimación).
@@ -500,6 +528,7 @@ const SIN_RECTIFICAR: &[&str] = &[
     "sociedades.dividendos_cobrados",
     "sociedades.retencion_dividendos_grupo",
     "sociedades.dividendos_confirmados",
+    "sociedades.exencion_pedida",
 ];
 
 /// Nombres e identificadores de los terceros que conoce la revisión: los de las facturas, los
@@ -623,6 +652,10 @@ fn cerrar(exp: &expediente::Expediente, mut s: Salida, hoy: Date) -> Revision {
         retenciones_proximo_200,
         exencion_proximo_200: s.exencion_proximo_200,
         impuesto_dividendos_proximo_200: s.impuesto_dividendos_proximo_200,
+        pendiente_cobro: s
+            .devoluciones_pendientes
+            .iter()
+            .fold(Money::ZERO, |a, d| a + d.importe),
     };
     Revision {
         generada: format!(
@@ -639,6 +672,7 @@ fn cerrar(exp: &expediente::Expediente, mut s: Salida, hoy: Date) -> Revision {
         tablas: s.tablas,
         pedir: s.pedir,
         dividendos: s.dividendos,
+        devoluciones_pendientes: s.devoluciones_pendientes,
     }
 }
 
@@ -720,6 +754,11 @@ pub(crate) fn revisable_desde(hoy: Date) -> i32 {
 /// Fecha `dd/mm/aaaa`.
 pub(crate) fn fecha(d: Date) -> String {
     format!("{:02}/{:02}/{}", d.day(), u8::from(d.month()), d.year())
+}
+
+/// Fecha `aaaa-mm-dd`.
+pub(crate) fn fecha_iso(d: Date) -> String {
+    format!("{:04}-{:02}-{:02}", d.year(), u8::from(d.month()), d.day())
 }
 
 /// Trimestre (1–4) de una fecha.

@@ -4,6 +4,7 @@ import { AskAiButton, useAskAi } from './AssistantPanel';
 import {
   type AreaRevision,
   type Destinatario,
+  type DevolucionPendiente,
   errorMessage,
   euros,
   type FormatoInforme,
@@ -113,6 +114,41 @@ export function textoProximo200(r: ResumenRevision): string | null {
       `Si no se aplica la exención de los dividendos (casilla [00370]), se pierden unos ${euros(exencion)}: compruébalo en el borrador antes de presentarlo.`,
     );
   return partes.length ? partes.join(' ') : null;
+}
+
+/** «El 200 de 2025», «El 303 del 4T 2025». */
+function modeloYPeriodo(d: DevolucionPendiente): string {
+  return d.periodo === '0A' || d.periodo === ''
+    ? `El ${d.modelo} de ${d.ejercicio}`
+    : `El ${d.modelo} del ${d.periodo} ${d.ejercicio}`;
+}
+
+/** Una línea por devolución pedida: modelo y año, importe, cómo se pidió y estado. */
+export function lineaDevolucion(d: DevolucionPendiente): string {
+  const cuando = d.presentada ? ` el ${formatDate(d.presentada)}` : '';
+  return `${modeloYPeriodo(d)}: ${euros(d.importe)}${d.estimado ? ' (estimación)' : ''}, pedida por ${d.via}${cuando}; ${d.estado}.`;
+}
+
+/** Devoluciones ya pedidas a Hacienda que no se ven cobradas: aparte de lo recuperable. */
+function DevolucionesPendientes({ r }: { r: Revision }) {
+  const lista = r.devoluciones_pendientes ?? [];
+  if (lista.length === 0) return null;
+  const total = r.resumen.pendiente_cobro ?? lista.reduce((a, d) => a + d.importe, 0);
+  return (
+    <section
+      aria-labelledby="rev-devoluciones"
+      className="card border-l-4 border-sky-600 p-3 text-sm text-stone-800"
+    >
+      <h4 id="rev-devoluciones" className="font-semibold">
+        Devoluciones pedidas, pendientes de cobrar: {euros(total)}
+      </h4>
+      <ul className="mt-1 list-disc space-y-0.5 pl-5">
+        {lista.map((d) => (
+          <li key={`${d.modelo}-${d.ejercicio}-${d.periodo}-${d.via}`}>{lineaDevolucion(d)}</li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 function Importe({ cents, codigo }: { cents: number; codigo: string }) {
@@ -428,6 +464,7 @@ export function FolderReview() {
                 {textoProximo200(review.resumen)}
               </p>
             )}
+            <DevolucionesPendientes r={review} />
             <p className="text-sm text-stone-600">
               {plural(review.resumen.ficheros, 'fichero')}: {review.resumen.con_detalle} con datos,{' '}
               {review.resumen.sin_leer} sin leer y {review.resumen.no_admitidos} en formatos que no

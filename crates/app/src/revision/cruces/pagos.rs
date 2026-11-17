@@ -14,12 +14,12 @@ use super::super::{
     Area, Gravedad, Nuevo, Responsable, Salida, Urgente, eur, fecha, lista, plural,
 };
 use super::datos::MovBanco;
-use super::{Contexto, a_ingresar, nombre, primera};
+use super::{Contexto, a_pagar, nombre, primera};
 use crate::documentos::DocKind;
 
 /// ¿Parece un cargo de Hacienda por su concepto? Las bonificaciones y promociones del banco
 /// (una bonificación de impuestos, un «cashback», la retención de una promoción) no lo son.
-pub(super) fn de_hacienda(concepto: &str) -> bool {
+pub(crate) fn de_hacienda(concepto: &str) -> bool {
     let c = concepto.to_uppercase();
     if ["BONIF", "CASHBACK", "PROMOCI"]
         .iter()
@@ -110,9 +110,9 @@ pub(super) fn revisar(cx: &Contexto<'_>, s: &mut Salida) {
         .iter()
         .copied()
         .filter_map(|((m, y, p), d)| {
-            let cuota = a_ingresar(m, d).filter(|c| *c > Money::ZERO)?;
+            let (cuota, presentado) = a_pagar(m, d)?;
             let plazo = cx.plazo(m, *y, p)?;
-            let fin = plazo.due_on.max(d.presentado.unwrap_or(plazo.due_on)) + Duration::days(10);
+            let fin = plazo.due_on.max(presentado.unwrap_or(plazo.due_on)) + Duration::days(10);
             movs.iter()
                 .filter(|mv| mv.importe == -cuota && plazo.starts_on <= mv.fecha && mv.fecha <= fin)
                 .map(|mv| (mv.fecha, mv.importe.cents()))
@@ -138,7 +138,7 @@ pub(super) fn revisar(cx: &Contexto<'_>, s: &mut Salida) {
     // Los del ejercicio anterior cuyo cargo se ha casado aquí.
     let mut pagados: BTreeSet<Clave> = BTreeSet::new();
     for ((m, y, p), d) in modelos {
-        let Some(cuota) = a_ingresar(m, d).filter(|c| *c > Money::ZERO) else {
+        let Some((cuota, presentado)) = a_pagar(m, d) else {
             continue;
         };
         let anterior = *y < desde;
@@ -146,7 +146,7 @@ pub(super) fn revisar(cx: &Contexto<'_>, s: &mut Salida) {
             continue;
         };
         let cual = nombre(m, *y, p);
-        let fin = plazo.due_on.max(d.presentado.unwrap_or(plazo.due_on)) + Duration::days(10);
+        let fin = plazo.due_on.max(presentado.unwrap_or(plazo.due_on)) + Duration::days(10);
         if anterior {
             // Sólo se casa su cargo, para que no salga como cargo suelto.
             if let Some(mv) = movs
@@ -401,13 +401,13 @@ fn de_modelos_anteriores(
         if y >= desde || pagados.contains(&(m.clone(), y, p.clone())) {
             continue;
         }
-        let Some(cuota) = a_ingresar(&m, &d).filter(|c| *c > Money::ZERO) else {
+        let Some((cuota, presentado)) = a_pagar(&m, &d) else {
             continue;
         };
         let ventana = match cx.plazo(&m, y, &p) {
             Some(pl) => Some((
                 pl.starts_on,
-                pl.due_on.max(d.presentado.unwrap_or(pl.due_on)) + Duration::days(400),
+                pl.due_on.max(presentado.unwrap_or(pl.due_on)) + Duration::days(400),
             )),
             None => Date::from_calendar_date(y, Month::January, 1)
                 .ok()

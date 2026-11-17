@@ -131,7 +131,31 @@ fn resumen_lineas(r: &Revision) -> Vec<String> {
     if !p.is_empty() {
         out.push(p);
     }
+    if !r.devoluciones_pendientes.is_empty() {
+        out.push(format!(
+            "Devoluciones pedidas, pendientes de cobrar: {}.",
+            eur(s.pendiente_cobro)
+        ));
+        out.extend(r.devoluciones_pendientes.iter().map(devolucion_pendiente));
+    }
     out
+}
+
+/// «El 200 de 2023: 1.234,56 € (estimación), pedida por solicitud de rectificación
+/// (registro …) el 12/11/2026; pendiente de resolver…».
+pub(crate) fn devolucion_pendiente(d: &super::DevolucionPendiente) -> String {
+    format!(
+        "{}: {}{}, pedida por {}{}; {}.",
+        super::cruces::primera(&super::cruces::nombre(&d.modelo, d.ejercicio, &d.periodo)),
+        eur(d.importe),
+        if d.estimado { " (estimación)" } else { "" },
+        d.via,
+        d.presentada
+            .as_deref()
+            .map(|f| format!(" el {}", fecha_es(f)))
+            .unwrap_or_default(),
+        d.estado
+    )
 }
 
 /// Markdown (para leerlo o pasarlo a la gestoría).
@@ -555,6 +579,7 @@ mod tests {
                 retenciones_proximo_200: Money::ZERO,
                 exencion_proximo_200: Money::ZERO,
                 impuesto_dividendos_proximo_200: Money::ZERO,
+                pendiente_cobro: Money::ZERO,
             },
             hallazgos: vec![
                 hallazgo(PELIGROSOS[0], "Detalle normal"),
@@ -570,6 +595,7 @@ mod tests {
                 a_quien: Destinatario::Gestoria,
                 que: PELIGROSOS[3].into(),
             }],
+            devoluciones_pendientes: vec![],
             dividendos: vec![],
         }
     }
