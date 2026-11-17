@@ -11,4 +11,7 @@ ignore = [
   "RUSTSEC-2026-0370", # zvariant (Linux)
   "RUSTSEC-2026-0371", # zbus_names (Linux)
   "RUSTSEC-2026-0372", # zvariant_derive (Linux)
+  # chrono sin mantenimiento (aviso del 2026-09-14, no es una vulnerabilidad): lo trae Tauri
+  # (tauri-utils → serde_with); TaxPain usa `time`, no chrono.
+  "RUSTSEC-2026-0543", # chrono
 ]
