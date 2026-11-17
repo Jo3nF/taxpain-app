@@ -63,7 +63,7 @@ jobs:
             echo "::error file=crates/core/src/productor.rs::crates/core/src/productor.rs tiene los datos de ejemplo (NIF B00000000 o «PRODUCTOR SIN CONFIGURAR»). Quien distribuye una compilación es el productor del sistema informático de facturación (RD 1007/2023 art. 13) y sus datos van en cada registro VERI*FACTU: pon tu nombre o razón social y tu NIF en crates/core/src/productor.rs antes de compilar una versión."
             exit 1
           fi
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: npm
@@ -260,7 +260,7 @@ jobs:
             [ -e "$kc" ] && security delete-keychain "$kc" || true
           done
           rm -rf "$RUNNER_TEMP"/firmar.* "$RUNNER_TEMP"/notarizar.*
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
       # Sólo la CLI de Tauri para `tauri signer sign`, sin ejecutar scripts de instalación de
