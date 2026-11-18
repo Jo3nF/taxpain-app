@@ -37,12 +37,14 @@ import {
   companyDocOpen,
   errorMessage,
   fiscalYearInfo,
+  hayFacturacion,
   type InvoicingSettings,
   integridadEmpresa,
   invoiceOpen,
   invoicingSettings,
   isTauri,
   receivedOpen,
+  setFacturacion,
 } from './api';
 import { Background } from './Background';
 import { Backups, RestoreBanner } from './Backups';
@@ -465,9 +467,11 @@ function SettingsTab({ version }: { version: string | null }) {
           <div id="ajustes-claude" className="section-anchor">
             <ClaudeMcp />
           </div>
-          <div id="ajustes-pruebas" className="section-anchor">
-            <VerifactuLab />
-          </div>
+          {hayFacturacion() && (
+            <div id="ajustes-pruebas" className="section-anchor">
+              <VerifactuLab />
+            </div>
+          )}
           <div id="ajustes-actualizaciones" className="section-anchor">
             <Updates version={version} />
           </div>
@@ -535,7 +539,10 @@ export function App() {
 
   useEffect(() => {
     appInfo()
-      .then(setInfo)
+      .then((i) => {
+        setFacturacion(i?.facturacion !== false);
+        setInfo(i);
+      })
       .catch(() => setInfo(null));
   }, []);
 

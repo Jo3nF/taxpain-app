@@ -20,6 +20,7 @@ import {
   everyLabel,
   type ForeignCurrency,
   formatDate,
+  hayFacturacion,
   type InvoiceDraft,
   type InvoiceFormat,
   type InvoiceLine,
@@ -1357,7 +1358,23 @@ function vfLabel(status: string): string {
   }
 }
 
+/** Aviso de la versión que no emite facturas (la que se descarga de la web). */
+export function SinFacturacion() {
+  return (
+    <div className="mt-3 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+      <p className="font-medium">Esta versión de TaxPain no emite facturas.</p>
+      <p className="mt-1">
+        Es la que se descarga de la web: quien la distribuye todavía no figura como productor del
+        sistema de facturación (VERI*FACTU). Puedes ver las facturas que importes, preparar
+        presupuestos y llevar todo lo demás. Para emitir facturas, compila TaxPain desde su código
+        con tus datos.
+      </p>
+    </div>
+  );
+}
+
 export function Invoices({ settings }: { settings: InvoicingSettings }) {
+  const facturacion = hayFacturacion();
   const [year, setYear] = useState(new Date().getFullYear());
   const [list, setList] = useState<IssuedSummary[]>([]);
   const [creating, setCreating] = useState(false);
@@ -1505,17 +1522,20 @@ export function Invoices({ settings }: { settings: InvoicingSettings }) {
         <h2 className="text-lg font-semibold">Facturas emitidas {year}</h2>
         <div className="flex items-center gap-2 text-sm">
           <YearStepper year={year} onChange={setYear} />
-          <button
-            type="button"
-            className={formOpen ? 'rounded border px-3' : 'btn-primary rounded px-3'}
-            onClick={() => (formOpen ? closeForm() : setCreating(true))}
-          >
-            {!formOpen && <Plus size={16} aria-hidden="true" />}
-            {formOpen ? 'Cerrar' : 'Nueva factura'}
-          </button>
+          {facturacion && (
+            <button
+              type="button"
+              className={formOpen ? 'rounded border px-3' : 'btn-primary rounded px-3'}
+              onClick={() => (formOpen ? closeForm() : setCreating(true))}
+            >
+              {!formOpen && <Plus size={16} aria-hidden="true" />}
+              {formOpen ? 'Cerrar' : 'Nueva factura'}
+            </button>
+          )}
         </div>
       </div>
-      {formOpen && (
+      {!facturacion && <SinFacturacion />}
+      {facturacion && formOpen && (
         <NewInvoice
           key={rectifying?.id ?? (duplicate ? `copia-${duplicate.id}` : 'nueva')}
           settings={settings}
@@ -1608,13 +1628,13 @@ export function Invoices({ settings }: { settings: InvoicingSettings }) {
           <CertificateSelect value={cert} onChange={setCert} />
         </div>
       )}
-      <VerifactuCola refresh={queueTick} />
+      {facturacion && <VerifactuCola refresh={queueTick} />}
       {message && (
         <p role="status" className="mt-2 text-sm text-stone-700">
           {message}
         </p>
       )}
-      <Recurring templates={templates} onChanged={load} onMessage={setMessage} />
+      {facturacion && <Recurring templates={templates} onChanged={load} onMessage={setMessage} />}
       <NumberingCheck key={year} year={year} />
       {emailing && (
         <InvoiceEmailPanel
@@ -1716,7 +1736,7 @@ export function Invoices({ settings }: { settings: InvoicingSettings }) {
                   Correo
                 </button>
               )}
-              {!i.kind.startsWith('R') && i.origin !== 'importada' && (
+              {facturacion && !i.kind.startsWith('R') && i.origin !== 'importada' && (
                 <Menu
                   label={`Más acciones de ${i.number}`}
                   entries={[
@@ -1736,12 +1756,12 @@ export function Invoices({ settings }: { settings: InvoicingSettings }) {
                   <ChevronDown size={14} aria-hidden="true" />
                 </Menu>
               )}
-              {i.status === 'emitida' && !i.kind.startsWith('R') && (
+              {facturacion && i.status === 'emitida' && !i.kind.startsWith('R') && (
                 <button type="button" className="text-link" onClick={() => rectify(i)}>
                   Rectificar
                 </button>
               )}
-              {i.status === 'emitida' && i.origin !== 'importada' && (
+              {facturacion && i.status === 'emitida' && i.origin !== 'importada' && (
                 <ConfirmAction
                   label="Anular"
                   question={`¿Anular ${i.number}? Sólo si se emitió por error y no se ha entregado: se genera el registro de anulación y no se puede deshacer.`}

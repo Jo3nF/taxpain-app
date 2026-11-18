@@ -490,6 +490,19 @@ describe('Invoices', () => {
     vi.clearAllMocks();
   });
 
+  it('la versión sin facturación no deja emitir y lo explica', async () => {
+    const { setFacturacion } = await import('./api');
+    setFacturacion(false);
+    try {
+      render(<Invoices settings={settings} />);
+      expect(await screen.findByText('Esta versión de TaxPain no emite facturas.')).toBeTruthy();
+      expect(screen.queryByText('Nueva factura')).toBeNull();
+      expect(screen.queryByText('Anular')).toBeNull();
+    } finally {
+      setFacturacion(true);
+    }
+  });
+
   it('pide confirmación antes de emitir', async () => {
     render(<Invoices settings={settings} />);
     fireEvent.click(await screen.findByText('Nueva factura'));

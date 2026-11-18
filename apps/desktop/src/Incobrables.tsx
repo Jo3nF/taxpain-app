@@ -6,6 +6,7 @@ import {
   errorMessage,
   euros,
   formatDate,
+  hayFacturacion,
   incobrableClaim,
   incobrableClose,
   incobrableCommunicated,
@@ -275,7 +276,7 @@ function Row({ c, onDone }: { c: CreditoIncobrable; onDone: (m: string) => void 
           <ConfirmAction
             className="btn-primary rounded px-3 py-1"
             danger={false}
-            disabled={!c.puede_rectificar}
+            disabled={!c.puede_rectificar || !hayFacturacion()}
             label="Emitir la rectificativa R3…"
             question={`Se emitirá la rectificativa R3 de ${c.number} por −${euros(c.base_pendiente)} de base y −${euros(c.iva_pendiente)} de IVA, en la serie de rectificativas y con su registro VERI*FACTU si lo tienes activo. No se puede deshacer. Después, comunícala a la AEAT en el plazo de un mes.`}
             confirmLabel="Sí, emitir la R3"

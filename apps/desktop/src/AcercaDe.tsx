@@ -4,6 +4,7 @@ import {
   declaracionResponsable,
   declaracionResponsableSave,
   errorMessage,
+  hayFacturacion,
 } from './api';
 
 /** Ajustes › Acerca de TaxPain: la declaración responsable del sistema informático de
@@ -22,7 +23,14 @@ export function AcercaDe() {
       <h2 id="acerca-h" className="text-lg font-semibold">
         Acerca de TaxPain
       </h2>
-      {d && (
+      {!hayFacturacion() && (
+        <p className="mt-1 text-sm text-stone-600">
+          Esta versión de TaxPain no emite facturas, así que no es un sistema de facturación y no
+          lleva declaración responsable de VERI*FACTU. Quien compila TaxPain desde su código con la
+          facturación activada es su productor y firma la suya.
+        </p>
+      )}
+      {d && hayFacturacion() && (
         <>
           <p className="mt-1 text-sm text-stone-600">
             TaxPain {d.version}. Como programa de facturación, su productor declara que cumple el

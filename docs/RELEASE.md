@@ -124,6 +124,29 @@ con suma de comprobación válida.
 5. Apunta la **caducidad** del certificado Developer ID (5 años) y de la clave de API en el
    calendario: renovar = crear el nuevo, sustituir los secretos y lanzar una versión de prueba.
 
+### 2.2 Versión sin facturación (sin productor)
+
+Decisión del 18-11-2026: mientras quien distribuye TaxPain no figure como productor del sistema
+de facturación, la versión que se descarga de la web **no emite facturas**. Si
+`crates/core/src/productor.rs` tiene los datos de ejemplo (los de `publico/productor.rs`), el
+workflow compila con `TAXPAIN_SIN_FACTURACION=1` y avisa en el registro:
+
+- `taxpain_core::FACTURACION` es `false`: `invoicing::issue_linked` y `invoicing::cancel`
+  rechazan emitir, anular y rectificar (también las recurrentes, las que salen de un presupuesto,
+  la R3 de impagados y la empresa de pruebas VERI*FACTU, que pasan por ahí).
+- La interfaz lo sabe por `app_info.facturacion`: oculta «Nueva factura», rectificar, anular,
+  repetir, la cola VERI*FACTU, «Facturar» en presupuestos, la R3 y la empresa de pruebas, y
+  explica por qué. La declaración responsable no se enseña.
+- El `<AUX>` de los ficheros de los modelos va sin NIF de desarrollador (`DEVELOPER_NIF`
+  en blanco con el NIF de ejemplo). `TODO(VERIFY)`: que la prevalidación de la AEAT lo acepta.
+
+Facturas recibidas, contabilidad, banco, modelos, revisión de la gestoría y lo demás funcionan
+igual. Quien compila TaxPain desde el código con sus datos en `productor.rs` tiene la
+facturación completa (y es el productor de su compilación). Para que la versión de la web
+facture: datos reales en `productor.rs`, declaración responsable firmada, y el workflow deja de
+poner la variable solo. `TODO(VERIFY)` con un asesor: desde cuándo obliga el reglamento a quien
+distribuye un sistema de facturación.
+
 ### 2.1 Environment «release» con revisor (configurar una vez en GitHub)
 
 El trabajo «firmar» declara `environment: release`. Así los secretos sólo llegan a ese trabajo

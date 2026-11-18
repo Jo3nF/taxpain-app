@@ -141,6 +141,9 @@ struct AppInfo {
     audit_warning: Option<taxpain_vault::audit::PendingRollback>,
     /// La empresa abierta es la de pruebas VERI*FACTU.
     verifactu_lab: bool,
+    /// Esta compilación emite facturas (`taxpain_core::FACTURACION`). La que se descarga de la
+    /// web, sin productor, no.
+    facturacion: bool,
 }
 
 #[tauri::command]
@@ -152,6 +155,7 @@ fn app_info(state: tauri::State<'_, AppState>) -> CmdResult<AppInfo> {
         audit_rollback: v.audit_rollback().cloned(),
         audit_warning: v.audit_rollback_pending()?,
         verifactu_lab: taxpain_app::verifactu_lab::info(&v)?.is_some(),
+        facturacion: taxpain_core::FACTURACION,
     })
 }
 

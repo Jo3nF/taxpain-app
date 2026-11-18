@@ -781,6 +781,21 @@ pub struct IssuedInvoice {
     pub export_error: Option<String>,
 }
 
+/// Lo que dice la versión que no emite facturas ([`taxpain_core::FACTURACION`]).
+pub const SIN_FACTURACION: &str = "Esta versión de TaxPain no emite facturas: es la que se \
+     descarga de la web, y quien la distribuye todavía no figura como productor del sistema de \
+     facturación (VERI*FACTU). Para emitirlas, compila TaxPain desde su código con tus datos.";
+
+/// Emitir, anular o rectificar una factura sólo en una compilación con facturación. Todo lo
+/// demás (facturas recibidas, contabilidad, modelos, revisión) funciona igual.
+pub(crate) fn exigir_facturacion(facturacion: bool) -> Result<()> {
+    if facturacion {
+        Ok(())
+    } else {
+        Err(AppError::Other(SIN_FACTURACION.into()))
+    }
+}
+
 /// Emite una factura definitiva. Ver la documentación del módulo.
 pub fn issue(
     v: &Vault,
@@ -813,6 +828,7 @@ pub(crate) fn issue_linked(
     confirmed: bool,
     link: impl FnOnce(&Connection, i64) -> Result<()>,
 ) -> Result<IssuedInvoice> {
+    exigir_facturacion(taxpain_core::FACTURACION)?;
     if !confirmed {
         return Err(AppError::NotConfirmed);
     }
@@ -1716,6 +1732,7 @@ fn consecuencias(
 /// es una factura rectificativa, que se declara en el periodo en que se expide (art. 89 LIVA;
 /// art. 15 RD 1619/2012).
 pub fn cancel(v: &Vault, invoice_id: i64, now: OffsetDateTime, confirmed: bool) -> Result<()> {
+    exigir_facturacion(taxpain_core::FACTURACION)?;
     if !confirmed {
         return Err(AppError::NotConfirmed);
     }
@@ -1974,4 +1991,16 @@ pub fn apply_submission_response(
     )?;
     tx.commit()?;
     Ok(())
+}
+
+#[cfg(test)]
+mod facturacion_tests {
+    use super::*;
+
+    #[test]
+    fn sin_facturacion_no_se_emite_ni_se_anula() {
+        assert!(exigir_facturacion(true).is_ok());
+        let e = exigir_facturacion(false).unwrap_err();
+        assert!(e.to_string().contains("no emite facturas"));
+    }
 }

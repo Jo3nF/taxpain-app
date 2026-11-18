@@ -48,6 +48,48 @@ impl Declarant {
 /// Versión del programa (4 posiciones) para la cabecera `<AUX>` de los ficheros.
 pub const SOFTWARE_VERSION: &str = "0100";
 /// NIF de la entidad desarrolladora del software (el productor, [`taxpain_core::productor`])
-/// para `<AUX>`. `TODO(VERIFY)`: si hace falta darse de alta como entidad desarrolladora ante
-/// la AEAT.
-pub const DEVELOPER_NIF: &str = taxpain_core::productor::NIF;
+/// para `<AUX>`. Con los datos de ejemplo de la versión pública (`B00000000`) va **en blanco**:
+/// mejor un hueco que un NIF que no es de nadie. `TODO(VERIFY)`: que la prevalidación de la
+/// AEAT acepta el `<AUX>` sin NIF de desarrollador, y si hace falta darse de alta como entidad
+/// desarrolladora.
+pub const DEVELOPER_NIF: &str = if mismo_texto(taxpain_core::productor::NIF, NIF_DE_EJEMPLO) {
+    ""
+} else {
+    taxpain_core::productor::NIF
+};
+
+/// El NIF de ejemplo de `publico/productor.rs` (sólo cuadra su dígito de control).
+const NIF_DE_EJEMPLO: &str = "B00000000";
+
+const fn mismo_texto(a: &str, b: &str) -> bool {
+    let (a, b) = (a.as_bytes(), b.as_bytes());
+    if a.len() != b.len() {
+        return false;
+    }
+    let mut i = 0;
+    while i < a.len() {
+        if a[i] != b[i] {
+            return false;
+        }
+        i += 1;
+    }
+    true
+}
+
+#[cfg(test)]
+mod developer_nif_tests {
+    use super::*;
+
+    #[test]
+    fn el_nif_de_ejemplo_no_va_en_el_aux() {
+        assert!(mismo_texto("B00000000", NIF_DE_EJEMPLO));
+        assert!(!mismo_texto("B0000000", NIF_DE_EJEMPLO));
+        assert!(!mismo_texto("B0000000Z", NIF_DE_EJEMPLO));
+        assert_ne!(DEVELOPER_NIF, NIF_DE_EJEMPLO);
+        let aux = dr::envelope("303", 2026, "1T", SOFTWARE_VERSION, "", &[]);
+        assert_eq!(
+            aux.len(),
+            "<T303020261T0000>".len() + 5 + 300 + 6 + "</T303020261T0000>".len()
+        );
+    }
+}

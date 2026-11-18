@@ -70,6 +70,18 @@ export interface AppInfo {
   audit_warning?: AuditWarning | null;
   /** La empresa abierta es la de pruebas VERI*FACTU. */
   verifactu_lab?: boolean;
+  /** `false` en la versión que se descarga de la web: no emite facturas (ver `hayFacturacion`). */
+  facturacion?: boolean;
+}
+
+// ¿Emite facturas esta compilación? La de la web, sin productor del sistema de facturación, no
+// (taxpain_core::FACTURACION). La apunta App al leer appInfo; fuera de la app (modo demo), sí.
+let facturacion = true;
+export function hayFacturacion(): boolean {
+  return facturacion;
+}
+export function setFacturacion(v: boolean) {
+  facturacion = v;
 }
 
 /** Espejo de `taxpain_vault::audit::PendingRollback`. */

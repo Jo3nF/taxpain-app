@@ -4,6 +4,7 @@ import {
   errorMessage,
   euros,
   formatDate,
+  hayFacturacion,
   type InvoiceDraft,
   type InvoicingSettings,
   money,
@@ -247,7 +248,7 @@ export function Quotes({ settings }: { settings: InvoicingSettings }) {
                     Editar
                   </button>
                 )}
-                {open && q.status !== 'rechazado' && (
+                {hayFacturacion() && open && q.status !== 'rechazado' && (
                   <button
                     type="button"
                     className="text-link font-medium"

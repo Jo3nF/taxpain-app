@@ -23,10 +23,11 @@ autónomos y sociedades, **sin que tu certificado ni tus datos salgan de tu orde
 > compilaciones de desarrollo nada va a producción: los envíos van al entorno de pruebas de la
 > AEAT.
 >
-> **VERI\*FACTU está en pruebas y pronto estará listo.** TaxPain genera y encadena los
-> registros, pero de momento sólo los envía al entorno de pruebas de la AEAT y viene
-> desactivado por defecto. Hasta que envíe a producción, no lo uses como único programa de
-> facturación cuando el Reglamento (RD 1007/2023) ya te obligue.
+> **La versión que se descarga no emite facturas.** La facturación (con VERI\*FACTU, en pruebas)
+> está en el código, para quien compila TaxPain con sus datos de productor: ver
+> [Instalación](#instalación). VERI\*FACTU de momento sólo envía al entorno de pruebas de la
+> AEAT: no lo uses como único programa de facturación cuando el Reglamento (RD 1007/2023) ya te
+> obligue.
 
 ## Lo más importante
 
@@ -140,8 +141,8 @@ ordenador, cifrados, y cada acto con efectos legales (emitir una factura, firmar
 | 💡 **Ahorrar impuestos** | Recomendaciones según la situación de tu empresa (reservas de capitalización y nivelación, financiación de cine y series, planes de pensiones, amortización acelerada, empresas emergentes, compensar pérdidas de criptomonedas…), con el ahorro calculado con tus cifras, la fecha límite, los requisitos, **los pasos para conseguirlo** y la norma en el BOE. |
 | 📅 **Calendario fiscal** | Qué modelos te tocan según tu perfil (303, 130/131, 111, 115, 123, 349, 390, 190, 180, 193, 347, 184, 100, 200, 202, 721, depósito de cuentas…) y cada plazo trasladado por fines de semana y festivos **nacionales, autonómicos y locales**. Avisos y exportación a Calendario (`.ics`). |
 | 📥 **Importar la carpeta de la empresa** | Lee la carpeta de documentos (facturas, libros, extractos, escrituras, modelos presentados…) y propone qué importar; **revisión de la empresa** con errores, documentación que falta, modelos sin presentar, el 303 frente a las facturas, lo que se puede recuperar, las **devoluciones ya pedidas y pendientes de cobro** y qué pedir a la gestoría. Descarga de documentos de la AEAT por código CSV. **Carpetas vigiladas**: TaxPain mira una o varias carpetas (con subcarpetas) y lleva las facturas nuevas a Recibidas. |
-| 🧾 **Facturación** | Facturas completas, simplificadas y rectificativas con IVA, recargo de equivalencia y retención; moneda extranjera con el tipo del BCE; PDF en español o inglés; **Facturae 3.2.2** y **UBL (EN 16931)**; facturas periódicas; correo con la factura adjunta (en Mail); copia en iCloud Drive, Google Drive o Dropbox. Presupuestos y proformas que se convierten en factura. |
-| 🧪 **VERI\*FACTU (en pruebas)** | **En pruebas; pronto estará listo.** Genera los registros de alta y anulación encadenados con huella SHA-256 y los valida contra el esquema oficial; cola de envío que respeta el tiempo de espera de la AEAT y reintenta si se corta la red; estado de cada factura y **declaración responsable** del productor. De momento **sólo envía al entorno de pruebas de la AEAT** y viene desactivado por defecto. |
+| 🧾 **Facturación** *(si la compilas tú)* | Facturas completas, simplificadas y rectificativas con IVA, recargo de equivalencia y retención; moneda extranjera con el tipo del BCE; PDF en español o inglés; **Facturae 3.2.2** y **UBL (EN 16931)**; facturas periódicas; correo con la factura adjunta (en Mail); copia en iCloud Drive, Google Drive o Dropbox. Presupuestos y proformas que se convierten en factura. |
+| 🧪 **VERI\*FACTU (en pruebas, si la compilas tú)** | **En pruebas; pronto estará listo.** Genera los registros de alta y anulación encadenados con huella SHA-256 y los valida contra el esquema oficial; cola de envío que respeta el tiempo de espera de la AEAT y reintenta si se corta la red; estado de cada factura y **declaración responsable** del productor. De momento **sólo envía al entorno de pruebas de la AEAT** y viene desactivado por defecto. |
 | 🇪🇺 **Ventas a particulares de la UE (OSS)** | Umbral de 10.000 € con aviso, facturas con el IVA del país del cliente (tipo confirmado por ti), libro OSS y **borrador del 369** por país. |
 | 📨 **Facturas recibidas** | Arrastra PDF, fotos o Facturae (o vigila una carpeta): lee proveedor, NIF, número, fecha e importes (también con el asistente, anonimizado), marca lo dudoso y **nada cuenta hasta que lo revisas**. Inversión del sujeto pasivo para proveedores de la UE y de fuera. |
 | 🏦 **Bancos** | Extractos de **cualquier banco y formato** (Norma 43, camt, OFX, QIF, MT940, Excel, CSV, PDF…) comprobados con sus saldos y sin duplicados; opción avanzada: **conexión en solo lectura con BBVA y Revolut** (PSD2, a través de Enable Banking, con tu propia aplicación, en su modo de pruebas); conciliación con propuestas y reglas; remesas SEPA. |
@@ -189,8 +190,33 @@ vulnerability** de este repositorio, no en una incidencia pública. Detalle en
 
 ## Instalación
 
-Todavía no hay una versión firmada para descargar: de momento, TaxPain se compila desde el
-código.
+Hay dos maneras: **descargarla** (lo normal) o **compilarla tú** (si quieres emitir facturas o
+revisar el código).
+
+### Descargarla
+
+1. En [la última versión](../../releases/latest), descarga `TaxPain_…_universal.dmg`. Funciona
+   en Mac con Apple Silicon o Intel y macOS 12 o posterior.
+2. Abre el DMG y arrastra **TaxPain** a **Aplicaciones**.
+3. **La primera vez, dale permiso.** Todavía no lleva la firma de Apple, así que macOS dirá que
+   no puede comprobarla: pulsa **Hecho**, ve a **Ajustes del Sistema → Privacidad y seguridad**,
+   baja hasta «Se ha bloqueado TaxPain» y pulsa **Abrir igualmente**. Vuelve a abrirla y
+   confirma. Sólo hace falta una vez. (En macOS 14 o anterior también vale clic derecho →
+   **Abrir**.)
+4. Si macOS dice que la app «está dañada», ejecuta en Terminal:
+   `xattr -dr com.apple.quarantine /Applications/TaxPain.app`
+
+**Actualizaciones:** la app avisa cuando hay una versión nueva (Ajustes → Actualizaciones) y la
+instala si aceptas. Sólo instala paquetes firmados con la clave del proyecto.
+
+**Lo que no hace la versión descargada: emitir facturas.** Quien distribuye un programa de
+facturación es su *productor* y responde de que cumple el Reglamento (RD 1007/2023, art. 13).
+Mientras el proyecto no figure como productor, la versión que se descarga no emite, anula ni
+rectifica facturas (ni VERI\*FACTU); todo lo demás funciona igual, incluidas las facturas
+recibidas, los presupuestos, la contabilidad, los modelos y la revisión de la gestoría. Si
+necesitas facturar, compílala tú (abajo) o usa otro programa.
+
+### Compilarla tú
 
 Necesitas macOS 12 o posterior, las herramientas de línea de órdenes de Xcode
 (`xcode-select --install`), [Rust](https://rustup.rs) (la versión se fija sola con
@@ -202,15 +228,22 @@ npm ci                             # dependencias de la interfaz
 cd apps/desktop && npx tauri dev   # compila y abre la app (la primera vez tarda unos minutos)
 ```
 
-Para un `.app` propio: `npx tauri build` en `apps/desktop` (sin firma de Apple, se abre con clic
-derecho → Abrir). Para ver la interfaz con datos inventados, sin certificado ni datos tuyos,
+Para un `.app` propio: `npx tauri build` en `apps/desktop` (sin firma de Apple; como lo has
+compilado en tu Mac, se abre sin el aviso de la versión descargada). Para ver la interfaz con datos inventados, sin certificado ni datos tuyos,
 abre la app en el navegador en **modo demo**: `npx vite` en `apps/desktop` y
 `http://127.0.0.1:5173/?demo=1`.
 
+Tu compilación **emite facturas**: la facturación sólo se quita al compilar con la variable
+`TAXPAIN_SIN_FACTURACION=1`, que es lo que hace el workflow de versiones con los datos de
+ejemplo del productor ([`docs/RELEASE.md`](docs/RELEASE.md) §2.2).
+
 > [!IMPORTANT]
-> Si vas a **distribuir** TaxPain compilado, pon tus datos de productor del software en
-> [`crates/core/src/productor.rs`](crates/core/src/productor.rs) (van en los registros
-> VERI\*FACTU y en los ficheros de los modelos) y firma tu declaración responsable.
+> **Si emites facturas con tu compilación, el productor eres tú.** Pon tu nombre o razón
+> social, tu NIF y tu dirección en
+> [`crates/core/src/productor.rs`](crates/core/src/productor.rs) (van en cada registro
+> VERI\*FACTU y en los ficheros de los modelos) y firma tu declaración responsable (Ajustes →
+> Acerca de TaxPain la enseña y la guarda en PDF). Lo mismo si la **distribuyes**.
+> Cómo sacar versiones, firmarlas y publicar las actualizaciones: [`docs/RELEASE.md`](docs/RELEASE.md).
 
 ## Primeros pasos
 

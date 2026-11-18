@@ -451,6 +451,11 @@ gestor importados), lo dice, pero no lo marca solo.
 
 ## Facturación
 
+> La versión que se descarga de la web **no emite facturas**: no verás «Nueva factura»,
+> «Rectificar» ni «Anular», y un aviso lo explica. Sí puedes ver las facturas que importes y
+> preparar presupuestos. Para emitir hace falta compilar TaxPain desde el código, con tus datos
+> de productor (README → Instalación → Compilarla tú). Lo que sigue describe esa versión.
+
 ### Facturas
 
 La primera vez, «Configura tus facturas». Después:

@@ -53,15 +53,20 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      # Quien distribuye una compilación es el productor del sistema informático de facturación
-      # (RD 1007/2023 art. 13): sus datos van en cada registro VERI*FACTU. No se compila con los
-      # de ejemplo de la versión pública (publico/productor.rs).
-      - name: Datos del productor (no los de ejemplo)
+      # Quien distribuye una compilación que emite facturas es el productor del sistema
+      # informático de facturación (RD 1007/2023 art. 13): sus datos van en cada registro
+      # VERI*FACTU. Con los datos de ejemplo de la versión pública (publico/productor.rs), la app
+      # se compila SIN facturación (TAXPAIN_SIN_FACTURACION, taxpain_core::FACTURACION): no emite
+      # facturas, así que no es un sistema de facturación (docs/RELEASE.md §2.2).
+      - name: Datos del productor (con los de ejemplo, sin facturación)
+        id: productor
         run: |
           set -euo pipefail
           if grep -Eq 'B00000000|PRODUCTOR SIN CONFIGURAR' crates/core/src/productor.rs; then
-            echo "::error file=crates/core/src/productor.rs::crates/core/src/productor.rs tiene los datos de ejemplo (NIF B00000000 o «PRODUCTOR SIN CONFIGURAR»). Quien distribuye una compilación es el productor del sistema informático de facturación (RD 1007/2023 art. 13) y sus datos van en cada registro VERI*FACTU: pon tu nombre o razón social y tu NIF en crates/core/src/productor.rs antes de compilar una versión."
-            exit 1
+            echo "::warning::Datos del productor de ejemplo: la versión sale SIN facturación (no emite facturas ni VERI*FACTU)."
+            echo "sin_facturacion=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "sin_facturacion=" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -86,6 +91,9 @@ jobs:
           TAXPAIN_UPDATER_PUBKEY: ${{ vars.TAXPAIN_UPDATER_PUBKEY }}
           # Dónde mirará la app si hay versión nueva: la última release de este repositorio.
           TAXPAIN_UPDATER_REPO: ${{ github.repository }}
+          # Vacío = con facturación; «1» = sin ella (paso «Datos del productor»). Sólo aquí: los
+          # tests de ci.sh se pasan con la facturación completa.
+          TAXPAIN_SIN_FACTURACION: ${{ steps.productor.outputs.sin_facturacion }}
         run: |
           set -euo pipefail
           if [ -z "${TAXPAIN_UPDATER_PUBKEY:-}" ]; then unset TAXPAIN_UPDATER_PUBKEY; fi
