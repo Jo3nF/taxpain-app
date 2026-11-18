@@ -43,8 +43,11 @@ concurrency:
 jobs:
   compilar:
     name: Compilar y probar (sin secretos)
-    runs-on: macos-latest
-    timeout-minutes: 90
+    # Mac Intel: los de Apple Silicon (macos-latest) se quedaban sin máquina libre y GitHub
+    # cancelaba el trabajo en cola (18-11-2026). Sale igual de universal (--target
+    # universal-apple-darwin compila para los dos).
+    runs-on: macos-15-intel
+    timeout-minutes: 120
     permissions:
       contents: read
     env:
@@ -135,7 +138,7 @@ jobs:
   firmar:
     name: Firmar, notarizar y firmar el actualizador
     needs: compilar
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     timeout-minutes: 60
     environment: release
     permissions:
