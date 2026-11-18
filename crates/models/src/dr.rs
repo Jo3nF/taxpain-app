@@ -549,7 +549,8 @@ mod tests {
         assert_eq!(head.len(), 328);
         assert!(head.starts_with("<T30302026"));
         assert_eq!(&head[92..96], "0100");
-        assert_eq!(&head[100..109], crate::DEVELOPER_NIF);
+        // En la versión pública (NIF de ejemplo) el NIF va en blanco: 9 espacios.
+        assert_eq!(&head[100..109], format!("{:<9}", crate::DEVELOPER_NIF));
         assert!(e.ends_with("</T303020263T0000>"));
     }
 
