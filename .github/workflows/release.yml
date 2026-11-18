@@ -111,7 +111,11 @@ jobs:
           set -euo pipefail
           exe=$(ls -d target/universal-apple-darwin/release/bundle/macos/*.app | head -1)/Contents/MacOS/taxpain-desktop
           test -f "$exe"
-          if strings -a "$exe" | grep -E '/Users/|/home/' | sort -u | head -20 | grep .; then
+          # Cada ruta por separado: la carpeta compartida del Mac va escrita a propósito en la app
+          # (OTRAS_PERMITIDAS en salida.rs) y no es de la máquina que compila.
+          compartida="/Users""/Shared"
+          if strings -a "$exe" | grep -oE '/(Users|home)/[A-Za-z0-9._-]+' | grep -vxF "$compartida" \
+              | sort -u | head -20 | grep .; then
             echo "::error::$exe lleva rutas de /Users/ o /home/ (arriba): revisa --remap-path-prefix"
             exit 1
           fi
