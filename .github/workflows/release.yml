@@ -50,7 +50,7 @@ jobs:
     env:
       IS_TAG: ${{ github.ref_type == 'tag' }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       # Quien distribuye una compilación es el productor del sistema informático de facturación
@@ -63,7 +63,7 @@ jobs:
             echo "::error file=crates/core/src/productor.rs::crates/core/src/productor.rs tiene los datos de ejemplo (NIF B00000000 o «PRODUCTOR SIN CONFIGURAR»). Quien distribuye una compilación es el productor del sistema informático de facturación (RD 1007/2023 art. 13) y sus datos van en cada registro VERI*FACTU: pon tu nombre o razón social y tu NIF en crates/core/src/productor.rs antes de compilar una versión."
             exit 1
           fi
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: npm
@@ -71,7 +71,7 @@ jobs:
         run: |
           rustup show active-toolchain || rustup toolchain install
           rustup target add aarch64-apple-darwin x86_64-apple-darwin
-      - uses: Swatinem/rust-cache@e9d7b9f1e587218970671bac74e5511ed9506e6a # v2
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
       - run: npm ci --no-audit --no-fund
       - name: Versión (etiqueta = Cargo.toml = tauri.conf.json = package.json, con notas)
         if: env.IS_TAG == 'true'
@@ -112,7 +112,7 @@ jobs:
           COPYFILE_DISABLE=1 tar -czf unsigned/app.tar.gz -C "$(dirname "$app")" "$(basename "$app")"
           cp $b/dmg/*.dmg unsigned/
           ls -l unsigned
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: taxpain-macos-sin-firmar-${{ github.ref_name }}
           retention-days: 7
@@ -139,10 +139,10 @@ jobs:
     steps:
       # Para scripts/firmar-macos.sh, scripts/notarizar-macos.sh, scripts/updater-manifest.mjs,
       # CHANGELOG.md y la CLI de Tauri.
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: taxpain-macos-sin-firmar-${{ github.ref_name }}
           path: unsigned
@@ -260,7 +260,7 @@ jobs:
             [ -e "$kc" ] && security delete-keychain "$kc" || true
           done
           rm -rf "$RUNNER_TEMP"/firmar.* "$RUNNER_TEMP"/notarizar.*
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
       # Sólo la CLI de Tauri para `tauri signer sign`, sin ejecutar scripts de instalación de
@@ -327,7 +327,7 @@ jobs:
           if [ "$HAS_UPDATER_KEY" = true ]; then
             ls out/macos/*.app.tar.gz out/macos/*.app.tar.gz.sig out/latest.json
           fi
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: taxpain-macos-${{ github.ref_name }}
           retention-days: 30
@@ -351,10 +351,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: taxpain-macos-${{ github.ref_name }}
           path: dist

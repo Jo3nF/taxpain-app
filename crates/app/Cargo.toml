@@ -30,11 +30,11 @@ pdf-extract = "0.12.1"
 # Ya venía en el árbol (zip, lopdf): para medir lo que descomprime un PDF antes de abrirlo.
 flate2 = "1.1.10"
 # Ya venía en el árbol (lopdf 0.42): para medir también el `LZWDecode`.
-weezl = "0.1.12"
+weezl = "0.2.1"
 # Ya venía en el árbol (pdf-extract): para contar los códigos de un `/ToUnicode` como él.
 adobe-cmap-parser = "0.4.1"
 regex = "1.13.1"
-rust_xlsxwriter = { version = "0.101.0", default-features = false }
+rust_xlsxwriter = { version = "0.102.0", default-features = false }
 zip = { version = "9.0.5", default-features = false, features = ["deflate"] }
 calamine = { version = "0.38", default-features = false }
 quick-xml = "0.42.0"

@@ -28,6 +28,11 @@ updates:
     groups:
       npm-menores:
         update-types: [minor, patch]
+    # Biome 2.6 formatea también los .md y trae reglas nuevas (cambia ~60 ficheros): se sube a
+    # mano cuando toque, no dentro del grupo de versiones menores.
+    ignore:
+      - dependency-name: '@biomejs/biome'
+        update-types: [version-update:semver-minor, version-update:semver-major]
     commit-message:
       prefix: 'build(deps)'
   - package-ecosystem: github-actions
