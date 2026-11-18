@@ -247,7 +247,7 @@ describe('EvolucionPage', () => {
     render(<EvolucionPage />);
     expect(
       await screen.findByRole('button', {
-        name: 'Seguir con la IA: Falta el 202 del 3P 2025, 2 preguntas',
+        name: 'Seguir con la IA 2 preguntas: Falta el 202 del 3P 2025',
       }),
     ).toBeTruthy();
     const ask = screen.getByRole('button', {

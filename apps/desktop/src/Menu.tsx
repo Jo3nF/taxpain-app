@@ -38,6 +38,7 @@ export function Menu({
   className = 'menu-trigger',
   align = 'end',
   width,
+  nameFromContent = false,
 }: {
   /** Nombre accesible del botón (p. ej. «Más acciones de A2026-0006»). */
   label: string;
@@ -47,6 +48,10 @@ export function Menu({
   className?: string;
   align?: 'start' | 'end';
   width?: string;
+  /** El botón toma su nombre accesible de lo que lleva dentro (que ha de incluir `label`,
+   *  p. ej. en un texto sólo para lectores de pantalla) y no de `aria-label`: para botones que
+   *  enseñan un dato, como el selector de empresa (WCAG 2.5.3, «label in name»). */
+  nameFromContent?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [pos, setPos] = useState<{ top: number; left: number; maxHeight: number } | null>(null);
@@ -157,7 +162,7 @@ export function Menu({
         ref={trigger}
         type="button"
         className={className}
-        aria-label={label}
+        aria-label={nameFromContent ? undefined : label}
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={open ? menuId : undefined}

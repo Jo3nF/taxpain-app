@@ -492,7 +492,7 @@ export function PresentadoAeat({ year }: { year: number }) {
                       <button
                         type="button"
                         className="text-link"
-                        aria-label={`Ver el detalle de ${y}`}
+                        aria-label={`Ver detalle de ${y}`}
                         aria-pressed={y === detailYear}
                         onClick={() => showYear(y)}
                       >

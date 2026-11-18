@@ -133,6 +133,19 @@ function LoadError({ message }: { message: string }) {
 }
 
 /** El foco está en un campo de texto (los atajos de teclado no deben saltar ahí). */
+
+/** Lo que enseña el botón de observaciones y adjuntos de un asiento. */
+function notesLabel(s: Pick<StoredEntry, 'notes' | 'attachments'>): string {
+  return (
+    [
+      s.notes ? 'nota' : '',
+      s.attachments ? `${s.attachments} adjunto${s.attachments > 1 ? 's' : ''}` : '',
+    ]
+      .filter(Boolean)
+      .join(' · ') || 'notas y adjuntos'
+  );
+}
+
 export function isTyping(target: EventTarget | null): boolean {
   return (
     target instanceof Element &&
@@ -471,17 +484,10 @@ function JournalTable({
                         type="button"
                         className="text-xs text-stone-600 underline"
                         aria-expanded={open === s.id}
-                        aria-label={`Observaciones y adjuntos del asiento ${s.number}`}
+                        aria-label={`${notesLabel(s)}: observaciones y adjuntos del asiento ${s.number}`}
                         onClick={() => setOpen(open === s.id ? null : s.id)}
                       >
-                        {[
-                          s.notes ? 'nota' : '',
-                          s.attachments
-                            ? `${s.attachments} adjunto${s.attachments > 1 ? 's' : ''}`
-                            : '',
-                        ]
-                          .filter(Boolean)
-                          .join(' · ') || 'notas y adjuntos'}
+                        {notesLabel(s)}
                       </button>
                     </>
                   )}

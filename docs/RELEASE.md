@@ -14,7 +14,7 @@ mantiene el proyecto la publica y decide cuándo anuncia la versión a las apps 
 | Firma y notarización | secretos `APPLE_*` del environment `release` (sólo los ve el trabajo «firmar», §2.1) | Se activan solas al crear los secretos |
 | Actualizaciones | `tauri-plugin-updater`, `apps/desktop/src-tauri/src/updates.rs`, Ajustes → «Buscar actualizaciones» | Inactivas hasta compilar con `TAXPAIN_UPDATER_PUBKEY` |
 | Paquete del actualizador | `TaxPain.app.tar.gz` + `.sig` en la release de GitHub de la etiqueta | Firma verificada con `minisign` en el workflow |
-| Manifiesto del actualizador | `scripts/updater-manifest.mjs` → `latest.json` (asset de la release; se copia a la web) | Lo genera el workflow si hay clave |
+| Manifiesto del actualizador | `scripts/updater-manifest.mjs` → `latest.json` (asset de la release; la app lo lee de la última release publicada) | Lo genera el workflow si hay clave |
 
 Las acciones de los workflows van fijadas por hash de commit (Dependabot propone las
 actualizaciones, `.github/dependabot.yml`). El workflow tiene tres trabajos (auditoría,
@@ -111,9 +111,16 @@ con suma de comprobación válida.
    `TODO(VERIFY)`: en la primera versión firmada, comprobar en el registro del trabajo que
    `security import -x` + `set-key-partition-list` dejan firmar a `codesign` sin preguntar, y
    abrir el DMG descargado en un Mac limpio para ver que Gatekeeper no avisa.
-4. Con una **etiqueta `v*`** (versión para distribuir) el workflow **falla** si falta el
-   certificado, las credenciales de notarización o la clave del actualizador: así nunca sale una
-   versión pública sin firmar. A mano (*Run workflow*) sigue generando un DMG de prueba sin firmar.
+4. Con una **etiqueta `v*`** (versión para distribuir) el workflow **falla** si falta la clave
+   del actualizador, o si hay certificado pero no credenciales de notarización. **Sin cuenta de
+   Apple** (decisión del 18-11-2026) la versión sale **sin firmar ni notarizar**, con un aviso en
+   el registro: quien la instala da permiso una vez en *Ajustes del Sistema → Privacidad y
+   seguridad → Abrir igualmente* (instrucciones en la web, sección «Cómo instalarla»). Cuando
+   haya certificado, basta con crear los secretos: la siguiente etiqueta sale firmada y
+   notarizada sin tocar el workflow. A mano (*Run workflow*) sigue generando un DMG de prueba.
+   `TODO(VERIFY)`: en la primera actualización sin firma de Apple, comprobar si macOS vuelve a
+   pedir permiso para el Llavero (la firma *ad hoc* cambia en cada compilación) y, si lo hace,
+   explicarlo en la web.
 5. Apunta la **caducidad** del certificado Developer ID (5 años) y de la clave de API en el
    calendario: renovar = crear el nuevo, sustituir los secretos y lanzar una versión de prueba.
 
@@ -182,22 +189,17 @@ del certificado de Apple). La clave pública va **compilada** en la app.
    GitHub» deja el DMG, `TaxPain.app.tar.gz`, su `.sig` y `latest.json` en la **release de GitHub
    de esa etiqueta, en borrador** (la crea si no existe, con las notas del `CHANGELOG.md`).
    `latest.json` ya apunta a la URL pública del paquete en esa release
-   (`https://github.com/<propietario>/taxpain-app/releases/download/vX.Y.Z/TaxPain.app.tar.gz`). Para
-   publicar la versión:
-   1. Revisa la release en GitHub (Releases → borrador `TaxPain vX.Y.Z`) y **publícala**: hasta
-      entonces sus assets no se pueden descargar.
-   2. Anuncia la versión a las apps instaladas. La app consulta
-      `https://taxpain.es/updates/latest.json` (`MANIFEST_URL` en `updates.rs`), así que, **después**
-      de publicar la release, descarga el `latest.json` de la release, cópialo a `web/updates/`
-      (es el único fichero que cabe ahí; se puede versionar) y despliega la web
-      (`./scripts/deploy-web.sh`). `latest.json` es lo que anuncia la versión: así nunca se anuncia
-      una cuyo paquete aún no está público. Hasta entonces la app dice «Tienes la última versión».
-   - Alternativa sin pasar por la web: apuntar `MANIFEST_URL` (y `plugins.updater.endpoints` en
-     `tauri.conf.json`) a `https://github.com/<propietario>/taxpain-app/releases/latest/download/latest.json`.
-     Entonces publicar la release ya anuncia la versión (GitHub resuelve `latest` a la última
-     release publicada, no en borrador ni *pre-release*), con el repositorio público o con los
-     assets accesibles. Cambiarlo exige una versión nueva de la app y actualizar la tabla de
-     `docs/PRIVACIDAD_APP.md` (la petición iría a GitHub, no a taxpain.es).
+   (`https://github.com/<repositorio>/releases/download/vX.Y.Z/TaxPain.app.tar.gz`). Para
+   publicar la versión basta con **revisar la release en GitHub (Releases → borrador
+   `TaxPain vX.Y.Z`) y publicarla**. La app consulta
+   `https://github.com/<repositorio>/releases/latest/download/latest.json`, donde `<repositorio>`
+   es aquel en el que se compiló la versión (`TAXPAIN_UPDATER_REPO`, que el workflow toma de
+   `github.repository`; `manifest_url` en `updates.rs`; `plugins.updater.endpoints` de
+   `tauri.conf.json` va vacío a propósito): GitHub resuelve `latest` a la última release **publicada** (ni borradores ni
+   *pre-releases*), así que publicarla es lo que la anuncia, y nunca se anuncia una cuyo paquete
+   aún no se puede descargar. Hasta entonces la app dice «Tienes la última versión». Necesita el
+   repositorio público. Cambiar la URL exige una versión nueva de la app y actualizar la tabla
+   de `docs/PRIVACIDAD_APP.md`.
 5. Retirar una versión: volver a poner el `latest.json` anterior (o pasar la release a borrador si
    la app mira la release *latest*) deja de ofrecerla a quien aún no la tiene, pero **no hace
    downgrade** a quien ya la instaló (el actualizador sólo instala versiones mayores, y la

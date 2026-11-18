@@ -105,6 +105,8 @@ export function CompanySwitcher({ onSwitched }: { onSwitched?: () => void }) {
     <div ref={root} className="text-sm">
       <Menu
         label="Empresa"
+        // Nombre accesible: «Empresa:» y lo que se ve (nombre y NIF), WCAG 2.5.3.
+        nameFromContent
         className="company-trigger"
         align="start"
         width="17rem"
@@ -136,6 +138,7 @@ export function CompanySwitcher({ onSwitched }: { onSwitched?: () => void }) {
           {active ? initials(active.name) : <Building2 size={15} />}
         </span>
         <span className="min-w-0 flex-1 text-left">
+          {active && <span className="sr-only">Empresa: </span>}
           <span className="company-name">{active?.name ?? 'Empresa'}</span>
           {active?.nif && <span className="company-nif">{active.nif}</span>}
         </span>

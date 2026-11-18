@@ -194,9 +194,10 @@ export function AskAiButton({
   const visible = `${questions > 0 ? 'Seguir con la IA' : 'Preguntar a la IA'}${about ? ` ${about}` : ''}`;
   // El nombre entero va en aria-label: un texto oculto al lado del visible no se lee igual en
   // todos los navegadores («Preguntar a la IA : …»).
+  // Empieza por lo que se ve, número incluido (WCAG 2.5.3, «label in name»).
   const label =
     questions > 0
-      ? `${visible}: ${what}, ${questions} ${questions === 1 ? 'pregunta' : 'preguntas'}`
+      ? `${visible} ${questions} ${questions === 1 ? 'pregunta' : 'preguntas'}: ${what}`
       : `${visible}: ${what}`;
   return (
     <button
@@ -208,7 +209,7 @@ export function AskAiButton({
       {questions > 0 ? (
         <>
           <MessageSquare size={16} aria-hidden="true" />
-          {visible}
+          {visible}{' '}
           <span className="count" aria-hidden="true">
             {questions}
           </span>

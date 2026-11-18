@@ -342,7 +342,7 @@ describe('PresentadoAeat', () => {
     api.aeatCheckReport.mockImplementation(async (y: number) => ({ ...report, year: y }));
     render(<PresentadoAeat year={2025} />);
     expect(await screen.findByRole('heading', { name: 'Detalle de 2025' })).toBeTruthy();
-    fireEvent.click(await screen.findByRole('button', { name: 'Ver el detalle de 2024' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Ver detalle de 2024' }));
     expect(await screen.findByRole('heading', { name: 'Detalle de 2024' })).toBeTruthy();
     expect(api.aeatCheckReport).toHaveBeenLastCalledWith(2024);
     expect(await screen.findByRole('table', { name: 'Declaraciones de 2024' })).toBeTruthy();

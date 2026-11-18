@@ -1,5 +1,5 @@
-//! Actualizaciones de la app (Fase 8). El manifiesto (`latest.json`) lo publica quien mantiene el proyecto en
-//! taxpain.es; los paquetes viven en la release de GitHub de cada versión y van firmados con la
+//! Actualizaciones de la app (Fase 8). El manifiesto (`latest.json`) y los paquetes viven en la
+//! release de GitHub de cada versión; los paquetes van firmados con la
 //! clave del updater (minisign); la app sólo instala lo que verifica con la clave pública
 //! compilada en ella (`TAXPAIN_UPDATER_PUBKEY` al compilar la versión). Sin esa clave
 //! (compilaciones de desarrollo) las actualizaciones están desactivadas. Ver docs/RELEASE.md §3.
@@ -9,12 +9,29 @@ use tauri_plugin_updater::UpdaterExt;
 
 use crate::{CmdResult, CommandError};
 
-/// Dónde mira la app si hay versión nueva. El workflow Release sube `latest.json` como asset de
-/// la release de GitHub y quien mantiene el proyecto lo copia a mano a `web/updates/` (docs/RELEASE.md §3.4). Si algún
-/// día se quiere prescindir de la web, puede apuntar directamente al asset de la última release:
-/// `https://github.com/<propietario>/taxpain-app/releases/latest/download/latest.json` (cambiar también
-/// `plugins.updater.endpoints` en tauri.conf.json y la tabla de docs/PRIVACIDAD_APP.md).
-pub const MANIFEST_URL: &str = "https://taxpain.es/updates/latest.json";
+/// Dónde mira la app si hay versión nueva: el `latest.json` de la última release publicada del
+/// repositorio de GitHub en el que se compila la versión (`TAXPAIN_UPDATER_REPO`, «propietario/
+/// repositorio», que pone el workflow Release con `github.repository`). El workflow sube
+/// `latest.json` como asset de la release en borrador; GitHub sólo resuelve `latest` a releases
+/// publicadas (ni borradores ni *pre-releases*), así que publicar la release es lo que anuncia la
+/// versión (docs/RELEASE.md §3.4). Sin esa variable (compilaciones de desarrollo), como sin clave,
+/// no hay actualizaciones. Si cambia el sitio, actualizar la tabla de docs/PRIVACIDAD_APP.md.
+fn manifest_url() -> Option<String> {
+    option_env!("TAXPAIN_UPDATER_REPO").and_then(url_del_manifiesto)
+}
+
+/// `https://github.com/<repo>/releases/latest/download/latest.json`, si `repo` es
+/// «propietario/repositorio» con caracteres válidos en GitHub.
+fn url_del_manifiesto(repo: &str) -> Option<String> {
+    let (owner, name) = repo.trim().split_once('/')?;
+    let valido = |s: &str| {
+        !s.is_empty()
+            && s.chars()
+                .all(|c| c.is_ascii_alphanumeric() || matches!(c, '-' | '_' | '.'))
+    };
+    (valido(owner) && valido(name))
+        .then(|| format!("https://github.com/{owner}/{name}/releases/latest/download/latest.json"))
+}
 
 fn pubkey() -> Option<&'static str> {
     option_env!("TAXPAIN_UPDATER_PUBKEY").filter(|k| !k.trim().is_empty())
@@ -30,7 +47,12 @@ fn updater(app: &tauri::AppHandle) -> CmdResult<tauri_plugin_updater::Updater> {
     let key = pubkey().ok_or_else(|| {
         CommandError::from("Esta compilación no tiene activadas las actualizaciones automáticas.")
     })?;
-    let url = MANIFEST_URL
+    let url = manifest_url()
+        .ok_or_else(|| {
+            CommandError::from(
+                "Esta compilación no tiene activadas las actualizaciones automáticas.",
+            )
+        })?
         .parse()
         .map_err(|e: url::ParseError| CommandError::from(e.to_string()))?;
     Ok(app
@@ -119,6 +141,26 @@ mod tests {
 
     /// Nadie ha activado `allowDowngrades` (además, el comparador de arriba manda sobre él) y
     /// la versión anunciada ha de coincidir con la firmada.
+    #[test]
+    fn el_manifiesto_es_el_de_la_ultima_release() {
+        assert_eq!(
+            url_del_manifiesto("alguien/taxpain-app").as_deref(),
+            Some("https://github.com/alguien/taxpain-app/releases/latest/download/latest.json")
+        );
+        assert_eq!(url_del_manifiesto(""), None);
+        assert_eq!(url_del_manifiesto("sin-barra"), None);
+        assert_eq!(url_del_manifiesto("a/b/c"), None);
+        assert_eq!(url_del_manifiesto("a/b?x=1"), None);
+        assert_eq!(url_del_manifiesto("/b"), None);
+        // El sitio sólo lo pone el código: tauri.conf.json no lleva ninguno.
+        let conf: serde_json::Value =
+            serde_json::from_str(include_str!("../tauri.conf.json")).unwrap();
+        assert_eq!(
+            conf["plugins"]["updater"]["endpoints"],
+            serde_json::json!([])
+        );
+    }
+
     #[test]
     fn la_configuracion_no_permite_volver_atras() {
         let conf: serde_json::Value =

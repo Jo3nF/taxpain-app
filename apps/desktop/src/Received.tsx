@@ -1000,7 +1000,7 @@ export function Received({
                 <button
                   type="button"
                   className="underline"
-                  aria-label={`Dejar de vigilar ${f}`}
+                  aria-label={`Quitar ${f} de las carpetas vigiladas`}
                   onClick={async () => {
                     try {
                       setFolders(await setWatchedFolders(folders.filter((x) => x !== f)));

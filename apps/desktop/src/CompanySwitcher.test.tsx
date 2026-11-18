@@ -42,7 +42,7 @@ describe('CompanySwitcher', () => {
     render(<CompanySwitcher onSwitched={onSwitched} />);
     expect(await screen.findByText('Carmen')).toBeTruthy();
     expect(screen.getByText('12345678Z')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: 'Empresa' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Empresa/ }));
     expect(screen.getByRole('menuitemradio', { name: /Carmen/ }).getAttribute('aria-checked')).toBe(
       'true',
     );
@@ -57,7 +57,7 @@ describe('CompanySwitcher', () => {
     const onSwitched = vi.fn();
     render(<CompanySwitcher onSwitched={onSwitched} />);
     await screen.findByText('Carmen');
-    fireEvent.click(screen.getByRole('button', { name: 'Empresa' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Empresa/ }));
     fireEvent.click(screen.getByRole('menuitem', { name: 'Añadir empresa…' }));
     fireEvent.change(screen.getByLabelText('Nombre o razón social'), {
       target: { value: 'Nueva SL' },
@@ -83,7 +83,7 @@ describe('CompanySwitcher', () => {
     const onSwitched = vi.fn();
     render(<CompanySwitcher onSwitched={onSwitched} />);
     await screen.findByText('Carmen');
-    fireEvent.click(screen.getByRole('button', { name: 'Empresa' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Empresa/ }));
     fireEvent.click(screen.getByRole('menuitem', { name: 'Añadir empresa…' }));
     fireEvent.change(screen.getByLabelText('Nombre o razón social'), {
       target: { value: 'Nueva SL' },
@@ -98,7 +98,7 @@ describe('CompanySwitcher', () => {
   it('abre «Modificar o borrar empresas…» y relee la lista al cambiar', async () => {
     render(<CompanySwitcher onSwitched={vi.fn()} />);
     await screen.findByText('Carmen');
-    fireEvent.click(screen.getByRole('button', { name: 'Empresa' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Empresa/ }));
     fireEvent.click(screen.getByRole('menuitem', { name: 'Modificar o borrar empresas…' }));
     const dialog = screen.getByRole('dialog', { name: 'Gestionar empresas' });
     expect(dialog.textContent).toMatch(/Estudio SL/);
@@ -108,13 +108,13 @@ describe('CompanySwitcher', () => {
     await vi.waitFor(() => expect(api.companiesList).toHaveBeenCalledTimes(2));
     fireEvent.click(screen.getByRole('button', { name: 'Cerrar' }));
     expect(screen.queryByRole('dialog')).toBeNull();
-    expect(document.activeElement).toBe(screen.getByRole('button', { name: 'Empresa' }));
+    expect(document.activeElement).toBe(screen.getByRole('button', { name: /^Empresa/ }));
   });
 
   it('pide la contraseña de las copias con confirmación', async () => {
     render(<CompanySwitcher onSwitched={vi.fn()} />);
     await screen.findByText('Carmen');
-    fireEvent.click(screen.getByRole('button', { name: 'Empresa' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Empresa/ }));
     fireEvent.click(screen.getByRole('menuitem', { name: 'Añadir empresa…' }));
     fireEvent.change(screen.getByLabelText('Nombre o razón social'), {
       target: { value: 'Nueva SL' },

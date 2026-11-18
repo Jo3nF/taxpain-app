@@ -844,7 +844,7 @@ describe('Conversación con la IA', () => {
     answer(opened(c));
     expect(
       await screen.findByRole('button', {
-        name: 'Seguir con la IA: Reserva de capitalización, 1 pregunta',
+        name: 'Seguir con la IA 1 pregunta: Reserva de capitalización',
       }),
     ).toBeTruthy();
   });

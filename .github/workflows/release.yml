@@ -84,6 +84,8 @@ jobs:
           # La clave PÚBLICA del actualizador va compilada en la app (updates.rs, option_env!).
           # Es una variable, no un secreto.
           TAXPAIN_UPDATER_PUBKEY: ${{ vars.TAXPAIN_UPDATER_PUBKEY }}
+          # Dónde mirará la app si hay versión nueva: la última release de este repositorio.
+          TAXPAIN_UPDATER_REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           if [ -z "${TAXPAIN_UPDATER_PUBKEY:-}" ]; then unset TAXPAIN_UPDATER_PUBKEY; fi
@@ -146,7 +148,9 @@ jobs:
         with:
           name: taxpain-macos-sin-firmar-${{ github.ref_name }}
           path: unsigned
-      # Una versión para distribuir (etiqueta) ha de salir firmada, notarizada y con actualizador.
+      # Una versión para distribuir (etiqueta) ha de llevar actualizador. Sin cuenta de Apple sale
+      # sin firmar ni notarizar (las instrucciones de instalación están en la web): con el
+      # certificado, firmada y notarizada; con el certificado y sin notarización, error.
       - name: Secretos necesarios para una versión
         env:
           TAXPAIN_UPDATER_PUBKEY: ${{ vars.TAXPAIN_UPDATER_PUBKEY }}
@@ -154,8 +158,9 @@ jobs:
           set -euo pipefail
           if [ "$IS_TAG" = true ]; then
             missing=()
-            [ "$HAS_APPLE_CERT" = true ] || missing+=("certificado Developer ID (APPLE_CERTIFICATE y APPLE_SIGNING_IDENTITY)")
-            [ "$HAS_NOTARY" = true ] || missing+=("credenciales de notarización (APPLE_API_* o APPLE_ID)")
+            if [ "$HAS_APPLE_CERT" = true ] && [ "$HAS_NOTARY" != true ]; then
+              missing+=("credenciales de notarización (APPLE_API_* o APPLE_ID), que van con el certificado")
+            fi
             [ "$HAS_UPDATER_KEY" = true ] || missing+=("clave del actualizador (TAURI_SIGNING_PRIVATE_KEY)")
             if [ ${#missing[@]} -gt 0 ]; then
               echo "::error::Versión ${GITHUB_REF_NAME} sin: ${missing[*]}"

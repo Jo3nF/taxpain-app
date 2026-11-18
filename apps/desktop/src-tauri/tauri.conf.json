@@ -45,7 +45,7 @@
   "plugins": {
     "updater": {
       "pubkey": "",
-      "endpoints": ["https://taxpain.es/updates/latest.json"],
+      "endpoints": [],
       "requireSignedVersion": true
     }
   }

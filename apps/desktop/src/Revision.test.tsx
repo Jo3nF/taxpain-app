@@ -286,7 +286,7 @@ describe('Revisión de la carpeta', () => {
     expect(screen.getByText(/ni envía nada \(salvo lo que preguntes a la IA\)/)).toBeTruthy();
     expect(
       screen.getByRole('button', {
-        name: 'Seguir con la IA: 1 NIF con la letra de control mal, 1 pregunta',
+        name: 'Seguir con la IA 1 pregunta: 1 NIF con la letra de control mal',
       }),
     ).toBeTruthy();
     const ask = screen.getByRole('button', {

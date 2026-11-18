@@ -138,9 +138,9 @@ describe('Models', () => {
     ]);
     render(<Models />);
     const b = await screen.findByRole('button', {
-      name: 'Seguir con la IA sobre este borrador: modelo 303 · 3T 2026, 1 pregunta',
+      name: 'Seguir con la IA sobre este borrador 1 pregunta: modelo 303 · 3T 2026',
     });
-    expect(b.textContent).toBe('Seguir con la IA sobre este borrador1');
+    expect(b.textContent).toBe('Seguir con la IA sobre este borrador 1');
   });
 
   it('muestra el borrador casilla a casilla con avisos y el resultado', async () => {

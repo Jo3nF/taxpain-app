@@ -213,7 +213,7 @@ describe('AhorroPage', () => {
     render(<AhorroPage />);
     expect(
       await screen.findByRole('button', {
-        name: 'Seguir con la IA: Reserva de capitalización, 2 preguntas',
+        name: 'Seguir con la IA 2 preguntas: Reserva de capitalización',
       }),
     ).toBeTruthy();
     expect(
