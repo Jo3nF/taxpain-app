@@ -19,7 +19,7 @@ las notas de la versión. No hay programa de recompensas.
 
 ## Qué versiones
 
-TaxPain está en **alfa**. Sólo se arregla la última versión publicada y la rama principal.
+TaxPain está en **beta**. Sólo se arregla la última versión publicada y la rama principal.
 
 ## Qué nos interesa especialmente
 

@@ -9,7 +9,7 @@ autónomos y sociedades, **sin que tu certificado ni tus datos salgan de tu orde
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-green.svg)](LICENSE)
 ![Plataforma](https://img.shields.io/badge/macOS-Apple%20Silicon%20%7C%20Intel-black)
-![Estado](https://img.shields.io/badge/estado-alfa-orange)
+![Estado](https://img.shields.io/badge/estado-beta-blue)
 ![Hecho en España](https://img.shields.io/badge/hecho%20en-Espa%C3%B1a-c60b1e)
 
 [Guía de uso](docs/GUIA.md) · [Arquitectura](docs/ARCHITECTURE.md) · [Decisiones](docs/DECISIONS.md) · [Privacidad](docs/PRIVACIDAD_APP.md)
@@ -17,7 +17,7 @@ autónomos y sociedades, **sin que tu certificado ni tus datos salgan de tu orde
 </div>
 
 > [!WARNING]
-> **TaxPain está en desarrollo (alfa) y no es asesoramiento fiscal.** Calcula, prepara y
+> **TaxPain está en beta y no es asesoramiento fiscal.** Calcula, prepara y
 > explica, pero la responsabilidad de lo que se presenta ante la AEAT es de quien lo presenta.
 > Revisa siempre los borradores y, ante la duda, consulta con un asesor colegiado. En las
 > compilaciones de desarrollo nada va a producción: los envíos van al entorno de pruebas de la
