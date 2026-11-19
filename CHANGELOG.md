@@ -4,7 +4,7 @@ Una sección por versión, con el número exacto que tiene la app (`node scripts
 actualizador enseña estas notas y el workflow de versiones falla si falta la de la etiqueta.
 Escribe para quien usa la app, no para quien la programa.
 
-## 0.1.0 — sin publicar
+## 0.1.0 — 2026-11-19
 
 Primera versión de prueba para Mac: fiscalidad de autónomos y sociedades (calendario, modelos y
 presentación con certificado, facturas con Facturae firmada y VERI\*FACTU en pruebas), contabilidad (diario,
