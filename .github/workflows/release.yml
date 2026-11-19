@@ -47,7 +47,8 @@ jobs:
     # cancelaba el trabajo en cola (18-11-2026). Sale igual de universal (--target
     # universal-apple-darwin compila para los dos).
     runs-on: macos-15-intel
-    timeout-minutes: 120
+    # Las comprobaciones (1 h) y la compilación universal (1 h o algo más) en el Mac Intel.
+    timeout-minutes: 180
     permissions:
       contents: read
     env:
