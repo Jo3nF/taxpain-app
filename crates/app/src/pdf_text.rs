@@ -2425,7 +2425,15 @@ pub(crate) mod tests {
         // Unos 75 bytes leídos por byte del fichero (unos 750 por `stream`), 7 s en debug.
         assert!(leido < 150 * pdf.len() as u64, "{leido}");
         assert!(
-            t.elapsed() < std::time::Duration::from_secs(30),
+            // TAXPAIN_TEST_HOLGURA: multiplica el tope en máquinas lentas (el Mac Intel de
+            // GitHub). Lo que garantiza que es lineal es `leido`; el reloj sólo pilla lo grosero.
+            t.elapsed()
+                < std::time::Duration::from_secs(
+                    30 * std::env::var("TAXPAIN_TEST_HOLGURA")
+                        .ok()
+                        .and_then(|v| v.parse().ok())
+                        .unwrap_or(1)
+                ),
             "{:?}",
             t.elapsed()
         );

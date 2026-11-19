@@ -161,7 +161,15 @@ fn una_hoja_de_calculo_enorme_no_tumba_la_pasada_ni_se_vuelve_a_leer() {
 
     let t = std::time::Instant::now();
     let pass = vigiladas::scan(&v, AHORA).unwrap();
-    assert!(t.elapsed() < std::time::Duration::from_secs(30));
+    assert!(
+        t.elapsed()
+            < std::time::Duration::from_secs(
+                30 * std::env::var("TAXPAIN_TEST_HOLGURA")
+                    .ok()
+                    .and_then(|v| v.parse().ok())
+                    .unwrap_or(1)
+            )
+    );
     // El extracto bueno, como siempre; la hoja enorme se rechaza rápido y queda como vista (no
     // se reconoce: no es un documento que importar).
     assert_eq!(pass.pending, 1, "{pass:?}");

@@ -86,6 +86,10 @@ jobs:
         if: env.IS_TAG == 'true'
         run: node scripts/version.mjs tag "$GITHUB_REF_NAME"
       - name: Comprobaciones (las mismas que el CI)
+        env:
+          # El Mac Intel de GitHub es lento: los tests que vigilan el tiempo (un PDF enorme, un
+          # extracto, la carpeta vigilada…) tienen 4 veces más margen.
+          TAXPAIN_TEST_HOLGURA: '4'
         run: ./scripts/ci.sh
       - name: Compilar sin firmar
         working-directory: apps/desktop

@@ -1308,7 +1308,15 @@ mod tests {
         let r = a_tiempo(move || (spreadsheet(&bytes), spreadsheet_sheets(&bytes)));
         assert!(es_demasiado(&r.0), "{:?}", r.0);
         assert!(es_demasiado(&r.1), "{:?}", r.1);
-        assert!(t.elapsed() < Duration::from_secs(10));
+        assert!(
+            t.elapsed()
+                < std::time::Duration::from_secs(
+                    10 * std::env::var("TAXPAIN_TEST_HOLGURA")
+                        .ok()
+                        .and_then(|v| v.parse().ok())
+                        .unwrap_or(1)
+                )
+        );
     }
 
     #[test]

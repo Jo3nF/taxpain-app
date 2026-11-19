@@ -9,5 +9,5 @@ export default defineConfig({
   server: { port: 5173, strictPort: true, host: '127.0.0.1' },
   envPrefix: ['VITE_', 'TAURI_ENV_'],
   build: { target: 'safari15', sourcemap: false },
-  test: { environment: 'jsdom' },
+  test: { environment: 'jsdom', setupFiles: ['./src/test-setup.ts'], testTimeout: 20000 },
 });

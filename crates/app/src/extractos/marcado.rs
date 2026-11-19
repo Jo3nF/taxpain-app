@@ -905,7 +905,13 @@ mod tests {
         assert_eq!(r.len(), 1_000_000 + 6);
         assert!(r.ends_with("&&& & fin"));
         assert!(
-            t.elapsed() < std::time::Duration::from_secs(5),
+            t.elapsed()
+                < std::time::Duration::from_secs(
+                    5 * std::env::var("TAXPAIN_TEST_HOLGURA")
+                        .ok()
+                        .and_then(|v| v.parse().ok())
+                        .unwrap_or(1)
+                ),
             "{:?}",
             t.elapsed()
         );
