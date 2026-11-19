@@ -788,6 +788,13 @@ export function ConversationView({
     if (!loaded || layout !== 'panel') return;
     (box.current ?? root.current?.querySelector<HTMLElement>('form select, form input'))?.focus();
   }, [loaded]);
+  // Foco a «Tu pregunta» después de pintar: al borrar una conversación llena el cuadro aún no
+  // existe cuando se pide, y la confirmación de borrar devuelve el foco a su botón (que queda
+  // desactivado). Este efecto va después del de esa confirmación (es su padre) y gana.
+  const [focoPregunta, setFocoPregunta] = useState(0);
+  useEffect(() => {
+    if (focoPregunta > 0) box.current?.focus();
+  }, [focoPregunta]);
   // Al guardar los ajustes, el formulario (con el foco en «Guardar») deja paso al cuadro.
   const wasSetup = useRef(false);
   useEffect(() => {
@@ -1255,7 +1262,7 @@ export function ConversationView({
                   closePreview();
                   setAnnounce('Conversación borrada.');
                   onChange?.(null);
-                  if (layout === 'panel') box.current?.focus();
+                  if (layout === 'panel') setFocoPregunta((n) => n + 1);
                 }}
               />
             </div>
